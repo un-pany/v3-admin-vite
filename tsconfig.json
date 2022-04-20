@@ -17,7 +17,13 @@
       "dom"
     ],
     "skipLibCheck": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
+    "baseUrl": ".",
+    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
   "include": [
     "src/**/*.ts",
