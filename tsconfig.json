@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    /** https://vitejs.cn/guide/features.html#typescript-compiler-options */
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -8,13 +9,15 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
+    /** https://vitejs.cn/guide/features.html#typescript-compiler-options */
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": [
       "esnext",
       "dom"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["vite/client"]
   },
   "include": [
     "src/**/*.ts",
