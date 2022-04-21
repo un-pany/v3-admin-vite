@@ -1,9 +1,10 @@
 import { ConfigEnv, UserConfigExport } from 'vite'
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 /** 配置项文档：https://vitejs.dev/config */
 export default (env: ConfigEnv): UserConfigExport => {
@@ -78,6 +79,11 @@ export default (env: ConfigEnv): UserConfigExport => {
       Components({
         dts: './src/types/components.d.ts',
         resolvers: [ElementPlusResolver()]
+      }),
+      /** svg */
+      createSvgIconsPlugin({
+        iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
+        symbolId: 'icon-[dir]-[name]'
       })
     ]
   }
