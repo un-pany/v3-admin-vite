@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build:stage": "vue-tsc --noEmit && vite build --mode staging",
+    "build:prod": "vue-tsc --noEmit && vite build",
+    "preview:stage": "pnpm build:stage && vite preview",
+    "preview:prod": "pnpm build:prod && vite preview"
   },
   "dependencies": {
     "vue": "^3.2.33"
