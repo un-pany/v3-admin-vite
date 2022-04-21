@@ -10,7 +10,6 @@ console.info('测试 MODE', import.meta.env.MODE)
 console.info('测试 BASE_URL', import.meta.env.BASE_URL)
 console.info('测试 DEV', import.meta.env.DEV)
 console.info('测试 PROD', import.meta.env.PROD)
-const aaa = { a: 5, b: 1 }
 </script>
 
 <template>

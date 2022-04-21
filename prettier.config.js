@@ -12,10 +12,10 @@ module.exports = {
   endOfLine: 'auto',
   /** 采用单引号 */
   singleQuote: true,
-  /** 对象或者数组的最后一个元素后面是否要加逗号 */
-  trailingComma: 'all',
+  /** 对象或者数组的最后一个元素后面不要加逗号 */
+  trailingComma: 'none',
   /** 不加分号 */
   semi: false,
   /** 不使用 tab 格式化 */
-  useTabs: false,
+  useTabs: false
 }

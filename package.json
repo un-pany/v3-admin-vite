@@ -7,7 +7,8 @@
     "build:stage": "vue-tsc --noEmit && vite build --mode staging",
     "build:prod": "vue-tsc --noEmit && vite build",
     "preview:stage": "pnpm build:stage && vite preview",
-    "preview:prod": "pnpm build:prod && vite preview"
+    "preview:prod": "pnpm build:prod && vite preview",
+    "lint": "eslint \"{src,mock}/**/*.{vue,ts,tsx}\" --fix"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
@@ -16,7 +17,18 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^8.6.0",
     "prettier": "^2.6.2",
     "typescript": "^4.6.3",
     "unplugin-auto-import": "^0.7.1",

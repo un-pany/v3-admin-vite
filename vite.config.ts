@@ -11,8 +11,8 @@ export default (env: ConfigEnv): UserConfigExport => {
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
-        '@': resolve(__dirname, './src'),
-      },
+        '@': resolve(__dirname, './src')
+      }
     },
     server: {
       /** 是否开启 https */
@@ -34,9 +34,9 @@ export default (env: ConfigEnv): UserConfigExport => {
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,
-          rewrite: (path) => path.replace('/mock-api', ''),
-        },
-      },
+          rewrite: (path) => path.replace('/mock-api', '')
+        }
+      }
     },
     build: {
       brotliSize: false,
@@ -49,12 +49,12 @@ export default (env: ConfigEnv): UserConfigExport => {
         compress: {
           drop_console: false,
           drop_debugger: true,
-          pure_funcs: ['console.log'],
+          pure_funcs: ['console.log']
         },
         output: {
           /** 删除注释 */
-          comments: false,
-        },
+          comments: false
+        }
       },
       assetsDir: 'static/assets',
       /** 静态资源打包到 dist 下的不同目录 */
@@ -62,9 +62,9 @@ export default (env: ConfigEnv): UserConfigExport => {
         output: {
           chunkFileNames: 'static/js/[name]-[hash].js',
           entryFileNames: 'static/js/[name]-[hash].js',
-          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-        },
-      },
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+        }
+      }
     },
     /** vite 插件 */
     plugins: [
@@ -72,13 +72,13 @@ export default (env: ConfigEnv): UserConfigExport => {
       /** 自动按需导入 */
       AutoImport({
         dts: './src/types/auto-imports.d.ts',
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver()]
       }),
       /** 自动按需导入 */
       Components({
         dts: './src/types/components.d.ts',
-        resolvers: [ElementPlusResolver()],
-      }),
-    ],
+        resolvers: [ElementPlusResolver()]
+      })
+    ]
   }
 }
