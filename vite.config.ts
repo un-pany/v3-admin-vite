@@ -1,9 +1,9 @@
-import { ConfigEnv, UserConfigExport } from "vite"
-import { resolve } from "path"
-import vue from "@vitejs/plugin-vue"
-import AutoImport from "unplugin-auto-import/vite"
-import Components from "unplugin-vue-components/vite"
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
+import { ConfigEnv, UserConfigExport } from 'vite'
+import { resolve } from 'path'
+import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 /** 配置项文档：https://vitejs.dev/config */
 export default (env: ConfigEnv): UserConfigExport => {
@@ -11,7 +11,7 @@ export default (env: ConfigEnv): UserConfigExport => {
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
-        "@": resolve(__dirname, "./src"),
+        '@': resolve(__dirname, './src'),
       },
     },
     server: {
@@ -29,12 +29,12 @@ export default (env: ConfigEnv): UserConfigExport => {
       strictPort: true,
       /** 接口代理 */
       proxy: {
-        "/mock-api": {
-          target: "https://vue-typescript-admin-mock-server-armour.vercel.app/mock-api",
+        '/mock-api': {
+          target: 'https://vue-typescript-admin-mock-server-armour.vercel.app/mock-api',
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,
-          rewrite: (path) => path.replace("/mock-api", ""),
+          rewrite: (path) => path.replace('/mock-api', ''),
         },
       },
     },
@@ -43,26 +43,26 @@ export default (env: ConfigEnv): UserConfigExport => {
       /** 消除打包大小超过 500kb 警告 */
       chunkSizeWarningLimit: 2000,
       /** vite 2.6.x 以上需要配置 minify: terser，terserOptions 才能生效 */
-      minify: "terser",
+      minify: 'terser',
       /** 在 build 代码时移除 console.log、debugger 和 注释 */
       terserOptions: {
         compress: {
           drop_console: false,
           drop_debugger: true,
-          pure_funcs: ["console.log"],
+          pure_funcs: ['console.log'],
         },
         output: {
           /** 删除注释 */
           comments: false,
         },
       },
-      assetsDir: "static/assets",
+      assetsDir: 'static/assets',
       /** 静态资源打包到 dist 下的不同目录 */
       rollupOptions: {
         output: {
-          chunkFileNames: "static/js/[name]-[hash].js",
-          entryFileNames: "static/js/[name]-[hash].js",
-          assetFileNames: "static/[ext]/[name]-[hash].[ext]",
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
         },
       },
     },
