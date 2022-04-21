@@ -5,8 +5,12 @@
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
+    /** ts 严格模式 */
     "strict": true,
     "jsx": "preserve",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     /** https://vitejs.cn/guide/features.html#typescript-compiler-options */
@@ -17,12 +21,19 @@
       "dom"
     ],
     "skipLibCheck": true,
-    "types": ["vite/client"],
+    "types": [
+      "node",
+      "vite/client",
+      /** element-plus 的 volar 插件支持 */
+      // "element-plus/global"
+    ],
     /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
     "baseUrl": ".",
-    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算
+    /** 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算 */
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
   },
   "include": [
@@ -30,6 +41,12 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "types/**/*.d.ts",
     "vite.config.ts"
+  ],
+  /** 编译器默认排除的编译文件 */
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }
