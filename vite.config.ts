@@ -71,10 +71,12 @@ export default (env: ConfigEnv): UserConfigExport => {
       vue(),
       /** 自动按需导入 */
       AutoImport({
+        dts: './src/types/auto-imports.d.ts',
         resolvers: [ElementPlusResolver()],
       }),
       /** 自动按需导入 */
       Components({
+        dts: './src/types/components.d.ts',
         resolvers: [ElementPlusResolver()],
       }),
     ],
