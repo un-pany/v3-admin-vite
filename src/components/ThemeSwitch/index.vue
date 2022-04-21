@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts" setup>
-import { MagicStick } from '@element-plus/icons-vue'
-import { computed } from 'vue'
-import { useAppStore } from '@/store/modules/app'
+import { MagicStick } from "@element-plus/icons-vue"
+import { computed } from "vue"
+import { useAppStore } from "@/store/modules/app"
 
 const appStore = useAppStore()
 const themeList = computed(() => {

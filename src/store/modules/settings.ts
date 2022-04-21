@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import layoutSettings from '@/config/layout'
+import { defineStore } from "pinia"
+import layoutSettings from "@/config/layout"
 
 interface ISettingsState {
   fixedHeader: boolean
@@ -11,7 +11,7 @@ interface ISettingsState {
 }
 
 export const useSettingsStore = defineStore({
-  id: 'settings',
+  id: "settings",
   state: (): ISettingsState => {
     return {
       fixedHeader: layoutSettings.fixedHeader,
@@ -23,25 +23,25 @@ export const useSettingsStore = defineStore({
     }
   },
   actions: {
-    changeSetting(payload: { key: string, value: any }) {
+    changeSetting(payload: { key: string; value: any }) {
       const { key, value } = payload
       switch (key) {
-        case 'fixedHeader':
+        case "fixedHeader":
           this.fixedHeader = value
           break
-        case 'showSettings':
+        case "showSettings":
           this.showSettings = value
           break
-        case 'showSidebarLogo':
+        case "showSidebarLogo":
           this.showSidebarLogo = value
           break
-        case 'showTagsView':
+        case "showTagsView":
           this.showTagsView = value
           break
-        case 'showThemeSwitch':
+        case "showThemeSwitch":
           this.showThemeSwitch = value
           break
-        case 'showScreenfull':
+        case "showScreenfull":
           this.showScreenfull = value
           break
         default:

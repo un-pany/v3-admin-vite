@@ -1,12 +1,12 @@
-import { useAppStore, DeviceType } from '@/store/modules/app'
-import { computed, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useAppStore, DeviceType } from "@/store/modules/app"
+import { computed, watch } from "vue"
+import { useRoute } from "vue-router"
 
 /** 参考 Bootstrap 的响应式设计 width = 992 */
 const WIDTH = 992
 
 /** 根据大小变化重新布局 */
-export default function() {
+export default function () {
   const appStore = useAppStore()
 
   const device = computed(() => {
@@ -50,11 +50,11 @@ export default function() {
   }
 
   const addEventListenerOnResize = () => {
-    window.addEventListener('resize', resizeHandler)
+    window.addEventListener("resize", resizeHandler)
   }
 
   const removeEventListenerResize = () => {
-    window.removeEventListener('resize', resizeHandler)
+    window.removeEventListener("resize", resizeHandler)
   }
 
   return {

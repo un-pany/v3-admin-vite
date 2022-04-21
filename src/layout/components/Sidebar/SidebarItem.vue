@@ -1,6 +1,6 @@
 <!-- 侧边栏 Item -->
 <template>
-  <div v-if="!item.meta || !item.meta.hidden" :class="{'simple-mode': isCollapse, 'first-level': isFirstLevel}">
+  <div v-if="!item.meta || !item.meta.hidden" :class="{ 'simple-mode': isCollapse, 'first-level': isFirstLevel }">
     <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
       <SidebarItemLink v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
         <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
@@ -31,11 +31,11 @@
 </template>
 
 <script lang="ts" setup>
-import path from 'path-browserify'
-import { computed, PropType } from 'vue'
-import { RouteRecordRaw } from 'vue-router'
-import { isExternal } from '@/utils/validate'
-import SidebarItemLink from './SidebarItemLink.vue'
+import path from "path-browserify"
+import { computed, PropType } from "vue"
+import { RouteRecordRaw } from "vue-router"
+import { isExternal } from "@/utils/validate"
+import SidebarItemLink from "./SidebarItemLink.vue"
 
 const props = defineProps({
   item: {
@@ -82,7 +82,7 @@ const theOnlyOneChild = computed(() => {
   }
   // If there is no children, return itself with path removed,
   // because this.basePath already contains item's path information
-  return { ...props.item, path: '' }
+  return { ...props.item, path: "" }
 })
 
 const resolvePath = (routePath: string) => {

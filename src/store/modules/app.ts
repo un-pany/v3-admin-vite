@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { getSidebarStatus, getActiveThemeName, setSidebarStatus, setActiveThemeName } from '@/utils/cookies'
-import themeList from '@/config/theme'
+import { defineStore } from "pinia"
+import { getSidebarStatus, getActiveThemeName, setSidebarStatus, setActiveThemeName } from "@/utils/cookies"
+import themeList from "@/config/theme"
 
 export enum DeviceType {
   Mobile,
@@ -14,22 +14,22 @@ interface IAppState {
     withoutAnimation: boolean
   }
   /** 主题列表 */
-  themeList: { title: string, name: string }[]
+  themeList: { title: string; name: string }[]
   /** 正在应用的主题的名字 */
   activeThemeName: string
 }
 
 export const useAppStore = defineStore({
-  id: 'app',
+  id: "app",
   state: (): IAppState => {
     return {
       device: DeviceType.Desktop,
       sidebar: {
-        opened: getSidebarStatus() !== 'closed',
+        opened: getSidebarStatus() !== "closed",
         withoutAnimation: false
       },
       themeList: themeList,
-      activeThemeName: getActiveThemeName() || 'normal'
+      activeThemeName: getActiveThemeName() || "normal"
     }
   },
   actions: {
@@ -37,15 +37,15 @@ export const useAppStore = defineStore({
       this.sidebar.opened = !this.sidebar.opened
       this.sidebar.withoutAnimation = withoutAnimation
       if (this.sidebar.opened) {
-        setSidebarStatus('opened')
+        setSidebarStatus("opened")
       } else {
-        setSidebarStatus('closed')
+        setSidebarStatus("closed")
       }
     },
     closeSidebar(withoutAnimation: boolean) {
       this.sidebar.opened = false
       this.sidebar.withoutAnimation = withoutAnimation
-      setSidebarStatus('closed')
+      setSidebarStatus("closed")
     },
     toggleDevice(device: DeviceType) {
       this.device = device

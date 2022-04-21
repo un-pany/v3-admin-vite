@@ -2,9 +2,7 @@
 <template>
   <div class="drawer-container">
     <div>
-      <h3 class="drawer-title">
-        系统布局配置
-      </h3>
+      <h3 class="drawer-title">系统布局配置</h3>
       <div class="drawer-item">
         <span>显示 Tags-View</span>
         <el-switch v-model="state.showTagsView" class="drawer-switch" />
@@ -30,8 +28,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useSettingsStore } from '@/store/modules/settings'
-import { reactive, watch } from 'vue'
+import { useSettingsStore } from "@/store/modules/settings"
+import { reactive, watch } from "vue"
 
 const settingsStore = useSettingsStore()
 
@@ -47,7 +45,7 @@ watch(
   () => state.fixedHeader,
   (value) => {
     settingsStore.changeSetting({
-      key: 'fixedHeader',
+      key: "fixedHeader",
       value
     })
   }
@@ -57,7 +55,7 @@ watch(
   () => state.showTagsView,
   (value) => {
     settingsStore.changeSetting({
-      key: 'showTagsView',
+      key: "showTagsView",
       value
     })
   }
@@ -67,7 +65,7 @@ watch(
   () => state.showSidebarLogo,
   (value) => {
     settingsStore.changeSetting({
-      key: 'showSidebarLogo',
+      key: "showSidebarLogo",
       value
     })
   }
@@ -77,7 +75,7 @@ watch(
   () => state.showThemeSwitch,
   (value) => {
     settingsStore.changeSetting({
-      key: 'showThemeSwitch',
+      key: "showThemeSwitch",
       value
     })
   }
@@ -87,7 +85,7 @@ watch(
   () => state.showScreenfull,
   (value) => {
     settingsStore.changeSetting({
-      key: 'showScreenfull',
+      key: "showScreenfull",
       value
     })
   }

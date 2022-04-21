@@ -39,23 +39,17 @@
       <el-tabs type="border-card" style="width: 550px; margin-top: 60px">
         <el-tab-pane v-if="checkPermission(['admin'])" label="admin">
           admin 可以看见这个
-          <el-tag class="permission-sourceCode" type="info">
-            v-if="checkPermission(['admin'])"
-          </el-tag>
+          <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['admin'])" </el-tag>
         </el-tab-pane>
 
         <el-tab-pane v-if="checkPermission(['editor'])" label="editor">
           editor 可以看见这个
-          <el-tag class="permission-sourceCode" type="info">
-            v-if="checkPermission(['editor'])"
-          </el-tag>
+          <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['editor'])" </el-tag>
         </el-tab-pane>
 
         <el-tab-pane v-if="checkPermission(['admin', 'editor'])" label="admin 和 editor">
           两者 admin 和 editor 都可以看见这个
-          <el-tag class="permission-sourceCode" type="info">
-            v-if="checkPermission(['admin', 'editor'])"
-          </el-tag>
+          <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['admin', 'editor'])" </el-tag>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -63,9 +57,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { checkPermission } from '@/utils/permission' // 权限判断函数
-import SwitchRoles from './components/switch-roles.vue'
+import { reactive } from "vue"
+import { checkPermission } from "@/utils/permission" // 权限判断函数
+import SwitchRoles from "./components/switch-roles.vue"
 
 const state = reactive({
   key: 1,

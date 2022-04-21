@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts" setup>
-import { FullScreen } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
-import screenfull from 'screenfull'
+import { FullScreen } from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
+import screenfull from "screenfull"
 
 const click = () => {
   if (!screenfull.isEnabled) {
-    ElMessage.warning('您的浏览器无法工作')
+    ElMessage.warning("您的浏览器无法工作")
     return
   }
   screenfull.toggle()

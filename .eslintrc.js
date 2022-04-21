@@ -6,78 +6,76 @@ module.exports = {
     es6: true
   },
   globals: {
-    defineProps: 'readonly',
-    defineEmits: 'readonly',
-    defineExpose: 'readonly'
-  },
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
-    ecmaVersion: 2020
+    // script setup
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    withDefaults: "readonly"
   },
   extends: [
-    'plugin:vue/vue3-recommended',
-    'plugin:vue/vue3-strongly-recommended',
-    'plugin:@typescript-eslint/recommended',
-    '@vue/standard',
-    '@vue/typescript/recommended'
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "@vue/prettier",
+    "@vue/eslint-config-typescript"
   ],
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+    ecmaVersion: 2020,
+    sourceType: "module",
+    jsxPragma: "React",
+    ecmaFeatures: {
+      jsx: true,
+      tsx: true
+    }
+  },
   rules: {
-    'vue/multi-word-component-names': 'off',
-    'vue/comment-directive': 'off',
-    'no-console': 'off',
-    'no-debugger': import.meta.env.MODE === 'production' ? 'warn' : 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/member-delimiter-style': [
-      'error',
+    // ts
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-debugger": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
       {
-        multiline: {
-          delimiter: 'none'
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_"
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_"
+      }
+    ],
+    // vue
+    "vue/no-v-html": "off",
+    "vue/require-default-prop": "off",
+    "vue/require-explicit-emits": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/html-self-closing": [
+      "error",
+      {
+        html: {
+          void: "always",
+          normal: "always",
+          component: "always"
         },
-        singleline: {
-          delimiter: 'comma'
-        }
+        svg: "always",
+        math: "always"
       }
     ],
-    // 'vue/html-self-closing': [
-    //   'error',
-    //   {
-    //     html: {
-    //       void: 'always',
-    //       normal: 'always',
-    //       component: 'always'
-    //     },
-    //     svg: 'always',
-    //     math: 'always'
-    //   }
-    // ],
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'off',
-    'prefer-regex-literals': 'off',
-    'space-before-function-paren': ['error', 'never'],
-    'vue/array-bracket-spacing': 'error',
-    'vue/arrow-spacing': 'error',
-    'vue/block-spacing': 'error',
-    'vue/brace-style': 'error',
-    'vue/camelcase': 'error',
-    'vue/comma-dangle': 'error',
-    'vue/component-name-in-template-casing': 'error',
-    'vue/eqeqeq': 'error',
-    'vue/key-spacing': 'error',
-    'vue/match-component-file-name': 'error',
-    'vue/object-curly-spacing': 'error',
-    'vue/max-attributes-per-line': 'off',
-    'vue/html-closing-bracket-newline': 'off',
-    'no-useless-escape': 'off',
-    '@typescript-eslint/no-this-alias': [
-      'error',
+    // prettier
+    "prettier/prettier": [
+      "error",
       {
-        allowDestructuring: true, // Allow `const { props, state } = this`; false by default
-        allowedNames: ['self'] // Allow `const self = this`; `[]` by default
+        endOfLine: "auto"
       }
-    ],
-    'vue/attribute-hyphenation': 'off',
-    'vue/custom-event-name-casing': 'off',
-    'dot-notation': 'off'
+    ]
   }
 }

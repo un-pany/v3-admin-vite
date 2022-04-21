@@ -3,8 +3,8 @@
   <div :class="classObj" class="app-wrapper">
     <div v-if="classObj.mobile && sidebar.opened" class="drawer-bg" @click="state.handleClickOutside" />
     <Sidebar class="sidebar-container" />
-    <div :class="{hasTagsView: showTagsView}" class="main-container">
-      <div :class="{'fixed-header': fixedHeader}">
+    <div :class="{ hasTagsView: showTagsView }" class="main-container">
+      <div :class="{ 'fixed-header': fixedHeader }">
         <NavigationBar />
         <TagsView v-if="showTagsView" />
       </div>
@@ -17,11 +17,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useAppStore, DeviceType } from '@/store/modules/app'
-import { useSettingsStore } from '@/store/modules/settings'
-import { computed, onBeforeMount, onBeforeUnmount, onMounted, reactive } from 'vue'
-import { AppMain, NavigationBar, Settings, Sidebar, TagsView, RightPanel } from './components'
-import useResize from './useResize'
+import { useAppStore, DeviceType } from "@/store/modules/app"
+import { useSettingsStore } from "@/store/modules/settings"
+import { computed, onBeforeMount, onBeforeUnmount, onMounted, reactive } from "vue"
+import { AppMain, NavigationBar, Settings, Sidebar, TagsView, RightPanel } from "./components"
+import useResize from "./useResize"
 
 const { sidebar, device, addEventListenerOnResize, resizeMounted, removeEventListenerResize, watchRouter } = useResize()
 const appStore = useAppStore()
@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/mixins.scss';
+@import "@/styles/mixins.scss";
 $sideBarWidth: 220px;
 
 .app-wrapper {

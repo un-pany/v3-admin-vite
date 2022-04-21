@@ -8,7 +8,7 @@ interface IRolesSettings {
 
 const rolesSettings: IRolesSettings = {
   openRoles: true,
-  defaultRoles: ['admin']
+  defaultRoles: ["admin"]
 }
 
 export default rolesSettings

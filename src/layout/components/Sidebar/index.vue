@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'has-logo': showLogo}">
+  <div :class="{ 'has-logo': showLogo }">
     <SidebarLogo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -24,13 +24,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useAppStore } from '@/store/modules/app'
-import { usePermissionStore } from '@/store/modules/permission'
-import { useSettingsStore } from '@/store/modules/settings'
-import SidebarItem from './SidebarItem.vue'
-import SidebarLogo from './SidebarLogo.vue'
+import { computed } from "vue"
+import { useRoute } from "vue-router"
+import { useAppStore } from "@/store/modules/app"
+import { usePermissionStore } from "@/store/modules/permission"
+import { useSettingsStore } from "@/store/modules/settings"
+import SidebarItem from "./SidebarItem.vue"
+import SidebarLogo from "./SidebarLogo.vue"
 
 const route = useRoute()
 const sidebar = computed(() => {
@@ -82,7 +82,7 @@ const isCollapse = computed(() => {
 <style lang="scss" scoped>
 @mixin tip-line {
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;

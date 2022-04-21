@@ -1,5 +1,5 @@
-import { useUserStoreHook } from '@/store/modules/user'
-import { Directive } from 'vue'
+import { useUserStoreHook } from "@/store/modules/user"
+import { Directive } from "vue"
 
 /** 权限指令 */
 export const permission: Directive = {
@@ -12,7 +12,7 @@ export const permission: Directive = {
         return permissionRoles.includes(role)
       })
       if (!hasPermission) {
-        el.style.display = 'none'
+        el.style.display = "none"
       }
     } else {
       throw new Error("need roles! Like v-permission=\"['admin','editor']\"")

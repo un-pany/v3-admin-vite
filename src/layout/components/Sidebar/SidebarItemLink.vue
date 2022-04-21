@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import { isExternal } from '@/utils/validate'
-import { useRouter } from 'vue-router'
+import { isExternal } from "@/utils/validate"
+import { useRouter } from "vue-router"
 
 const props = defineProps({
   to: {

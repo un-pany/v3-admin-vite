@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import { _RouteLocationBase, RouteLocationNormalized } from 'vue-router'
+import { defineStore } from "pinia"
+import { _RouteLocationBase, RouteLocationNormalized } from "vue-router"
 
 export interface ITagView extends Partial<RouteLocationNormalized> {
   title?: string
@@ -11,7 +11,7 @@ interface ITagsViewState {
 }
 
 export const useTagsViewStore = defineStore({
-  id: 'tags-view',
+  id: "tags-view",
   state: (): ITagsViewState => {
     return {
       visitedViews: []
@@ -22,7 +22,7 @@ export const useTagsViewStore = defineStore({
       if (this.visitedViews.some((v) => v.path === view.path)) return
       this.visitedViews.push(
         Object.assign({}, view, {
-          title: view.meta?.title || 'no-name'
+          title: view.meta?.title || "no-name"
         })
       )
     },

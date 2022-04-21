@@ -3,7 +3,7 @@
     <ThemeSwitch class="theme-switch" />
     <div class="login-card">
       <div class="title">
-        <img src="@/assets/layout/logo-text-2.png">
+        <img src="@/assets/layout/logo-text-2.png" />
       </div>
       <div class="content">
         <el-form ref="loginFormDom" :model="loginForm" :rules="loginRules" @keyup.enter="handleLogin">
@@ -38,12 +38,10 @@
               size="large"
             />
             <span class="show-code">
-              <img :src="codeUrl" @click="createCode">
+              <img :src="codeUrl" @click="createCode" />
             </span>
           </el-form-item>
-          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">
-            登 录
-          </el-button>
+          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin"> 登 录 </el-button>
         </el-form>
       </div>
     </div>
@@ -51,11 +49,11 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { useUserStore } from '@/store/modules/user'
-import { useRouter } from 'vue-router'
-import { User, Lock, Key } from '@element-plus/icons-vue'
-import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
+import { reactive, ref } from "vue"
+import { useUserStore } from "@/store/modules/user"
+import { useRouter } from "vue-router"
+import { User, Lock, Key } from "@element-plus/icons-vue"
+import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 
 interface ILoginForm {
   /** admin 或 editor */
@@ -72,20 +70,20 @@ const router = useRouter()
 
 const loading = ref<boolean>(false)
 const loginFormDom = ref<any>()
-const codeUrl = ref<string>('')
+const codeUrl = ref<string>("")
 const loginForm = reactive<ILoginForm>({
-  username: 'admin',
-  password: '123456',
-  code: '1234',
-  codeToken: ''
+  username: "admin",
+  password: "123456",
+  code: "1234",
+  codeToken: ""
 })
 const loginRules = reactive({
-  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 6, max: 18, message: "长度在 6 到 18 个字符", trigger: "blur" }
   ],
-  code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
+  code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
 })
 const handleLogin = () => {
   loginFormDom.value.validate((valid: boolean) => {
@@ -98,7 +96,7 @@ const handleLogin = () => {
         })
         .then(() => {
           loading.value = false
-          router.push({ path: '/' }).catch((err) => {
+          router.push({ path: "/" }).catch((err) => {
             console.warn(err)
           })
         })
@@ -114,51 +112,13 @@ const handleLogin = () => {
 /** 创建验证码 */
 const createCode: () => void = () => {
   // 先清空验证码的输入
-  loginForm.code = ''
-  let codeToken = ''
-  const codeLength = 12
+  loginForm.code = ""
+  let codeToken = ""
+  const codeTokenLength = 12
   // 随机数
-  const random: Array<number | string> = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z'
-  ]
-  for (let i = 0; i < codeLength; i++) {
+  for (let i = 0; i < codeTokenLength; i++) {
     const index = Math.floor(Math.random() * 36)
-    codeToken += random[index]
+    codeToken += index
   }
   loginForm.codeToken = codeToken
   // 实际开发中，可替换成自己的地址，这里只是提供一个参考

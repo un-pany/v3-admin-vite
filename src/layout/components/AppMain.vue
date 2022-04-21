@@ -1,7 +1,7 @@
 <!-- 主视图 -->
 <template>
   <section class="app-main">
-    <router-view v-slot="{Component}">
+    <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
         <!-- <keep-alive> -->
         <component :is="Component" :key="key" />
@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from "vue"
+import { useRoute } from "vue-router"
 
 const route = useRoute()
 const key = computed(() => {

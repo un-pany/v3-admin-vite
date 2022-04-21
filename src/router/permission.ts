@@ -1,25 +1,25 @@
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
-import router from '@/router'
-import { RouteLocationNormalized } from 'vue-router'
-import { useUserStoreHook } from '@/store/modules/user'
-import { usePermissionStoreHook } from '@/store/modules/permission'
-import { ElMessage } from 'element-plus'
-import { whiteList } from '@/config/white-list'
-import rolesSettings from '@/config/roles'
-import { getToken } from '@/utils/cookies'
+import NProgress from "nprogress"
+import "nprogress/nprogress.css"
+import router from "@/router"
+import { RouteLocationNormalized } from "vue-router"
+import { useUserStoreHook } from "@/store/modules/user"
+import { usePermissionStoreHook } from "@/store/modules/permission"
+import { ElMessage } from "element-plus"
+import { whiteList } from "@/config/white-list"
+import rolesSettings from "@/config/roles"
+import { getToken } from "@/utils/cookies"
 
 const userStore = useUserStoreHook()
 const permissionStore = usePermissionStoreHook()
 NProgress.configure({ showSpinner: false })
 
-router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized, next: any) => {
+router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized, next: any) => {
   NProgress.start()
   // 判断该用户是否登录
   if (getToken()) {
-    if (to.path === '/login') {
+    if (to.path === "/login") {
       // 如果登录，并准备进入 login 页面，则重定向到主页
-      next({ path: '/' })
+      next({ path: "/" })
       NProgress.done()
     } else {
       // 检查用户是否已获得其权限角色
@@ -47,8 +47,8 @@ router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized,
         } catch (err: any) {
           // 删除 token，并重定向到登录页面
           userStore.resetToken()
-          ElMessage.error(err.message || 'Has Error')
-          next('/login')
+          ElMessage.error(err.message || "Has Error")
+          next("/login")
           NProgress.done()
         }
       } else {
@@ -62,7 +62,7 @@ router.beforeEach(async(to: RouteLocationNormalized, _: RouteLocationNormalized,
       next()
     } else {
       // 其他没有访问权限的页面将被重定向到登录页面
-      next('/login')
+      next("/login")
       NProgress.done()
     }
   }

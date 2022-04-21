@@ -1,7 +1,7 @@
 /** cookies 封装 */
 
-import Keys from '@/constant/key'
-import Cookies from 'js-cookie'
+import Keys from "@/constant/key"
+import Cookies from "js-cookie"
 
 export const getSidebarStatus = () => Cookies.get(Keys.sidebarStatus)
 export const setSidebarStatus = (sidebarStatus: string) => Cookies.set(Keys.sidebarStatus, sidebarStatus)

@@ -1,7 +1,7 @@
-import store from '@/store'
-import { defineStore } from 'pinia'
-import { RouteRecordRaw } from 'vue-router'
-import { constantRoutes, asyncRoutes } from '@/router'
+import store from "@/store"
+import { defineStore } from "pinia"
+import { RouteRecordRaw } from "vue-router"
+import { constantRoutes, asyncRoutes } from "@/router"
 
 interface IPermissionState {
   routes: RouteRecordRaw[]
@@ -37,7 +37,7 @@ const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
 }
 
 export const usePermissionStore = defineStore({
-  id: 'permission',
+  id: "permission",
   state: (): IPermissionState => {
     return {
       routes: [],
@@ -47,7 +47,7 @@ export const usePermissionStore = defineStore({
   actions: {
     setRoutes(roles: string[]) {
       let accessedRoutes
-      if (roles.includes('admin')) {
+      if (roles.includes("admin")) {
         accessedRoutes = asyncRoutes
       } else {
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)

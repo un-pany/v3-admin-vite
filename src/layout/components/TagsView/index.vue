@@ -6,7 +6,7 @@
         ref="tag"
         :key="tag.path"
         :class="state.isActive(tag) ? 'active' : ''"
-        :to="{path: tag.path, query: tag.query, fullPath: tag.fullPath}"
+        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
         class="tags-view-item"
         @click.middle="!state.isAffix(tag) ? state.closeSelectedTag(tag) : ''"
         @contextmenu.prevent="state.openMenu(tag, $event)"
@@ -17,31 +17,23 @@
         </el-icon>
       </router-link>
     </ScrollPane>
-    <ul v-show="state.visible" :style="{left: state.left + 'px', top: state.top + 'px'}" class="contextmenu">
-      <li @click="state.refreshSelectedTag(state.selectedTag)">
-        刷新
-      </li>
-      <li v-if="!state.isAffix(state.selectedTag)" @click="state.closeSelectedTag(state.selectedTag)">
-        关闭
-      </li>
-      <li @click="state.closeOthersTags">
-        关闭其它
-      </li>
-      <li @click="state.closeAllTags(state.selectedTag)">
-        关闭所有
-      </li>
+    <ul v-show="state.visible" :style="{ left: state.left + 'px', top: state.top + 'px' }" class="contextmenu">
+      <li @click="state.refreshSelectedTag(state.selectedTag)">刷新</li>
+      <li v-if="!state.isAffix(state.selectedTag)" @click="state.closeSelectedTag(state.selectedTag)">关闭</li>
+      <li @click="state.closeOthersTags">关闭其它</li>
+      <li @click="state.closeAllTags(state.selectedTag)">关闭所有</li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-import path from 'path-browserify'
-import { useTagsViewStore, ITagView } from '@/store/modules/tags-view'
-import { usePermissionStore } from '@/store/modules/permission'
-import { computed, getCurrentInstance, nextTick, onBeforeMount, reactive, watch } from 'vue'
-import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
-import ScrollPane from './ScrollPane.vue'
-import { Close } from '@element-plus/icons-vue'
+import path from "path-browserify"
+import { useTagsViewStore, ITagView } from "@/store/modules/tags-view"
+import { usePermissionStore } from "@/store/modules/permission"
+import { computed, getCurrentInstance, nextTick, onBeforeMount, reactive, watch } from "vue"
+import { RouteRecordRaw, useRoute, useRouter } from "vue-router"
+import ScrollPane from "./ScrollPane.vue"
+import { Close } from "@element-plus/icons-vue"
 
 const tagsViewStore = useTagsViewStore()
 const permissionStore = usePermissionStore()
@@ -58,13 +50,13 @@ const toLastView = (visitedViews: ITagView[], view: ITagView) => {
     })
   } else {
     // 如果没有 tags-view，请默认重定向到主页，如果你需要，可以自行调整它
-    if (view.name === 'Dashboard') {
+    if (view.name === "Dashboard") {
       // 重新加载主页
-      router.push({ path: '/redirect' + view.fullPath }).catch((err) => {
+      router.push({ path: "/redirect" + view.fullPath }).catch((err) => {
         console.warn(err)
       })
     } else {
-      router.push('/').catch((err) => {
+      router.push("/").catch((err) => {
         console.warn(err)
       })
     }
@@ -86,7 +78,7 @@ const state = reactive({
   refreshSelectedTag: (view: ITagView) => {
     const { fullPath } = view
     nextTick(() => {
-      router.replace({ path: '/redirect' + fullPath }).catch((err) => {
+      router.replace({ path: "/redirect" + fullPath }).catch((err) => {
         console.warn(err)
       })
     })
@@ -137,7 +129,7 @@ const visitedViews = computed(() => {
 })
 const routes = computed(() => permissionStore.routes)
 
-const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
+const filterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
   let tags: ITagView[] = []
 
   routes.forEach((route) => {
@@ -205,9 +197,9 @@ watch(
   () => state.visible,
   (value) => {
     if (value) {
-      document.body.addEventListener('click', state.closeMenu)
+      document.body.addEventListener("click", state.closeMenu)
     } else {
-      document.body.removeEventListener('click', state.closeMenu)
+      document.body.removeEventListener("click", state.closeMenu)
     }
   }
 )
@@ -251,7 +243,7 @@ onBeforeMount(() => {
         color: #fff;
         border-color: #409eff;
         &::before {
-          content: '';
+          content: "";
           background: #fff;
           display: inline-block;
           width: 8px;

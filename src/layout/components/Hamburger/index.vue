@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Expand, Fold } from '@element-plus/icons-vue'
+import { Expand, Fold } from "@element-plus/icons-vue"
 
 defineProps({
   isActive: {
@@ -18,10 +18,10 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['toggle-click'])
+const emit = defineEmits(["toggle-click"])
 
 const toggleClick = () => {
-  emit('toggle-click')
+  emit("toggle-click")
 }
 </script>
 
