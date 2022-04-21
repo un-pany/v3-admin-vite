@@ -35,12 +35,12 @@
 </template>
 
 <script lang="ts" setup>
-import path from 'path'
+import path from 'path-browserify'
 import { useTagsViewStore, ITagView } from '@/store/modules/tags-view'
 import { usePermissionStore } from '@/store/modules/permission'
 import { computed, getCurrentInstance, nextTick, onBeforeMount, reactive, watch } from 'vue'
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
-import ScrollPane from './scroll-pane.vue'
+import ScrollPane from './ScrollPane.vue'
 import { Close } from '@element-plus/icons-vue'
 
 const tagsViewStore = useTagsViewStore()

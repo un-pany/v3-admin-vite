@@ -6,6 +6,7 @@ specifiers:
   '@types/lodash-es': ^4.17.6
   '@types/node': ^17.0.25
   '@types/nprogress': ^0.2.0
+  '@types/path-browserify': ^1.0.0
   '@typescript-eslint/eslint-plugin': ^5.20.0
   '@typescript-eslint/parser': ^5.20.0
   '@vitejs/plugin-vue': ^2.3.1
@@ -24,6 +25,7 @@ specifiers:
   lodash-es: ^4.17.21
   normalize.css: ^8.0.1
   nprogress: ^0.2.0
+  path-browserify: ^1.0.1
   path-to-regexp: ^6.2.0
   pinia: ^2.0.13
   sass: ^1.50.1
@@ -46,6 +48,7 @@ dependencies:
   lodash-es: 4.17.21
   normalize.css: 8.0.1
   nprogress: 0.2.0
+  path-browserify: 1.0.1
   path-to-regexp: 6.2.0
   pinia: 2.0.13_typescript@4.6.3+vue@3.2.33
   screenfull: 6.0.1
@@ -57,6 +60,7 @@ devDependencies:
   '@types/lodash-es': 4.17.6
   '@types/node': 17.0.25
   '@types/nprogress': 0.2.0
+  '@types/path-browserify': 1.0.0
   '@typescript-eslint/eslint-plugin': 5.20.0_b9ac9b5656ce5dffade639fcf5e491bf
   '@typescript-eslint/parser': 5.20.0_eslint@8.13.0+typescript@4.6.3
   '@vitejs/plugin-vue': 2.3.1_vite@2.9.5+vue@3.2.33
@@ -206,6 +210,10 @@ packages:
 
   /@types/nprogress/0.2.0:
     resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+    dev: true
+
+  /@types/path-browserify/1.0.0:
+    resolution: {integrity: sha512-XMCcyhSvxcch8b7rZAtFAaierBYdeHXVvg2iYnxOV0MCQHmPuRRmGZPFDRzPayxcGiiSL1Te9UIO+f3cuj0tfw==}
     dev: true
 
   /@types/svgo/2.6.3:
@@ -2812,6 +2820,10 @@ packages:
     resolution: {integrity: sha512-XHXfu/yOQRy9vYOtUDVMN60OEJjW013GoObG1o+xwQTpB9eYJX/BjXMsdW13ZDPruFhYYn0AG22w0xgQMwl3Nw==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /path-browserify/1.0.1:
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
+    dev: false
 
   /path-exists/3.0.0:
     resolution: {integrity: sha512-bpC7GYwiDYQ4wYLe+FA8lhRjhQCMcQGuSgGGqDkg/QerRWw9CmGRT0iSOVRSZJ29NMLZgIzqaljJ63oaL4NIJQ==}

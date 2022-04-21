@@ -29,8 +29,8 @@ import { useRoute } from 'vue-router'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useSettingsStore } from '@/store/modules/settings'
-import SidebarItem from './sidebar-item.vue'
-import SidebarLogo from './sidebar-logo.vue'
+import SidebarItem from './SidebarItem.vue'
+import SidebarLogo from './SidebarLogo.vue'
 
 const route = useRoute()
 const sidebar = computed(() => {

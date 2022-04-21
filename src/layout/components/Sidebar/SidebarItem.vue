@@ -31,11 +31,11 @@
 </template>
 
 <script lang="ts" setup>
-import path from 'path'
+import path from 'path-browserify'
 import { computed, PropType } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
 import { isExternal } from '@/utils/validate'
-import SidebarItemLink from './sidebar-item-link.vue'
+import SidebarItemLink from './SidebarItemLink.vue'
 
 const props = defineProps({
   item: {

@@ -25,7 +25,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/comment-directive': 'off',
     'no-console': 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': import.meta.env.MODE === 'production' ? 'warn' : 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/member-delimiter-style': [
