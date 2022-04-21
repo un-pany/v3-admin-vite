@@ -9,6 +9,8 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 /** 配置项文档：https://vitejs.dev/config */
 export default (env: ConfigEnv): UserConfigExport => {
   return {
+    /** build 打包时根据实际情况修改 base */
+    base: '/',
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
