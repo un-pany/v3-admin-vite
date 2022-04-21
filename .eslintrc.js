@@ -15,12 +15,12 @@ module.exports = {
     ecmaVersion: 2020
   },
   extends: [
-    'plugin:prettier/recommended', // 添加 prettier 插件
     'plugin:vue/vue3-recommended',
     'plugin:vue/vue3-strongly-recommended',
     'plugin:@typescript-eslint/recommended',
     '@vue/standard',
-    '@vue/typescript/recommended'
+    '@vue/typescript/recommended',
+    'plugin:prettier/recommended' // 添加 prettier 插件，必须放在数组最后
   ],
   rules: {
     'vue/multi-word-component-names': 'off',
