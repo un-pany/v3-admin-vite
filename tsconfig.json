@@ -25,7 +25,7 @@
       "node",
       "vite/client",
       /** element-plus 的 volar 插件支持 */
-      // "element-plus/global"
+      "element-plus/global"
     ],
     /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
     "baseUrl": ".",

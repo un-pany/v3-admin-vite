@@ -15,6 +15,7 @@ console.info('测试 PROD', import.meta.env.PROD)
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <el-button>测试 element-plus 按钮</el-button>
 </template>
 
 <style>

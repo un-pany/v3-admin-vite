@@ -1,6 +1,9 @@
 import { ConfigEnv, UserConfigExport } from "vite"
 import { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
+import AutoImport from "unplugin-auto-import/vite"
+import Components from "unplugin-vue-components/vite"
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
 /** 配置项文档：https://vitejs.dev/config */
 export default (env: ConfigEnv): UserConfigExport => {
@@ -63,6 +66,17 @@ export default (env: ConfigEnv): UserConfigExport => {
         },
       },
     },
-    plugins: [vue()],
+    /** vite 插件 */
+    plugins: [
+      vue(),
+      /** 自动按需导入 */
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      /** 自动按需导入 */
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
+    ],
   }
 }
