@@ -1,0 +1,214 @@
+.theme-#{$theme-name} {
+  /** Layout */
+
+  .app-wrapper {
+    background-color: $theme-bg-color;
+    color: $font-color;
+    // 侧边栏
+    .sidebar-container {
+      .sidebar-logo-container {
+        background-color: lighten($theme-bg-color, 2%) !important;
+      }
+      .el-menu {
+        background-color: lighten($theme-bg-color, 4%) !important;
+        .el-menu-item {
+          background-color: lighten($theme-bg-color, 4%) !important;
+          &.is-active,
+          &:hover {
+            background-color: lighten($theme-bg-color, 8%) !important;
+            color: $active-font-color !important;
+          }
+        }
+      }
+      .el-sub-menu__title {
+        background-color: lighten($theme-bg-color, 4%) !important;
+      }
+    }
+
+    // 顶部导航栏
+    .navbar {
+      background-color: $theme-bg-color;
+      .el-breadcrumb__inner {
+        a {
+          color: $font-color;
+          &:hover {
+            color: $hover-color;
+          }
+        }
+        .no-redirect {
+          color: $font-color;
+        }
+      }
+      .right-menu {
+        .el-icon {
+          color: $font-color;
+        }
+        .el-avatar {
+          background: lighten($theme-bg-color, 20%);
+          .el-icon {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    // tags-view
+    .tags-view-container {
+      background-color: $theme-bg-color !important;
+      border-bottom: 1px solid lighten($theme-bg-color, 10%) !important;
+      .tags-view-item {
+        background-color: $theme-bg-color !important;
+        color: $font-color !important;
+        border: 1px solid $border-color !important;
+        &.active {
+          background-color: $active-theme-bg-color !important;
+          color: $active-font-color !important;
+          border-color: $border-color !important;
+        }
+      }
+      .contextmenu {
+        // 右键菜单
+        background-color: lighten($theme-bg-color, 8%);
+        color: $font-color;
+        li:hover {
+          background-color: lighten($theme-bg-color, 16%);
+          color: $active-font-color;
+        }
+      }
+    }
+
+    // 右侧设置面板
+    .handle-button {
+      background-color: lighten($theme-bg-color, 20%) !important;
+    }
+    .el-drawer.rtl {
+      background-color: $theme-bg-color;
+      .drawer-title,
+      .drawer-item {
+        color: $font-color;
+      }
+    }
+  }
+
+  /** app-main 主要写 view 页面的黑暗样式 */
+
+  .app-main {
+    // 指令权限页面 /permission/directive
+    .permission-alert {
+      background-color: lighten($theme-bg-color, 8%);
+    }
+    // 监控页面 /monitor
+    .monitor {
+      background-color: $theme-bg-color;
+    }
+  }
+
+  /** login 页面 */
+
+  .login-container {
+    background-color: $theme-bg-color;
+    color: $font-color;
+    .login-card {
+      background-color: lighten($theme-bg-color, 4%) !important;
+    }
+    .el-icon {
+      color: $font-color;
+    }
+  }
+
+  /** element-plus */
+
+  // 侧边栏的 item 的 popper
+  .el-popper {
+    border: none !important;
+    .el-menu {
+      background-color: lighten($theme-bg-color, 4%) !important;
+      .el-menu-item {
+        background-color: lighten($theme-bg-color, 4%) !important;
+        &.is-active,
+        &:hover {
+          background-color: lighten($theme-bg-color, 8%) !important;
+          color: $active-font-color !important;
+        }
+      }
+      .el-sub-menu__title {
+        background-color: lighten($theme-bg-color, 4%) !important;
+      }
+    }
+  }
+
+  // 下拉菜单
+  .el-dropdown__popper .el-dropdown__list {
+    background-color: lighten($theme-bg-color, 8%);
+    .el-dropdown-menu {
+      background-color: lighten($theme-bg-color, 8%);
+      .el-dropdown-menu__item {
+        color: $font-color;
+        &.is-disabled {
+          color: #606266;
+        }
+        &:not(.is-disabled):hover {
+          background-color: lighten($theme-bg-color, 16%);
+          color: $active-font-color;
+        }
+      }
+      .el-dropdown-menu__item--divided:before {
+        background-color: lighten($theme-bg-color, 8%);
+      }
+    }
+  }
+  .el-popper__arrow::before {
+    // 下拉菜单顶部三角区域
+    background-color: lighten($theme-bg-color, 8%) !important;
+    border: lighten($theme-bg-color, 8%) !important;
+  }
+
+  // 单选框按钮样式
+  .el-radio-button__inner {
+    background-color: lighten($theme-bg-color, 8%);
+    color: $active-font-color;
+    border: 1px solid $border-color;
+  }
+  .el-radio-button:first-child .el-radio-button__inner {
+    border-left: none;
+  }
+
+  // el-tag
+  .el-tag {
+    background-color: lighten($theme-bg-color, 8%);
+    border-color: $border-color;
+    color: $active-font-color;
+    &.el-tag--info {
+      background-color: lighten($theme-bg-color, 8%);
+      border-color: $border-color;
+      color: $active-font-color;
+    }
+  }
+
+  // tabs 标签页
+  .el-tabs--border-card {
+    background: lighten($theme-bg-color, 8%);
+    border: 1px solid $border-color;
+    .el-tabs__header {
+      background-color: lighten($theme-bg-color, 8%);
+      border-bottom: 1px solid $border-color;
+      .el-tabs__item.is-active {
+        background-color: lighten($theme-bg-color, 8%);
+        border-right-color: $border-color;
+        border-left-color: $border-color;
+      }
+    }
+  }
+
+  // 卡片 card
+  .el-card {
+    background: lighten($theme-bg-color, 8%);
+    border: 1px solid $border-color;
+    color: $font-color;
+  }
+
+  // 输入框 input
+  .el-input__wrapper {
+    background: lighten($theme-bg-color, 8%) !important;
+  }
+}

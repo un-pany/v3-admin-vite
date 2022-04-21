@@ -19,8 +19,7 @@ module.exports = {
     'plugin:vue/vue3-strongly-recommended',
     'plugin:@typescript-eslint/recommended',
     '@vue/standard',
-    '@vue/typescript/recommended',
-    'plugin:prettier/recommended' // 添加 prettier 插件，必须放在数组最后
+    '@vue/typescript/recommended'
   ],
   rules: {
     'vue/multi-word-component-names': 'off',
@@ -40,18 +39,18 @@ module.exports = {
         }
       }
     ],
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'always',
-          normal: 'always',
-          component: 'always'
-        },
-        svg: 'always',
-        math: 'always'
-      }
-    ],
+    // 'vue/html-self-closing': [
+    //   'error',
+    //   {
+    //     html: {
+    //       void: 'always',
+    //       normal: 'always',
+    //       component: 'always'
+    //     },
+    //     svg: 'always',
+    //     math: 'always'
+    //   }
+    // ],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'prefer-regex-literals': 'off',

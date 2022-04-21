@@ -1,4 +1,4 @@
-import { ConfigEnv, UserConfigExport } from 'vite'
+import { UserConfigExport } from 'vite'
 import path, { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -7,7 +7,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 /** 配置项文档：https://vitejs.dev/config */
-export default (env: ConfigEnv): UserConfigExport => {
+export default (): UserConfigExport => {
   return {
     /** build 打包时根据实际情况修改 base */
     base: '/',
