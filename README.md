@@ -16,8 +16,8 @@
 - pnpm 版本 6.x
 - 安装依赖: pnpm i
 - 运行项目: pnpm dev
-- 预览测试环境: preview:stage
-- 预览正式环境: preview:prod
+- 预览测试环境: pnpm preview:stage
+- 预览正式环境: pnpm preview:prod
 - 打包测试环境: pnpm build:stage
 - 打包正式环境: pnpm build:prod
 - 代码检测: pnpm lint
