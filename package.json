@@ -1,7 +1,16 @@
 {
   "name": "v3-admin-vite",
-  "private": true,
   "version": "3.1.3-rc3",
+  "description": "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite",
+  "author": {
+    "name": "pany",
+    "email": "939630029@qq.com",
+    "url": "https://github.com/pany-ang"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/un-pany/v3-admin-vite.git"
+  },
   "scripts": {
     "dev": "vite",
     "build:stage": "vue-tsc --noEmit && vite build --mode staging",
@@ -61,5 +70,14 @@
       "pnpm lint",
       "git add"
     ]
-  }
+  },
+  "keywords": [
+    "vue",
+    "element-plus",
+    "vue3",
+    "ts",
+    "admin",
+    "typescript"
+  ],
+  "license": "MIT"
 }
