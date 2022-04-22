@@ -49,11 +49,20 @@ const state = reactive({
         <el-avatar :icon="UserFilled" :size="34" />
         <template #dropdown>
           <el-dropdown-menu>
+            <a target="_blank" href="#">
+              <el-dropdown-item divided>V3-Admin-Vite 中文文档</el-dropdown-item>
+            </a>
+            <a target="_blank" href="#">
+              <el-dropdown-item>V3-Admin-Vite English Docs</el-dropdown-item>
+            </a>
             <a target="_blank" href="https://github.com/un-pany/v3-admin-vite">
               <el-dropdown-item>V3-Admin-Vite GitHub</el-dropdown-item>
             </a>
+            <a target="_blank" href="#">
+              <el-dropdown-item>V3-Admin-Vite Gitee</el-dropdown-item>
+            </a>
             <a target="_blank" href="https://juejin.cn/post/6963876125428678693">
-              <el-dropdown-item>V3-Admin 中文文档</el-dropdown-item>
+              <el-dropdown-item divided>V3-Admin 中文文档</el-dropdown-item>
             </a>
             <a target="_blank" href="https://github.com/un-pany/v3-admin/blob/master/README.en.md">
               <el-dropdown-item>V3-Admin English Docs</el-dropdown-item>
