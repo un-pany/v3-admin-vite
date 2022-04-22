@@ -1,57 +1,7 @@
-<template>
-  <div class="login-container">
-    <ThemeSwitch class="theme-switch" />
-    <div class="login-card">
-      <div class="title">
-        <img src="@/assets/layout/logo-text-2.png" />
-      </div>
-      <div class="content">
-        <el-form ref="loginFormDom" :model="loginForm" :rules="loginRules" @keyup.enter="handleLogin">
-          <el-form-item prop="username">
-            <el-input
-              v-model="loginForm.username"
-              placeholder="用户名"
-              type="text"
-              tabindex="1"
-              :prefix-icon="User"
-              size="large"
-            />
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              v-model="loginForm.password"
-              placeholder="密码"
-              type="password"
-              tabindex="2"
-              :prefix-icon="Lock"
-              size="large"
-            />
-          </el-form-item>
-          <el-form-item prop="code">
-            <el-input
-              v-model="loginForm.code"
-              placeholder="验证码"
-              type="text"
-              tabindex="3"
-              :prefix-icon="Key"
-              maxlength="4"
-              size="large"
-            />
-            <span class="show-code">
-              <img :src="codeUrl" @click="createCode" />
-            </span>
-          </el-form-item>
-          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin"> 登 录 </el-button>
-        </el-form>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { reactive, ref } from "vue"
-import { useUserStore } from "@/store/modules/user"
 import { useRouter } from "vue-router"
+import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 
@@ -127,6 +77,56 @@ const createCode: () => void = () => {
 // 需要验证码的时候，需打开下方注释
 // createCode()
 </script>
+
+<template>
+  <div class="login-container">
+    <ThemeSwitch class="theme-switch" />
+    <div class="login-card">
+      <div class="title">
+        <img src="@/assets/layout/logo-text-2.png" />
+      </div>
+      <div class="content">
+        <el-form ref="loginFormDom" :model="loginForm" :rules="loginRules" @keyup.enter="handleLogin">
+          <el-form-item prop="username">
+            <el-input
+              v-model="loginForm.username"
+              placeholder="用户名"
+              type="text"
+              tabindex="1"
+              :prefix-icon="User"
+              size="large"
+            />
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input
+              v-model="loginForm.password"
+              placeholder="密码"
+              type="password"
+              tabindex="2"
+              :prefix-icon="Lock"
+              size="large"
+            />
+          </el-form-item>
+          <el-form-item prop="code">
+            <el-input
+              v-model="loginForm.code"
+              placeholder="验证码"
+              type="text"
+              tabindex="3"
+              :prefix-icon="Key"
+              maxlength="4"
+              size="large"
+            />
+            <span class="show-code">
+              <img :src="codeUrl" @click="createCode" />
+            </span>
+          </el-form-item>
+          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin"> 登 录 </el-button>
+        </el-form>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .login-container {

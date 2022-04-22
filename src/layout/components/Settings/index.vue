@@ -1,4 +1,64 @@
-<!-- 设置页面 -->
+<script lang="ts" setup>
+import { reactive, watch } from "vue"
+import { useSettingsStore } from "@/store/modules/settings"
+
+const settingsStore = useSettingsStore()
+
+const state = reactive({
+  fixedHeader: settingsStore.fixedHeader,
+  showTagsView: settingsStore.showTagsView,
+  showSidebarLogo: settingsStore.showSidebarLogo,
+  showThemeSwitch: settingsStore.showThemeSwitch,
+  showScreenfull: settingsStore.showScreenfull
+})
+
+watch(
+  () => state.fixedHeader,
+  (value) => {
+    settingsStore.changeSetting({
+      key: "fixedHeader",
+      value
+    })
+  }
+)
+watch(
+  () => state.showTagsView,
+  (value) => {
+    settingsStore.changeSetting({
+      key: "showTagsView",
+      value
+    })
+  }
+)
+watch(
+  () => state.showSidebarLogo,
+  (value) => {
+    settingsStore.changeSetting({
+      key: "showSidebarLogo",
+      value
+    })
+  }
+)
+watch(
+  () => state.showThemeSwitch,
+  (value) => {
+    settingsStore.changeSetting({
+      key: "showThemeSwitch",
+      value
+    })
+  }
+)
+watch(
+  () => state.showScreenfull,
+  (value) => {
+    settingsStore.changeSetting({
+      key: "showScreenfull",
+      value
+    })
+  }
+)
+</script>
+
 <template>
   <div class="drawer-container">
     <div>
@@ -26,71 +86,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useSettingsStore } from "@/store/modules/settings"
-import { reactive, watch } from "vue"
-
-const settingsStore = useSettingsStore()
-
-const state = reactive({
-  fixedHeader: settingsStore.fixedHeader,
-  showTagsView: settingsStore.showTagsView,
-  showSidebarLogo: settingsStore.showSidebarLogo,
-  showThemeSwitch: settingsStore.showThemeSwitch,
-  showScreenfull: settingsStore.showScreenfull
-})
-
-watch(
-  () => state.fixedHeader,
-  (value) => {
-    settingsStore.changeSetting({
-      key: "fixedHeader",
-      value
-    })
-  }
-)
-
-watch(
-  () => state.showTagsView,
-  (value) => {
-    settingsStore.changeSetting({
-      key: "showTagsView",
-      value
-    })
-  }
-)
-
-watch(
-  () => state.showSidebarLogo,
-  (value) => {
-    settingsStore.changeSetting({
-      key: "showSidebarLogo",
-      value
-    })
-  }
-)
-
-watch(
-  () => state.showThemeSwitch,
-  (value) => {
-    settingsStore.changeSetting({
-      key: "showThemeSwitch",
-      value
-    })
-  }
-)
-
-watch(
-  () => state.showScreenfull,
-  (value) => {
-    settingsStore.changeSetting({
-      key: "showScreenfull",
-      value
-    })
-  }
-)
-</script>
 
 <style lang="scss" scoped>
 .drawer-container {

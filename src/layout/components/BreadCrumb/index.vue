@@ -1,28 +1,13 @@
-<!-- 面包屑组件 -->
-<template>
-  <el-breadcrumb class="app-breadcrumb">
-    <transition-group name="breadcrumb">
-      <el-breadcrumb-item v-for="(item, index) in state.breadcrumbs" :key="item.path">
-        <span v-if="item.redirect === 'noRedirect' || index === state.breadcrumbs.length - 1" class="no-redirect">{{
-          item.meta.title
-        }}</span>
-        <a v-else @click.prevent="state.handleLink(item)">
-          {{ item.meta.title }}
-        </a>
-      </el-breadcrumb-item>
-    </transition-group>
-  </el-breadcrumb>
-</template>
-
 <script lang="ts" setup>
 import { onBeforeMount, reactive, watch } from "vue"
 import { useRoute, useRouter, RouteLocationMatched } from "vue-router"
 import { compile } from "path-to-regexp"
 
-const currentRoute = useRoute()
+const route = useRoute()
 const router = useRouter()
+
 const pathCompile = (path: string) => {
-  const { params } = currentRoute
+  const { params } = route
   const toPath = compile(path)
   return toPath(params)
 }
@@ -30,7 +15,7 @@ const pathCompile = (path: string) => {
 const state = reactive({
   breadcrumbs: [] as Array<RouteLocationMatched>,
   getBreadcrumb: () => {
-    const matched = currentRoute.matched.filter((item) => item.meta && item.meta.title)
+    const matched = route.matched.filter((item) => item.meta && item.meta.title)
     state.breadcrumbs = matched.filter((item) => {
       return item.meta && item.meta.title && item.meta.breadcrumb !== false
     })
@@ -50,7 +35,7 @@ const state = reactive({
 })
 
 watch(
-  () => currentRoute.path,
+  () => route.path,
   (path) => {
     if (path.startsWith("/redirect/")) {
       return
@@ -63,6 +48,21 @@ onBeforeMount(() => {
   state.getBreadcrumb()
 })
 </script>
+
+<template>
+  <el-breadcrumb class="app-breadcrumb">
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item v-for="(item, index) in state.breadcrumbs" :key="item.path">
+        <span v-if="item.redirect === 'noRedirect' || index === state.breadcrumbs.length - 1" class="no-redirect">{{
+          item.meta.title
+        }}</span>
+        <a v-else @click.prevent="state.handleLink(item)">
+          {{ item.meta.title }}
+        </a>
+      </el-breadcrumb-item>
+    </transition-group>
+  </el-breadcrumb>
+</template>
 
 <style lang="scss" scoped>
 .el-breadcrumb__inner,

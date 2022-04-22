@@ -1,46 +1,17 @@
-<template>
-  <div class="tags-view-container">
-    <ScrollPane class="tags-view-wrapper">
-      <router-link
-        v-for="tag in visitedViews"
-        ref="tag"
-        :key="tag.path"
-        :class="state.isActive(tag) ? 'active' : ''"
-        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
-        class="tags-view-item"
-        @click.middle="!state.isAffix(tag) ? state.closeSelectedTag(tag) : ''"
-        @contextmenu.prevent="state.openMenu(tag, $event)"
-      >
-        {{ tag.meta?.title }}
-        <el-icon v-if="!state.isAffix(tag)" :size="12" @click.prevent.stop="state.closeSelectedTag(tag)">
-          <Close />
-        </el-icon>
-      </router-link>
-    </ScrollPane>
-    <ul v-show="state.visible" :style="{ left: state.left + 'px', top: state.top + 'px' }" class="contextmenu">
-      <li @click="state.refreshSelectedTag(state.selectedTag)">刷新</li>
-      <li v-if="!state.isAffix(state.selectedTag)" @click="state.closeSelectedTag(state.selectedTag)">关闭</li>
-      <li @click="state.closeOthersTags">关闭其它</li>
-      <li @click="state.closeAllTags(state.selectedTag)">关闭所有</li>
-    </ul>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import path from "path-browserify"
-import { useTagsViewStore, ITagView } from "@/store/modules/tags-view"
-import { usePermissionStore } from "@/store/modules/permission"
 import { computed, getCurrentInstance, nextTick, onBeforeMount, reactive, watch } from "vue"
 import { RouteRecordRaw, useRoute, useRouter } from "vue-router"
-import ScrollPane from "./ScrollPane.vue"
+import { useTagsViewStore, ITagView } from "@/store/modules/tags-view"
+import { usePermissionStore } from "@/store/modules/permission"
 import { Close } from "@element-plus/icons-vue"
+import path from "path-browserify"
+import ScrollPane from "./ScrollPane.vue"
 
+const instance = getCurrentInstance()
+const router = useRouter()
+const route = useRoute()
 const tagsViewStore = useTagsViewStore()
 const permissionStore = usePermissionStore()
-const router = useRouter()
-const instance = getCurrentInstance()
-const currentRoute = useRoute()
-const { proxy } = instance as any
 
 const toLastView = (visitedViews: ITagView[], view: ITagView) => {
   const latestView = visitedViews.slice(-1)[0]
@@ -70,7 +41,7 @@ const state = reactive({
   selectedTag: {} as ITagView,
   affixTags: [] as ITagView[],
   isActive: (route: ITagView) => {
-    return route.path === currentRoute.path
+    return route.path === route.path
   },
   isAffix: (tag: ITagView) => {
     return tag.meta && tag.meta.affix
@@ -90,7 +61,7 @@ const state = reactive({
     }
   },
   closeOthersTags: () => {
-    if (state.selectedTag.fullPath !== currentRoute.path && state.selectedTag.fullPath !== undefined) {
+    if (state.selectedTag.fullPath !== route.path && state.selectedTag.fullPath !== undefined) {
       router.push(state.selectedTag.fullPath).catch((err) => {
         console.warn(err)
       })
@@ -99,15 +70,15 @@ const state = reactive({
   },
   closeAllTags: (view: ITagView) => {
     tagsViewStore.delAllVisitedViews()
-    if (state.affixTags.some((tag) => tag.path === currentRoute.path)) {
+    if (state.affixTags.some((tag) => tag.path === route.path)) {
       return
     }
     toLastView(tagsViewStore.visitedViews, view)
   },
   openMenu: (tag: ITagView, e: MouseEvent) => {
     const menuMinWidth = 105
-    const offsetLeft = proxy.$el.getBoundingClientRect().left // container margin left
-    const offsetWidth = proxy.$el.offsetWidth // container width
+    const offsetLeft = instance!.proxy!.$el.getBoundingClientRect().left // container margin left
+    const offsetWidth = instance!.proxy!.$el.offsetWidth // container width
     const maxLeft = offsetWidth - menuMinWidth // left boundary
     const left = e.clientX - offsetLeft + 15 // 15: margin right
     if (left > maxLeft) {
@@ -131,7 +102,6 @@ const routes = computed(() => permissionStore.routes)
 
 const filterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
   let tags: ITagView[] = []
-
   routes.forEach((route) => {
     if (route.meta && route.meta.affix) {
       const tagPath = path.resolve(basePath, route.path)
@@ -142,7 +112,6 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
         meta: { ...route.meta }
       })
     }
-
     if (route.children) {
       const childTags = filterAffixTags(route.children, route.path)
       if (childTags.length >= 1) {
@@ -164,8 +133,8 @@ const initTags = () => {
 }
 
 const addTags = () => {
-  if (currentRoute.name) {
-    tagsViewStore.addVisitedView(currentRoute)
+  if (route.name) {
+    tagsViewStore.addVisitedView(route)
   }
   return false
 }
@@ -176,17 +145,17 @@ const moveToCurrentTag = () => {
     return
   }
   for (const tag of tags) {
-    if ((tag.to as ITagView).path === currentRoute.path) {
+    if ((tag.to as ITagView).path === route.path) {
       // When query is different then update
-      if ((tag.to as ITagView).fullPath !== currentRoute.fullPath) {
-        tagsViewStore.updateVisitedView(currentRoute)
+      if ((tag.to as ITagView).fullPath !== route.fullPath) {
+        tagsViewStore.updateVisitedView(route)
       }
     }
   }
 }
 
 watch(
-  () => currentRoute.name,
+  () => route.name,
   () => {
     addTags()
     moveToCurrentTag()
@@ -210,6 +179,34 @@ onBeforeMount(() => {
   addTags()
 })
 </script>
+
+<template>
+  <div class="tags-view-container">
+    <ScrollPane class="tags-view-wrapper">
+      <router-link
+        v-for="tag in visitedViews"
+        ref="tag"
+        :key="tag.path"
+        :class="state.isActive(tag) ? 'active' : ''"
+        :to="{ path: tag.path, query: tag.query, fullPath: tag.fullPath }"
+        class="tags-view-item"
+        @click.middle="!state.isAffix(tag) ? state.closeSelectedTag(tag) : ''"
+        @contextmenu.prevent="state.openMenu(tag, $event)"
+      >
+        {{ tag.meta?.title }}
+        <el-icon v-if="!state.isAffix(tag)" :size="12" @click.prevent.stop="state.closeSelectedTag(tag)">
+          <Close />
+        </el-icon>
+      </router-link>
+    </ScrollPane>
+    <ul v-show="state.visible" :style="{ left: state.left + 'px', top: state.top + 'px' }" class="contextmenu">
+      <li @click="state.refreshSelectedTag(state.selectedTag)">刷新</li>
+      <li v-if="!state.isAffix(state.selectedTag)" @click="state.closeSelectedTag(state.selectedTag)">关闭</li>
+      <li @click="state.closeOthersTags">关闭其它</li>
+      <li @click="state.closeAllTags(state.selectedTag)">关闭所有</li>
+    </ul>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .tags-view-container {
@@ -264,7 +261,6 @@ onBeforeMount(() => {
       }
     }
   }
-
   .contextmenu {
     margin: 0;
     background: #fff;

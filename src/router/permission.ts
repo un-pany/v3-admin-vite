@@ -1,13 +1,13 @@
-import NProgress from "nprogress"
-import "nprogress/nprogress.css"
 import router from "@/router"
 import { RouteLocationNormalized } from "vue-router"
 import { useUserStoreHook } from "@/store/modules/user"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { ElMessage } from "element-plus"
 import { whiteList } from "@/config/white-list"
-import rolesSettings from "@/config/roles"
 import { getToken } from "@/utils/cookies"
+import asyncRouteSettings from "@/config/async-route"
+import NProgress from "nprogress"
+import "nprogress/nprogress.css"
 
 const userStore = useUserStoreHook()
 const permissionStore = usePermissionStoreHook()
@@ -25,19 +25,18 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
       // 检查用户是否已获得其权限角色
       if (userStore.roles.length === 0) {
         try {
-          if (rolesSettings.openRoles) {
+          if (asyncRouteSettings.open) {
             // 注意：角色必须是一个数组！ 例如: ['admin'] 或 ['developer', 'editor']
             await userStore.getInfo()
-            // 获取接口返回的 roles
             const roles = userStore.roles
-            // 根据角色生成可访问的 routes
+            // 根据角色生成可访问的 routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
             permissionStore.setRoutes(roles)
           } else {
-            // 没有开启角色功能，则启用默认角色
-            userStore.setRoles(rolesSettings.defaultRoles)
-            permissionStore.setRoutes(rolesSettings.defaultRoles)
+            // 没有开启动态路由功能，则启用默认角色
+            userStore.setRoles(asyncRouteSettings.defaultRoles)
+            permissionStore.setRoutes(asyncRouteSettings.defaultRoles)
           }
-          // 动态地添加可访问的 routes
+          // 将'有访问权限的动态路由' 添加到 router 中
           permissionStore.dynamicRoutes.forEach((route) => {
             router.addRoute(route)
           })
@@ -45,9 +44,9 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
           // 设置 replace: true, 因此导航将不会留下历史记录
           next({ ...to, replace: true })
         } catch (err: any) {
-          // 删除 token，并重定向到登录页面
+          // 过程中发生任何错误，都直接重置 token，并重定向到登录页面
           userStore.resetToken()
-          ElMessage.error(err.message || "Has Error")
+          ElMessage.error(err.message || "路由守卫过程发生错误")
           next("/login")
           NProgress.done()
         }

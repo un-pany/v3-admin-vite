@@ -1,4 +1,12 @@
-<!-- 侧边栏 Logo（需要跟随侧边栏折叠） -->
+<script lang="ts" setup>
+defineProps({
+  collapse: {
+    type: Boolean,
+    default: true
+  }
+})
+</script>
+
 <template>
   <div class="sidebar-logo-container" :class="{ collapse: collapse }">
     <transition name="sidebarLogoFade">
@@ -11,15 +19,6 @@
     </transition>
   </div>
 </template>
-
-<script lang="ts" setup>
-defineProps({
-  collapse: {
-    type: Boolean,
-    default: true
-  }
-})
-</script>
 
 <style lang="scss" scoped>
 .sidebarLogoFade-enter-active,

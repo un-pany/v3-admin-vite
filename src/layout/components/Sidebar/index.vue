@@ -1,3 +1,37 @@
+<script lang="ts" setup>
+import { computed } from "vue"
+import { useRoute } from "vue-router"
+import { useAppStore } from "@/store/modules/app"
+import { usePermissionStore } from "@/store/modules/permission"
+import { useSettingsStore } from "@/store/modules/settings"
+import SidebarItem from "./SidebarItem.vue"
+import SidebarLogo from "./SidebarLogo.vue"
+
+const route = useRoute()
+
+const sidebar = computed(() => {
+  return useAppStore().sidebar
+})
+const routes = computed(() => {
+  return usePermissionStore().routes
+})
+const showLogo = computed(() => {
+  return useSettingsStore().showSidebarLogo
+})
+const activeMenu = computed(() => {
+  const { meta, path } = route
+  if (meta !== null || meta !== undefined) {
+    if (meta.activeMenu) {
+      return meta.activeMenu
+    }
+  }
+  return path
+})
+const isCollapse = computed(() => {
+  return !sidebar.value.opened
+})
+</script>
+
 <template>
   <div :class="{ 'has-logo': showLogo }">
     <SidebarLogo v-if="showLogo" :collapse="isCollapse" />
@@ -22,39 +56,6 @@
     </el-scrollbar>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { computed } from "vue"
-import { useRoute } from "vue-router"
-import { useAppStore } from "@/store/modules/app"
-import { usePermissionStore } from "@/store/modules/permission"
-import { useSettingsStore } from "@/store/modules/settings"
-import SidebarItem from "./SidebarItem.vue"
-import SidebarLogo from "./SidebarLogo.vue"
-
-const route = useRoute()
-const sidebar = computed(() => {
-  return useAppStore().sidebar
-})
-const routes = computed(() => {
-  return usePermissionStore().routes
-})
-const showLogo = computed(() => {
-  return useSettingsStore().showSidebarLogo
-})
-const activeMenu = computed(() => {
-  const { meta, path } = route
-  if (meta !== null || meta !== undefined) {
-    if (meta.activeMenu) {
-      return meta.activeMenu
-    }
-  }
-  return path
-})
-const isCollapse = computed(() => {
-  return !sidebar.value.opened
-})
-</script>
 
 <style lang="scss">
 .sidebar-container {

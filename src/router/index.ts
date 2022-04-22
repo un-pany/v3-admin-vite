@@ -44,7 +44,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 
 /**
  * 动态路由
- * 用来放置有权限的路由
+ * 用来放置有权限（roles 属性）的路由
  * 必须带有 name 属性
  */
 export const asyncRoutes: Array<RouteRecordRaw> = [

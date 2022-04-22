@@ -1,5 +1,5 @@
-import { useUserStoreHook } from "@/store/modules/user"
 import { Directive } from "vue"
+import { useUserStoreHook } from "@/store/modules/user"
 
 /** 权限指令 */
 export const permission: Directive = {

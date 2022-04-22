@@ -1,38 +1,19 @@
-<!-- 布局入口 -->
-<template>
-  <div :class="classObj" class="app-wrapper">
-    <div v-if="classObj.mobile && sidebar.opened" class="drawer-bg" @click="state.handleClickOutside" />
-    <Sidebar class="sidebar-container" />
-    <div :class="{ hasTagsView: showTagsView }" class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
-        <NavigationBar />
-        <TagsView v-if="showTagsView" />
-      </div>
-      <AppMain />
-      <RightPanel v-if="showSettings">
-        <Settings />
-      </RightPanel>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
+import { computed, onBeforeMount, onBeforeUnmount, onMounted, reactive } from "vue"
 import { useAppStore, DeviceType } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
-import { computed, onBeforeMount, onBeforeUnmount, onMounted, reactive } from "vue"
 import { AppMain, NavigationBar, Settings, Sidebar, TagsView, RightPanel } from "./components"
 import useResize from "./useResize"
 
-const { sidebar, device, addEventListenerOnResize, resizeMounted, removeEventListenerResize, watchRouter } = useResize()
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
+const { sidebar, device, addEventListenerOnResize, resizeMounted, removeEventListenerResize, watchRouter } = useResize()
 
 const state = reactive({
   handleClickOutside: () => {
     appStore.closeSidebar(false)
   }
 })
-
 const classObj = computed(() => {
   return {
     hideSidebar: !sidebar.value.opened,
@@ -62,6 +43,23 @@ onBeforeUnmount(() => {
   removeEventListenerResize()
 })
 </script>
+
+<template>
+  <div :class="classObj" class="app-wrapper">
+    <div v-if="classObj.mobile && sidebar.opened" class="drawer-bg" @click="state.handleClickOutside" />
+    <Sidebar class="sidebar-container" />
+    <div :class="{ hasTagsView: showTagsView }" class="main-container">
+      <div :class="{ 'fixed-header': fixedHeader }">
+        <NavigationBar />
+        <TagsView v-if="showTagsView" />
+      </div>
+      <AppMain />
+      <RightPanel v-if="showSettings">
+        <Settings />
+      </RightPanel>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";

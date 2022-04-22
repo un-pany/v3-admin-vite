@@ -1,16 +1,6 @@
-<template>
-  <div @click="click">
-    <el-tooltip effect="dark" content="全屏" placement="bottom">
-      <el-icon :size="20">
-        <full-screen />
-      </el-icon>
-    </el-tooltip>
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { FullScreen } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
+import { FullScreen } from "@element-plus/icons-vue"
 import screenfull from "screenfull"
 
 const click = () => {
@@ -21,3 +11,13 @@ const click = () => {
   screenfull.toggle()
 }
 </script>
+
+<template>
+  <div @click="click">
+    <el-tooltip effect="dark" content="全屏" placement="bottom">
+      <el-icon :size="20">
+        <FullScreen />
+      </el-icon>
+    </el-tooltip>
+  </div>
+</template>

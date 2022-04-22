@@ -1,4 +1,16 @@
-<!-- 指令权限、权限判断函数的使用 -->
+<script lang="ts" setup>
+import { reactive } from "vue"
+import { checkPermission } from "@/utils/permission" // 权限判断函数
+import SwitchRoles from "./components/SwitchRoles.vue"
+
+const state = reactive({
+  key: 1,
+  handleRolesChange: () => {
+    state.key++
+  }
+})
+</script>
+
 <template>
   <div class="app-container">
     <SwitchRoles @change="state.handleRolesChange" />
@@ -55,19 +67,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { reactive } from "vue"
-import { checkPermission } from "@/utils/permission" // 权限判断函数
-import SwitchRoles from "./components/switch-roles.vue"
-
-const state = reactive({
-  key: 1,
-  handleRolesChange: () => {
-    state.key++
-  }
-})
-</script>
 
 <style lang="scss" scoped>
 .permission-alert {

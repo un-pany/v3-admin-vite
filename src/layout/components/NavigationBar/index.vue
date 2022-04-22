@@ -1,4 +1,43 @@
-<!-- 导航栏 -->
+<script lang="ts" setup>
+import { computed, reactive } from "vue"
+import { useRouter } from "vue-router"
+import { useAppStore } from "@/store/modules/app"
+import { useSettingsStore } from "@/store/modules/settings"
+import { useUserStore } from "@/store/modules/user"
+import { UserFilled } from "@element-plus/icons-vue"
+import BreadCrumb from "../BreadCrumb/index.vue"
+import Hamburger from "../Hamburger/index.vue"
+import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+import Screenfull from "@/components/Screenfull/index.vue"
+
+const router = useRouter()
+const appStore = useAppStore()
+const settingsStore = useSettingsStore()
+const userStore = useUserStore()
+
+const sidebar = computed(() => {
+  return appStore.sidebar
+})
+const showThemeSwitch = computed(() => {
+  return settingsStore.showThemeSwitch
+})
+const showScreenfull = computed(() => {
+  return settingsStore.showScreenfull
+})
+
+const state = reactive({
+  toggleSideBar: () => {
+    appStore.toggleSidebar(false)
+  },
+  logout: () => {
+    userStore.logout()
+    router.push("/login").catch((err) => {
+      console.warn(err)
+    })
+  }
+})
+</script>
+
 <template>
   <div class="navbar">
     <Hamburger :is-active="sidebar.opened" class="hamburger" @toggle-click="state.toggleSideBar" />
@@ -34,44 +73,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { UserFilled } from "@element-plus/icons-vue"
-import { computed, reactive } from "vue"
-import { useRouter } from "vue-router"
-import { useAppStore } from "@/store/modules/app"
-import { useSettingsStore } from "@/store/modules/settings"
-import { useUserStore } from "@/store/modules/user"
-import BreadCrumb from "../BreadCrumb/index.vue"
-import Hamburger from "../Hamburger/index.vue"
-import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
-import Screenfull from "@/components/Screenfull/index.vue"
-
-const router = useRouter()
-const appStore = useAppStore()
-const settingsStore = useSettingsStore()
-const userStore = useUserStore()
-const sidebar = computed(() => {
-  return appStore.sidebar
-})
-const showThemeSwitch = computed(() => {
-  return settingsStore.showThemeSwitch
-})
-const showScreenfull = computed(() => {
-  return settingsStore.showScreenfull
-})
-const state = reactive({
-  toggleSideBar: () => {
-    appStore.toggleSidebar(false)
-  },
-  logout: () => {
-    userStore.logout()
-    router.push("/login").catch((err) => {
-      console.warn(err)
-    })
-  }
-})
-</script>
 
 <style lang="scss" scoped>
 .navbar {

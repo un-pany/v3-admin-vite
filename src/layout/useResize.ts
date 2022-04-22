@@ -1,12 +1,13 @@
-import { useAppStore, DeviceType } from "@/store/modules/app"
 import { computed, watch } from "vue"
 import { useRoute } from "vue-router"
+import { useAppStore, DeviceType } from "@/store/modules/app"
 
 /** 参考 Bootstrap 的响应式设计 width = 992 */
 const WIDTH = 992
 
 /** 根据大小变化重新布局 */
-export default function () {
+export default () => {
+  const route = useRoute()
   const appStore = useAppStore()
 
   const device = computed(() => {
@@ -17,10 +18,8 @@ export default function () {
     return appStore.sidebar
   })
 
-  const currentRoute = useRoute()
-
   const watchRouter = watch(
-    () => currentRoute.name,
+    () => route.name,
     () => {
       if (appStore.device === DeviceType.Mobile && appStore.sidebar.opened) {
         appStore.closeSidebar(false)
