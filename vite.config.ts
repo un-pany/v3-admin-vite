@@ -10,7 +10,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 export default (): UserConfigExport => {
   return {
     /** build 打包时根据实际情况修改 base */
-    base: "/",
+    base: "./",
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
