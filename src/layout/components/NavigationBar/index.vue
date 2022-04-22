@@ -50,7 +50,7 @@ const state = reactive({
         <template #dropdown>
           <el-dropdown-menu>
             <a target="_blank" href="#">
-              <el-dropdown-item divided>V3-Admin-Vite 中文文档</el-dropdown-item>
+              <el-dropdown-item>V3-Admin-Vite 中文文档</el-dropdown-item>
             </a>
             <a target="_blank" href="#">
               <el-dropdown-item>V3-Admin-Vite English Docs</el-dropdown-item>
