@@ -40,8 +40,8 @@ const state = reactive({
   left: 0,
   selectedTag: {} as ITagView,
   affixTags: [] as ITagView[],
-  isActive: (route: ITagView) => {
-    return route.path === route.path
+  isActive: (tagView: ITagView) => {
+    return tagView.path === route.path
   },
   isAffix: (tag: ITagView) => {
     return tag.meta && tag.meta.affix
