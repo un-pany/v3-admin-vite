@@ -109,11 +109,12 @@ pnpm lint
 - `wip` 开发中
 - `mod` 不确定分类的修改
 
-## 交流（吹水）群
+## 可有可无的群
 
-QQ群：1014374415
+QQ群：1014374415（左）&& 加我微信，拉你进微信群（右）
 
-![v3-admin-vite.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/qq.png)
+![qq.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/qq.png)
+![wechat.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/wechat.png)
 
 ## 📄 License
 
