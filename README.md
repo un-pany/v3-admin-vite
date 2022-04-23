@@ -1,10 +1,35 @@
 ## ⚡️ 简介
 
-一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite.
+一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite 等主流技术.
 
-模板代码是从 [v3-admin v3.1.3](https://github.com/un-pany/v3-admin) 迁移而来，只是脚手架从 vue-cli 5.x 切换到了 vite，并作了一些繁琐的适配.
+模板代码是从 [v3-admin](https://github.com/un-pany/v3-admin) 迁移而来，脚手架从 vue-cli 5.x 切换到了 vite 2.9.x，并作了一些繁琐的适配.
 
 更推荐大家使用该 vite 版本！以后的重心也会从 [v3-admin](https://github.com/un-pany/v3-admin) 偏向本仓库.
+
+## 特性
+
+- **Vue3**：采用 Vue3 + script setup 最新的 Vue3 组合式 API
+- **Element Plus**：Element UI 的正统续作
+- **Pinia**: 传说中的 Vuex5
+- **Vite**：真的很快
+- **Vue Router**：没啥好说的
+- **TypeScript**：JavaScript 语言的超集
+- **PNPM**：更快速的，节省磁盘空间的包管理工具
+- **Sass**：和 Element Plus 保持一致
+- **Eslint**：代码校验
+- **Pritter**：代码格式化
+- **Axios**：没啥好说的，已封装好
+- **注释**：各个配置项都写有尽可能详细的注释
+
+## 功能
+
+- **用户管理**：登录、登出演示
+- **权限管理**：内置页面权限（动态路由）、指令权限、权限函数、路由守卫
+- **多环境**：开发环境（development）、预发布环境（staging）、正式环境（production）
+- **多主题**：内置普通、黑暗两种主题模式
+- **错误页面**: 401、404
+- **Dashboard**：根据不同用户显示不同的 Dashboard 页面
+- **其他内置功能**：SVG、动态侧边栏、动态面包屑、标签页快捷导航、Screenfull 全屏、自适应收缩侧边栏（兼容移动端）
 
 ## 📚 文档
 
