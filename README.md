@@ -41,9 +41,9 @@
 
 ## 预览
 
-| 位置 | 账号 | 链接 |
-| --- | --- | --- |
-| github-pages | admin或editor | [链接](https://un-pany.github.io/v3-admin-vite) |
+| 位置         | 账号            | 链接                                            |
+| ------------ | --------------- | ----------------------------------------------- |
+| github-pages | admin 或 editor | [链接](https://un-pany.github.io/v3-admin-vite) |
 
 ## 🚀 开发
 
@@ -61,6 +61,9 @@ cd v3-admin-vite
 
 # 安装依赖
 pnpm i
+
+# 初始化 husky
+pnpm prepare
 
 # 启动服务
 pnpm dev
@@ -111,7 +114,7 @@ pnpm lint
 
 ## 可有可无的群
 
-QQ群：1014374415（左）&& 加我微信，拉你进微信群（右）
+QQ 群：1014374415（左）&& 加我微信，拉你进微信群（右）
 
 ![qq.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/qq.png)
 ![wechat.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/wechat.png)

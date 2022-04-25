@@ -19,7 +19,8 @@
     "preview:prod": "pnpm build:prod && vite preview",
     "lint:eslint": "eslint \"src/**/*.{vue,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
-    "lint": "pnpm lint:eslint && pnpm lint:prettier"
+    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.4",
@@ -51,6 +52,7 @@
     "eslint": "^8.13.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.6.0",
+    "husky": "^7.0.4",
     "lint-staged": "^12.4.0",
     "prettier": "^2.6.2",
     "sass": "^1.50.1",
@@ -62,13 +64,19 @@
     "vue-eslint-parser": "^8.3.0",
     "vue-tsc": "^0.34.7"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "pnpm lint",
-      "git add"
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,less,css,html,md}": [
+      "prettier --write"
+    ],
+    "package.json": [
+      "prettier --write"
+    ],
+    "{!(package)*.json,.!(browserslist)*rc}": [
+      "prettier --write--parser json"
     ]
   },
   "keywords": [

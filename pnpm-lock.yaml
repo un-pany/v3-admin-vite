@@ -18,6 +18,7 @@ specifiers:
   eslint: ^8.13.0
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-vue: ^8.6.0
+  husky: ^7.0.4
   js-cookie: ^3.0.1
   lint-staged: ^12.4.0
   lodash-es: ^4.17.21
@@ -69,6 +70,7 @@ devDependencies:
   eslint: 8.13.0
   eslint-plugin-prettier: 4.0.0_eslint@8.13.0+prettier@2.6.2
   eslint-plugin-vue: 8.6.0_eslint@8.13.0
+  husky: 7.0.4
   lint-staged: 12.4.0
   prettier: 2.6.2
   sass: 1.50.1
@@ -1824,6 +1826,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: true
+
+  /husky/7.0.4:
+    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
+    engines: {node: '>=12'}
+    hasBin: true
     dev: true
 
   /ignore/5.2.0:
