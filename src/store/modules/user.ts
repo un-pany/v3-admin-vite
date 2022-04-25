@@ -9,6 +9,8 @@ import { RouteRecordRaw } from "vue-router"
 interface IUserState {
   token: string
   roles: string[]
+  avatar: string
+  username: string
 }
 
 export const useUserStore = defineStore({
@@ -16,7 +18,9 @@ export const useUserStore = defineStore({
   state: (): IUserState => {
     return {
       token: getToken() || "",
-      roles: []
+      roles: [],
+      avatar: "",
+      username: ""
     }
   },
   actions: {
@@ -47,6 +51,8 @@ export const useUserStore = defineStore({
         userInfoRequest()
           .then((res: any) => {
             this.roles = res.data.user.roles
+            this.avatar = res.data.user.avatar
+            this.username = res.data.user.username
             resolve(res)
           })
           .catch((error) => {

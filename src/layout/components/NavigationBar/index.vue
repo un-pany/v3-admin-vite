@@ -9,11 +9,14 @@ import BreadCrumb from "../BreadCrumb/index.vue"
 import Hamburger from "../Hamburger/index.vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
+import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const userStore = useUserStore()
+
+let { avatar } = storeToRefs(useUserStore())
 
 const sidebar = computed(() => {
   return appStore.sidebar
@@ -46,7 +49,7 @@ const state = reactive({
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
       <el-dropdown class="right-menu-item">
-        <el-avatar :icon="UserFilled" :size="34" />
+        <img :src="avatar + '?imageView2/1/w/60/h/60'" class="user-avatar" />
         <template #dropdown>
           <el-dropdown-menu>
             <a target="_blank" href="https://juejin.cn/post/7089377403717287972">
@@ -107,6 +110,12 @@ const state = reactive({
       padding: 0 10px;
       cursor: pointer;
     }
+  }
+  .user-avatar {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
   }
 }
 </style>
