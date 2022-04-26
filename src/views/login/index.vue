@@ -52,7 +52,7 @@ const handleLogin = () => {
         })
         .catch(() => {
           loading.value = false
-          createCode()
+          // createCode()
         })
     } else {
       return false
