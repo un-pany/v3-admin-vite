@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useAppStore } from "@/store/modules/app"
-import { ElConfigProvider } from "element-plus"
 import zhCn from "element-plus/lib/locale/lang/zh-cn"
 
 useAppStore().initTheme() // 初始化 theme
