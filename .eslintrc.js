@@ -10,9 +10,7 @@ module.exports = {
     defineProps: "readonly",
     defineEmits: "readonly",
     defineExpose: "readonly",
-    withDefaults: "readonly",
-    // element-plus
-    ElMessage: "readonly"
+    withDefaults: "readonly"
   },
   extends: [
     "plugin:vue/vue3-essential",
@@ -20,6 +18,8 @@ module.exports = {
     "@vue/typescript/recommended",
     "@vue/prettier",
     "@vue/eslint-config-typescript"
+    // unplugin-auto-import 自动生成的文件
+    // "./types/.eslintrc-auto-import.json"
   ],
   parser: "vue-eslint-parser",
   parserOptions: {

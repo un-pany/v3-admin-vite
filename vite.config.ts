@@ -1,9 +1,6 @@
 import { UserConfigExport } from "vite"
 import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
-import AutoImport from "unplugin-auto-import/vite"
-import Components from "unplugin-vue-components/vite"
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 
 /** 配置项文档：https://vitejs.dev/config */
@@ -72,21 +69,27 @@ export default (): UserConfigExport => {
     /** vite 插件 */
     plugins: [
       vue(),
-      /** 自动按需导入 */
-      AutoImport({
-        dts: "./types/auto-imports.d.ts",
-        resolvers: [ElementPlusResolver()]
-      }),
-      /** 自动按需导入 */
-      Components({
-        dts: "./types/components.d.ts",
-        resolvers: [ElementPlusResolver()]
-      }),
       /** svg */
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
         symbolId: "icon-[dir]-[name]"
       })
+      // AutoImport({
+      //   dts: "./types/auto-imports.d.ts",
+      //   /** 自动按需导入 element-plus 相关函数，比如 ElMessage */
+      //   resolvers: [ElementPlusResolver()],
+      //   /** 根据自动按需导入的相关 api，生成 .eslintrc-auto-import.json 文件供 eslint 识别 */
+      //   eslintrc: {
+      //     enabled: true, // 默认 false
+      //     filepath: "./types/.eslintrc-auto-import.json", // 默认 "./.eslintrc-auto-import.json"
+      //     globalsPropValue: true // 默认 true (true | false | "readonly" | "readable" | "writable" | "writeable")
+      //   }
+      // }),
+      // Components({
+      //   dts: "./types/components.d.ts",
+      //   /** 自动按需导入 element-plus 组件 */
+      //   resolvers: [ElementPlusResolver()]
+      // })
     ]
   }
 }
