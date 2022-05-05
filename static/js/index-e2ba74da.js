@@ -1,1 +1,0 @@
-import{d as a,ag as s,ah as e,o as r,c as t}from"./index-131368df.js";const o=a({setup(a){const{params:o,query:c}=s(),{path:p}=o;return e().replace({path:"/"+p,query:c}).catch((a=>{console.warn(a)})),(a,s)=>(r(),t("div"))}});export{o as default};
