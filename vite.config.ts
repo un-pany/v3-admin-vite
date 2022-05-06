@@ -56,15 +56,8 @@ export default (): UserConfigExport => {
           comments: false
         }
       },
-      assetsDir: "static/assets",
-      /** 静态资源打包到 dist 下的不同目录 */
-      rollupOptions: {
-        output: {
-          chunkFileNames: "static/js/[name]-[hash].js",
-          entryFileNames: "static/js/[name]-[hash].js",
-          assetFileNames: "static/[ext]/[name]-[hash].[ext]"
-        }
-      }
+      /** 打包后静态资源目录 */
+      assetsDir: "static"
     },
     /** vite 插件 */
     plugins: [
