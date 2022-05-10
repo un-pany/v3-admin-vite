@@ -51,7 +51,7 @@
 # 配置
 1. 安装 .vscode 中推荐的插件
 3. node 版本 16+
-4. pnpm 版本 6.x
+4. pnpm 版本 7.x
 
 # 克隆项目
 git clone https://github.com/un-pany/v3-admin-vite.git
