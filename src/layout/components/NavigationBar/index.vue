@@ -102,7 +102,7 @@ const state = reactive({
     height: 100%;
     display: flex;
     align-items: center;
-    color: #5a5e66;
+    color: #606266;
     .right-menu-item {
       padding: 0 10px;
       cursor: pointer;
