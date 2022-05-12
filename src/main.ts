@@ -4,12 +4,14 @@ import "@/router/permission"
 import store from "./store"
 import App from "./App.vue"
 import ElementPlus from "element-plus"
-import "element-plus/dist/index.css"
-import "element-plus/theme-chalk/dark/css-vars.css"
 import loadSvg from "@/icons"
 import * as directives from "@/directives"
-import "@/styles/index.scss"
+
+import "uno.css"
 import "normalize.css"
+import "element-plus/dist/index.css"
+import "element-plus/theme-chalk/dark/css-vars.css"
+import "@/styles/index.scss"
 
 const app = createApp(App)
 /** element-plus 组件完整引入 */

@@ -57,6 +57,7 @@
     "prettier": "^2.6.2",
     "sass": "^1.51.0",
     "typescript": "^4.6.4",
+    "unocss": "^0.33.2",
     "vite": "^2.9.8",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-eslint-parser": "^8.3.0",

@@ -2,6 +2,7 @@ import { UserConfigExport } from "vite"
 import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
+import Unocss from "unocss/vite"
 
 /** 配置项文档：https://vitejs.dev/config */
 export default (): UserConfigExport => {
@@ -66,7 +67,10 @@ export default (): UserConfigExport => {
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
         symbolId: "icon-[dir]-[name]"
-      })
+      }),
+      /** unocss */
+      Unocss()
+      /** 自动按需引入（已更改为完整引入，所以注释了） */
       // AutoImport({
       //   dts: "./types/auto-imports.d.ts",
       //   /** 自动按需导入 element-plus 相关函数，比如 ElMessage */
