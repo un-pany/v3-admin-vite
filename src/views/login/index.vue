@@ -167,7 +167,7 @@ const state = reactive({
         user-select: none;
         img {
           width: 100px;
-          height: 42px;
+          height: 40px;
           border-radius: 4px;
         }
       }
