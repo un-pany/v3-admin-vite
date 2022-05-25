@@ -1,7 +1,11 @@
-@import "./mixins.scss"; // mixins
-@import "./transition.scss"; // transition
-@import "./theme/register.scss"; // 注册主题
+// 全局 css 变量
+@import "variables.css";
+// transition
+@import "./transition.scss";
+// 注册主题
+@import "./theme/register.scss";
 
+// 业务页面几乎都应该在根元素上挂载 class="app-container"，以保持页面美观
 .app-container {
   padding: 20px;
 }
@@ -12,7 +16,7 @@ html {
 
 body {
   height: 100%;
-  background-color: #f0f2f5; // 全局背景色
+  background-color: var(--v3-body-bg-color);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,

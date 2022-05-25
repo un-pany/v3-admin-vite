@@ -27,7 +27,7 @@ const show = ref(false)
 .handle-button {
   width: 48px;
   height: 48px;
-  background-color: #152d3d;
+  background-color: var(--v3-rightpanel-button-bg-color);
   position: absolute;
   right: 0px;
   text-align: center;

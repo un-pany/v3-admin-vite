@@ -6,6 +6,11 @@ import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"
 import SidebarItem from "./SidebarItem.vue"
 import SidebarLogo from "./SidebarLogo.vue"
+import { getCssVariableValue } from "@/utils"
+
+const v3SidebarMenuBgColor = getCssVariableValue("--v3-sidebar-menu-bg-color")
+const v3SidebarMenuTextColor = getCssVariableValue("--v3-sidebar-menu-text-color")
+const v3SidebarMenuActiveTextColor = getCssVariableValue("--v3-sidebar-menu-active-text-color")
 
 const route = useRoute()
 
@@ -40,9 +45,9 @@ const isCollapse = computed(() => {
         :collapse="isCollapse"
         :unique-opened="true"
         :default-active="activeMenu"
-        background-color="#152d3d"
-        text-color="#C0C4CC"
-        active-text-color="#fff"
+        :background-color="v3SidebarMenuBgColor"
+        :text-color="v3SidebarMenuTextColor"
+        :active-text-color="v3SidebarMenuActiveTextColor"
         mode="vertical"
       >
         <SidebarItem
@@ -89,7 +94,7 @@ const isCollapse = computed(() => {
     left: 0;
     width: 4px;
     height: 100%;
-    background-color: #66b1ff;
+    background-color: var(--v3-sidebar-menu-tip-line-bg-color);
   }
 }
 
@@ -99,8 +104,7 @@ const isCollapse = computed(() => {
 
 .has-logo {
   .el-scrollbar {
-    // 84px 是 logo 区域的 height
-    height: calc(100% - 84px);
+    height: calc(100% - var(--v3-header-height));
   }
 }
 
@@ -113,10 +117,10 @@ const isCollapse = computed(() => {
 ::v-deep(.el-menu-item),
 ::v-deep(.el-sub-menu__title),
 ::v-deep(.el-sub-menu .el-menu-item) {
-  height: 60px;
-  line-height: 60px;
+  height: var(--v3-sidebar-menu-item-height);
+  line-height: var(--v3-sidebar-menu-item-height);
   &:hover {
-    background-color: #ffffff10;
+    background-color: var(--v3-sidebar-menu-hover-bg-color);
   }
   display: block;
   * {
@@ -134,7 +138,7 @@ const isCollapse = computed(() => {
   ::v-deep(.el-sub-menu) {
     &.is-active {
       .el-sub-menu__title {
-        color: #fff !important;
+        color: var(--v3-sidebar-menu-active-text-color) !important;
         @include tip-line;
       }
     }

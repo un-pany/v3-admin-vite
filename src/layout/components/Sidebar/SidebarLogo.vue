@@ -34,9 +34,9 @@ defineProps({
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 84px;
-  line-height: 84px;
-  background: #0c202b;
+  height: var(--v3-header-height);
+  line-height: var(--v3-header-height);
+  background-color: var(--v3-sidebarlogo-bg-color);
   text-align: center;
   overflow: hidden;
   .sidebar-logo {
@@ -47,16 +47,6 @@ defineProps({
     width: 100%;
     & .sidebar-logo-text {
       height: 100%;
-      vertical-align: middle;
-    }
-    & .sidebar-title {
-      display: inline-block;
-      margin: 0;
-      color: #fff;
-      font-weight: 600;
-      line-height: 50px;
-      font-size: 16px;
-      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
       vertical-align: middle;
     }
   }

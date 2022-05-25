@@ -63,7 +63,6 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
-$sideBarWidth: 220px;
 
 .app-wrapper {
   @include clearfix;
@@ -72,7 +71,7 @@ $sideBarWidth: 220px;
 }
 
 .drawer-bg {
-  background: #000;
+  background-color: #000;
   opacity: 0.3;
   width: 100%;
   top: 0;
@@ -84,13 +83,13 @@ $sideBarWidth: 220px;
 .main-container {
   min-height: 100%;
   transition: margin-left 0.28s;
-  margin-left: $sideBarWidth;
+  margin-left: var(--v3-sidebar-width);
   position: relative;
 }
 
 .sidebar-container {
   transition: width 0.28s;
-  width: $sideBarWidth !important;
+  width: var(--v3-sidebar-width) !important;
   height: 100%;
   position: fixed;
   font-size: 0;
@@ -106,19 +105,19 @@ $sideBarWidth: 220px;
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - #{$sideBarWidth});
+  width: calc(100% - var(--v3-sidebar-width));
   transition: width 0.28s;
 }
 
 .hideSidebar {
   .main-container {
-    margin-left: 54px;
+    margin-left: var(--v3-sidebar-hide-width);
   }
   .sidebar-container {
-    width: 54px !important;
+    width: var(--v3-sidebar-hide-width) !important;
   }
   .fixed-header {
-    width: calc(100% - 54px);
+    width: calc(100% - var(--v3-sidebar-hide-width));
   }
 }
 
@@ -129,7 +128,7 @@ $sideBarWidth: 220px;
   }
   .sidebar-container {
     transition: transform 0.28s;
-    width: $sideBarWidth !important;
+    width: var(--v3-sidebar-width) !important;
   }
   &.openSidebar {
     position: fixed;
@@ -139,7 +138,7 @@ $sideBarWidth: 220px;
     .sidebar-container {
       pointer-events: none;
       transition-duration: 0.3s;
-      transform: translate3d(-$sideBarWidth, 0, 0);
+      transform: translate3d(calc(0px - var(--v3-sidebar-width)), 0, 0);
     }
   }
 

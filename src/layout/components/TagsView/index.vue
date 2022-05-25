@@ -210,9 +210,9 @@ onBeforeMount(() => {
 
 <style lang="scss" scoped>
 .tags-view-container {
-  height: 34px;
+  height: var(--v3-tagsview-height);
   width: 100%;
-  background: #fff;
+  background-color: #fff;
   border-bottom: 1px solid #d8dce5;
   box-shadow: 0 1px 3px 0 #00000010, 0 0 3px 0 #00000010;
   .tags-view-wrapper {
@@ -222,9 +222,9 @@ onBeforeMount(() => {
       cursor: pointer;
       height: 26px;
       line-height: 26px;
-      border: 1px solid #d8dce5;
-      color: #495060;
-      background: #fff;
+      border: 1px solid var(--v3-tagsview-tag-border-color);
+      color: var(--v3-tagsview-tag-text-color);
+      background-color: var(--v3-tagsview-tag-bg-color);
       padding: 0 8px;
       font-size: 12px;
       margin-left: 5px;
@@ -236,12 +236,12 @@ onBeforeMount(() => {
         margin-right: 15px;
       }
       &.active {
-        background-color: #409eff;
-        color: #fff;
-        border-color: #409eff;
+        background-color: var(--v3-tagsview-tag-active-bg-color);
+        color: var(--v3-tagsview-tag-active-text-color);
+        border-color: var(--v3-tagsview-tag-active-border-color);
         &::before {
           content: "";
-          background: #fff;
+          background-color: var(--v3-tagsview-tag-active-before-color);
           display: inline-block;
           width: 8px;
           height: 8px;
@@ -255,15 +255,15 @@ onBeforeMount(() => {
         vertical-align: middle;
         border-radius: 50%;
         &:hover {
-          background-color: #00000030;
-          color: #fff;
+          background-color: var(--v3-tagsview-tag-icon-hover-bg-color);
+          color: var(--v3-tagsview-tag-icon-hover-color);
         }
       }
     }
   }
   .contextmenu {
     margin: 0;
-    background: #fff;
+    background-color: #fff;
     z-index: 3000;
     position: absolute;
     list-style-type: none;
@@ -278,7 +278,7 @@ onBeforeMount(() => {
       padding: 7px 16px;
       cursor: pointer;
       &:hover {
-        background: #eee;
+        background-color: #eee;
       }
     }
   }
