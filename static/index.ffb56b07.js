@@ -1,0 +1,1 @@
+import{d as a,u as e,k as s,o as r,c as t}from"./index.545ce101.js";const c=a({name:"index",setup(a){const{params:c,query:n}=e(),{path:o}=c;return s().replace({path:"/"+o,query:n}).catch((a=>{console.warn(a)})),(a,e)=>(r(),t("div"))}});export{c as default};
