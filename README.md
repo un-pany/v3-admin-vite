@@ -6,6 +6,8 @@
 
 更推荐大家使用该 vite 版本！以后的重心也会从 [v3-admin](https://github.com/un-pany/v3-admin) 偏向本仓库.
 
+- Electron 桌面版: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
+
 ## 特性
 
 - **Vue3**：采用 Vue3 + script setup 最新的 Vue3 组合式 API
