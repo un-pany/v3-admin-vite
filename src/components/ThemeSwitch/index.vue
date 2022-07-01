@@ -18,11 +18,13 @@ const handleSetTheme = (name: string) => {
 
 <template>
   <el-dropdown trigger="click" @command="handleSetTheme">
-    <el-tooltip effect="dark" content="主题模式" placement="bottom">
-      <el-icon :size="20">
-        <MagicStick />
-      </el-icon>
-    </el-tooltip>
+    <div>
+      <el-tooltip effect="dark" content="主题模式" placement="bottom">
+        <el-icon :size="20">
+          <MagicStick />
+        </el-icon>
+      </el-tooltip>
+    </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item
