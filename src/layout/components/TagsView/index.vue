@@ -20,7 +20,7 @@ const toLastView = (visitedViews: ITagView[], view: ITagView) => {
       console.warn(err)
     })
   } else {
-    // 如果没有 tags-view，请默认重定向到主页，如果你需要，可以自行调整它
+    // 如果没有 TagsView，请默认重定向到主页，如果你需要，可以自行调整它
     if (view.name === "Dashboard") {
       // 重新加载主页
       router.push({ path: "/redirect" + view.fullPath }).catch((err) => {

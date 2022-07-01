@@ -18,7 +18,7 @@ const router = useRouter()
 const loginFormDom = ref<any>()
 
 const state = reactive({
-  /** 登录按钮 loading */
+  /** 登录按钮 Loading */
   loading: false,
   /** 验证码图片 URL */
   codeUrl: "",

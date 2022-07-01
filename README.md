@@ -2,9 +2,9 @@
 
 一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite 等主流技术.
 
-模板代码是从 [v3-admin](https://github.com/un-pany/v3-admin) 迁移而来，脚手架从 vue-cli 5.x 切换到了 vite 2.9.x，并作了一些繁琐的适配.
+模板代码是从 [v3-admin](https://github.com/un-pany/v3-admin) 迁移而来，脚手架从 Vue-Cli 5.x 切换到了 Vite 2.9.x，并作了一些繁琐的适配.
 
-更推荐大家使用该 vite 版本！以后的重心也会从 [v3-admin](https://github.com/un-pany/v3-admin) 偏向本仓库.
+更推荐大家使用该 Vite 版本！以后的重心也会从 [v3-admin](https://github.com/un-pany/v3-admin) 偏向本仓库.
 
 - Electron 桌面版: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 

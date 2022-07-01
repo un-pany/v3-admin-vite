@@ -45,7 +45,7 @@ const state = reactive({
     </div>
     <div :key="'checkPermission' + state.key" style="margin-top: 60px">
       <el-tag type="info" size="large">
-        在某些情况下，不适合使用 v-permission。例如：element-plus 的 el-tab 或 el-table-column 以及其它动态渲染 dom
+        在某些情况下，不适合使用 v-permission。例如: Element-Plus 的 el-tab 或 el-table-column 以及其它动态渲染 dom
         的场景。你只能通过手动设置 v-if 来实现。
       </el-tag>
       <el-tabs type="border-card" style="width: 550px; margin-top: 60px">
@@ -53,12 +53,10 @@ const state = reactive({
           admin 可以看见这个
           <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['admin'])" </el-tag>
         </el-tab-pane>
-
         <el-tab-pane v-if="checkPermission(['editor'])" label="editor">
           editor 可以看见这个
           <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['editor'])" </el-tag>
         </el-tab-pane>
-
         <el-tab-pane v-if="checkPermission(['admin', 'editor'])" label="admin 和 editor">
           两者 admin 和 editor 都可以看见这个
           <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['admin', 'editor'])" </el-tag>

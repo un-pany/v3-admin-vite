@@ -14,9 +14,9 @@ import "element-plus/theme-chalk/dark/css-vars.css"
 import "@/styles/index.scss"
 
 const app = createApp(App)
-/** element-plus 组件完整引入 */
+/** Element-Plus 组件完整引入 */
 app.use(ElementPlus)
-/** 加载全局 svg */
+/** 加载全局 SVG */
 loadSvg(app)
 /** 自定义指令 */
 Object.keys(directives).forEach((key) => {

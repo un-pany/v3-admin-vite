@@ -33,7 +33,7 @@ module.exports = {
     }
   },
   rules: {
-    // ts
+    // TS
     "@typescript-eslint/no-explicit-any": "off",
     "no-debugger": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -55,7 +55,7 @@ module.exports = {
         varsIgnorePattern: "^_"
       }
     ],
-    // vue
+    // Vue
     "vue/no-v-html": "off",
     "vue/require-default-prop": "off",
     "vue/require-explicit-emits": "off",
@@ -72,7 +72,7 @@ module.exports = {
         math: "always"
       }
     ],
-    // prettier
+    // Prettier
     "prettier/prettier": [
       "error",
       {

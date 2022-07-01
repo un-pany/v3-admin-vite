@@ -64,7 +64,7 @@ watch(
     <div>
       <h3 class="drawer-title">系统布局配置</h3>
       <div class="drawer-item">
-        <span>显示 Tags-View</span>
+        <span>显示标签栏</span>
         <el-switch v-model="state.showTagsView" class="drawer-switch" />
       </div>
       <div class="drawer-item">
@@ -76,7 +76,7 @@ watch(
         <el-switch v-model="state.fixedHeader" class="drawer-switch" />
       </div>
       <div class="drawer-item">
-        <span>显示换肤按钮</span>
+        <span>显示切换主题按钮</span>
         <el-switch v-model="state.showThemeSwitch" class="drawer-switch" />
       </div>
       <div class="drawer-item">

@@ -6,7 +6,7 @@ import { getToken } from "@/utils/cookies"
 
 /** 创建请求实例 */
 function createService() {
-  // 创建一个 axios 实例
+  // 创建一个 Axios 实例
   const service = axios.create()
   // 请求拦截
   service.interceptors.request.use(
@@ -17,11 +17,11 @@ function createService() {
   // 响应拦截（可根据具体业务作出相应的调整）
   service.interceptors.response.use(
     (response) => {
-      // apiData 是 api 返回的数据
+      // apiData 是 API 返回的数据
       const apiData = response.data as any
-      // 这个 code 是和后端约定的业务 code
+      // 这个 Code 是和后端约定的业务 Code
       const code = apiData.code
-      // 如果没有 code, 代表这不是项目后端开发的 api
+      // 如果没有 Code, 代表这不是项目后端开发的 API
       if (code === undefined) {
         ElMessage.error("非本系统的接口")
         return Promise.reject(new Error("非本系统的接口"))
@@ -34,14 +34,14 @@ function createService() {
             // code === 20000 代表没有错误
             return apiData
           default:
-            // 不是正确的 code
+            // 不是正确的 Code
             ElMessage.error(apiData.msg || "Error")
             return Promise.reject(new Error("Error"))
         }
       }
     },
     (error) => {
-      // status 是 HTTP 状态码
+      // Status 是 HTTP 状态码
       const status = get(error, "response.status")
       switch (status) {
         case 400:
@@ -51,7 +51,7 @@ function createService() {
           error.message = "未授权，请登录"
           break
         case 403:
-          // token 过期时，直接退出登录并强制刷新页面（会重定向到登录页）
+          // Token 过期时，直接退出登录并强制刷新页面（会重定向到登录页）
           useUserStoreHook().logout()
           location.reload()
           break
@@ -94,7 +94,7 @@ function createRequestFunction(service: AxiosInstance) {
   return function (config: AxiosRequestConfig) {
     const configDefault = {
       headers: {
-        // 携带 token
+        // 携带 Token
         "X-Access-Token": getToken(),
         "Content-Type": get(config, "headers.Content-Type", "application/json")
       },

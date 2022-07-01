@@ -9,7 +9,7 @@ export const formatDateTime = (time: any) => {
   return dayjs(date).format("YYYY-MM-DD HH:mm:ss")
 }
 
-/** 将全局 css 导入 js 中使用 */
+/** 将全局 CSS 导入 JS 中使用 */
 export const getCssVariableValue = (cssVariableName: string) => {
   let cssVariableValue = ""
   try {

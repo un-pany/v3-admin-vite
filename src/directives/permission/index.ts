@@ -15,7 +15,7 @@ export const permission: Directive = {
         el.style.display = "none"
       }
     } else {
-      throw new Error("need roles! Like v-permission=\"['admin','editor']\"")
+      throw new Error(`need roles! Like v-permission="['admin','editor']"`)
     }
   }
 }

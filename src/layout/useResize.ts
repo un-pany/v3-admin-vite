@@ -2,7 +2,7 @@ import { computed, watch } from "vue"
 import { useRoute } from "vue-router"
 import { useAppStore, DeviceType } from "@/store/modules/app"
 
-/** 参考 Bootstrap 的响应式设计 width = 992 */
+/** 参考 Bootstrap 的响应式设计 WIDTH = 992 */
 const WIDTH = 992
 
 /** 根据大小变化重新布局 */

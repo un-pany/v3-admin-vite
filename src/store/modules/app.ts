@@ -55,7 +55,7 @@ export const useAppStore = defineStore({
       this.activeThemeName = this.themeList.find((theme) => theme.name === activeThemeName)
         ? activeThemeName
         : this.themeList[0].name
-      // 应用到 dom
+      // 应用到 Dom
       document.documentElement.className = this.activeThemeName
       // 持久化
       setActiveThemeName(this.activeThemeName)

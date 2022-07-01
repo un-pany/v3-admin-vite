@@ -42,7 +42,7 @@
       }
     }
 
-    // tags-view
+    // TagsView
     .tags-view-container {
       background-color: $theme-bg-color !important;
       border-bottom: 1px solid lighten($theme-bg-color, 10%) !important;
@@ -73,7 +73,7 @@
     }
   }
 
-  /** app-main 主要写 view 页面的黑暗样式 */
+  /** AppMain 主要写 View 页面的黑暗样式 */
 
   .app-main {
     // 指令权限页面 /permission/directive
@@ -82,7 +82,7 @@
     }
   }
 
-  /** login 页面 */
+  /** Login 页面 */
 
   .login-container {
     background-color: $theme-bg-color;
@@ -92,7 +92,7 @@
     }
   }
 
-  /** element-plus */
+  /** Element-Plus */
 
   // 侧边栏的 item 的 popper
   .el-popper {

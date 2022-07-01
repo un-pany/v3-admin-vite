@@ -1,16 +1,16 @@
 /** 布局配置 */
 interface ILayoutSettings {
-  /** 控制 settings panel 显示 */
+  /** 是否显示 Settings Panel */
   showSettings: boolean
-  /** 控制 tagsview 显示 */
+  /** 是否显示标签栏 */
   showTagsView: boolean
-  /** 控制 siderbar logo 显示 */
+  /** 是否显示侧边栏 Logo */
   showSidebarLogo: boolean
-  /** 如果为真，将固定 header */
+  /** 是否固定 Header */
   fixedHeader: boolean
-  /** 控制 换肤按钮 显示 */
+  /** 是否显示切换主题按钮 */
   showThemeSwitch: boolean
-  /** 控制 全屏按钮 显示 */
+  /** 是否显示全屏按钮 */
   showScreenfull: boolean
 }
 

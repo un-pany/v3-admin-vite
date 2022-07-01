@@ -74,7 +74,7 @@ export const useUserStore = defineStore({
       this.roles = []
       resetRouter()
     },
-    /** 重置 token */
+    /** 重置 Token */
     resetToken() {
       removeToken()
       this.token = ""

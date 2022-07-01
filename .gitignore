@@ -1,11 +1,11 @@
-# git 会忽略的文件
+# Git 会忽略的文件
 
 .DS_Store
 node_modules
 dist
 dist-ssr
 
-# local env files
+# Local env files
 *.local
 
 # Logs
