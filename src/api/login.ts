@@ -1,12 +1,12 @@
 import { request } from "@/utils/service"
 
-interface IUserRequestData {
+interface ILoginData {
   username: string
   password: string
 }
 
-/** 登录，返回 token */
-export function accountLogin(data: IUserRequestData) {
+/** 登录并返回 Token */
+export function login(data: ILoginData) {
   return request({
     url: "users/login",
     method: "post",
@@ -14,7 +14,7 @@ export function accountLogin(data: IUserRequestData) {
   })
 }
 /** 获取用户详情 */
-export function userInfoRequest() {
+export function getUserInfo() {
   return request({
     url: "users/info",
     method: "post"
