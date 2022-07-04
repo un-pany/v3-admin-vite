@@ -1,7 +1,7 @@
 import { createApp, Directive } from "vue"
+import store from "./store"
 import router from "./router"
 import "@/router/permission"
-import store from "./store"
 import App from "./App.vue"
 import ElementPlus from "element-plus"
 import loadSvg from "@/icons"

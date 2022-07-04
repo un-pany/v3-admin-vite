@@ -9,12 +9,12 @@ import asyncRouteSettings from "@/config/async-route"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 
-const userStore = useUserStoreHook()
-const permissionStore = usePermissionStoreHook()
 NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized, next: any) => {
   NProgress.start()
+  const userStore = useUserStoreHook()
+  const permissionStore = usePermissionStoreHook()
   // 判断该用户是否登录
   if (getToken()) {
     if (to.path === "/login") {
