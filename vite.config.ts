@@ -40,7 +40,6 @@ export default (): UserConfigExport => {
       // }
     },
     build: {
-      brotliSize: false,
       /** 消除打包大小超过 500kb 警告 */
       chunkSizeWarningLimit: 2000,
       /** Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效 */
@@ -52,7 +51,7 @@ export default (): UserConfigExport => {
           drop_debugger: true,
           pure_funcs: ["console.log"]
         },
-        output: {
+        format: {
           /** 删除注释 */
           comments: false
         }
