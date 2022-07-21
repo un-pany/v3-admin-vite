@@ -4,7 +4,7 @@ import vue from "@vitejs/plugin-vue"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import Unocss from "unocss/vite"
 
-/** 配置项文档：https://vitejs.dev/config */
+/** 配置项文档：https://cn.vitejs.dev/config */
 export default (): UserConfigExport => {
   return {
     /** 打包时根据实际情况修改 base */

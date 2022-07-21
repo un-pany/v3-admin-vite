@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    /** https://vitejs.cn/guide/features.html#typescript-compiler-options */
+    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -13,7 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    /** https://vitejs.cn/guide/features.html#typescript-compiler-options */
+    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": [
