@@ -26,7 +26,7 @@
     "@element-plus/icons-vue": "^2.0.6",
     "axios": "^0.27.2",
     "dayjs": "^1.11.4",
-    "element-plus": "^2.2.11",
+    "element-plus": "^2.2.12",
     "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
@@ -36,20 +36,20 @@
     "pinia": "^2.0.17",
     "screenfull": "^6.0.2",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.3"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
     "@types/lodash-es": "^4.17.6",
-    "@types/node": "^18.6.1",
+    "@types/node": "^18.6.3",
     "@types/nprogress": "^0.2.0",
     "@types/path-browserify": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.31.0",
-    "@typescript-eslint/parser": "^5.31.0",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
-    "eslint": "^8.20.0",
+    "eslint": "^8.21.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.3.0",
     "husky": "^8.0.1",
@@ -58,11 +58,11 @@
     "sass": "^1.54.0",
     "terser": "^5.14.2",
     "typescript": "^4.7.4",
-    "unocss": "^0.44.7",
-    "vite": "^3.0.3",
+    "unocss": "^0.45.1",
+    "vite": "^3.0.4",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-eslint-parser": "^9.0.3",
-    "vue-tsc": "^0.39.0"
+    "vue-tsc": "^0.39.4"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
