@@ -48,12 +48,12 @@ function createService() {
           error.message = "请求错误"
           break
         case 401:
-          error.message = "未授权，请登录"
-          break
-        case 403:
           // Token 过期时，直接退出登录并强制刷新页面（会重定向到登录页）
           useUserStoreHook().logout()
           location.reload()
+          break
+        case 403:
+          error.message = "拒绝访问"
           break
         case 404:
           error.message = "请求地址出错"
@@ -77,7 +77,7 @@ function createService() {
           error.message = "网关超时"
           break
         case 505:
-          error.message = "HTTP版本不受支持"
+          error.message = "HTTP 版本不受支持"
           break
         default:
           break
