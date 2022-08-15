@@ -182,11 +182,11 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: "401",
-        component: () => import("@/views/error-page/401.vue"),
-        name: "401",
+        path: "403",
+        component: () => import("@/views/error-page/403.vue"),
+        name: "403",
         meta: {
-          title: "401"
+          title: "403"
         }
       },
       {
