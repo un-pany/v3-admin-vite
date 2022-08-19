@@ -8,7 +8,7 @@ import UnoCSS from "unocss/vite"
 export default (): UserConfigExport => {
   return {
     /** 打包时根据实际情况修改 base */
-    base: "./",
+    base: import.meta.env.VITE_PUBLIC_PATH,
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */

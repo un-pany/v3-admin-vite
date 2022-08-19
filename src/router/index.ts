@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router"
 const Layout = () => import("@/layout/index.vue")
 
 /** 常驻路由 */
@@ -202,7 +202,10 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history:
+    import.meta.env.VITE_ROUTER_HISTORY === "hash"
+      ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
+      : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   routes: constantRoutes
 })
 
