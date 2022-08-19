@@ -72,22 +72,6 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     ]
   },
   {
-    path: "/table",
-    component: Layout,
-    redirect: "/table/index",
-    children: [
-      {
-        path: "index",
-        component: () => import("@/views/table/index.vue"),
-        name: "Table",
-        meta: {
-          title: "表格",
-          icon: "table"
-        }
-      }
-    ]
-  },
-  {
     path: "/menu",
     component: Layout,
     redirect: "/menu/menu1",
