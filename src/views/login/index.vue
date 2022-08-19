@@ -4,10 +4,11 @@ import { useRouter } from "vue-router"
 import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+import type { FormInstance, FormRules } from "element-plus"
 
 interface ILoginForm {
   /** admin 或 editor */
-  username: string
+  username: "admin" | "editor"
   /** 密码 */
   password: string
   /** 验证码 */
@@ -15,65 +16,62 @@ interface ILoginForm {
 }
 
 const router = useRouter()
-const loginFormDom = ref<any>()
+const loginFormRef = ref<FormInstance | null>(null)
 
-const state = reactive({
-  /** 登录按钮 Loading */
-  loading: false,
-  /** 验证码图片 URL */
-  codeUrl: "",
-  /** 登录表单 */
-  loginForm: {
-    username: "admin",
-    password: "12345678",
-    code: "abcd"
-  } as ILoginForm,
-  /** 登录表单校验规则 */
-  loginRules: {
-    username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-    password: [
-      { required: true, message: "请输入密码", trigger: "blur" },
-      { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
-    ],
-    code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
-  },
-  /** 登录逻辑 */
-  handleLogin: () => {
-    loginFormDom.value.validate((valid: boolean) => {
-      if (valid) {
-        state.loading = true
-        useUserStore()
-          .login({
-            username: state.loginForm.username,
-            password: state.loginForm.password
-          })
-          .then(() => {
-            state.loading = false
-            router.push({ path: "/" }).catch((err) => {
-              console.warn(err)
-            })
-          })
-          .catch(() => {
-            state.loading = false
-            state.createCode()
-            state.loginForm.password = ""
-          })
-      } else {
-        return false
-      }
-    })
-  },
-  /** 创建验证码 */
-  createCode: () => {
-    // 先清空验证码的输入
-    state.loginForm.code = ""
-    // 实际开发中，可替换成自己的地址，这里只是提供一个参考
-    state.codeUrl = `/api/v1/login/code?${Math.random() * 1000}`
-  }
+/** 登录按钮 Loading */
+const loading = ref(false)
+/** 验证码图片 URL */
+const codeUrl = ref("")
+/** 登录表单数据 */
+const loginForm: ILoginForm = reactive({
+  username: "admin",
+  password: "12345678",
+  code: "abcd"
 })
+/** 登录表单校验规则 */
+const loginFormRules: FormRules = {
+  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+  password: [
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
+  ],
+  code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
+}
+/** 登录逻辑 */
+const handleLogin = () => {
+  loginFormRef.value?.validate((valid: boolean) => {
+    if (valid) {
+      loading.value = true
+      useUserStore()
+        .login({
+          username: loginForm.username,
+          password: loginForm.password
+        })
+        .then(() => {
+          router.push({ path: "/" })
+        })
+        .catch(() => {
+          createCode()
+          loginForm.password = ""
+        })
+        .finally(() => {
+          loading.value = false
+        })
+    } else {
+      return false
+    }
+  })
+}
+/** 创建验证码 */
+const createCode = () => {
+  // 先清空验证码的输入
+  loginForm.code = ""
+  // 实际开发中，可替换成自己的地址，这里只是提供一个参考
+  codeUrl.value = `/api/v1/login/code?${Math.random() * 1000}`
+}
 
 /** 初始化验证码 */
-// state.createCode()
+// createCode()
 </script>
 
 <template>
@@ -84,10 +82,10 @@ const state = reactive({
         <img src="@/assets/layout/logo-text-2.png" />
       </div>
       <div class="content">
-        <el-form ref="loginFormDom" :model="state.loginForm" :rules="state.loginRules" @keyup.enter="state.handleLogin">
+        <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" @keyup.enter="handleLogin">
           <el-form-item prop="username">
             <el-input
-              v-model="state.loginForm.username"
+              v-model.trim="loginForm.username"
               placeholder="用户名"
               type="text"
               tabindex="1"
@@ -97,7 +95,7 @@ const state = reactive({
           </el-form-item>
           <el-form-item prop="password">
             <el-input
-              v-model="state.loginForm.password"
+              v-model.trim="loginForm.password"
               placeholder="密码"
               type="password"
               tabindex="2"
@@ -108,7 +106,7 @@ const state = reactive({
           </el-form-item>
           <el-form-item prop="code">
             <el-input
-              v-model="state.loginForm.code"
+              v-model.trim="loginForm.code"
               placeholder="验证码"
               type="text"
               tabindex="3"
@@ -117,12 +115,10 @@ const state = reactive({
               size="large"
             />
             <span class="show-code">
-              <img :src="state.codeUrl" @click="state.createCode" />
+              <img :src="codeUrl" @click="createCode" />
             </span>
           </el-form-item>
-          <el-button :loading="state.loading" type="primary" size="large" @click.prevent="state.handleLogin">
-            登 录
-          </el-button>
+          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin"> 登 录 </el-button>
         </el-form>
       </div>
     </div>

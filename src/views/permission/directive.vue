@@ -1,26 +1,25 @@
 <script lang="ts" setup>
-import { reactive } from "vue"
-import { checkPermission } from "@/utils/permission" // 权限判断函数
+import { ref } from "vue"
+import { checkPermission } from "@/utils/permission" // checkPermission 权限判断函数
 import SwitchRoles from "./components/SwitchRoles.vue"
 
-const state = reactive({
-  key: 1,
-  handleRolesChange: () => {
-    state.key++
-  }
-})
+/** key 是为了能每次切换权限的时候重新初始化指令 */
+const key = ref(1)
+const handleRolesChange = () => {
+  key.value++
+}
 </script>
 
 <template>
   <div class="app-container">
-    <SwitchRoles @change="state.handleRolesChange" />
-    <div :key="state.key" style="margin-top: 30px">
+    <SwitchRoles @change="handleRolesChange" />
+    <div :key="key" class="margin-top">
       <div>
         <span v-permission="['admin']" class="permission-alert">
           只有
           <el-tag>admin</el-tag>可以看见这个
         </span>
-        <el-tag v-permission="['admin']" class="permission-sourceCode" type="info" size="large">
+        <el-tag v-permission="['admin']" class="permission-code" type="info" size="large">
           v-permission="['admin']"
         </el-tag>
       </div>
@@ -29,7 +28,7 @@ const state = reactive({
           只有
           <el-tag>editor</el-tag>可以看见这个
         </span>
-        <el-tag v-permission="['editor']" class="permission-sourceCode" type="info" size="large">
+        <el-tag v-permission="['editor']" class="permission-code" type="info" size="large">
           v-permission="['editor']"
         </el-tag>
       </div>
@@ -38,28 +37,28 @@ const state = reactive({
           两者
           <el-tag>admin</el-tag>和 <el-tag>editor</el-tag>都可以看见这个
         </span>
-        <el-tag v-permission="['admin', 'editor']" class="permission-sourceCode" type="info" size="large">
+        <el-tag v-permission="['admin', 'editor']" class="permission-code" type="info" size="large">
           v-permission="['admin', 'editor']"
         </el-tag>
       </div>
     </div>
-    <div :key="'checkPermission' + state.key" style="margin-top: 60px">
+    <div :key="'checkPermission' + key" class="margin-top">
       <el-tag type="info" size="large">
-        在某些情况下，不适合使用 v-permission。例如: Element-Plus 的 el-tab 或 el-table-column 以及其它动态渲染 dom
+        在某些情况下，不适合使用 v-permission。例如: Element-Plus 的 el-tab-pane 或 el-table-column 以及其它动态渲染 Dom
         的场景。你只能通过手动设置 v-if 来实现。
       </el-tag>
-      <el-tabs type="border-card" style="width: 550px; margin-top: 60px">
+      <el-tabs type="border-card" class="margin-top">
         <el-tab-pane v-if="checkPermission(['admin'])" label="admin">
           admin 可以看见这个
-          <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['admin'])" </el-tag>
+          <el-tag class="permission-code" type="info"> v-if="checkPermission(['admin'])" </el-tag>
         </el-tab-pane>
         <el-tab-pane v-if="checkPermission(['editor'])" label="editor">
           editor 可以看见这个
-          <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['editor'])" </el-tag>
+          <el-tag class="permission-code" type="info"> v-if="checkPermission(['editor'])" </el-tag>
         </el-tab-pane>
         <el-tab-pane v-if="checkPermission(['admin', 'editor'])" label="admin 和 editor">
           两者 admin 和 editor 都可以看见这个
-          <el-tag class="permission-sourceCode" type="info"> v-if="checkPermission(['admin', 'editor'])" </el-tag>
+          <el-tag class="permission-code" type="info"> v-if="checkPermission(['admin', 'editor'])" </el-tag>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -77,7 +76,11 @@ const state = reactive({
   display: inline-block;
 }
 
-.permission-sourceCode {
+.permission-code {
   margin-left: 15px;
+}
+
+.margin-top {
+  margin-top: 30px;
 }
 </style>
