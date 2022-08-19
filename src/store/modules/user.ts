@@ -1,7 +1,7 @@
 import store from "@/store"
 import { defineStore } from "pinia"
 import { usePermissionStore } from "./permission"
-import { getToken, removeToken, setToken } from "@/utils/cookies"
+import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { login, getUserInfo } from "@/api/login"
 import { RouteRecordRaw } from "vue-router"
