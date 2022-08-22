@@ -1,0 +1,1 @@
+import{_ as a,o as s,b as d,D as e,G as o,z as t}from"./index.aa897bf7.js";const c={},n=a=>(e("data-v-81b8d59f"),a=a(),o(),a),r=[n((()=>t("p",{class:"code"},"404",-1))),n((()=>t("p",{class:"describe"},"未找到你想要的页面",-1)))];const f=a(c,[["render",function(a,e){return s(),d("div",null,r)}],["__scopeId","data-v-81b8d59f"]]);export{f as default};
