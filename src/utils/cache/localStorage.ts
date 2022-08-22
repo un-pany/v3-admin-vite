@@ -1,9 +1,9 @@
 /** 统一处理 localStorage */
 
-import CacheKeys from "@/constant/cacheKeys"
+import CacheKey from "@/constants/cacheKey"
 
-export const getSidebarStatus = () => localStorage.getItem(CacheKeys.SIDEBAR_STATUS)
-export const setSidebarStatus = (sidebarStatus: string) => localStorage.setItem(CacheKeys.SIDEBAR_STATUS, sidebarStatus)
+export const getSidebarStatus = () => localStorage.getItem(CacheKey.SIDEBAR_STATUS)
+export const setSidebarStatus = (sidebarStatus: string) => localStorage.setItem(CacheKey.SIDEBAR_STATUS, sidebarStatus)
 
-export const getActiveThemeName = () => localStorage.getItem(CacheKeys.ACTIVE_THEME_NAME)
-export const setActiveThemeName = (themeName: string) => localStorage.setItem(CacheKeys.ACTIVE_THEME_NAME, themeName)
+export const getActiveThemeName = () => localStorage.getItem(CacheKey.ACTIVE_THEME_NAME)
+export const setActiveThemeName = (themeName: string) => localStorage.setItem(CacheKey.ACTIVE_THEME_NAME, themeName)
