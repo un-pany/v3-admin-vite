@@ -30,14 +30,8 @@
     .navbar {
       background-color: $theme-bg-color;
       .right-menu {
-        .el-icon {
+        .svg-icon {
           color: $font-color;
-        }
-        .el-avatar {
-          background: lighten($theme-bg-color, 20%);
-          .el-icon {
-            color: #fff;
-          }
         }
       }
     }
