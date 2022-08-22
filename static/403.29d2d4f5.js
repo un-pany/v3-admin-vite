@@ -1,1 +1,0 @@
-import{_ as a,o as s,b as e,G as c,H as d,A as o}from"./index.a2a8c0e2.js";const t={},n=a=>(c("data-v-9e204be3"),a=a(),d(),a),r=[n((()=>o("p",{class:"code"},"403",-1))),n((()=>o("p",{class:"describe"},"你没有权限去该页面",-1)))];const i=a(t,[["render",function(a,c){return s(),e("div",null,r)}],["__scopeId","data-v-9e204be3"]]);export{i as default};
