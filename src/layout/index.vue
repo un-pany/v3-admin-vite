@@ -57,6 +57,7 @@ const handleClickOutside = () => {
   @include clearfix;
   position: relative;
   width: 100%;
+  height: 100%;
 }
 
 .drawer-bg {
@@ -81,7 +82,7 @@ const handleClickOutside = () => {
   width: var(--v3-sidebar-width) !important;
   height: 100%;
   position: fixed;
-  font-size: 0;
+  font-size: 0px;
   top: 0;
   bottom: 0;
   left: 0;
@@ -113,7 +114,7 @@ const handleClickOutside = () => {
 // for mobile response 适配移动端
 .mobile {
   .main-container {
-    margin-left: 0;
+    margin-left: 0px;
   }
   .sidebar-container {
     transition: transform 0.28s;
