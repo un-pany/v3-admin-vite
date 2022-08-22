@@ -1,10 +1,20 @@
-export const isExternal = (path: string) => /^(https?:|mailto:|tel:)/.test(path)
+export const isExternal = (path: string) => {
+  const reg = /^(https?:|mailto:|tel:)/
+  return reg.test(path)
+}
 
 export const isArray = (arg: any) => {
   if (typeof Array.isArray === "undefined") {
     return Object.prototype.toString.call(arg) === "[object Array]"
   }
   return Array.isArray(arg)
+}
+
+export function isString(str: any) {
+  if (typeof str === "string" || str instanceof String) {
+    return true
+  }
+  return false
 }
 
 export const isValidURL = (url: string) => {
