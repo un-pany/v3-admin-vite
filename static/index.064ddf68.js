@@ -1,1 +1,0 @@
-import{_ as a,b as e,e as s,w as n,g as t,o,D as r}from"./index.1fbeedfe.js";const c={},d={class:"app-container"},f=r(" menu 1-2-1 ");const l=a(c,[["render",function(a,r){const c=t("el-card");return o(),e("div",d,[s(c,null,{default:n((()=>[f])),_:1})])}]]);export{l as default};
