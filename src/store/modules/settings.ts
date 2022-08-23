@@ -21,32 +21,5 @@ export const useSettingsStore = defineStore({
       showThemeSwitch: layoutSettings.showThemeSwitch,
       showScreenfull: layoutSettings.showScreenfull
     }
-  },
-  actions: {
-    changeSetting(payload: { key: string; value: any }) {
-      const { key, value } = payload
-      switch (key) {
-        case "fixedHeader":
-          this.fixedHeader = value
-          break
-        case "showSettings":
-          this.showSettings = value
-          break
-        case "showSidebarLogo":
-          this.showSidebarLogo = value
-          break
-        case "showTagsView":
-          this.showTagsView = value
-          break
-        case "showThemeSwitch":
-          this.showThemeSwitch = value
-          break
-        case "showScreenfull":
-          this.showScreenfull = value
-          break
-        default:
-          break
-      }
-    }
   }
 })
