@@ -1,8 +1,9 @@
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router"
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
 const Layout = () => import("@/layout/index.vue")
 
 /** 常驻路由 */
-export const constantRoutes: Array<RouteRecordRaw> = [
+export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/redirect",
     component: Layout,
@@ -138,7 +139,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
  * 用来放置有权限 (Roles 属性) 的路由
  * 必须带有 Name 属性
  */
-export const asyncRoutes: Array<RouteRecordRaw> = [
+export const asyncRoutes: RouteRecordRaw[] = [
   {
     path: "/permission",
     component: Layout,
@@ -220,7 +221,7 @@ export function resetRouter() {
       }
     })
   } catch (error) {
-    // 强制刷新浏览器，不过体验不是很好
+    // 强制刷新浏览器也行，只是交互体验不是很好
     window.location.reload()
   }
 }
