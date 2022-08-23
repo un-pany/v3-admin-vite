@@ -5,7 +5,7 @@ import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { useUserStore } from "@/store/modules/user"
 import { UserFilled } from "@element-plus/icons-vue"
-import BreadCrumb from "../BreadCrumb/index.vue"
+import Breadcrumb from "../Breadcrumb/index.vue"
 import Hamburger from "../Hamburger/index.vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
@@ -39,9 +39,9 @@ const state = reactive({
 </script>
 
 <template>
-  <div class="navbar">
+  <div class="navigation-bar">
     <Hamburger :is-active="sidebar.opened" class="hamburger" @toggle-click="state.toggleSideBar" />
-    <BreadCrumb class="breadcrumb" />
+    <Breadcrumb class="breadcrumb" />
     <div class="right-menu">
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
@@ -81,7 +81,7 @@ const state = reactive({
 </template>
 
 <style lang="scss" scoped>
-.navbar {
+.navigation-bar {
   height: var(--v3-navigationbar-height);
   overflow: hidden;
   background: #fff;
