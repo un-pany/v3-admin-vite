@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, reactive } from "vue"
+import { computed } from "vue"
 import { useRouter } from "vue-router"
 import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
@@ -25,22 +25,18 @@ const showScreenfull = computed(() => {
   return settingsStore.showScreenfull
 })
 
-const state = reactive({
-  toggleSideBar: () => {
-    appStore.toggleSidebar(false)
-  },
-  logout: () => {
-    userStore.logout()
-    router.push("/login").catch((err) => {
-      console.warn(err)
-    })
-  }
-})
+const toggleSidebar = () => {
+  appStore.toggleSidebar(false)
+}
+const logout = () => {
+  userStore.logout()
+  router.push("/login")
+}
 </script>
 
 <template>
   <div class="navigation-bar">
-    <Hamburger :is-active="sidebar.opened" class="hamburger" @toggle-click="state.toggleSideBar" />
+    <Hamburger :is-active="sidebar.opened" class="hamburger" @toggle-click="toggleSidebar" />
     <Breadcrumb class="breadcrumb" />
     <div class="right-menu">
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
@@ -70,7 +66,7 @@ const state = reactive({
             <a target="_blank" href="https://gitee.com/un-pany/v3-admin">
               <el-dropdown-item>V3-Admin Gitee</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="state.logout">
+            <el-dropdown-item divided @click="logout">
               <span style="display: block">退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
