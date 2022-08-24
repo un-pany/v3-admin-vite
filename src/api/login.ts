@@ -6,7 +6,7 @@ interface ILoginData {
 }
 
 /** 登录并返回 Token */
-export function login(data: ILoginData) {
+export function loginApi(data: ILoginData) {
   return request({
     url: "users/login",
     method: "post",
@@ -14,7 +14,7 @@ export function login(data: ILoginData) {
   })
 }
 /** 获取用户详情 */
-export function getUserInfo() {
+export function getUserInfoApi() {
   return request({
     url: "users/info",
     method: "post"

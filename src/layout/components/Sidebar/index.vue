@@ -13,15 +13,18 @@ const v3SidebarMenuTextColor = getCssVariableValue("--v3-sidebar-menu-text-color
 const v3SidebarMenuActiveTextColor = getCssVariableValue("--v3-sidebar-menu-active-text-color")
 
 const route = useRoute()
+const appStore = useAppStore()
+const permissionStore = usePermissionStore()
+const settingsStore = useSettingsStore()
 
 const sidebar = computed(() => {
-  return useAppStore().sidebar
+  return appStore.sidebar
 })
 const routes = computed(() => {
-  return usePermissionStore().routes
+  return permissionStore.routes
 })
 const showLogo = computed(() => {
-  return useSettingsStore().showSidebarLogo
+  return settingsStore.showSidebarLogo
 })
 const activeMenu = computed(() => {
   const { meta, path } = route
