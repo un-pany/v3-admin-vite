@@ -8,7 +8,7 @@ export const permission: Directive = {
     const roles = useUserStoreHook().roles
     if (value && value instanceof Array && value.length > 0) {
       const permissionRoles = value
-      const hasPermission = roles.some((role: any) => {
+      const hasPermission = roles.some((role) => {
         return permissionRoles.includes(role)
       })
       if (!hasPermission) {
