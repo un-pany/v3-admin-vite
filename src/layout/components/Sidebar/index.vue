@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from "vue"
 import { useRoute } from "vue-router"
+import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"
@@ -17,76 +18,46 @@ const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
 
-const sidebar = computed(() => {
-  return appStore.sidebar
-})
-const routes = computed(() => {
-  return permissionStore.routes
-})
-const showLogo = computed(() => {
-  return settingsStore.showSidebarLogo
-})
+const { showSidebarLogo } = storeToRefs(settingsStore)
+
 const activeMenu = computed(() => {
   const { meta, path } = route
-  if (meta !== null || meta !== undefined) {
-    if (meta.activeMenu) {
-      return meta.activeMenu
-    }
+  if (meta?.activeMenu) {
+    return meta.activeMenu
   }
   return path
 })
+
 const isCollapse = computed(() => {
-  return !sidebar.value.opened
+  return !appStore.sidebar.opened
 })
 </script>
 
 <template>
-  <div :class="{ 'has-logo': showLogo }">
-    <SidebarLogo v-if="showLogo" :collapse="isCollapse" />
+  <div :class="{ 'has-logo': showSidebarLogo }">
+    <SidebarLogo v-if="showSidebarLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        :collapse="isCollapse"
-        :unique-opened="true"
         :default-active="activeMenu"
+        :collapse="isCollapse"
         :background-color="v3SidebarMenuBgColor"
         :text-color="v3SidebarMenuTextColor"
         :active-text-color="v3SidebarMenuActiveTextColor"
+        :unique-opened="true"
+        :collapse-transition="false"
         mode="vertical"
       >
         <SidebarItem
-          v-for="routeItem in routes"
-          :key="routeItem.path"
-          :item="routeItem"
-          :base-path="routeItem.path"
+          v-for="route in permissionStore.routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
           :is-collapse="isCollapse"
         />
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
-
-<style lang="scss">
-.sidebar-container {
-  // 重置当前页面的 Element-Plus CSS, ，注意，虽然没有加 scoped 标识，但是被该页面的 sidebar-container 类名包裹，所以不会影响其他页面
-  .horizontal-collapse-transition {
-    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
-  }
-  .scrollbar-wrapper {
-    overflow-x: hidden !important;
-  }
-  .el-scrollbar__view {
-    height: 100%;
-  }
-  .el-scrollbar__bar {
-    &.is-vertical {
-      right: 0;
-    }
-    &.is-horizontal {
-      display: none;
-    }
-  }
-}
-</style>
 
 <style lang="scss" scoped>
 @mixin tip-line {
@@ -101,13 +72,27 @@ const isCollapse = computed(() => {
   }
 }
 
-.el-scrollbar {
-  height: 100%;
-}
-
 .has-logo {
   .el-scrollbar {
     height: calc(100% - var(--v3-header-height));
+  }
+}
+
+.el-scrollbar {
+  height: 100%;
+  ::v-deep(.scrollbar-wrapper) {
+    // 限制水平宽度
+    overflow-x: hidden !important;
+    .el-scrollbar__view {
+      height: 100%;
+    }
+  }
+  // 滚动条
+  ::v-deep(.el-scrollbar__bar) {
+    &.is-horizontal {
+      // 隐藏水平滚动条
+      display: none;
+    }
   }
 }
 

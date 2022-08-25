@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed, PropType } from "vue"
-import { RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
+import SidebarItemLink from "./SidebarItemLink.vue"
 import { isExternal } from "@/utils/validate"
 import path from "path-browserify"
-import SidebarItemLink from "./SidebarItemLink.vue"
 
 const props = defineProps({
   item: {
@@ -12,7 +12,7 @@ const props = defineProps({
   },
   isCollapse: {
     type: Boolean,
-    required: false
+    default: false
   },
   isFirstLevel: {
     type: Boolean,
@@ -20,13 +20,14 @@ const props = defineProps({
   },
   basePath: {
     type: String,
-    required: true
+    default: ""
   }
 })
 
 const alwaysShowRootMenu = computed(() => {
-  return !!(props.item.meta && props.item.meta.alwaysShow)
+  return props.item.meta && props.item.meta.alwaysShow
 })
+
 const showingChildNumber = computed(() => {
   if (props.item.children) {
     const showingChildren = props.item.children.filter((item) => {
@@ -36,6 +37,7 @@ const showingChildNumber = computed(() => {
   }
   return 0
 })
+
 const theOnlyOneChild = computed(() => {
   if (showingChildNumber.value > 1) {
     return null
@@ -64,7 +66,7 @@ const resolvePath = (routePath: string) => {
 </script>
 
 <template>
-  <div v-if="!item.meta || !item.meta.hidden" :class="{ 'simple-mode': isCollapse, 'first-level': isFirstLevel }">
+  <div v-if="!props.item.meta?.hidden" :class="{ 'simple-mode': props.isCollapse, 'first-level': props.isFirstLevel }">
     <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
       <SidebarItemLink v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
         <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
@@ -75,17 +77,17 @@ const resolvePath = (routePath: string) => {
         </el-menu-item>
       </SidebarItemLink>
     </template>
-    <el-sub-menu v-else :index="resolvePath(item.path)" popper-append-to-body>
+    <el-sub-menu v-else :index="resolvePath(props.item.path)" popper-append-to-body>
       <template #title>
-        <svg-icon v-if="item.meta && item.meta.icon" :name="item.meta.icon" />
-        <span v-if="item.meta && item.meta.title">{{ item.meta.title }}</span>
+        <svg-icon v-if="props.item.meta && props.item.meta.icon" :name="props.item.meta.icon" />
+        <span v-if="props.item.meta && props.item.meta.title">{{ props.item.meta.title }}</span>
       </template>
-      <template v-if="item.children">
+      <template v-if="props.item.children">
         <sidebar-item
-          v-for="child in item.children"
+          v-for="child in props.item.children"
           :key="child.path"
           :item="child"
-          :is-collapse="isCollapse"
+          :is-collapse="props.isCollapse"
           :is-first-level="false"
           :base-path="resolvePath(child.path)"
         />
