@@ -2,7 +2,9 @@
 import { ref, watch } from "vue"
 import { useUserStore } from "@/store/modules/user"
 
-const emit = defineEmits(["change"])
+const emit = defineEmits<{
+  (e: "change"): void
+}>()
 
 const userStore = useUserStore()
 const switchRoles = ref(userStore.roles[0])
