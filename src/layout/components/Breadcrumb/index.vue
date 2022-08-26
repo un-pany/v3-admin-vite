@@ -24,14 +24,10 @@ const pathCompile = (path: string) => {
 const handleLink = (item: RouteLocationMatched) => {
   const { redirect, path } = item
   if (redirect) {
-    router.push(redirect as string).catch((err) => {
-      console.warn(err)
-    })
+    router.push(redirect as string)
     return
   }
-  router.push(pathCompile(path)).catch((err) => {
-    console.warn(err)
-  })
+  router.push(pathCompile(path))
 }
 
 watch(
