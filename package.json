@@ -1,6 +1,6 @@
 {
   "name": "v3-admin-vite",
-  "version": "3.1.11",
+  "version": "3.2.0",
   "description": "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite 等主流技术.",
   "author": {
     "name": "pany",
@@ -33,10 +33,10 @@
     "nprogress": "^0.2.0",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.1",
-    "pinia": "^2.0.20",
+    "pinia": "^2.0.21",
     "screenfull": "^6.0.2",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.4"
+    "vue-router": "^4.1.5"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
@@ -58,7 +58,7 @@
     "sass": "^1.54.5",
     "terser": "^5.15.0",
     "typescript": "^4.8.2",
-    "unocss": "^0.45.12",
+    "unocss": "^0.45.13",
     "vite": "^3.0.9",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-eslint-parser": "^9.0.3",
