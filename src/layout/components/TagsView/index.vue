@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, nextTick, onBeforeMount, reactive, watch } from "vue"
-import { RouteRecordRaw, useRoute, useRouter } from "vue-router"
-import { useTagsViewStore, ITagView } from "@/store/modules/tags-view"
+import { useRoute, useRouter } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
+import { useTagsViewStore } from "@/store/modules/tags-view"
+import type { ITagView } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
-import { Close } from "@element-plus/icons-vue"
-import path from "path-browserify"
 import ScrollPane from "./ScrollPane.vue"
+import path from "path-browserify"
+import { Close } from "@element-plus/icons-vue"
 
 const instance = getCurrentInstance()
 const router = useRouter()

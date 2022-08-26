@@ -1,4 +1,5 @@
-import { createApp, Directive } from "vue"
+import { createApp } from "vue"
+import type { Directive } from "vue"
 import store from "./store"
 import router from "./router"
 import "@/router/permission"

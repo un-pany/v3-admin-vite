@@ -1,6 +1,6 @@
 import { ref } from "vue"
 import { defineStore } from "pinia"
-import { _RouteLocationBase, RouteLocationNormalized } from "vue-router"
+import type { _RouteLocationBase, RouteLocationNormalized } from "vue-router"
 
 export interface ITagView extends Partial<RouteLocationNormalized> {
   title?: string

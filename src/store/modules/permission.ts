@@ -1,7 +1,7 @@
 import { ref } from "vue"
 import store from "@/store"
 import { defineStore } from "pinia"
-import { RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
 import { constantRoutes, asyncRoutes } from "@/router"
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {

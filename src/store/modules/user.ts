@@ -5,7 +5,7 @@ import { usePermissionStore } from "./permission"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
-import { RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
