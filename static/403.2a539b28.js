@@ -1,1 +1,0 @@
-import{_ as s,o as a,b as e,B as c,C as d,x as o}from"./index.cfc56859.js";const t={},n=s=>(c("data-v-9e204be3"),s=s(),d(),s),r=[n((()=>o("p",{class:"code"},"403",-1))),n((()=>o("p",{class:"describe"},"你没有权限去该页面",-1)))];const i=s(t,[["render",function(s,c){return a(),e("div",null,r)}],["__scopeId","data-v-9e204be3"]]);export{i as default};
