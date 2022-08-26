@@ -8,7 +8,19 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   const visitedViews = ref<ITagView[]>([])
 
   const addVisitedView = (view: ITagView) => {
-    if (visitedViews.value.some((v) => v.path === view.path)) return
+    if (
+      visitedViews.value.some((v, index) => {
+        if (v.path === view.path) {
+          if (v.fullPath !== view.fullPath) {
+            // 防止 query 参数丢失
+            visitedViews.value[index] = Object.assign({}, view)
+          }
+          return true
+        }
+      })
+    ) {
+      return
+    }
     visitedViews.value.push(Object.assign({}, view))
   }
   const delVisitedView = (view: ITagView) => {

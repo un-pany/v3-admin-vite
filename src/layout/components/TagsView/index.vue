@@ -68,7 +68,7 @@ const addTags = () => {
 }
 
 const refreshSelectedTag = (view: ITagView) => {
-  router.replace({ path: "/redirect" + view.fullPath })
+  router.replace({ path: "/redirect" + view.path, query: view.query })
 }
 
 const closeSelectedTag = (view: ITagView) => {
@@ -133,9 +133,12 @@ const closeMenu = () => {
 }
 
 watch(
-  () => route.name,
+  route,
   () => {
     addTags()
+  },
+  {
+    deep: true
   }
 )
 
