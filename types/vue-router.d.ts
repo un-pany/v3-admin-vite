@@ -34,7 +34,9 @@ declare module "vue-router" {
      */
     alwaysShow?: boolean
     /**
-     * 当设置了该属性，进入路由时，则会高亮 activeMenu 属性对应的侧边栏
+     * 示例: activeMenu: "/xxx/xxx"，
+     * 当设置了该属性进入路由时，则会高亮 activeMenu 属性对应的侧边栏。
+     * 该属性适合使用在有 hidden: true 属性的路由上
      */
     activeMenu?: string
   }
