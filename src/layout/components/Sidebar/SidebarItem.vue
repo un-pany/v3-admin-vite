@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed, PropType } from "vue"
+import { computed } from "vue"
+import type { PropType } from "vue"
 import type { RouteRecordRaw } from "vue-router"
 import SidebarItemLink from "./SidebarItemLink.vue"
 import { isExternal } from "@/utils/validate"

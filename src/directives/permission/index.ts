@@ -1,4 +1,4 @@
-import { Directive } from "vue"
+import type { Directive } from "vue"
 import { useUserStoreHook } from "@/store/modules/user"
 
 /** 权限指令 */
