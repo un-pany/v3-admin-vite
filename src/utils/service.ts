@@ -31,12 +31,9 @@ function createService() {
           case 0:
             // code === 0 代表没有错误
             return apiData
-          case 20000:
-            // code === 20000 代表没有错误
-            return apiData
           default:
             // 不是正确的 Code
-            ElMessage.error(apiData.msg || "Error")
+            ElMessage.error(apiData.message || "Error")
             return Promise.reject(new Error("Error"))
         }
       }
@@ -96,7 +93,7 @@ function createRequestFunction(service: AxiosInstance) {
     const configDefault = {
       headers: {
         // 携带 Token
-        "X-Access-Token": getToken(),
+        Authorization: "Bearer " + getToken(),
         "Content-Type": get(config, "headers.Content-Type", "application/json")
       },
       timeout: 5000,

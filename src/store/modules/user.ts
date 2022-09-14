@@ -5,6 +5,7 @@ import { usePermissionStore } from "./permission"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
+import type { ILoginData } from "@/api/login"
 import type { RouteRecordRaw } from "vue-router"
 
 export const useUserStore = defineStore("user", () => {
@@ -16,15 +17,16 @@ export const useUserStore = defineStore("user", () => {
     roles.value = value
   }
   /** 登录 */
-  const login = (userInfo: { username: string; password: string }) => {
+  const login = (loginData: ILoginData) => {
     return new Promise((resolve, reject) => {
       loginApi({
-        username: userInfo.username,
-        password: userInfo.password
+        username: loginData.username,
+        password: loginData.password,
+        code: loginData.code
       })
         .then((res: any) => {
-          setToken(res.data.accessToken)
-          token.value = res.data.accessToken
+          setToken(res.data.token)
+          token.value = res.data.token
           resolve(true)
         })
         .catch((error) => {
@@ -37,7 +39,7 @@ export const useUserStore = defineStore("user", () => {
     return new Promise((resolve, reject) => {
       getUserInfoApi()
         .then((res: any) => {
-          roles.value = res.data.user.roles
+          roles.value = res.data.roles
           resolve(res)
         })
         .catch((error) => {
@@ -47,7 +49,7 @@ export const useUserStore = defineStore("user", () => {
   }
   /** 切换角色 */
   const changeRoles = async (role: string) => {
-    const newToken = role + "-token"
+    const newToken = "token-" + role
     token.value = newToken
     setToken(newToken)
     await getInfo()

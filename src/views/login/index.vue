@@ -5,15 +5,8 @@ import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import type { FormInstance, FormRules } from "element-plus"
-
-interface ILoginForm {
-  /** admin 或 editor */
-  username: "admin" | "editor"
-  /** 密码 */
-  password: string
-  /** 验证码 */
-  code: string
-}
+import { getLoginCodeApi } from "@/api/login"
+import type { ILoginData } from "@/api/login"
 
 const router = useRouter()
 const loginFormRef = ref<FormInstance | null>(null)
@@ -23,10 +16,10 @@ const loading = ref(false)
 /** 验证码图片 URL */
 const codeUrl = ref("")
 /** 登录表单数据 */
-const loginForm: ILoginForm = reactive({
+const loginForm: ILoginData = reactive({
   username: "admin",
   password: "12345678",
-  code: "abcd"
+  code: ""
 })
 /** 登录表单校验规则 */
 const loginFormRules: FormRules = {
@@ -45,7 +38,8 @@ const handleLogin = () => {
       useUserStore()
         .login({
           username: loginForm.username,
-          password: loginForm.password
+          password: loginForm.password,
+          code: loginForm.code
         })
         .then(() => {
           router.push({ path: "/" })
@@ -66,12 +60,14 @@ const handleLogin = () => {
 const createCode = () => {
   // 先清空验证码的输入
   loginForm.code = ""
-  // 实际开发中，可替换成自己的地址，这里只是提供一个参考
-  codeUrl.value = `/api/v1/login/code?${Math.random() * 1000}`
+  // 获取验证码
+  getLoginCodeApi().then((res: any) => {
+    codeUrl.value = res.data
+  })
 }
 
 /** 初始化验证码 */
-// createCode()
+createCode()
 </script>
 
 <template>
@@ -111,7 +107,7 @@ const createCode = () => {
               type="text"
               tabindex="3"
               :prefix-icon="Key"
-              maxlength="4"
+              maxlength="7"
               size="large"
             />
             <span class="show-code">
