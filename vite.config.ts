@@ -30,17 +30,17 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       /** 跨域设置允许 */
       cors: true,
       /** 端口被占用时，是否直接退出 */
-      strictPort: false
+      strictPort: false,
       /** 接口代理 */
-      // proxy: {
-      //   "/mock-api": {
-      //     target: "https://vue-typescript-admin-mock-server-armour.vercel.app/mock-api",
-      //     ws: true,
-      //     /** 是否允许跨域 */
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace("/mock-api", "")
-      //   }
-      // }
+      proxy: {
+        "/api/v1": {
+          target: "https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212/api/v1",
+          ws: true,
+          /** 是否允许跨域 */
+          changeOrigin: true,
+          rewrite: (path) => path.replace("/api/v1", "")
+        }
+      }
     },
     build: {
       /** 消除打包大小超过 500kb 警告 */
