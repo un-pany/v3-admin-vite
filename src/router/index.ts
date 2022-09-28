@@ -196,7 +196,8 @@ export const asyncRoutes: RouteRecordRaw[] = [
         name: "404",
         meta: {
           title: "404"
-        }
+        },
+        alias: "/:pathMatch(.*)*"
       }
     ]
   }
