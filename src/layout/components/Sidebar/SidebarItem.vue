@@ -106,7 +106,7 @@ const resolvePath = (routePath: string) => {
 
 .simple-mode {
   &.first-level {
-    ::v-deep(.el-sub-menu) {
+    :deep(.el-sub-menu) {
       .el-sub-menu__icon-arrow {
         display: none;
       }
