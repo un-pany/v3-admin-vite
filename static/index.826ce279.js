@@ -1,1 +1,0 @@
-import{_ as e,b as a,e as s,w as r,h as n,o as t}from"./index.34ddd242.js";const d={class:"app-container"};const o=e({},[["render",function(e,o){const c=n("router-view"),i=n("el-card");return t(),a("div",d,[s(i,{header:"menu 1-2"},{default:r((()=>[s(c)])),_:1})])}]]);export{o as default};
