@@ -1,0 +1,1 @@
+import{a,b as e,i as s,l as r,o as t}from"./index.34ddd242.js";const d=a({__name:"index",setup(a){const d=s();return r().replace({path:"/"+d.params.path,query:d.query}),(a,s)=>(t(),e("div"))}});export{d as default};
