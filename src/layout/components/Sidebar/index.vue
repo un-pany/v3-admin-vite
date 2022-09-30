@@ -66,7 +66,7 @@ const isCollapse = computed(() => {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 2px;
     height: 100%;
     background-color: var(--v3-sidebar-menu-tip-line-bg-color);
   }
@@ -80,7 +80,7 @@ const isCollapse = computed(() => {
 
 .el-scrollbar {
   height: 100%;
-  ::v-deep(.scrollbar-wrapper) {
+  :deep(.scrollbar-wrapper) {
     // 限制水平宽度
     overflow-x: hidden !important;
     .el-scrollbar__view {
@@ -88,7 +88,7 @@ const isCollapse = computed(() => {
     }
   }
   // 滚动条
-  ::v-deep(.el-scrollbar__bar) {
+  :deep(.el-scrollbar__bar) {
     &.is-horizontal {
       // 隐藏水平滚动条
       display: none;
@@ -102,11 +102,12 @@ const isCollapse = computed(() => {
   width: 100% !important;
 }
 
-::v-deep(.el-menu-item),
-::v-deep(.el-sub-menu__title),
-::v-deep(.el-sub-menu .el-menu-item) {
+:deep(.el-menu-item),
+:deep(.el-sub-menu__title),
+:deep(.el-sub-menu .el-menu-item) {
   height: var(--v3-sidebar-menu-item-height);
   line-height: var(--v3-sidebar-menu-item-height);
+  &.is-active,
   &:hover {
     background-color: var(--v3-sidebar-menu-hover-bg-color);
   }
@@ -116,14 +117,14 @@ const isCollapse = computed(() => {
   }
 }
 
-::v-deep(.el-menu-item) {
+:deep(.el-menu-item) {
   &.is-active {
     @include tip-line;
   }
 }
 
 .el-menu--collapse {
-  ::v-deep(.el-sub-menu) {
+  :deep(.el-sub-menu) {
     &.is-active {
       .el-sub-menu__title {
         color: var(--v3-sidebar-menu-active-text-color) !important;

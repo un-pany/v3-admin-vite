@@ -50,8 +50,8 @@
           border-color: $border-color !important;
         }
       }
+      // 右键菜单
       .contextmenu {
-        // 右键菜单
         background-color: lighten($theme-bg-color, 8%);
         color: $font-color;
         li:hover {
@@ -84,6 +84,12 @@
     .login-card {
       background-color: lighten($theme-bg-color, 4%) !important;
     }
+  }
+
+  /** Error-Page 页面 */
+
+  .error-page {
+    background-color: $theme-bg-color;
   }
 
   /** Element-Plus */

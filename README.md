@@ -1,5 +1,9 @@
 ## ⚡️ 简介
 
+<p align="center">
+  <span>中文 | <a href="./README_en.md">English</a></span>
+</p>
+
 一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite 等主流技术.
 
 模板代码是从 [v3-admin](https://github.com/un-pany/v3-admin) 迁移而来，脚手架从 Vue-Cli 5.x 切换到了 Vite 3.x，并作了一些繁琐的适配.
