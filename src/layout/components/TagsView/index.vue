@@ -205,10 +205,10 @@ onMounted(() => {
       margin-left: 5px;
       margin-top: 4px;
       &:first-of-type {
-        margin-left: 15px;
+        margin-left: 24px;
       }
       &:last-of-type {
-        margin-right: 15px;
+        margin-right: 24px;
       }
       &.active {
         background-color: var(--v3-tagsview-tag-active-bg-color);
