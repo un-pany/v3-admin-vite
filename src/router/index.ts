@@ -35,7 +35,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Dashboard",
         meta: {
           title: "首页",
-          icon: "dashboard",
+          svgIcon: "dashboard",
           affix: true
         }
       }
@@ -52,7 +52,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "UnoCSS",
         meta: {
           title: "unocss",
-          icon: "Female"
+          elIcon: "Female"
         }
       }
     ]
@@ -67,7 +67,8 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Link",
         meta: {
           title: "外链",
-          icon: "Link"
+          svgIcon: "link",
+          elIcon: "Hide"
         }
       }
     ]
@@ -79,7 +80,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     name: "Menu",
     meta: {
       title: "多级菜单",
-      icon: "menu"
+      elIcon: "menu"
     },
     children: [
       {
@@ -89,14 +90,17 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Menu1",
         meta: {
           title: "menu1",
-          icon: "Operation"
+          elIcon: "EditPen"
         },
         children: [
           {
             path: "menu1-1",
             component: () => import("@/views/menu/menu1/menu1-1/index.vue"),
             name: "Menu1-1",
-            meta: { title: "menu1-1" }
+            meta: {
+              title: "menu1-1",
+              svgIcon: "bug"
+            }
           },
           {
             path: "menu1-2",
@@ -105,7 +109,7 @@ export const constantRoutes: RouteRecordRaw[] = [
             name: "Menu1-2",
             meta: {
               title: "menu1-2",
-              icon: "Tools"
+              elIcon: "Tools"
             },
             children: [
               {
@@ -153,7 +157,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
     name: "Permission",
     meta: {
       title: "权限管理",
-      icon: "lock",
+      svgIcon: "lock",
       roles: ["admin", "editor"], // 可以在根路由中设置角色
       alwaysShow: true // 将始终显示根菜单
     },
@@ -184,7 +188,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
     name: "ErrorPage",
     meta: {
       title: "错误页面",
-      icon: "404",
+      svgIcon: "404",
       hidden: true
     },
     children: [
