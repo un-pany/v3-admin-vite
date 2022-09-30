@@ -21,12 +21,12 @@ We recommend everyone to use this Vite version! The focus of the future will be 
 - **TypeScript**：JavaScript With Syntax For Types
 - **PNPM**：Faster, disk space saving package management tool
 - **Scss**：Consistent with Element Plus
-- **CSS 变量**：Mainly controls the layout and color of the item
+- **CSS variable**：Mainly controls the layout and color of the item
 - **ESlint**：Code verification
 - **Prettier**： Code formatting
 - **Axios**: Promise based HTTP client（encapsulated）
 - **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
-- **注释**：Each configuration item is written with as detailed comments as possible
+- **Annotation**：Each configuration item is written with as detailed comments as possible
 
 ## 🔧 Functions
 
