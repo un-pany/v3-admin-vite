@@ -66,7 +66,7 @@ const isCollapse = computed(() => {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 2px;
     height: 100%;
     background-color: var(--v3-sidebar-menu-tip-line-bg-color);
   }
@@ -107,6 +107,7 @@ const isCollapse = computed(() => {
 :deep(.el-sub-menu .el-menu-item) {
   height: var(--v3-sidebar-menu-item-height);
   line-height: var(--v3-sidebar-menu-item-height);
+  &.is-active,
   &:hover {
     background-color: var(--v3-sidebar-menu-hover-bg-color);
   }
