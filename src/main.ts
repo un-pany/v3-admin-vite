@@ -7,6 +7,7 @@ import App from "./App.vue"
 import ElementPlus from "element-plus"
 import loadSvg from "@/icons"
 import * as directives from "@/directives"
+import * as ElementPlusIconsVue from "@element-plus/icons-vue"
 
 import "uno.css"
 import "normalize.css"
@@ -23,5 +24,9 @@ loadSvg(app)
 Object.keys(directives).forEach((key) => {
   app.directive(key, (directives as { [key: string]: Directive })[key])
 })
+/** Element Plus Icons */
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 app.use(store).use(router).mount("#app")

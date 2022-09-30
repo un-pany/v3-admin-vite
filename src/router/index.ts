@@ -52,7 +52,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "UnoCSS",
         meta: {
           title: "unocss",
-          icon: "unocss"
+          icon: "Female"
         }
       }
     ]
@@ -67,7 +67,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Link",
         meta: {
           title: "外链",
-          icon: "link"
+          icon: "Link"
         }
       }
     ]
@@ -87,7 +87,10 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/menu/menu1/index.vue"),
         redirect: "/menu/menu1/menu1-1",
         name: "Menu1",
-        meta: { title: "menu1" },
+        meta: {
+          title: "menu1",
+          icon: "Operation"
+        },
         children: [
           {
             path: "menu1-1",
@@ -100,7 +103,10 @@ export const constantRoutes: RouteRecordRaw[] = [
             component: () => import("@/views/menu/menu1/menu1-2/index.vue"),
             redirect: "/menu/menu1/menu1-2/menu1-2-1",
             name: "Menu1-2",
-            meta: { title: "menu1-2" },
+            meta: {
+              title: "menu1-2",
+              icon: "Tools"
+            },
             children: [
               {
                 path: "menu1-2-1",
