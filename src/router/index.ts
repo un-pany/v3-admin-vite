@@ -50,7 +50,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Dashboard",
         meta: {
           title: "首页",
-          icon: "dashboard",
+          svgIcon: "dashboard",
           affix: true
         }
       }
@@ -67,7 +67,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "UnoCSS",
         meta: {
           title: "unocss",
-          icon: "unocss"
+          svgIcon: "unocss"
         }
       }
     ]
@@ -82,7 +82,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Link",
         meta: {
           title: "外链",
-          icon: "link"
+          svgIcon: "link"
         }
       }
     ]
@@ -94,7 +94,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     name: "Menu",
     meta: {
       title: "多级菜单",
-      icon: "menu"
+      svgIcon: "menu"
     },
     children: [
       {
@@ -102,20 +102,26 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/menu/menu1/index.vue"),
         redirect: "/menu/menu1/menu1-1",
         name: "Menu1",
-        meta: { title: "menu1" },
+        meta: {
+          title: "menu1"
+        },
         children: [
           {
             path: "menu1-1",
             component: () => import("@/views/menu/menu1/menu1-1/index.vue"),
             name: "Menu1-1",
-            meta: { title: "menu1-1" }
+            meta: {
+              title: "menu1-1"
+            }
           },
           {
             path: "menu1-2",
             component: () => import("@/views/menu/menu1/menu1-2/index.vue"),
             redirect: "/menu/menu1/menu1-2/menu1-2-1",
             name: "Menu1-2",
-            meta: { title: "menu1-2" },
+            meta: {
+              title: "menu1-2"
+            },
             children: [
               {
                 path: "menu1-2-1",
@@ -162,7 +168,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
     name: "Permission",
     meta: {
       title: "权限管理",
-      icon: "lock",
+      svgIcon: "lock",
       roles: ["admin", "editor"], // 可以在根路由中设置角色
       alwaysShow: true // 将始终显示根菜单
     },
