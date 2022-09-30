@@ -1,19 +1,16 @@
+<script lang="ts" setup>
+import Svg403 from "@/assets/error-page/403.svg?component" // vite-svg-loader 插件的功能
+</script>
+
 <template>
-  <div>
-    <p class="code">403</p>
-    <p class="describe">你没有权限去该页面</p>
+  <div class="error-page">
+    <Svg403 class="error-page-svg" />
+    <router-link to="/">
+      <el-button type="primary">回到首页</el-button>
+    </router-link>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.code {
-  text-align: center;
-  font-size: 140px;
-  margin-bottom: 50px;
-}
-
-.describe {
-  text-align: center;
-  font-size: 40px;
-}
+@import "./index.scss";
 </style>

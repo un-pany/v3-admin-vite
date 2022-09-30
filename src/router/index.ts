@@ -18,6 +18,21 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/403",
+    component: () => import("@/views/error-page/403.vue"),
+    meta: {
+      hidden: true
+    }
+  },
+  {
+    path: "/404",
+    component: () => import("@/views/error-page/404.vue"),
+    meta: {
+      hidden: true
+    },
+    alias: "/:pathMatch(.*)*"
+  },
+  {
     path: "/login",
     component: () => import("@/views/login/index.vue"),
     meta: {
@@ -172,33 +187,12 @@ export const asyncRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: "/:pathMatch(.*)*", // 必须将 'ErrorPage' 路由放在最后, Must put the 'ErrorPage' route at the end
-    component: Layout,
+    path: "/:pathMatch(.*)*", // Must put the 'ErrorPage' route at the end, 必须将 'ErrorPage' 路由放在最后
     redirect: "/404",
     name: "ErrorPage",
     meta: {
-      title: "错误页面",
-      icon: "404",
       hidden: true
-    },
-    children: [
-      {
-        path: "403",
-        component: () => import("@/views/error-page/403.vue"),
-        name: "403",
-        meta: {
-          title: "403"
-        }
-      },
-      {
-        path: "404",
-        component: () => import("@/views/error-page/404.vue"),
-        name: "404",
-        meta: {
-          title: "404"
-        }
-      }
-    ]
+    }
   }
 ]
 

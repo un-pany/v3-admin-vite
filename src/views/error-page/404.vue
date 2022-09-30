@@ -1,19 +1,16 @@
+<script lang="ts" setup>
+import Svg404 from "@/assets/error-page/404.svg?component" // vite-svg-loader 插件的功能
+</script>
+
 <template>
-  <div>
-    <p class="code">404</p>
-    <p class="describe">未找到你想要的页面</p>
+  <div class="error-page">
+    <Svg404 class="error-page-svg" />
+    <router-link to="/">
+      <el-button type="primary">回到首页</el-button>
+    </router-link>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.code {
-  text-align: center;
-  font-size: 140px;
-  margin-bottom: 50px;
-}
-
-.describe {
-  text-align: center;
-  font-size: 40px;
-}
+@import "./index.scss";
 </style>

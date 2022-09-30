@@ -35,7 +35,8 @@ specifiers:
   unocss: ^0.45.26
   vite: ^3.1.4
   vite-plugin-svg-icons: ^2.0.1
-  vue: ^3.2.40
+  vite-svg-loader: ^3.6.0
+  vue: ^3.2.39
   vue-eslint-parser: ^9.1.0
   vue-router: ^4.1.5
   vue-tsc: ^0.40.13
@@ -79,6 +80,7 @@ devDependencies:
   unocss: 0.45.26_vite@3.1.4
   vite: 3.1.4_sass@1.55.0+terser@5.15.0
   vite-plugin-svg-icons: 2.0.1_vite@3.1.4
+  vite-svg-loader: 3.6.0
   vue-eslint-parser: 9.1.0_eslint@8.24.0
   vue-tsc: 0.40.13_typescript@4.8.4
 
@@ -3762,6 +3764,13 @@ packages:
       vite: 3.1.4_sass@1.55.0+terser@5.15.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vite-svg-loader/3.6.0:
+    resolution: {integrity: sha512-bZJffcgCREW57kNkgMhuNqeDznWXyQwJ3wKrRhHLMMzwDnP5jr3vXW3cqsmquRR7VTP5mLdKj1/zzPPooGUuPw==}
+    dependencies:
+      '@vue/compiler-sfc': 3.2.39
+      svgo: 2.8.0
     dev: true
 
   /vite/3.1.4_sass@1.55.0+terser@5.15.0:
