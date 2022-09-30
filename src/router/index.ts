@@ -67,7 +67,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "UnoCSS",
         meta: {
           title: "unocss",
-          elIcon: "Female"
+          svgIcon: "unocss"
         }
       }
     ]
@@ -82,8 +82,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         name: "Link",
         meta: {
           title: "外链",
-          svgIcon: "link",
-          elIcon: "Hide"
+          svgIcon: "link"
         }
       }
     ]
@@ -95,7 +94,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     name: "Menu",
     meta: {
       title: "多级菜单",
-      elIcon: "menu"
+      svgIcon: "menu"
     },
     children: [
       {
@@ -104,8 +103,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         redirect: "/menu/menu1/menu1-1",
         name: "Menu1",
         meta: {
-          title: "menu1",
-          elIcon: "EditPen"
+          title: "menu1"
         },
         children: [
           {
@@ -113,8 +111,7 @@ export const constantRoutes: RouteRecordRaw[] = [
             component: () => import("@/views/menu/menu1/menu1-1/index.vue"),
             name: "Menu1-1",
             meta: {
-              title: "menu1-1",
-              svgIcon: "bug"
+              title: "menu1-1"
             }
           },
           {
@@ -123,8 +120,7 @@ export const constantRoutes: RouteRecordRaw[] = [
             redirect: "/menu/menu1/menu1-2/menu1-2-1",
             name: "Menu1-2",
             meta: {
-              title: "menu1-2",
-              elIcon: "Tools"
+              title: "menu1-2"
             },
             children: [
               {
