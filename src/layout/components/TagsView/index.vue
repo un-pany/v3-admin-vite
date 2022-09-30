@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, ref, watch } from "vue"
-import { useRoute, useRouter } from "vue-router"
-import type { RouteRecordRaw } from "vue-router"
-import { useTagsViewStore } from "@/store/modules/tags-view"
-import type { ITagView } from "@/store/modules/tags-view"
+import { getCurrentInstance, ref, onMounted, watch } from "vue"
+import { RouteRecordRaw, useRoute, useRouter } from "vue-router"
+import { useTagsViewStore, ITagView } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
-import ScrollPane from "./ScrollPane.vue"
 import path from "path-browserify"
-import { Close } from "@element-plus/icons-vue"
 
 const instance = getCurrentInstance()
 const router = useRouter()
@@ -27,6 +23,26 @@ const isActive = (tag: ITagView) => {
 
 const isAffix = (tag: ITagView) => {
   return tag.meta?.affix
+}
+
+// click tab
+const clickTab = (pane: any) => {
+  // actively jump route if not currently active
+  if (!pane.active) {
+    for (const v of tagsViewStore.visitedViews) {
+      if (v.fullPath && v.path === pane.paneName) {
+        router.push(v.fullPath)
+        break
+      }
+    }
+  }
+}
+
+// remove tab
+const removeTab = (pane: any) => {
+  closeSelectedTag({
+    path: pane
+  })
 }
 
 const filterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
@@ -158,22 +174,25 @@ onMounted(() => {
 
 <template>
   <div class="tags-view-container">
-    <ScrollPane class="tags-view-wrapper">
-      <router-link
+    <el-tabs
+      class="tags-view-tabs"
+      :model-value="route.path"
+      type="card"
+      closable
+      @tab-remove="removeTab"
+      @tab-click="clickTab"
+    >
+      <el-tab-pane
         v-for="tag in tagsViewStore.visitedViews"
-        :key="tag.path"
-        :class="isActive(tag) ? 'active' : ''"
-        :to="{ path: tag.path, query: tag.query }"
-        class="tags-view-item"
-        @click.middle="!isAffix(tag) ? closeSelectedTag(tag) : ''"
-        @contextmenu.prevent="openMenu(tag, $event)"
+        :name="tag.path"
       >
-        {{ tag.meta?.title }}
-        <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="closeSelectedTag(tag)">
-          <Close />
-        </el-icon>
-      </router-link>
-    </ScrollPane>
+        <template #label>
+          <div class="tags-view-item-link" @contextmenu.prevent="openMenu(tag, $event)">
+            {{ tag?.meta?.title }}
+          </div>
+        </template>
+      </el-tab-pane>
+    </el-tabs>
     <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
       <li @click="refreshSelectedTag(selectedTag)">刷新</li>
       <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">关闭</li>
@@ -185,53 +204,59 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .tags-view-container {
-  height: var(--v3-tagsview-height);
-  width: 100%;
-  background-color: #fff;
-  border-bottom: 1px solid #d8dce5;
-  box-shadow: 0 1px 3px 0 #00000010, 0 0 3px 0 #00000010;
-  .tags-view-wrapper {
-    .tags-view-item {
-      display: inline-block;
-      position: relative;
-      cursor: pointer;
-      height: 26px;
-      line-height: 26px;
-      border: 1px solid var(--v3-tagsview-tag-border-color);
-      color: var(--v3-tagsview-tag-text-color);
-      background-color: var(--v3-tagsview-tag-bg-color);
-      padding: 0 8px;
-      font-size: 12px;
-      margin-left: 5px;
-      margin-top: 4px;
-      &:first-of-type {
-        margin-left: 15px;
+  .tags-view-tabs {
+    height: var(--v3-tagsview-height);
+    margin: var(--v3-tagsview-margin);
+    user-select: none;
+    :deep(.el-tabs__header) {
+      margin-bottom: 0;
+      border: none;
+      .el-tabs__nav-next,
+      .el-tabs__nav-prev {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: var(--v3-tagsview-border-radius);
+        color: #000000;
       }
-      &:last-of-type {
-        margin-right: 15px;
-      }
-      &.active {
-        background-color: var(--v3-tagsview-tag-active-bg-color);
-        color: var(--v3-tagsview-tag-active-text-color);
-        border-color: var(--v3-tagsview-tag-active-border-color);
-        &::before {
-          content: "";
-          background-color: var(--v3-tagsview-tag-active-before-color);
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          position: relative;
-          margin-right: 2px;
-        }
-      }
-      .el-icon {
-        margin: 0 2px;
-        vertical-align: middle;
-        border-radius: 50%;
-        &:hover {
-          background-color: var(--v3-tagsview-tag-icon-hover-bg-color);
-          color: var(--v3-tagsview-tag-icon-hover-color);
+      .el-tabs__nav {
+        border: none;
+        .el-tabs__item {
+          display: inline-flex;
+          align-items: center;
+          border: none;
+          border-radius: var(--v3-tagsview-border-radius);
+          height: 30px;
+          line-height: 30px;
+          padding: 0 var(--v3-tagsview-gap);
+          background-color: #fff;
+          font-size: 12px;
+          margin-right: var(--v3-tagsview-gap);
+          &:first-of-type {
+            .is-icon-close {
+              display: none;
+            }
+          }
+          &:last-of-type {
+            margin-right: 0;
+          }
+
+          &:hover .is-icon-close,
+          &.is-active .is-icon-close,
+          .is-icon-close:hover {
+            width: 12px;
+            height: 12px;
+          }
+          .is-icon-close {
+            top: 0;
+            &:hover {
+              background-color: var(--v3-tagsview-tag-active-bg-color);
+            }
+            svg {
+              margin-top: 0;
+            }
+          }
         }
       }
     }
