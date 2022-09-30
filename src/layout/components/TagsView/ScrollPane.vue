@@ -43,13 +43,13 @@ const scrollTo = (type: string) => {
 
 <template>
   <div ref="scrollContainerRef" class="scroll-container">
-    <el-button class="scroll-indicator prev" :icon="ArrowLeftBold" @click="scrollTo('prev')" />
+    <el-button type="info" class="scroll-indicator prev" :icon="ArrowLeftBold" @click="scrollTo('prev')" plain />
     <el-scrollbar ref="scrollbarRef" :vertical="false" class="scroll-bar" @scroll="scrollChange">
       <div ref="scrollbarBoxRef" class="scroll-bar_box">
         <slot />
       </div>
     </el-scrollbar>
-    <el-button class="scroll-indicator next" :icon="ArrowRightBold" @click="scrollTo('next')" />
+    <el-button type="info" class="scroll-indicator next" :icon="ArrowRightBold" @click="scrollTo('next')" plain />
   </div>
 </template>
 
@@ -61,12 +61,12 @@ const scrollTo = (type: string) => {
     position: absolute;
     top: 0;
     z-index: 1;
-    padding: 2px;
+    padding: 0;
     &.prev {
-      left: 0;
+      left: 2px;
     }
     &.next {
-      right: 0;
+      right: 2px;
     }
   }
   .scroll-bar {
