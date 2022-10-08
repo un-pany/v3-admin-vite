@@ -127,13 +127,17 @@ export const constantRoutes: RouteRecordRaw[] = [
                 path: "menu1-2-1",
                 component: () => import("@/views/menu/menu1/menu1-2/menu1-2-1/index.vue"),
                 name: "Menu1-2-1",
-                meta: { title: "menu1-2-1" }
+                meta: {
+                  title: "menu1-2-1"
+                }
               },
               {
                 path: "menu1-2-2",
                 component: () => import("@/views/menu/menu1/menu1-2/menu1-2-2/index.vue"),
                 name: "Menu1-2-2",
-                meta: { title: "menu1-2-2" }
+                meta: {
+                  title: "menu1-2-2"
+                }
               }
             ]
           },
@@ -141,7 +145,9 @@ export const constantRoutes: RouteRecordRaw[] = [
             path: "menu1-3",
             component: () => import("@/views/menu/menu1/menu1-3/index.vue"),
             name: "Menu1-3",
-            meta: { title: "menu1-3" }
+            meta: {
+              title: "menu1-3"
+            }
           }
         ]
       },
@@ -149,7 +155,9 @@ export const constantRoutes: RouteRecordRaw[] = [
         path: "menu2",
         component: () => import("@/views/menu/menu2/index.vue"),
         name: "Menu2",
-        meta: { title: "menu2" }
+        meta: {
+          title: "menu2"
+        }
       }
     ]
   }

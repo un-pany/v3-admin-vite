@@ -18,15 +18,15 @@ import "@/styles/index.scss"
 const app = createApp(App)
 /** Element-Plus 组件完整引入 */
 app.use(ElementPlus)
+/** 注册所有 Element-Plus Icon */
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 /** 加载全局 SVG */
 loadSvg(app)
 /** 自定义指令 */
 Object.keys(directives).forEach((key) => {
   app.directive(key, (directives as { [key: string]: Directive })[key])
 })
-/** Element Plus Icons */
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
-}
 
 app.use(store).use(router).mount("#app")
