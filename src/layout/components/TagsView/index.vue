@@ -198,6 +198,7 @@ onMounted(() => {
       height: 26px;
       line-height: 26px;
       border: 1px solid var(--v3-tagsview-tag-border-color);
+      border-radius: var(--v3-tagsview-tag-border-radius);
       color: var(--v3-tagsview-tag-text-color);
       background-color: var(--v3-tagsview-tag-bg-color);
       padding: 0 8px;
