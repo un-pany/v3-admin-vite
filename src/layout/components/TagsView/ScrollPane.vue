@@ -1,84 +1,79 @@
 <script lang="ts" setup>
 import { ref } from "vue"
 import { ElScrollbar } from "element-plus"
-import { ArrowLeftBold, ArrowRightBold } from "@element-plus/icons-vue"
-const scrollContainerRef = ref<HTMLDivElement>()
-const scrollbarBoxRef = ref<HTMLDivElement>()
+import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+const scrollbarContentRef = ref<HTMLDivElement>()
 
-// current scrolled distance
+/** 当前滚动条距离左边的距离 */
 let currentScrollLeft = 0
-// the distance of each manual trigger scroll
-const translatePerDistance = 200
-const toleranceDistance = 40
+/** 每次滚动距离 */
+const translateDistance = 200
 
-// scroll trigger
-const scrollChange = ({ scrollLeft = 0 }) => {
+/** 滚动时触发 */
+const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
   currentScrollLeft = scrollLeft
 }
 
-// click to scroll
-const scrollTo = (type: string) => {
-  // container width
-  const scrollContainerWidth = scrollContainerRef.value!.clientWidth
-  // content width
-  const scrollbarBoxWidth = scrollbarBoxRef.value!.clientWidth
-  // If no scroll bar appears, return directly
-  if (scrollContainerWidth > scrollbarBoxWidth) return
-  let translateDistance = 0
-  if (type === "prev") {
-    translateDistance =
-      currentScrollLeft > translatePerDistance + toleranceDistance ? currentScrollLeft - translatePerDistance : 0
-  } else if (type === "next") {
-    // remaining unscrolled width on the right
-    const lastDistance = scrollbarBoxWidth - currentScrollLeft - scrollContainerWidth
-    translateDistance =
-      lastDistance > translatePerDistance + toleranceDistance
-        ? currentScrollLeft + translatePerDistance
-        : currentScrollLeft + lastDistance
+/** 点击滚动 */
+const scrollTo = (direction: "left" | "right") => {
+  let scrollLeft = 0
+  /** 可滚动内容的长度 */
+  const scrollbarContentRefWidth = scrollbarContentRef.value!.clientWidth
+  /** 滚动可视区宽度 */
+  const scrollbarRefWidth = scrollbarRef.value!.wrap$!.clientWidth
+  /** 最后剩余可滚动的宽度 */
+  const lastDistance = scrollbarContentRefWidth - scrollbarRefWidth - currentScrollLeft
+  // 没有横向滚动条，直接结束
+  if (scrollbarRefWidth > scrollbarContentRefWidth) return
+  if (direction === "left") {
+    scrollLeft = Math.max(0, currentScrollLeft - translateDistance)
+  } else {
+    scrollLeft = Math.min(currentScrollLeft + translateDistance, currentScrollLeft + lastDistance)
   }
-  scrollbarRef.value!.setScrollLeft(translateDistance)
+  scrollbarRef.value!.setScrollLeft(scrollLeft)
 }
 </script>
 
 <template>
-  <div ref="scrollContainerRef" class="scroll-container">
-    <el-button type="info" class="scroll-indicator prev" :icon="ArrowLeftBold" @click="scrollTo('prev')" plain />
-    <el-scrollbar ref="scrollbarRef" :vertical="false" class="scroll-bar" @scroll="scrollChange">
-      <div ref="scrollbarBoxRef" class="scroll-bar_box">
+  <div class="scroll-container">
+    <el-icon class="arrow left" @click="scrollTo('left')">
+      <ArrowLeft />
+    </el-icon>
+    <el-scrollbar ref="scrollbarRef" @scroll="scroll">
+      <div ref="scrollbarContentRef" class="scrollbar-content">
         <slot />
       </div>
     </el-scrollbar>
-    <el-button type="info" class="scroll-indicator next" :icon="ArrowRightBold" @click="scrollTo('next')" plain />
+    <el-icon class="arrow right" @click="scrollTo('right')">
+      <ArrowRight />
+    </el-icon>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .scroll-container {
-  position: relative;
-  width: 100%;
-  .scroll-indicator {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    padding: 0;
-    &.prev {
-      left: 2px;
+  height: 100%;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  .arrow {
+    width: 40px;
+    height: 100%;
+    cursor: pointer;
+    &.left {
+      box-shadow: 5px 0 5px -6px #ccc;
     }
-    &.next {
-      right: 2px;
+    &.right {
+      box-shadow: -5px 0 5px -6px #ccc;
     }
   }
-  .scroll-bar {
-    // 超出窗口长度时，显示滚动条
+  .el-scrollbar {
+    flex: 1;
+    // 横向超出窗口长度时，显示滚动条
     white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    :deep(.el-scrollbar__wrap) {
-      scroll-behavior: smooth;
-    }
-    .scroll-bar_box {
+    .scrollbar-content {
       display: inline-block;
     }
   }
