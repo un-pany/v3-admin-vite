@@ -2,7 +2,7 @@
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import { useUserStore } from "@/store/modules/user"
-import { User, Lock, Key } from "@element-plus/icons-vue"
+import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import type { FormInstance, FormRules } from "element-plus"
 import { getLoginCodeApi } from "@/api/login"
@@ -61,6 +61,7 @@ const createCode = () => {
   // 先清空验证码的输入
   loginForm.code = ""
   // 获取验证码
+  codeUrl.value = ""
   getLoginCodeApi().then((res: any) => {
     codeUrl.value = res.data
   })
@@ -109,10 +110,18 @@ createCode()
               :prefix-icon="Key"
               maxlength="7"
               size="large"
-            />
-            <span class="show-code">
-              <img :src="codeUrl" @click="createCode" />
-            </span>
+            >
+              <template #append>
+                <el-image :src="codeUrl" @click="createCode" draggable="false">
+                  <template #placeholder>
+                    <el-icon><Picture /></el-icon>
+                  </template>
+                  <template #error>
+                    <el-icon><Loading /></el-icon>
+                  </template>
+                </el-image>
+              </template>
+            </el-input>
           </el-form-item>
           <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin"> 登 录 </el-button>
         </el-form>
@@ -151,16 +160,16 @@ createCode()
     }
     .content {
       padding: 20px 50px 50px 50px;
-      .show-code {
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        cursor: pointer;
-        user-select: none;
-        img {
+      :deep(.el-input-group__append) {
+        padding: 0;
+        overflow: hidden;
+        .el-image {
           width: 100px;
           height: 40px;
-          border-radius: 4px;
+          border-left: 0px;
+          user-select: none;
+          cursor: pointer;
+          text-align: center;
         }
       }
       .el-button {
