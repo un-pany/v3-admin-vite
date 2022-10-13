@@ -1,8 +1,10 @@
-## ⚡ 简介
-
-<p align="center">
+<div align="center">
+  <img alt="V3-Admin-Vite-Logo" width="120" height="120" src="src/assets/layout/logo.png">
+  <h1>V3 Admin Vite</h1>
   <span><a href="./README.md">English</a> | 中文</span>
-</p>
+</div>
+
+## ⚡ 简介
 
 一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element-Plus、Pinia 和 Vite 等主流技术.
 
