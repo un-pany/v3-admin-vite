@@ -1,0 +1,1 @@
+import{_ as a,b as s,e,w as n,h as c,o as t,z as o}from"./index.c3c09ce2.js";const r={class:"app-container"};const d=a({},[["render",function(a,d){const l=c("el-card");return t(),s("div",r,[e(l,null,{default:n((()=>[o(" menu 1-1 ")])),_:1})])}]]);export{d as default};
