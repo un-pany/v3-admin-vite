@@ -1,8 +1,9 @@
 <div align="center">
-  <img alt="V3-Admin-Vite-Logo" width="120" height="120" src="src/assets/layout/logo.png">
+  <img alt="V3-Admin-Vite-Logo" width="120" height="120" src="./src/assets/layout/logo.png">
   <h1>V3 Admin Vite</h1>
-  <span><a href="./README.md">English</a> | 中文</span>
 </div>
+
+<a href="./README.md">English</a> | 中文
 
 ## ⚡ 简介
 
@@ -120,11 +121,11 @@ pnpm lint
 
 QQ 群：1014374415（左）&& 加我微信，拉你进微信群（右）
 
-![qq.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/qq.png)
-![wechat.png](https://github.com/un-pany/v3-admin-vite/blob/main/src/assets/docs/wechat.png)
+![qq.png](./src/assets/docs/qq.png)
+![wechat.png](./src/assets/docs/wechat.png)
 
 ## 📄 License
 
-[MIT](https://github.com/un-pany/v3-admin-vite/blob/main/LICENSE)
+[MIT](./LICENSE)
 
 Copyright (c) 2022 pany
