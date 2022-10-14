@@ -1,9 +1,8 @@
 <div align="center">
   <img alt="V3-Admin-Vite-Logo" width="120" height="120" src="./src/assets/layout/logo.png">
   <h1>V3 Admin Vite</h1>
+  <span><a href="./README.md">English</a> | 中文</span>
 </div>
-
-<a href="./README.md">English</a> | 中文
 
 ## ⚡ 简介
 
@@ -116,6 +115,14 @@ pnpm lint
 - `ci` 持续集成相关
 - `types` 类型定义文件更改
 - `wip` 开发中
+
+## 💕 贡献者
+
+感谢所有的贡献者！
+
+<a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+</a>
 
 ## 可有可无的群
 

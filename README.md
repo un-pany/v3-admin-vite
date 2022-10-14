@@ -1,9 +1,8 @@
 <div align="center">
   <img alt="V3-Admin-Vite-Logo" width="120" height="120" src="./src/assets/layout/logo.png">
   <h1>V3 Admin Vite</h1>
+  <span>English | <a href="./README.zh-CN.md">中文</a></span>
 </div>
-
-English | <a href="./README.zh-CN.md">中文</a>
 
 ## ⚡ Introduction
 
@@ -116,6 +115,14 @@ pnpm lint
 - `ci` CICD
 - `types` Type definition
 - `wip` In development
+
+## 💕 Contributors
+
+Thanks you to all the contributors!
+
+<a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+</a>
 
 ## Group
 
