@@ -135,4 +135,4 @@ QQ 群：1014374415（左）&& 加我微信，拉你进微信群（右）
 
 [MIT](./LICENSE)
 
-Copyright (c) 2022 pany
+Copyright (c) 2022 [pany](https://github.com/pany-ang)
