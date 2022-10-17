@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/store/modules/app"
+import { useTheme } from "@/hooks/useTheme"
 import zhCn from "element-plus/lib/locale/lang/zh-cn"
 
-const appStore = useAppStore()
+const { initTheme } = useTheme()
 
 /** 初始化主题 */
-appStore.initTheme()
+initTheme()
 /** 将 Element-Plus 的语言设置为中文 */
 const locale = zhCn
 </script>
