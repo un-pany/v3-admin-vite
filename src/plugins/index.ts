@@ -1,4 +1,4 @@
-import type { App } from "vue"
+import { type App } from "vue"
 import { loadElementPlus } from "./element-pus"
 import { loadElementPlusIcon } from "./element-pus-icon"
 

@@ -1,5 +1,4 @@
-import { loadEnv } from "vite"
-import type { ConfigEnv, UserConfigExport } from "vite"
+import { type ConfigEnv, type UserConfigExport, loadEnv } from "vite"
 import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"

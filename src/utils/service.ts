@@ -1,9 +1,8 @@
-import axios from "axios"
-import type { AxiosInstance, AxiosRequestConfig } from "axios"
+import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
 import { useUserStoreHook } from "@/store/modules/user"
 import { ElMessage } from "element-plus"
 import { get } from "lodash-es"
-import { getToken } from "@/utils/cache/cookies"
+import { getToken } from "./cache/cookies"
 
 /** 创建请求实例 */
 function createService() {

@@ -4,9 +4,8 @@ import { useRouter } from "vue-router"
 import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
-import type { FormInstance, FormRules } from "element-plus"
-import { getLoginCodeApi } from "@/api/login"
-import type { ILoginData } from "@/api/login"
+import { type FormInstance, FormRules } from "element-plus"
+import { type ILoginData, getLoginCodeApi } from "@/api/login"
 
 const router = useRouter()
 const loginFormRef = ref<FormInstance | null>(null)

@@ -1,5 +1,5 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
-import type { RouteRecordRaw } from "vue-router"
+import { type RouteRecordRaw, createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+
 const Layout = () => import("@/layout/index.vue")
 
 /** 常驻路由 */
