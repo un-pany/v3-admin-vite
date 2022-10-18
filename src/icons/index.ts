@@ -1,7 +1,7 @@
-import { createApp } from "vue"
+import type { App } from "vue"
 import SvgIcon from "@/components/SvgIcon/index.vue" // Svg Component
 import "virtual:svg-icons-register"
 
-export default (app: ReturnType<typeof createApp>) => {
+export function loadSvg(app: App) {
   app.component("SvgIcon", SvgIcon)
 }
