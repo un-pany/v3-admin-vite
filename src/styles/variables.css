@@ -2,7 +2,7 @@
 
 :root {
   /** 全局背景色 */
-  --v3-body-bg-color: #f0f2f5;
+  --v3-body-bg-color: #f2f3f5;
   /** Header 区域 = NavigationBar 组件 + TagsView 组件 */
   --v3-header-height: calc(var(--v3-navigationbar-height) + var(--v3-tagsview-height));
   /** NavigationBar 组件 */
