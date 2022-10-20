@@ -28,6 +28,6 @@ export function loginApi(data: ILoginData) {
 export function getUserInfoApi() {
   return request({
     url: "users/info",
-    method: "post"
+    method: "get"
   })
 }
