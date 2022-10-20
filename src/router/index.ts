@@ -88,6 +88,34 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/table",
+    component: Layout,
+    redirect: "/table/element-plus",
+    name: "Table",
+    meta: {
+      title: "表格",
+      elIcon: "Grid"
+    },
+    children: [
+      {
+        path: "element-plus",
+        component: () => import("@/views/table/element-plus/index.vue"),
+        name: "ElementPlus",
+        meta: {
+          title: "element-plus"
+        }
+      },
+      {
+        path: "vxe-table",
+        component: () => import("@/views/table/vxe-table/index.vue"),
+        name: "VxeTable",
+        meta: {
+          title: "vxe-table"
+        }
+      }
+    ]
+  },
+  {
     path: "/menu",
     component: Layout,
     redirect: "/menu/menu1",
