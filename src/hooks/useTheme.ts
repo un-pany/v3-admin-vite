@@ -9,6 +9,9 @@ interface IThemeList {
 /** 注册的主题名称, 其中 normal 是必填的 */
 export type ThemeName = "normal" | "dark"
 
+/** 正在应用的主题名称 */
+const activeThemeName = ref<ThemeName>(getActiveThemeName() || "normal")
+
 /** 主题 hook */
 export function useTheme() {
   /** 主题列表 */
@@ -22,8 +25,6 @@ export function useTheme() {
       name: "dark"
     }
   ]
-  /** 正在应用的主题名称 */
-  const activeThemeName = ref<ThemeName>(getActiveThemeName() || "normal")
 
   const initTheme = () => {
     setHtmlClassName(activeThemeName.value)
