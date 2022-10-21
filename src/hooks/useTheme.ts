@@ -7,7 +7,7 @@ interface IThemeList {
 }
 
 /** 注册的主题名称, 其中 normal 是必填的 */
-export type ThemeName = "normal" | "dark"
+export type ThemeName = "normal" | "dark" | "dark-blue"
 
 /** 主题 hook */
 export function useTheme() {
@@ -20,6 +20,10 @@ export function useTheme() {
     {
       title: "黑暗",
       name: "dark"
+    },
+    {
+      title: "深蓝",
+      name: "dark-blue"
     }
   ]
   /** 正在应用的主题名称 */
