@@ -206,7 +206,7 @@ getTableData()
     <!-- 新增/编辑 -->
     <el-dialog
       v-model="dialogVisible"
-      :title="currentUpdateId === undefined ? '新增用户' : '修改服用户'"
+      :title="currentUpdateId === undefined ? '新增用户' : '修改用户'"
       @close="resetForm"
     >
       <el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="left">
