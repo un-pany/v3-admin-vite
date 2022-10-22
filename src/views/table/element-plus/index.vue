@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue"
+import { reactive, ref, watch } from "vue"
 import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDataApi } from "@/api/table"
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
+import { usePagination } from "@/hooks/usePagination"
 
 const loading = ref<boolean>(false)
 
@@ -83,16 +84,12 @@ const searchData = reactive({
   username: "",
   phone: ""
 })
-const paginationData = reactive({
-  total: 0,
-  currentPage: 1,
-  size: 10
-})
+const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 const getTableData = () => {
   loading.value = true
   getTableDataApi({
     currentPage: paginationData.currentPage,
-    size: paginationData.size,
+    size: paginationData.pageSize,
     username: searchData.username === "" ? undefined : searchData.username,
     phone: searchData.phone === "" ? undefined : searchData.phone
   })
@@ -107,14 +104,6 @@ const getTableData = () => {
       loading.value = false
     })
 }
-const handleSizeChange = (value: number) => {
-  paginationData.size = value
-  getTableData()
-}
-const handleCurrentChange = (value: number) => {
-  paginationData.currentPage = value
-  getTableData()
-}
 const handleSearch = () => {
   paginationData.currentPage = 1
   getTableData()
@@ -125,11 +114,13 @@ const resetSearch = () => {
   getTableData()
 }
 const handRefresh = () => {
+  paginationData.currentPage = 1
   getTableData()
 }
 //#endregion
 
-getTableData()
+/** 监听分页参数的变化 */
+watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
 </script>
 
 <template>
@@ -193,10 +184,10 @@ getTableData()
       <div class="pager-wrapper">
         <el-pagination
           background
-          layout="total, sizes, prev, pager, next, jumper"
-          :page-sizes="[10, 20, 50]"
+          :layout="paginationData.layout"
+          :page-sizes="paginationData.pageSizes"
           :total="paginationData.total"
-          :page-size="paginationData.size"
+          :page-size="paginationData.pageSize"
           :currentPage="paginationData.currentPage"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
