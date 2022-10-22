@@ -7,7 +7,7 @@ import { usePagination } from "@/hooks/usePagination"
 
 const loading = ref<boolean>(false)
 
-//#region 增
+// #region 增
 const dialogVisible = ref<boolean>(false)
 const formRef = ref<FormInstance | null>(null)
 const formData = reactive({
@@ -50,9 +50,9 @@ const resetForm = () => {
   formData.username = ""
   formData.password = ""
 }
-//#endregion
+// #end-region
 
-//#region 删
+// #region 删
 const handleDelete = (row: any) => {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
@@ -65,9 +65,9 @@ const handleDelete = (row: any) => {
     })
   })
 }
-//#endregion
+// #end-region
 
-//#region 改
+// #region 改
 const currentUpdateId = ref<undefined | number>(undefined)
 const handleUpdate = (row: any) => {
   currentUpdateId.value = row.id
@@ -75,9 +75,9 @@ const handleUpdate = (row: any) => {
   formData.password = row.password
   dialogVisible.value = true
 }
-//#endregion
+// #end-region
 
-//#region 查
+// #region 查
 const tableData = ref<any[]>([])
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
@@ -117,7 +117,7 @@ const handRefresh = () => {
   paginationData.currentPage = 1
   getTableData()
 }
-//#endregion
+// #end-region
 
 /** 监听分页参数的变化 */
 watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
@@ -172,7 +172,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
               <el-tag v-else type="danger" effect="plain">禁用</el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="creatTime" label="创建时间" align="center" />
+          <el-table-column prop="createTime" label="创建时间" align="center" />
           <el-table-column fixed="right" label="操作" width="150" align="center">
             <template #default="scope">
               <el-button type="primary" text bg size="small" @click="handleUpdate(scope.row)">修改</el-button>
