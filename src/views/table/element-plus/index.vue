@@ -6,8 +6,9 @@ import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@el
 import { usePagination } from "@/hooks/usePagination"
 
 const loading = ref<boolean>(false)
+const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 
-// #region 增
+//#region 增
 const dialogVisible = ref<boolean>(false)
 const formRef = ref<FormInstance | null>(null)
 const formData = reactive({
@@ -50,9 +51,9 @@ const resetForm = () => {
   formData.username = ""
   formData.password = ""
 }
-// #end-region
+//#endregion
 
-// #region 删
+//#region 删
 const handleDelete = (row: any) => {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
@@ -65,9 +66,9 @@ const handleDelete = (row: any) => {
     })
   })
 }
-// #end-region
+//#endregion
 
-// #region 改
+//#region 改
 const currentUpdateId = ref<undefined | number>(undefined)
 const handleUpdate = (row: any) => {
   currentUpdateId.value = row.id
@@ -75,16 +76,15 @@ const handleUpdate = (row: any) => {
   formData.password = row.password
   dialogVisible.value = true
 }
-// #end-region
+//#endregion
 
-// #region 查
+//#region 查
 const tableData = ref<any[]>([])
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
   username: "",
   phone: ""
 })
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 const getTableData = () => {
   loading.value = true
   getTableDataApi({
@@ -105,19 +105,22 @@ const getTableData = () => {
     })
 }
 const handleSearch = () => {
+  if (paginationData.currentPage === 1) {
+    getTableData()
+  }
   paginationData.currentPage = 1
-  getTableData()
 }
 const resetSearch = () => {
   searchFormRef.value?.resetFields()
+  if (paginationData.currentPage === 1) {
+    getTableData()
+  }
   paginationData.currentPage = 1
+}
+const handleRefresh = () => {
   getTableData()
 }
-const handRefresh = () => {
-  paginationData.currentPage = 1
-  getTableData()
-}
-// #end-region
+//#endregion
 
 /** 监听分页参数的变化 */
 watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
@@ -150,7 +153,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
             <el-button type="primary" :icon="Download" circle />
           </el-tooltip>
           <el-tooltip content="刷新表格" effect="light">
-            <el-button type="primary" :icon="RefreshRight" circle @click="handRefresh" />
+            <el-button type="primary" :icon="RefreshRight" circle @click="handleRefresh" />
           </el-tooltip>
         </div>
       </div>
@@ -194,11 +197,12 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
         />
       </div>
     </el-card>
-    <!-- 新增/编辑 -->
+    <!-- 新增/修改 -->
     <el-dialog
       v-model="dialogVisible"
-      :title="currentUpdateId === undefined ? '新增用户' : '修改服用户'"
+      :title="currentUpdateId === undefined ? '新增用户' : '修改用户'"
       @close="resetForm"
+      width="30%"
     >
       <el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="left">
         <el-form-item prop="username" label="用户名">
