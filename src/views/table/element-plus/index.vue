@@ -155,10 +155,10 @@ getTableData()
           <el-button type="danger" :icon="Delete">批量删除</el-button>
         </div>
         <div>
-          <el-tooltip content="下载" effect="light">
+          <el-tooltip content="下载">
             <el-button type="primary" :icon="Download" circle />
           </el-tooltip>
-          <el-tooltip content="刷新表格" effect="light">
+          <el-tooltip content="刷新表格">
             <el-button type="primary" :icon="RefreshRight" circle @click="handRefresh" />
           </el-tooltip>
         </div>

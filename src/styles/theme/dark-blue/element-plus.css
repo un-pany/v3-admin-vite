@@ -1,15 +1,15 @@
-/* 查阅所有变量：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss */
+/* 查阅所有可自定义的 Element Plus CSS 变量：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss */
 
 html.dark-blue {
   /* color */
   --el-color-primary: #01efb7bb;
   --el-color-success: #01efb7bb;
   /* text-color */
-  --el-text-color-primary: #ffffffee;
-  --el-text-color-regular: #ffffffee;
-  --el-text-color-secondary: #ffffffee;
-  --el-text-color-placeholder: #ffffffee;
-  --el-text-color-disabled: #ffffff55;
+  --el-text-color-primary: rgba(255, 255, 255, 0.8);
+  --el-text-color-regular: rgba(255, 255, 255, 0.8);
+  --el-text-color-secondary: rgba(255, 255, 255, 0.8);
+  --el-text-color-placeholder: rgba(255, 255, 255, 0.8);
+  --el-text-color-disabled: rgba(255, 255, 255, 0.3);
   /* border-color */
   --el-border-color: #01efb755;
   --el-border-color-light: #01efb755;
@@ -21,4 +21,6 @@ html.dark-blue {
   /* bg-color */
   --el-bg-color: #021633;
   --el-bg-color-overlay: #021633;
+  /** mask */
+  --el-mask-color: rgba(0, 0, 0, 0.5);
 }
