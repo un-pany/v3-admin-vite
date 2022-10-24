@@ -1,0 +1,1 @@
+import{_ as e,e as a,o as s,f as r,h as n,w as t}from"./index.b2caceec.js";const c={class:"app-container"};const o=e({},[["render",function(e,o){const d=a("router-view"),i=a("el-card");return s(),r("div",c,[n(i,{header:"menu 1"},{default:t((()=>[n(d)])),_:1})])}]]);export{o as default};

@@ -1,0 +1,1 @@
+import{b as a,o as e,f as s,u as r,l as t}from"./index.b2caceec.js";const p=a({__name:"index",setup(a){const p=r();return t().replace({path:"/"+p.params.path,query:p.query}),(a,r)=>(e(),s("div"))}});export{p as default};
