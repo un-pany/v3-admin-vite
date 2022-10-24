@@ -24,7 +24,7 @@ v3-admin-vite is a free and open source middle and background management system 
 - **CSS variable**：Mainly controls the layout and color of the item
 - **ESlint**：Code verification
 - **Prettier**： Code formatting
-- **Axios**: Promise based HTTP client（encapsulated）
+- **Axios**: Promise based HTTP client (encapsulated)
 - **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
 - **Annotation**：Each configuration item is written with as detailed comments as possible
 - **Mobile Compatible**: The layout is compatible with mobile page resolution
@@ -33,11 +33,11 @@ v3-admin-vite is a free and open source middle and background management system 
 
 - **User management**: log in, log out of the demo
 - **Authority management**: Built-in page permissions (dynamic routing), instruction permissions, permission functions
-- **Multiple Environments**: Development、staging、production
-- **Multiple themes**: normal and dark theme modes
-- **Error page**: 403、404
+- **Multiple Environments**: Development, Staging, Production
+- **Multiple themes**: Normal, Dark, Dark Blue, theme modes
+- **Error page**: 403, 404
 - **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG、Dynamic Sidebar、Dynamic Breadcrumb Navigation、Tabbed Navigation、Screenfull、Adaptive Shrink Sidebar
+- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar
 
 ## 📚 Document
 
@@ -126,7 +126,7 @@ Thanks you to all the contributors!
 
 ## Group
 
-QQ group：1014374415（left）&& add me on WeChat，Invite you to join WeChat group（right）
+QQ group：1014374415 (left) && add me on WeChat，Invite you to join WeChat group (right)
 
 ![qq.png](./src/assets/docs/qq.png)
 ![wechat.png](./src/assets/docs/wechat.png)
