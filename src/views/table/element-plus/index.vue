@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue"
+import { reactive, ref, watch } from "vue"
 import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDataApi } from "@/api/table"
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
+import { usePagination } from "@/hooks/usePagination"
 
 const loading = ref<boolean>(false)
+const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 
 //#region 增
 const dialogVisible = ref<boolean>(false)
@@ -83,16 +85,11 @@ const searchData = reactive({
   username: "",
   phone: ""
 })
-const paginationData = reactive({
-  total: 0,
-  currentPage: 1,
-  size: 10
-})
 const getTableData = () => {
   loading.value = true
   getTableDataApi({
     currentPage: paginationData.currentPage,
-    size: paginationData.size,
+    size: paginationData.pageSize,
     username: searchData.username === "" ? undefined : searchData.username,
     phone: searchData.phone === "" ? undefined : searchData.phone
   })
@@ -107,29 +104,26 @@ const getTableData = () => {
       loading.value = false
     })
 }
-const handleSizeChange = (value: number) => {
-  paginationData.size = value
-  getTableData()
-}
-const handleCurrentChange = (value: number) => {
-  paginationData.currentPage = value
-  getTableData()
-}
 const handleSearch = () => {
+  if (paginationData.currentPage === 1) {
+    getTableData()
+  }
   paginationData.currentPage = 1
-  getTableData()
 }
 const resetSearch = () => {
   searchFormRef.value?.resetFields()
+  if (paginationData.currentPage === 1) {
+    getTableData()
+  }
   paginationData.currentPage = 1
-  getTableData()
 }
-const handRefresh = () => {
+const handleRefresh = () => {
   getTableData()
 }
 //#endregion
 
-getTableData()
+/** 监听分页参数的变化 */
+watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
 </script>
 
 <template>
@@ -159,7 +153,7 @@ getTableData()
             <el-button type="primary" :icon="Download" circle />
           </el-tooltip>
           <el-tooltip content="刷新表格">
-            <el-button type="primary" :icon="RefreshRight" circle @click="handRefresh" />
+            <el-button type="primary" :icon="RefreshRight" circle @click="handleRefresh" />
           </el-tooltip>
         </div>
       </div>
@@ -181,7 +175,7 @@ getTableData()
               <el-tag v-else type="danger" effect="plain">禁用</el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="creatTime" label="创建时间" align="center" />
+          <el-table-column prop="createTime" label="创建时间" align="center" />
           <el-table-column fixed="right" label="操作" width="150" align="center">
             <template #default="scope">
               <el-button type="primary" text bg size="small" @click="handleUpdate(scope.row)">修改</el-button>
@@ -193,21 +187,22 @@ getTableData()
       <div class="pager-wrapper">
         <el-pagination
           background
-          layout="total, sizes, prev, pager, next, jumper"
-          :page-sizes="[10, 20, 50]"
+          :layout="paginationData.layout"
+          :page-sizes="paginationData.pageSizes"
           :total="paginationData.total"
-          :page-size="paginationData.size"
+          :page-size="paginationData.pageSize"
           :currentPage="paginationData.currentPage"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
         />
       </div>
     </el-card>
-    <!-- 新增/编辑 -->
+    <!-- 新增/修改 -->
     <el-dialog
       v-model="dialogVisible"
-      :title="currentUpdateId === undefined ? '新增用户' : '修改服用户'"
+      :title="currentUpdateId === undefined ? '新增用户' : '修改用户'"
       @close="resetForm"
+      width="30%"
     >
       <el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="left">
         <el-form-item prop="username" label="用户名">
