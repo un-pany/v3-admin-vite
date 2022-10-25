@@ -35,7 +35,7 @@ VXETable.setup({
     align: "center",
     headerAlign: "center",
     /** 行数据的唯一主键字段名 */
-    rowId: "_XID"
+    rowId: "_VXE_ID"
   },
   pager: {
     // size: "medium",

@@ -1,86 +1,26 @@
-.vxe-grid {
-  position: relative;
+/** 自定义 vxe-table 样式 */
 
+.vxe-grid {
   // 表单
   &--form-wrapper {
-    position: relative;
-
     .vxe-form {
       padding: 10px 20px;
       margin-bottom: 20px;
-
-      &--item:last-child {
-        padding-right: 0;
-        white-space: nowrap;
-      }
-    }
-
-    .el-date-editor {
-      &.el-input__wrapper {
-        --el-input-height: 34px;
-        width: auto !important;
-      }
-      .el-range-separator {
-        flex: unset;
-        font-size: 18px;
-      }
     }
   }
 
   // 工具栏
   &--toolbar-wrapper {
-    position: relative;
-
     .vxe-toolbar {
       padding: 20px;
-    }
-  }
-
-  // 表格
-  .vxe-table {
-    padding: 0 20px;
-    background-color: #fff;
-
-    &--loading {
-      font-size: 20px;
-    }
-
-    &--empty-placeholder {
-      left: 0;
-    }
-
-    &--empty-content {
-      color: #a8abb2;
-    }
-
-    .vxe-cell {
-      padding: 10px;
-      user-select: text;
-      max-height: unset !important;
-
-      &--label {
-        user-select: text;
-      }
-    }
-
-    .operate-cell {
-      padding: 0 !important;
-      position: relative;
     }
   }
 
   // 分页
   &--pager-wrapper {
     .vxe-pager {
-      position: relative;
-
-      &.align--center {
-        justify-content: center;
-      }
-
+      height: 70px;
       &--wrapper {
-        white-space: nowrap;
-
         @media screen and (max-width: 750px) {
           .vxe-pager--total,
           .vxe-pager--sizes,
@@ -90,60 +30,5 @@
         }
       }
     }
-  }
-
-  .highlight {
-    font-weight: bold;
-    background-color: #ffff00;
-  }
-
-  .vxe-button {
-    font-size: 15px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.xmodal-crud .vxe-modal {
-  &--box {
-    top: unset !important;
-    left: unset !important;
-    // width: 50vw !important;
-    min-width: 500px !important;
-    margin: 15vh auto auto;
-    position: relative !important;
-  }
-  &--content {
-    padding: 10px 20px !important;
-  }
-  &--footer {
-    padding-top: 0 !important;
-  }
-}
-
-.vxe-loading {
-  font-size: 20px;
-  cursor: progress;
-}
-
-.vxe-form {
-  &--item {
-    &-title-content {
-      text-align-last: justify;
-    }
-    &-title-postfix {
-      padding-left: 0.4em;
-    }
-  }
-}
-
-.vxe-select {
-  &--panel {
-    padding-bottom: 0 !important;
-  }
-  &-option--wrapper {
-    margin-top: 0.5px;
-    box-shadow: none !important;
   }
 }
