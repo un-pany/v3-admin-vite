@@ -1,0 +1,34 @@
+/** 自定义 vxe-table 样式 */
+
+.vxe-grid {
+  // 表单
+  &--form-wrapper {
+    .vxe-form {
+      padding: 10px 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  // 工具栏
+  &--toolbar-wrapper {
+    .vxe-toolbar {
+      padding: 20px;
+    }
+  }
+
+  // 分页
+  &--pager-wrapper {
+    .vxe-pager {
+      height: 70px;
+      &--wrapper {
+        @media screen and (max-width: 750px) {
+          .vxe-pager--total,
+          .vxe-pager--sizes,
+          .vxe-pager--jump {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

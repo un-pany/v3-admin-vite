@@ -36,7 +36,10 @@
     "pinia": "^2.0.23",
     "screenfull": "^6.0.2",
     "vue": "^3.2.41",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vxe-table": "^4.3.5",
+    "vxe-table-plugin-element": "^3.0.6",
+    "xe-utils": "^3.5.7"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
@@ -47,6 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "@vitejs/plugin-vue": "^3.1.2",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "eslint": "^8.26.0",
