@@ -36,16 +36,16 @@
     "pinia": "^2.0.23",
     "screenfull": "^6.0.2",
     "vue": "^3.2.41",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
     "@types/lodash-es": "^4.17.6",
-    "@types/node": "18.11.4",
+    "@types/node": "^18.11.5",
     "@types/nprogress": "^0.2.0",
     "@types/path-browserify": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
