@@ -1,0 +1,48 @@
+/**
+ * VxeTable CSS 变量
+ * 在此查阅所有可自定义的变量：https://github.com/x-extends/vxe-table/blob/master/styles/variable.scss
+ */
+
+/** font */
+$vxe-font-color: $font-color;
+
+/** color */
+// $vxe-primary-color: $active-theme-bg-color;
+// $vxe-success-color: $active-theme-bg-color;
+
+/** table */
+$vxe-table-font-color: $font-color;
+$vxe-table-border-color: $border-color;
+$vxe-table-header-background-color: lighten($theme-bg-color, 4%);
+$vxe-table-body-background-color: lighten($theme-bg-color, 4%);
+$vxe-table-row-hover-background-color: lighten($theme-bg-color, 8%);
+$vxe-table-checkbox-range-background-color: lighten($theme-bg-color, 8%);
+$vxe-table-row-current-background-color: lighten($theme-bg-color, 8%);
+$vxe-table-row-hover-current-background-color: lighten($theme-bg-color, 8%);
+
+/** toolbar */
+$vxe-toolbar-background-color: $theme-bg-color;
+
+/** pager */
+$vxe-pager-background-color: lighten($theme-bg-color, 4%);
+
+/** modal */
+$vxe-modal-header-background-color: $theme-bg-color;
+$vxe-modal-body-background-color: $theme-bg-color;
+$vxe-modal-border-color: $border-color;
+
+/** button */
+$vxe-button-default-background-color: lighten($theme-bg-color, 8%);
+
+/** input */
+$vxe-input-background-color: lighten($theme-bg-color, 8%);
+$vxe-input-panel-background-color: lighten($theme-bg-color, 8%);
+
+/** form */
+$vxe-form-background-color: lighten($theme-bg-color, 4%);
+
+/** select */
+$vxe-select-option-hover-background-color: lighten($theme-bg-color, 8%);
+$vxe-select-panel-background-color: lighten($theme-bg-color, 4%);
+
+@import "vxe-table/styles/index.scss";
