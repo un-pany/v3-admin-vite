@@ -6,7 +6,7 @@ interface ICreateTableDataApi {
 }
 
 interface IUpdateTableDataApi {
-  id: number
+  id: string
   username: string
   password?: string
 }
@@ -31,7 +31,7 @@ export function createTableDataApi(data: ICreateTableDataApi) {
 }
 
 /** 删 */
-export function deleteTableDataApi(id: number) {
+export function deleteTableDataApi(id: string) {
   return request({
     url: `table/${id}`,
     method: "delete"

@@ -69,7 +69,7 @@ const handleDelete = (row: any) => {
 //#endregion
 
 //#region 改
-const currentUpdateId = ref<undefined | number>(undefined)
+const currentUpdateId = ref<undefined | string>(undefined)
 const handleUpdate = (row: any) => {
   currentUpdateId.value = row.id
   formData.username = row.username
@@ -90,8 +90,8 @@ const getTableData = () => {
   getTableDataApi({
     currentPage: paginationData.currentPage,
     size: paginationData.pageSize,
-    username: searchData.username === "" ? undefined : searchData.username,
-    phone: searchData.phone === "" ? undefined : searchData.phone
+    username: searchData.username || undefined,
+    phone: searchData.phone || undefined
   })
     .then((res: any) => {
       paginationData.total = res.data.total
