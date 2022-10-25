@@ -4,28 +4,28 @@
   // 表单
   &--form-wrapper {
     .vxe-form {
-      padding: 10px 20px;
-      margin-bottom: 20px;
+      padding: 10px 20px !important;
+      margin-bottom: 20px !important;
     }
   }
 
   // 工具栏
   &--toolbar-wrapper {
     .vxe-toolbar {
-      padding: 20px;
+      padding: 20px !important;
     }
   }
 
   // 分页
   &--pager-wrapper {
     .vxe-pager {
-      height: 70px;
+      height: 70px !important;
       &--wrapper {
         @media screen and (max-width: 750px) {
           .vxe-pager--total,
           .vxe-pager--sizes,
           .vxe-pager--jump {
-            display: none;
+            display: none !important;
           }
         }
       }
