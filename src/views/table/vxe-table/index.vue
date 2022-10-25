@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { nextTick, reactive, ref } from "vue"
 import { ElMessageBox, ElMessage } from "element-plus"
+import { deleteTableDataApi, getTableDataApi } from "@/api/table"
+import { getDateShortcuts } from "@/utils/index"
+import useRoleColumnSolts from "./hooks/useRoleColumnSolts"
+import useStatusColumnSolts from "./hooks/useStatusColumnSolts"
 import {
   VxeGridInstance,
   VxeGridProps,
@@ -11,10 +15,6 @@ import {
   VxeGridPropTypes,
   VxeFormDefines
 } from "vxe-table"
-import { deleteTableDataApi, getTableDataApi } from "@/api/table"
-import { getDateShortcuts } from "@/utils/index"
-import useRoleColumnSolts from "./hooks/useRoleColumnSolts"
-import useStatusColumnSolts from "./hooks/useStatusColumnSolts"
 
 /** 快捷日期 */
 const shortcuts = getDateShortcuts()
@@ -27,18 +27,18 @@ interface iRowMeta {
   phone: string
   email: string
   status: boolean
-  creatTime: string
+  createTime: string
   operate?: string
   _XID?: string
 }
 const xGridDom = ref({} as VxeGridInstance)
 const xGridOpt = reactive<VxeGridProps>({
   loading: true,
-  height: "auto",
   autoResize: true,
-  headerRowClassName: "xgrid-header-row",
   /** 分页配置项 */
-  pagerConfig: { align: "center" },
+  pagerConfig: {
+    align: "right"
+  },
   /** 表单配置项 */
   formConfig: {
     items: [
@@ -127,7 +127,7 @@ const xGridOpt = reactive<VxeGridProps>({
       title: "状态",
       slots: useStatusColumnSolts
     },
-    { field: "creatTime", title: "创建时间" },
+    { field: "createTime", title: "创建时间" },
     {
       field: "operate",
       title: "操作",
@@ -447,12 +447,10 @@ const crudStore = reactive({
   moreFunc: () => {}
 })
 //#endregion
-
-/** end */
 </script>
 
 <template>
-  <div class="app-container only-xgrid is-overflow">
+  <div class="app-container">
     <!-- 表格 -->
     <vxe-grid ref="xGridDom" v-bind="xGridOpt">
       <!-- 左侧按钮列表 -->
@@ -460,14 +458,12 @@ const crudStore = reactive({
         <vxe-button status="primary" icon="vxe-icon-add" @click="crudStore.onShowModal()">新增用户</vxe-button>
         <vxe-button status="danger" icon="vxe-icon-delete">批量删除</vxe-button>
       </template>
-
       <!-- 操作 -->
       <template #row-operate="{ row }">
         <el-button link type="primary" @click="crudStore.onShowModal(row)">编辑</el-button>
         <el-button link type="danger" @click="crudStore.onDelete(row)">删除</el-button>
       </template>
     </vxe-grid>
-
     <!-- 弹窗 -->
     <vxe-modal ref="xModalDom" v-bind="xModalOpt">
       <!-- 表单 -->
@@ -475,7 +471,5 @@ const crudStore = reactive({
     </vxe-modal>
   </div>
 </template>
-
-<style lang="scss"></style>
 
 <style lang="scss" scoped></style>

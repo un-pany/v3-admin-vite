@@ -1,33 +1,3 @@
-// // 修改样式变量
-// $vxe-font-size: 16px !important;
-// // ...
-// @import "vxe-table/styles/index.scss";
-
-.only-xgrid {
-  height: 100%;
-  position: relative;
-  min-height: 450px;
-
-  &.is-overflow {
-    height: calc(100% - 20px);
-  }
-}
-
-.xgrid-header-row {
-  // background-color: #dbeaff;
-  background-color: var(--el-fill-color-light);
-
-  .vxe-header--column:not(:last-child) {
-    border-right: 1.5px dashed #ddd;
-  }
-}
-
-.vxe-table {
-  &--tooltip-content {
-    user-select: text;
-  }
-}
-
 .vxe-grid {
   position: relative;
 
