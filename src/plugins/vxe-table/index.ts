@@ -61,6 +61,6 @@ VXETable.setup({
 })
 
 export function loadVxeTable(app: App) {
-  /** Vxe-Table 组件完整引入 */
+  /** Vxe Table 组件完整引入 */
   app.use(VXETable)
 }

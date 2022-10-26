@@ -79,7 +79,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       /** 自动按需引入 (已更改为完整引入，所以注释了) */
       // AutoImport({
       //   dts: "./types/auto-imports.d.ts",
-      //   /** 自动按需导入 Element-Plus 相关函数，比如 ElMessage */
+      //   /** 自动按需导入 Element Plus 相关函数，比如 ElMessage */
       //   resolvers: [ElementPlusResolver()],
       //   /** 根据自动按需导入的相关 API，生成 .eslintrc-auto-import.json 文件供 Eslint 识别 */
       //   eslintrc: {
@@ -90,7 +90,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       // }),
       // Components({
       //   dts: "./types/components.d.ts",
-      //   /** 自动按需导入 Element-Plus 组件 */
+      //   /** 自动按需导入 Element Plus 组件 */
       //   resolvers: [ElementPlusResolver()]
       // })
     ]
