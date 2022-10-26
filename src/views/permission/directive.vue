@@ -44,7 +44,7 @@ const handleRolesChange = () => {
     </div>
     <div :key="'checkPermission' + key" class="margin-top">
       <el-tag type="info" size="large">
-        在某些情况下，不适合使用 v-permission。例如: Element-Plus 的 el-tab-pane 或 el-table-column 以及其它动态渲染 Dom
+        在某些情况下，不适合使用 v-permission。例如: Element Plus 的 el-tab-pane 或 el-table-column 以及其它动态渲染 Dom
         的场景。你只能通过手动设置 v-if 来实现。
       </el-tag>
       <el-tabs type="border-card" class="margin-top">
