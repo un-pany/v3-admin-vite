@@ -44,7 +44,7 @@
       color: $font-color !important;
       border: 1px solid $border-color !important;
       &.active {
-        background-color: $active-theme-bg-color !important;
+        background-color: $theme-color !important;
         color: $active-font-color !important;
         border-color: $border-color !important;
       }
