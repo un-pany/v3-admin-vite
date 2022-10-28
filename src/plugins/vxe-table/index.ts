@@ -22,7 +22,7 @@ VXETable.setup({
     showHeaderOverflow: "tooltip",
     autoResize: true,
     // stripe: false,
-    border: false,
+    border: "inner",
     // round: false,
     emptyText: "暂无数据",
     rowConfig: {
@@ -30,7 +30,7 @@ VXETable.setup({
       isCurrent: true
     },
     columnConfig: {
-      resizable: true
+      resizable: false
     },
     align: "center",
     headerAlign: "center",

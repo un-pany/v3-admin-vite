@@ -20,6 +20,7 @@
   &--pager-wrapper {
     .vxe-pager {
       height: 70px !important;
+      padding: 0 20px !important;
       &--wrapper {
         @media screen and (max-width: 750px) {
           .vxe-pager--total,
