@@ -2,6 +2,7 @@
 import { ref, computed } from "vue"
 import { ElMessage } from "element-plus"
 import { Bell } from "@element-plus/icons-vue"
+import NotifyList from "./NotifyList.vue"
 
 type TabNameType = "通知" | "消息" | "待办"
 
@@ -71,7 +72,9 @@ const handleHistory = () => {
               {{ item.name }}
               <el-badge :value="item.list.length" :max="badgeMax" :type="item.type" />
             </template>
-            <el-scrollbar height="400px">测试数据</el-scrollbar>
+            <el-scrollbar height="400px">
+              <NotifyList :list="item.list" />
+            </el-scrollbar>
           </el-tab-pane>
         </el-tabs>
         <div class="notify-history">
