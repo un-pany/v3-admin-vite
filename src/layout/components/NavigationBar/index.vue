@@ -19,6 +19,9 @@ const userStore = useUserStore()
 const sidebar = computed(() => {
   return appStore.sidebar
 })
+const showNotify = computed(() => {
+  return settingsStore.showNotify
+})
 const showThemeSwitch = computed(() => {
   return settingsStore.showThemeSwitch
 })
@@ -42,7 +45,7 @@ const logout = () => {
     <div class="right-menu">
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
-      <Notify class="right-menu-item" />
+      <Notify v-if="showNotify" class="right-menu-item" />
       <el-dropdown class="right-menu-item">
         <el-avatar :icon="UserFilled" :size="34" />
         <template #dropdown>

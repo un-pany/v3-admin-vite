@@ -8,6 +8,8 @@ interface ILayoutSettings {
   showSidebarLogo: boolean
   /** 是否固定 Header */
   fixedHeader: boolean
+  /** 是否显示消息通知 */
+  showNotify: boolean
   /** 是否显示切换主题按钮 */
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
@@ -19,6 +21,7 @@ const layoutSettings: ILayoutSettings = {
   showTagsView: true,
   fixedHeader: true,
   showSidebarLogo: true,
+  showNotify: true,
   showThemeSwitch: true,
   showScreenfull: true
 }
