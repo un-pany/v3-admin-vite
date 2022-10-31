@@ -158,7 +158,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
         </div>
       </div>
       <div class="table-wrapper">
-        <el-table :data="tableData" header-cell-class-name="table-header">
+        <el-table :data="tableData">
           <el-table-column type="selection" width="50" align="center" />
           <el-table-column prop="username" label="用户名" align="center" />
           <el-table-column prop="roles" label="角色" align="center">
@@ -236,9 +236,6 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
 
 .table-wrapper {
   margin-bottom: 20px;
-  :deep(.table-header) {
-    background-color: var(--el-fill-color-light) !important;
-  }
 }
 
 .pager-wrapper {
