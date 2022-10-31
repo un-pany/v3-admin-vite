@@ -29,11 +29,10 @@ const show = ref(false)
   width: 48px;
   height: 48px;
   background-color: var(--v3-rightpanel-button-bg-color);
-  position: absolute;
+  position: fixed;
   top: v-bind(buttonTopCss);
   right: 0px;
-  font-size: 24px;
-  border-radius: 6px 0 0 6px !important;
+  border-radius: 6px 0 0 6px;
   z-index: 10;
   cursor: pointer;
   pointer-events: auto;
