@@ -3,13 +3,14 @@ import { ref, computed } from "vue"
 import { ElMessage } from "element-plus"
 import { Bell } from "@element-plus/icons-vue"
 import NotifyList from "./NotifyList.vue"
+import { type IListItem, notifyData, messageData, todoData } from "./data"
 
 type TabNameType = "通知" | "消息" | "待办"
 
 interface IDataItem {
   name: TabNameType
   type: "primary" | "success" | "warning" | "danger" | "info"
-  list: any[]
+  list: IListItem[]
 }
 
 /** 角标当前值 */
@@ -32,19 +33,19 @@ const data = ref<IDataItem[]>([
   {
     name: "通知",
     type: "primary",
-    list: []
+    list: notifyData
   },
   // 消息数据
   {
     name: "消息",
     type: "danger",
-    list: []
+    list: messageData
   },
   // 待办数据
   {
     name: "待办",
     type: "warning",
-    list: []
+    list: todoData
   }
 ])
 
