@@ -1,58 +1,59 @@
 <script lang="ts" setup>
+import { PropType } from "vue"
+import { type IListItem } from "./data"
+
 const props = defineProps({
-  list: Object
+  list: {
+    type: Object as PropType<IListItem[]>,
+    required: true
+  }
 })
 </script>
 
 <template>
-  <el-card v-for="(item, index) in props.list" :key="index" class="box-card">
-    <template #header v-if="item.avatar">
+  <el-card v-for="(item, index) in props.list" :key="index" shadow="never" class="card-container">
+    <template #header>
       <div class="card-header">
-        <span><el-avatar :src="item.avatar" /></span>
         <div>
-          <span class="card-title">{{ item.title }}</span>
-          <div class="date-time">{{ item.datetime }}</div>
+          <span>
+            <span class="card-title">{{ item.title }}</span>
+            <el-tag v-if="item.extra" :type="item.status" effect="plain" size="small">{{ item.extra }}</el-tag>
+          </span>
+          <div class="card-time">{{ item.datetime }}</div>
+        </div>
+        <div v-if="item.avatar" class="card-avatar">
+          <img :src="item.avatar" width="34" />
         </div>
       </div>
     </template>
-    <template #header v-else>
-      <div class="card-header">
-        <span class="card-title">{{ item.title }}</span>
-        <el-button text :type="item.status" size="small">{{ item.extra }}</el-button>
-      </div>
-    </template>
-    <div class="text item">
-      {{ item.description }}
+    <div class="card-body">
+      {{ item.description ?? "No Data" }}
     </div>
   </el-card>
 </template>
 
 <style lang="scss" scoped>
-.card-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.text {
-  font-size: 12px;
-}
-
-.item {
-  margin-bottom: 18px;
-}
-
-.box-card {
-  width: 100%;
-  margin: 8px auto;
-}
-
-.date-time {
-  font-size: 12px;
-  color: grey;
-  text-align: right;
-}
-
-.card-title {
-  font-weight: 600;
+.card-container {
+  margin-bottom: 10px;
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .card-title {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .card-time {
+      font-size: 12px;
+      color: grey;
+    }
+    .card-avatar {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .card-body {
+    font-size: 12px;
+  }
 }
 </style>
