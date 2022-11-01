@@ -10,6 +10,7 @@ import Hamburger from "../Hamburger/index.vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
 import Notify from "@/components/Notify/index.vue"
+import LocaleSwitch from "@/components/LocaleSwitch/index.vue"
 
 const router = useRouter()
 const appStore = useAppStore()
@@ -27,6 +28,9 @@ const showThemeSwitch = computed(() => {
 })
 const showScreenfull = computed(() => {
   return settingsStore.showScreenfull
+})
+const showLocales = computed(() => {
+  return settingsStore.showLocaleSwitch
 })
 
 const toggleSidebar = () => {
@@ -46,6 +50,7 @@ const logout = () => {
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
       <Notify v-if="showNotify" class="right-menu-item" />
+      <LocaleSwitch v-if="showLocales" class="right-menu-item" />
       <el-dropdown class="right-menu-item">
         <el-avatar :icon="UserFilled" :size="34" />
         <template #dropdown>

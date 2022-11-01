@@ -36,6 +36,7 @@
     "pinia": "^2.0.23",
     "screenfull": "^6.0.2",
     "vue": "^3.2.41",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
     "vxe-table": "^4.3.5",
     "vxe-table-plugin-element": "^3.0.6",

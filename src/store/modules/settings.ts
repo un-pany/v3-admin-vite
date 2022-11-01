@@ -10,6 +10,16 @@ export const useSettingsStore = defineStore("settings", () => {
   const showNotify = ref<boolean>(layoutSettings.showNotify)
   const showThemeSwitch = ref<boolean>(layoutSettings.showThemeSwitch)
   const showScreenfull = ref<boolean>(layoutSettings.showScreenfull)
+  const showLocaleSwitch = ref<boolean>(layoutSettings.showLocaleSwitch)
 
-  return { fixedHeader, showSettings, showTagsView, showSidebarLogo, showNotify, showThemeSwitch, showScreenfull }
+  return {
+    fixedHeader,
+    showSettings,
+    showTagsView,
+    showSidebarLogo,
+    showNotify,
+    showThemeSwitch,
+    showScreenfull,
+    showLocaleSwitch
+  }
 })

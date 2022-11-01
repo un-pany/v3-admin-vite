@@ -14,6 +14,8 @@ interface ILayoutSettings {
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
+  /** 是否显示国际化切换按钮 */
+  showLocaleSwitch: boolean
 }
 
 const layoutSettings: ILayoutSettings = {
@@ -23,7 +25,8 @@ const layoutSettings: ILayoutSettings = {
   showSidebarLogo: true,
   showNotify: true,
   showThemeSwitch: true,
-  showScreenfull: true
+  showScreenfull: true,
+  showLocaleSwitch: true
 }
 
 export default layoutSettings

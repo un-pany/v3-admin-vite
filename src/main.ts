@@ -16,8 +16,16 @@ import "element-plus/theme-chalk/dark/css-vars.css"
 import "vxe-table/lib/style.css"
 import "vxe-table-plugin-element/dist/style.css"
 import "@/styles/index.scss"
+// i18n
+import { createI18n } from "vue-i18n"
+import message from "./locales"
 
 const app = createApp(App)
+const i18n = createI18n({
+  locale: localStorage.getItem("locale") || "zh",
+  messages: message,
+  legacy: false
+})
 
 /** 加载插件 */
 loadPlugins(app)
@@ -26,4 +34,4 @@ loadSvg(app)
 /** 加载自定义指令 */
 loadDirectives(app)
 
-app.use(store).use(router).mount("#app")
+app.use(store).use(router).use(i18n).mount("#app")
