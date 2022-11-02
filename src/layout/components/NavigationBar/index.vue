@@ -47,7 +47,10 @@ const logout = () => {
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
       <Notify v-if="showNotify" class="right-menu-item" />
       <el-dropdown class="right-menu-item">
-        <el-avatar :icon="UserFilled" :size="34" />
+        <div class="right-menu-avatar">
+          <el-avatar :icon="UserFilled" :size="30" />
+          <span>{{ userStore.username }}</span>
+        </div>
         <template #dropdown>
           <el-dropdown-menu>
             <a target="_blank" href="https://juejin.cn/post/7089377403717287972">
@@ -96,6 +99,10 @@ const logout = () => {
   }
   .breadcrumb {
     float: left;
+    // 参考 Bootstrap 的响应式设计 WIDTH = 576
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
   }
   .right-menu {
     float: right;
@@ -107,6 +114,16 @@ const logout = () => {
     .right-menu-item {
       padding: 0 10px;
       cursor: pointer;
+      .right-menu-avatar {
+        display: flex;
+        align-items: center;
+        .el-avatar {
+          margin-right: 10px;
+        }
+        span {
+          font-size: 16px;
+        }
+      }
     }
   }
 }
