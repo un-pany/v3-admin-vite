@@ -22,10 +22,13 @@
       height: 70px !important;
       padding: 0 20px !important;
       &--wrapper {
-        @media screen and (max-width: 750px) {
+        // 参考 Bootstrap 的响应式设计 WIDTH = 768
+        @media screen and (max-width: 768px) {
           .vxe-pager--total,
           .vxe-pager--sizes,
-          .vxe-pager--jump {
+          .vxe-pager--jump,
+          .vxe-pager--jump-prev,
+          .vxe-pager--jump-next {
             display: none !important;
           }
         }
