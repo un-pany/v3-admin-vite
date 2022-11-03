@@ -10,6 +10,7 @@ import { type RouteRecordRaw } from "vue-router"
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
+  const username = ref<string>("")
 
   /** 设置角色数组 */
   const setRoles = (value: string[]) => {
@@ -39,6 +40,7 @@ export const useUserStore = defineStore("user", () => {
       getUserInfoApi()
         .then((res: any) => {
           roles.value = res.data.roles
+          username.value = res.data.username
           resolve(res)
         })
         .catch((error) => {
@@ -73,7 +75,7 @@ export const useUserStore = defineStore("user", () => {
     roles.value = []
   }
 
-  return { token, roles, setRoles, login, getInfo, changeRoles, logout, resetToken }
+  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
 })
 
 /** 在 setup 外使用 */
