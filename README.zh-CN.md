@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="V3-Admin-Vite-Logo" width="120" height="120" src="./src/assets/layout/logo.png">
+  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layout/logo.png">
   <h1>V3 Admin Vite</h1>
   <span><a href="./README.md">English</a> | 中文</span>
 </div>
@@ -123,6 +123,10 @@ pnpm lint
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
 </a>
+
+## 💕 感谢 Star
+
+小项目获取 star 不易，如果你喜欢这个项目的话，欢迎支持一个 star ！这是作者持续维护的唯一动力（小声：毕竟是免费的）
 
 ## 可有可无的群
 
