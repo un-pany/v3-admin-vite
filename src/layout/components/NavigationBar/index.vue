@@ -54,25 +54,13 @@ const logout = () => {
         <template #dropdown>
           <el-dropdown-menu>
             <a target="_blank" href="https://juejin.cn/post/7089377403717287972">
-              <el-dropdown-item>V3-Admin-Vite 中文文档</el-dropdown-item>
+              <el-dropdown-item>中文文档</el-dropdown-item>
             </a>
             <a target="_blank" href="https://github.com/un-pany/v3-admin-vite">
-              <el-dropdown-item>V3-Admin-Vite GitHub</el-dropdown-item>
+              <el-dropdown-item>GitHub</el-dropdown-item>
             </a>
             <a target="_blank" href="https://gitee.com/un-pany/v3-admin-vite">
-              <el-dropdown-item>V3-Admin-Vite Gitee</el-dropdown-item>
-            </a>
-            <a target="_blank" href="https://juejin.cn/post/6963876125428678693">
-              <el-dropdown-item divided>V3-Admin 中文文档</el-dropdown-item>
-            </a>
-            <a target="_blank" href="https://github.com/un-pany/v3-admin/blob/master/README.en.md">
-              <el-dropdown-item>V3-Admin English Docs</el-dropdown-item>
-            </a>
-            <a target="_blank" href="https://github.com/un-pany/v3-admin">
-              <el-dropdown-item>V3-Admin GitHub</el-dropdown-item>
-            </a>
-            <a target="_blank" href="https://gitee.com/un-pany/v3-admin">
-              <el-dropdown-item>V3-Admin Gitee</el-dropdown-item>
+              <el-dropdown-item>Gitee</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
               <span style="display: block">退出登录</span>
