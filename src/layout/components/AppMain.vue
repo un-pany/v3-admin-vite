@@ -11,9 +11,9 @@ const key = computed(() => {
 <template>
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <section class="app-main">
+        <section class="app-main" :key="key">
           <!-- <keep-alive> -->
-            <component :is="Component" :key="key" />
+            <component :is="Component" />
           <!-- </keep-alive> -->
         </section>
       </transition>
