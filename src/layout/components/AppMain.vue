@@ -9,17 +9,15 @@ const key = computed(() => {
 </script>
 
 <template>
-  <section class="app-main">
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <!-- <keep-alive> -->
-        <div>
-          <component :is="Component" :key="key" />
-        </div>
-        <!-- </keep-alive> -->
+        <section class="app-main">
+          <!-- <keep-alive> -->
+            <component :is="Component" :key="key" />
+          <!-- </keep-alive> -->
+        </section>
       </transition>
     </router-view>
-  </section>
 </template>
 
 <style lang="scss" scoped>
