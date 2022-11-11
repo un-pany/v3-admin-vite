@@ -1,7 +1,11 @@
 <script lang="ts" setup>
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import { ElScrollbar } from "element-plus"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+import { useSettingsStore } from "@/store/modules/settings"
+import Screenfull from "@/components/Screenfull/index.vue"
+
+const settingsStore = useSettingsStore()
 
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
 const scrollbarContentRef = ref<HTMLDivElement>()
@@ -34,6 +38,9 @@ const scrollTo = (direction: "left" | "right") => {
   }
   scrollbarRef.value!.setScrollLeft(scrollLeft)
 }
+const showScreenfull = computed(() => {
+  return settingsStore.showScreenfull
+})
 </script>
 
 <template>
@@ -49,6 +56,7 @@ const scrollTo = (direction: "left" | "right") => {
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>
+    <Screenfull :areaScreenFull="true" v-if="showScreenfull" class="right-menu-item" />
   </div>
 </template>
 
@@ -75,6 +83,24 @@ const scrollTo = (direction: "left" | "right") => {
     white-space: nowrap;
     .scrollbar-content {
       display: inline-block;
+    }
+  }
+
+  .right-menu-item {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .right-menu-avatar {
+      display: flex;
+      align-items: center;
+      .el-avatar {
+        margin-right: 10px;
+      }
+      span {
+        font-size: 16px;
+      }
     }
   }
 }
