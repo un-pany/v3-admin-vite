@@ -9,11 +9,12 @@ const content = ref<contentType>("全屏")
 const isFullscreen = ref(false)
 
 const click = () => {
+  const element = document.querySelector(".app-container") || undefined
   if (!screenfull.isEnabled) {
     ElMessage.warning("您的浏览器无法工作")
     return
   }
-  screenfull.toggle()
+  screenfull.toggle(element)
 }
 
 const change = () => {
