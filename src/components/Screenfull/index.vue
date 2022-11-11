@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onUnmounted, defineProps } from "vue"
+import { ref, onUnmounted } from "vue"
 import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
 
