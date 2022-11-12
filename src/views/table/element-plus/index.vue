@@ -4,6 +4,7 @@ import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDat
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
+import { saveFile } from "@/utils/download"
 
 const loading = ref<boolean>(false)
 const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
@@ -124,6 +125,16 @@ const handleRefresh = () => {
 
 /** 监听分页参数的变化 */
 watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
+
+/**
+ * downloadUrl 导出数据的 url 和 filename 一般是 server 端返回的
+ * v3-admin-vite初衷是最小的后台管理系统解决方案，所以此处不做excel download mock
+ */
+
+const exampleUrl = " "
+const download = ()=>{
+  saveFile(exampleUrl, 'example.xlsx');
+}
 </script>
 
 <template>
@@ -148,7 +159,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-button type="primary" :icon="CirclePlus" @click="dialogVisible = true">新增用户</el-button>
           <el-button type="danger" :icon="Delete">批量删除</el-button>
         </div>
-        <div>
+        <div @click="download">
           <el-tooltip content="下载">
             <el-button type="primary" :icon="Download" circle />
           </el-tooltip>
