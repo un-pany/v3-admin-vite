@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "@pansy/watermark": "^2.3.0",
     "axios": "^1.1.3",
     "dayjs": "^1.11.6",
     "element-plus": "^2.2.20",
