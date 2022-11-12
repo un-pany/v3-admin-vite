@@ -3,17 +3,25 @@ import { ref, onUnmounted } from "vue"
 import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
 
+const props = defineProps({
+  areaScreenFull: {
+    type: Boolean,
+    required: false
+  }
+})
+
 type contentType = "全屏" | "退出全屏"
 
 const content = ref<contentType>("全屏")
 const isFullscreen = ref(false)
 
 const click = () => {
+  const element = document.querySelector(".app-container") || undefined
   if (!screenfull.isEnabled) {
     ElMessage.warning("您的浏览器无法工作")
     return
   }
-  screenfull.toggle()
+  screenfull.toggle(props.areaScreenFull ? element : undefined)
 }
 
 const change = () => {
