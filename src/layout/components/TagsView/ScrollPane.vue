@@ -56,7 +56,7 @@ const showScreenfull = computed(() => {
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>
-    <Screenfull :areaScreenFull="true" v-if="showScreenfull" class="right-menu-item" />
+    <Screenfull v-if="showScreenfull" element=".app-main" openTips="内容区全屏" class="screenfull" />
   </div>
 </template>
 
@@ -85,23 +85,12 @@ const showScreenfull = computed(() => {
       display: inline-block;
     }
   }
-
-  .right-menu-item {
-    padding: 0 10px;
+  .screenfull {
+    width: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    .right-menu-avatar {
-      display: flex;
-      align-items: center;
-      .el-avatar {
-        margin-right: 10px;
-      }
-      span {
-        font-size: 16px;
-      }
-    }
   }
 }
 </style>
