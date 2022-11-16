@@ -1,1 +1,0 @@
-import{ak as t}from"./index.559a892a.js";function a(a){return t({url:"table",method:"post",data:a})}function e(a){return t({url:`table/${a}`,method:"delete"})}function r(a){return t({url:"table",method:"put",data:a})}function u(a){return t({url:"table",method:"get",params:a})}export{a as c,e as d,u as g,r as u};
