@@ -118,7 +118,7 @@ pnpm lint
 
 ## 💕 Contributors
 
-Thanks you to all the contributors!
+Thanks to all the contributors!
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
