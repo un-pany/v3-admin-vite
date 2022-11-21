@@ -24,7 +24,7 @@ interface IGetTableDataApi {
 /** 增 */
 export function createTableDataApi(data: ICreateTableDataApi) {
   return request({
-    url: "table",
+    url: "/api/v1/table",
     method: "post",
     data
   })
@@ -33,7 +33,7 @@ export function createTableDataApi(data: ICreateTableDataApi) {
 /** 删 */
 export function deleteTableDataApi(id: string) {
   return request({
-    url: `table/${id}`,
+    url: `/api/v1/table/${id}`,
     method: "delete"
   })
 }
@@ -41,7 +41,7 @@ export function deleteTableDataApi(id: string) {
 /** 改 */
 export function updateTableDataApi(data: IUpdateTableDataApi) {
   return request({
-    url: "table",
+    url: "/api/v1/table",
     method: "put",
     data
   })
@@ -50,7 +50,7 @@ export function updateTableDataApi(data: IUpdateTableDataApi) {
 /** 查 */
 export function getTableDataApi(params: IGetTableDataApi) {
   return request({
-    url: "table",
+    url: "/api/v1/table",
     method: "get",
     params
   })

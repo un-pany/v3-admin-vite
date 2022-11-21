@@ -116,6 +116,42 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/storeManage",
+    component: Layout,
+    redirect: "/storeManage/company",
+    name: "Company",
+    meta: {
+      title: "门店管理",
+      elIcon: "OfficeBuilding"
+    },
+    children: [
+      {
+        path: "company",
+        component: () => import("@/views/storeManage/company/company.vue"),
+        name: "company",
+        meta: {
+          title: "餐饮单位列表"
+        }
+      },
+      {
+        path: "culturalAuditorium",
+        component: () => import("@/views/storeManage/culturalAuditorium/culturalAuditorium.vue"),
+        name: "culturalAuditorium",
+        meta: {
+          title: "家宴中心"
+        }
+      },
+      {
+        path: "supervise",
+        component: () => import("@/views/storeManage/supervise/supervise.vue"),
+        name: "supervise",
+        meta: {
+          title: "乡厨信息"
+        }
+      }
+    ]
+  },
+  {
     path: "/menu",
     component: Layout,
     redirect: "/menu/menu1",

@@ -1,4 +1,4 @@
-import { type ConfigEnv, type UserConfigExport, loadEnv } from "vite"
+import { type ConfigEnv, loadEnv, type UserConfigExport } from "vite"
 import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
@@ -39,7 +39,12 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,
-          rewrite: (path) => path.replace("/api/v1", "")
+          rewrite: (path) => path.replace(/^\/api\/v1/, "")
+        },
+        "/v1": {
+          target: "http://139.224.163.17",
+          changeOrigin: true,
+          rewrite: (path) => path.replace("/v1", "")
         }
       }
     },
