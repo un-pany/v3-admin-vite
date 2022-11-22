@@ -26,7 +26,7 @@ const scrollTo = (direction: "left" | "right") => {
   /** 可滚动内容的长度 */
   const scrollbarContentRefWidth = scrollbarContentRef.value!.clientWidth
   /** 滚动可视区宽度 */
-  const scrollbarRefWidth = scrollbarRef.value!.wrap$!.clientWidth
+  const scrollbarRefWidth = scrollbarRef.value!.wrapRef!.clientWidth
   /** 最后剩余可滚动的宽度 */
   const lastDistance = scrollbarContentRefWidth - scrollbarRefWidth - currentScrollLeft
   // 没有横向滚动条，直接结束
