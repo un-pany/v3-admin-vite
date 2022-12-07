@@ -14,6 +14,10 @@ interface ILayoutSettings {
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
+  /** 是否显示灰色模式 */
+  showGreyMode: boolean
+  /** 是否显示色弱模式 */
+  showColorWeakness: boolean
 }
 
 const layoutSettings: ILayoutSettings = {
@@ -23,7 +27,9 @@ const layoutSettings: ILayoutSettings = {
   showSidebarLogo: true,
   showNotify: true,
   showThemeSwitch: true,
-  showScreenfull: true
+  showScreenfull: true,
+  showGreyMode: false,
+  showColorWeakness: false
 }
 
 export default layoutSettings
