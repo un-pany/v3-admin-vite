@@ -12,8 +12,6 @@ const settingsStore = useSettingsStore()
 useResize()
 
 const classObj = computed(() => {
-  console.log(showGreyMode.value)
-
   return {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
