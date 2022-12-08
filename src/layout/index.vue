@@ -16,9 +16,12 @@ const classObj = computed(() => {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
-    mobile: appStore.device === DeviceType.Mobile
+    mobile: appStore.device === DeviceType.Mobile,
+    showGreyMode: showGreyMode.value,
+    showColorWeakness: showColorWeakness.value
   }
 })
+
 const showSettings = computed(() => {
   return settingsStore.showSettings
 })
@@ -27,6 +30,12 @@ const showTagsView = computed(() => {
 })
 const fixedHeader = computed(() => {
   return settingsStore.fixedHeader
+})
+const showGreyMode = computed(() => {
+  return settingsStore.showGreyMode
+})
+const showColorWeakness = computed(() => {
+  return settingsStore.showColorWeakness
 })
 const handleClickOutside = () => {
   appStore.closeSidebar(false)
@@ -57,6 +66,14 @@ const handleClickOutside = () => {
   @include clearfix;
   position: relative;
   width: 100%;
+}
+
+.showGreyMode {
+  filter: grayscale(1);
+}
+
+.showColorWeakness {
+  filter: invert(0.8);
 }
 
 .drawer-bg {

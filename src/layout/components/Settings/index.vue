@@ -32,6 +32,14 @@ const settingsStore = useSettingsStore()
         <span>显示全屏按钮</span>
         <el-switch v-model="settingsStore.showScreenfull" class="drawer-switch" />
       </div>
+      <div class="drawer-item">
+        <span>显示灰色模式</span>
+        <el-switch v-model="settingsStore.showGreyMode" class="drawer-switch" />
+      </div>
+      <div class="drawer-item">
+        <span>显示色弱模式</span>
+        <el-switch v-model="settingsStore.showColorWeakness" class="drawer-switch" />
+      </div>
     </div>
   </div>
 </template>
