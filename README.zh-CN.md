@@ -116,6 +116,12 @@ pnpm lint
 - `types` 类型定义文件更改
 - `wip` 开发中
 
+## 项目预览图
+
+![preview1.png](./src/assets/docs/preview1.png)
+![preview2.png](./src/assets/docs/preview2.png)
+![preview3.png](./src/assets/docs/preview3.png)
+
 ## 💕 贡献者
 
 感谢所有的贡献者！
