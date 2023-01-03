@@ -188,6 +188,21 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: "/select",
+    component: Layout,
+    children: [
+      {
+        path: "",
+        component: () => import("@/views/select/index.vue"),
+        name: "Select",
+        meta: {
+          title: "下拉框",
+          svgIcon: "component"
+        }
+      }
+    ]
   }
 ]
 
