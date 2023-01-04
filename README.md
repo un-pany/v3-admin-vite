@@ -116,6 +116,12 @@ pnpm lint
 - `types` Type definition
 - `wip` In development
 
+## Project preview
+
+![preview1.png](./src/assets/docs/preview1.png)
+![preview2.png](./src/assets/docs/preview2.png)
+![preview3.png](./src/assets/docs/preview3.png)
+
 ## 💕 Contributors
 
 Thanks to all the contributors!
