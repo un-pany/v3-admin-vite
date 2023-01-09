@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-1b428a4d.js";import{W as r,a2 as a,b1 as s,aG as t,ay as n}from"./runtime-core.esm-bundler-9099a418.js";const o={class:"app-container"};const u=e({},[["render",function(e,u){const c=t("router-view"),i=t("el-card");return n(),r("div",o,[a(i,{header:"menu 1"},{default:s((()=>[a(c)])),_:1})])}]]);export{u as default};
