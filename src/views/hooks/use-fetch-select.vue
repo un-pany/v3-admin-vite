@@ -1,5 +1,5 @@
 <script setup name="Select" lang="ts">
-import { getRemoteSelectData } from "@/api/select"
+import { getRemoteSelectData } from "@/api/mock"
 import { useFetchSelect } from "@/hooks/useFetchSelect"
 
 const { loading, options, selectedValue } = useFetchSelect({

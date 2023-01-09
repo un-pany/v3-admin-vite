@@ -190,16 +190,30 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: "/select",
+    path: "/hooks",
     component: Layout,
+    redirect: "/hooks/use-fetch-select",
+    name: "Hooks",
+    meta: {
+      title: "hooks",
+      elIcon: "Menu",
+      alwaysShow: true
+    },
     children: [
       {
-        path: "",
-        component: () => import("@/views/select/index.vue"),
-        name: "Select",
+        path: "use-fetch-select",
+        component: () => import("@/views/hooks/use-fetch-select.vue"),
+        name: "UseFetchSelect",
         meta: {
-          title: "下拉框",
-          svgIcon: "component"
+          title: "useFetchSelect"
+        }
+      },
+      {
+        path: "use-fullscreen-loading",
+        component: () => import("@/views/hooks/use-fullscreen-loading.vue"),
+        name: "UseFullscreenLoading",
+        meta: {
+          title: "useFullscreenLoading"
         }
       }
     ]
