@@ -130,6 +130,12 @@ Thanks to all the contributors!
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
 </a>
 
+## 💕 Thanks for the sponsorship (the cost of sponsorship was used to send red envelopes in the group~)
+
+| Name                                               | Avatar                                                                                        |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| <a href="https://github.com/a3305278">a3305278</a> | <img src="https://avatars.githubusercontent.com/u/30458650?v=4" width="64px" height="64px" /> |
+
 ## 💕 Thanks star
 
 Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the author to maintain it on an ongoing basis (whisper: it's free after all)
