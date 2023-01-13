@@ -33,6 +33,14 @@ const settingsStore = useSettingsStore()
         <el-switch v-model="settingsStore.showScreenfull" class="drawer-switch" />
       </div>
       <div class="drawer-item">
+        <span>显示控件尺寸</span>
+        <el-switch v-model="settingsStore.showControlSize" class="drawer-switch" />
+      </div>
+      <div class="drawer-item">
+        <span>显示搜索路由</span>
+        <el-switch v-model="settingsStore.showSearchRoute" class="drawer-switch" />
+      </div>
+      <div class="drawer-item">
         <span>显示灰色模式</span>
         <el-switch v-model="settingsStore.showGreyMode" class="drawer-switch" />
       </div>

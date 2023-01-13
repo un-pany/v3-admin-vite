@@ -7,6 +7,8 @@ import { useUserStore } from "@/store/modules/user"
 import { UserFilled } from "@element-plus/icons-vue"
 import Breadcrumb from "../Breadcrumb/index.vue"
 import Hamburger from "../Hamburger/index.vue"
+import SelectControlSize from "../SelectControlSize/index.vue"
+import SearchRoute from "../SearchRoute/index.vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
 import Notify from "@/components/Notify/index.vue"
@@ -32,6 +34,17 @@ const showScreenfull = computed(() => {
 const toggleSidebar = () => {
   appStore.toggleSidebar(false)
 }
+
+// 显示 搜索路由
+const showSearchRoute = computed(() => {
+  return settingsStore.showSearchRoute
+})
+
+// 显示 控件尺寸
+const showControlSize = computed(() => {
+  return settingsStore.showControlSize
+})
+
 const logout = () => {
   userStore.logout()
   router.push("/login")
@@ -43,6 +56,8 @@ const logout = () => {
     <Hamburger :is-active="sidebar.opened" class="hamburger" @toggle-click="toggleSidebar" />
     <Breadcrumb class="breadcrumb" />
     <div class="right-menu">
+      <SearchRoute v-if="showSearchRoute" class="right-menu-item" />
+      <SelectControlSize v-if="showControlSize" class="right-menu-item" />
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
       <Notify v-if="showNotify" class="right-menu-item" />

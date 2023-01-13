@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
+    "@vueuse/core": "^9.10.0",
     "axios": "^1.2.2",
     "dayjs": "^1.11.7",
     "element-plus": "^2.2.28",

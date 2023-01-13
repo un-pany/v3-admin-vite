@@ -47,7 +47,11 @@ export const usePermissionStore = defineStore("permission", () => {
     dynamicRoutes.value = accessedRoutes
   }
 
-  return { routes, dynamicRoutes, setRoutes }
+  const getRoutes = (): RouteRecordRaw[] => {
+    return routes.value
+  }
+
+  return { routes, getRoutes, dynamicRoutes, setRoutes }
 })
 
 /** 在 setup 外使用 */

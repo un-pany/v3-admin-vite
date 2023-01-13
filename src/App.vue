@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { useTheme } from "@/hooks/useTheme"
 import zhCn from "element-plus/lib/locale/lang/zh-cn"
+import { useSettingsStoreHook } from "@/store/modules/settings"
+
+const settingsStore = useSettingsStoreHook()
 
 const { initTheme } = useTheme()
 
@@ -11,7 +14,7 @@ const locale = zhCn
 </script>
 
 <template>
-  <ElConfigProvider :locale="locale">
+  <ElConfigProvider :locale="locale" :size="settingsStore.controlSize">
     <router-view />
   </ElConfigProvider>
 </template>
