@@ -31,23 +31,23 @@ export function getRemoteSelectData() {
   })
 }
 
-export interface IBirdsItem {
+export interface IComicsItem {
   id: number
   name: string
 }
 
-export const getBirds = () => {
-  return new Promise<IBirdsItem[]>((resolve) => {
+export const getComics = () => {
+  return new Promise<IComicsItem[]>((resolve) => {
     setTimeout(() => {
-      resolve([...Array(5)].map((_t, index) => ({ id: index, name: `t${index}` })))
+      resolve([...Array(5)].map((_t, index) => ({ id: index, name: `c${index}` })))
     }, 1000)
   })
 }
 
-export const getCars = (id: number) => {
+export const getAnimations = (id: number) => {
   return new Promise((_resolve, reject) => {
     setTimeout(() => {
-      reject(new Error("sorry" + id))
+      reject(new Error(`Sorry, there is an error here. The error id is ${id}`))
     }, 1000)
   })
 }

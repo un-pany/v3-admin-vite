@@ -6,13 +6,13 @@
 </template>
 
 <script lang="ts" setup>
-import { getBirds, getCars, type IBirdsItem } from "@/api/mock"
+import { getComics, getAnimations, type IComicsItem } from "@/api/mock"
 import { useFullscreenLoading } from "@/hooks/useFullscreenLoading"
 import { ElMessage } from "element-plus"
 
 const querySuccess = async () => {
-  const birds = await useFullscreenLoading(getBirds)()
-  ElMessage.success(birds.map((t: IBirdsItem) => t.name).join())
+  const comics = await useFullscreenLoading(getComics)()
+  ElMessage.success("Successfully get comics: " + comics.map((t: IComicsItem) => t.name).join())
 }
 
 const svg = `
@@ -28,7 +28,7 @@ const svg = `
 
 const queryFailed = async () => {
   try {
-    await useFullscreenLoading(getCars, {
+    await useFullscreenLoading(getAnimations, {
       text: "自定义加载文字",
       background: "rgba(255, 214, 210, 0.7)",
       svg,
