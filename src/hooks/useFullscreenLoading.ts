@@ -1,53 +1,53 @@
-import { ElLoading, LoadingOptions } from "element-plus"
+import { type LoadingOptions, ElLoading } from "element-plus"
 
-const defaultOption = {
+const defaultOptions = {
   lock: true,
-  text: "加载中...",
-  background: "rgba(0, 0, 0, 0.7)"
+  text: "加载中..."
 }
 
-interface ILoading {
+interface ILoadingInstance {
   close: () => void
 }
 
 /**
- * 传入一个方法 fn，在它执行周期内，加上「全屏」loading
+ * 传入一个函数 fn，在它执行周期内，加上「全屏」loading，
  * 如果：
- * 1. fn 是同步方法，结束后隐藏 loading
- * 2. 如果是异步方法，resolve 后隐藏 loading
+ * 1. fn 如果是同步函数，执行结束后隐藏 loading
+ * 2. fn 如果是 Promise，resolve 或 reject 后隐藏 loading
  * 3. 报错后隐藏 loading 并抛出错误
  * @param {*} fn 函数
- * @param options
+ * @param options LoadingOptions
  * @returns Function 一个新的函数，去执行它吧
  */
-export const useFullscreenLoading = <T>(
-  fn: (...args: any[]) => T,
+export function useFullscreenLoading<T>(
+  fn: (...args: any[]) => T | Promise<T>,
   options: LoadingOptions = {}
-): ((...args: any[]) => Promise<T>) => {
-  let loading: ILoading | undefined
+): (...args: any[]) => Promise<T> {
+  let loadingInstance: ILoadingInstance
   const showLoading = (options: LoadingOptions) => {
-    loading = ElLoading.service(options)
+    loadingInstance = ElLoading.service(options)
   }
-
   const hideLoading = () => {
-    loading && loading.close()
+    loadingInstance && loadingInstance.close()
   }
-  const _options = { ...defaultOption, ...options }
-  const newFn = (...args: any[]) => {
+  const _options = { ...defaultOptions, ...options }
+  return (...args: any[]) => {
     try {
       showLoading(_options)
       const result = fn(...args)
       const isPromise = result instanceof Promise
+      // 同步函数
       if (!isPromise) {
         hideLoading()
         return Promise.resolve(result)
       }
+      // Promise
       return result
-        .then((res: any) => {
+        .then((res) => {
           hideLoading()
           return res
         })
-        .catch((err: Error) => {
+        .catch((err) => {
           hideLoading()
           throw err
         })
@@ -56,5 +56,4 @@ export const useFullscreenLoading = <T>(
       throw err
     }
   }
-  return newFn
 }
