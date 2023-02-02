@@ -15,7 +15,7 @@ interface ILoadingInstance {
  * 1. fn 如果是同步函数，执行结束后隐藏 loading
  * 2. fn 如果是 Promise，resolve 或 reject 后隐藏 loading
  * 3. 报错后隐藏 loading 并抛出错误
- * @param {*} fn 函数
+ * @param {*} fn 要执行的函数
  * @param options LoadingOptions
  * @returns Function 一个新的函数，去执行它吧
  */
@@ -44,12 +44,13 @@ export function useFullscreenLoading<T>(
       // Promise
       return result
         .then((res) => {
-          hideLoading()
           return res
         })
         .catch((err) => {
-          hideLoading()
           throw err
+        })
+        .finally(() => {
+          hideLoading()
         })
     } catch (err) {
       hideLoading()
