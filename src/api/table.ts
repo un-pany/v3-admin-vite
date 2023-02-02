@@ -1,17 +1,17 @@
 import { request } from "@/utils/service"
 
-interface ICreateTableDataApi {
+interface ICreateTableRequestData {
   username: string
   password: string
 }
 
-interface IUpdateTableDataApi {
+interface IUpdateTableRequestData {
   id: string
   username: string
   password?: string
 }
 
-interface IGetTableDataApi {
+interface IGetTableRequestData {
   /** 当前页码 */
   currentPage: number
   /** 查询条数 */
@@ -21,8 +21,21 @@ interface IGetTableDataApi {
   phone?: string
 }
 
+type GetTableResponseData = IApiResponseData<{
+  list: {
+    createTime: string
+    email: string
+    id: string
+    phone: string
+    roles: string
+    status: boolean
+    username: string
+  }[]
+  total: number
+}>
+
 /** 增 */
-export function createTableDataApi(data: ICreateTableDataApi) {
+export function createTableDataApi(data: ICreateTableRequestData) {
   return request({
     url: "table",
     method: "post",
@@ -39,7 +52,7 @@ export function deleteTableDataApi(id: string) {
 }
 
 /** 改 */
-export function updateTableDataApi(data: IUpdateTableDataApi) {
+export function updateTableDataApi(data: IUpdateTableRequestData) {
   return request({
     url: "table",
     method: "put",
@@ -48,8 +61,8 @@ export function updateTableDataApi(data: IUpdateTableDataApi) {
 }
 
 /** 查 */
-export function getTableDataApi(params: IGetTableDataApi) {
-  return request({
+export function getTableDataApi(params: IGetTableRequestData) {
+  return request<GetTableResponseData>({
     url: "table",
     method: "get",
     params

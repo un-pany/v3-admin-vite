@@ -5,7 +5,7 @@ import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import { type FormInstance, FormRules } from "element-plus"
-import { type ILoginData, getLoginCodeApi } from "@/api/login"
+import { type ILoginRequestData, getLoginCodeApi } from "@/api/login"
 
 const router = useRouter()
 const loginFormRef = ref<FormInstance | null>(null)
@@ -15,7 +15,7 @@ const loading = ref(false)
 /** 验证码图片 URL */
 const codeUrl = ref("")
 /** 登录表单数据 */
-const loginForm: ILoginData = reactive({
+const loginForm: ILoginRequestData = reactive({
   username: "admin",
   password: "12345678",
   code: ""
@@ -61,7 +61,7 @@ const createCode = () => {
   loginForm.code = ""
   // 获取验证码
   codeUrl.value = ""
-  getLoginCodeApi().then((res: any) => {
+  getLoginCodeApi().then((res) => {
     codeUrl.value = res.data
   })
 }

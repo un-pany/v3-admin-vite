@@ -1,5 +1,5 @@
 /** 模拟接口响应数据 */
-const SUCCESS_DATA = {
+const SUCCESS_RESPONSE_DATA = {
   code: 0,
   data: {},
   message: "获取成功"
@@ -7,9 +7,9 @@ const SUCCESS_DATA = {
 
 /** 模拟请求接口成功 */
 export function getSuccessApi() {
-  return new Promise<typeof SUCCESS_DATA>((resolve) => {
+  return new Promise<typeof SUCCESS_RESPONSE_DATA>((resolve) => {
     setTimeout(() => {
-      resolve(SUCCESS_DATA)
+      resolve(SUCCESS_RESPONSE_DATA)
     }, 1000)
   })
 }
