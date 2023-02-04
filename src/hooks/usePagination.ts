@@ -25,7 +25,7 @@ const defaultPaginationData: IDefaultPaginationData = {
   layout: "total, sizes, prev, pager, next, jumper"
 }
 
-export const usePagination = (_paginationData: IPaginationData = {}) => {
+export function usePagination(_paginationData: IPaginationData = {}) {
   /** 合并分页参数 */
   const paginationData = reactive(Object.assign({ ...defaultPaginationData }, _paginationData))
 
