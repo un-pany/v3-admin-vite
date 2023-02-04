@@ -110,7 +110,7 @@ const handleEnter = () => {
   if (testHttpUrl(activePath.value)) {
     window.open(activePath.value)
   } else {
-    router.push(activePath.value)
+    router.push({ path: activePath.value })
   }
   handleClose()
 }
@@ -126,19 +126,26 @@ onKeyStroke("ArrowDown", handleDown)
 /** 将菜单树形结构扁平化为一维数组，用于菜单查询 */
 const flatTree = (arr: RouteRecordRaw[]) => {
   const res: OptionsItem[] = []
-  const deep = (arr: any[]) => {
+  const deep = (arr: any[], prefix: string | null) => {
     arr.forEach((item: any) => {
       if (item.meta && item.meta.title) {
         const temp: OptionsItem = {
           path: item.path,
           meta: item.meta
         }
+        if (prefix && !testHttpUrl(temp.path)) {
+          if (prefix === "/") {
+            prefix = ""
+          }
+          temp.path = temp.path.startsWith("/") ? prefix + temp.path : `${prefix}/${temp.path}`
+        }
+        item.path = temp.path
         res.push(temp)
       }
-      item.children && deep(item.children)
+      item.children && deep(item.children, item.path)
     })
   }
-  deep(arr)
+  deep(arr, null)
   return res
 }
 
