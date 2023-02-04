@@ -18,6 +18,12 @@ interface ILayoutSettings {
   showGreyMode: boolean
   /** 是否显示色弱模式 */
   showColorWeakness: boolean
+  /** 是否显示搜索路由 */
+  showSearchRoute: boolean
+  /** 是否显示控件尺寸 */
+  showControlSize: boolean
+  /** 控件尺寸 */
+  controlSize: string
 }
 
 const layoutSettings: ILayoutSettings = {
@@ -29,7 +35,10 @@ const layoutSettings: ILayoutSettings = {
   showThemeSwitch: true,
   showScreenfull: true,
   showGreyMode: false,
-  showColorWeakness: false
+  showColorWeakness: false,
+  showSearchRoute: true,
+  showControlSize: true,
+  controlSize: "default"
 }
 
 export default layoutSettings

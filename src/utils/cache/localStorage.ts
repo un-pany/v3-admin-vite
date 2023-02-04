@@ -16,3 +16,13 @@ export const getActiveThemeName = () => {
 export const setActiveThemeName = (themeName: ThemeName) => {
   localStorage.setItem(CacheKey.ACTIVE_THEME_NAME, themeName)
 }
+
+/// 控件尺寸
+export const getControlSize = () => {
+  return localStorage.getItem(CacheKey.CONTROL_SIZE) as string
+}
+
+/// 控件尺寸
+export const setControlSize = (size: string) => {
+  localStorage.setItem(CacheKey.CONTROL_SIZE, size)
+}

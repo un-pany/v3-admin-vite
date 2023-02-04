@@ -9,6 +9,10 @@ const props = defineProps({
   name: {
     type: String,
     required: true
+  },
+  size: {
+    type: Number,
+    default: 20
   }
 })
 
@@ -16,9 +20,11 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <svg class="svg-icon" aria-hidden="true">
-    <use :href="symbolId" />
-  </svg>
+  <i class="el-icon el-tooltip__trigger">
+    <svg class="svg-icon" aria-hidden="true" :font-size="size">
+      <use :href="symbolId" />
+    </svg>
+  </i>
 </template>
 
 <style lang="scss" scoped>
