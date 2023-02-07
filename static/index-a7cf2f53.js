@@ -1,0 +1,1 @@
+import{u as e,b as r}from"./vue-router-5ddbd26f.js";import{x as a,m as s,ak as t}from"./runtime-core.esm-bundler-1857aef3.js";const u=a({__name:"index",setup(a){const u=e();return r().replace({path:"/"+u.params.path,query:u.query}),(e,r)=>(t(),s("div"))}});export{u as default};
