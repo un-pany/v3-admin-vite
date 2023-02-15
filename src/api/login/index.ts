@@ -1,5 +1,5 @@
 import { request } from "@/utils/service"
-import type * as Login from "./type"
+import type * as Login from "./types/login"
 
 /** 获取登录验证码 */
 export function getLoginCodeApi() {
