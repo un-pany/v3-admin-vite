@@ -1,6 +1,6 @@
 import { type App } from "vue"
-import { loadElementPlus } from "./element-pus"
-import { loadElementPlusIcon } from "./element-pus-icon"
+import { loadElementPlus } from "./element-plus"
+import { loadElementPlusIcon } from "./element-plus-icon"
 import { loadVxeTable } from "./vxe-table"
 
 export function loadPlugins(app: App) {
