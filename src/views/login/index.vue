@@ -5,7 +5,8 @@ import { useUserStore } from "@/store/modules/user"
 import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import { type FormInstance, FormRules } from "element-plus"
-import { type ILoginRequestData, getLoginCodeApi } from "@/api/login"
+import { getLoginCodeApi } from "@/api/login"
+import { type ILoginRequestData } from "@/api/login/types/login"
 
 const router = useRouter()
 const loginFormRef = ref<FormInstance | null>(null)
