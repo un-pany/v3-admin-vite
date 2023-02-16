@@ -22,7 +22,9 @@
       "node",
       "vite/client",
       /** Element Plus 的 Volar 插件支持 */
-      "element-plus/global"
+      "element-plus/global",
+      "vitest",
+      "vitest/globals"
     ],
     /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
     "baseUrl": ".",
@@ -31,7 +33,15 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "vite.config.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
   /** 编译器默认排除的编译文件 */
   "exclude": ["node_modules", "dist"]
 }
