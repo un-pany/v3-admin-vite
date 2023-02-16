@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { type ConfigEnv, type UserConfigExport, loadEnv } from "vite"
 import path, { resolve } from "path"
 import vue from "@vitejs/plugin-vue"
@@ -93,6 +95,11 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       //   /** 自动按需导入 Element Plus 组件 */
       //   resolvers: [ElementPlusResolver()]
       // })
-    ]
+    ],
+    /** Vitest 单元测试配置：https://cn.vitest.dev/config */
+    test: {
+      include: ["tests/**/*.test.ts"],
+      environment: "jsdom"
+    }
   }
 }
