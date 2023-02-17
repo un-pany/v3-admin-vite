@@ -94,10 +94,14 @@ pnpm build:stage
 pnpm build:prod
 ```
 
-## 🔧 Code formatting check
+## 🔧 Code inspection
 
 ```bash
+# code formatting
 pnpm lint
+
+# unit test
+pnpm test
 ```
 
 ## Git commit specification reference
