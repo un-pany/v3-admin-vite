@@ -94,10 +94,14 @@ pnpm build:stage
 pnpm build:prod
 ```
 
-## 🔧 代码格式检查
+## 🔧 代码检查
 
 ```bash
+# 代码格式化
 pnpm lint
+
+# 单元测试
+pnpm test
 ```
 
 ## Git 提交规范参考
