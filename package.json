@@ -66,6 +66,7 @@
     "terser": "^5.16.4",
     "typescript": "^4.9.5",
     "unocss": "^0.49.7",
+    "unplugin-vue-define-options": "^1.2.2",
     "vite": "^4.1.2",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-svg-loader": "^4.0.0",
