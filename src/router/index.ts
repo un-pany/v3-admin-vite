@@ -102,7 +102,8 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/table/element-plus/index.vue"),
         name: "ElementPlus",
         meta: {
-          title: "Element Plus"
+          title: "Element Plus",
+          keepAlive: true
         }
       },
       {
@@ -110,7 +111,8 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/table/vxe-table/index.vue"),
         name: "VxeTable",
         meta: {
-          title: "Vxe Table"
+          title: "Vxe Table",
+          keepAlive: true
         }
       }
     ]

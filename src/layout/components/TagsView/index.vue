@@ -62,15 +62,18 @@ const initTags = () => {
 const addTags = () => {
   if (route.name) {
     tagsViewStore.addVisitedView(route)
+    tagsViewStore.addCachedView(route)
   }
 }
 
 const refreshSelectedTag = (view: ITagView) => {
+  tagsViewStore.delCachedView(view)
   router.replace({ path: "/redirect" + view.path, query: view.query })
 }
 
 const closeSelectedTag = (view: ITagView) => {
   tagsViewStore.delVisitedView(view)
+  tagsViewStore.delCachedView(view)
   if (isActive(view)) {
     toLastView(tagsViewStore.visitedViews, view)
   }
@@ -81,10 +84,12 @@ const closeOthersTags = () => {
     router.push(selectedTag.value.fullPath)
   }
   tagsViewStore.delOthersVisitedViews(selectedTag.value)
+  tagsViewStore.delOthersCachedViews(selectedTag.value)
 }
 
 const closeAllTags = (view: ITagView) => {
   tagsViewStore.delAllVisitedViews()
+  tagsViewStore.delAllCachedViews()
   if (affixTags.some((tag) => tag.path === route.path)) {
     return
   }

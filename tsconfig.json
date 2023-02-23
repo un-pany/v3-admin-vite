@@ -24,7 +24,8 @@
       /** Element Plus 的 Volar 插件支持 */
       "element-plus/global",
       "vitest",
-      "vitest/globals"
+      "vitest/globals",
+      "unplugin-vue-define-options/macros-global"
     ],
     /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
     "baseUrl": ".",
