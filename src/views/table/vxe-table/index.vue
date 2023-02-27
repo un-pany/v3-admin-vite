@@ -15,6 +15,10 @@ import {
   type VxeFormDefines
 } from "vxe-table"
 
+defineOptions({
+  name: "VxeTable"
+})
+
 //#region vxe-grid
 interface IRowMeta {
   id: string

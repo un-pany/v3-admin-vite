@@ -78,7 +78,7 @@ const resolvePath = (routePath: string) => {
         </el-menu-item>
       </SidebarItemLink>
     </template>
-    <el-sub-menu v-else :index="resolvePath(props.item.path)" popper-append-to-body>
+    <el-sub-menu v-else :index="resolvePath(props.item.path)" teleported>
       <template #title>
         <svg-icon v-if="props.item.meta && props.item.meta.svgIcon" :name="props.item.meta.svgIcon" />
         <component v-else-if="props.item.meta && props.item.meta.elIcon" :is="props.item.meta.elIcon" class="el-icon" />

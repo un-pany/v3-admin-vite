@@ -2,6 +2,7 @@ import { ref } from "vue"
 import store from "@/store"
 import { defineStore } from "pinia"
 import { usePermissionStore } from "./permission"
+import { useTagsViewStore } from "./tags-view"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
@@ -12,6 +13,9 @@ export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
   const username = ref<string>("")
+
+  const permissionStore = usePermissionStore()
+  const tagsViewStore = useTagsViewStore()
 
   /** 设置角色数组 */
   const setRoles = (value: string[]) => {
@@ -55,12 +59,12 @@ export const useUserStore = defineStore("user", () => {
     token.value = newToken
     setToken(newToken)
     await getInfo()
-    const permissionStore = usePermissionStore()
     permissionStore.setRoutes(roles.value)
     resetRouter()
     permissionStore.dynamicRoutes.forEach((item: RouteRecordRaw) => {
       router.addRoute(item)
     })
+    _resetTagsView()
   }
   /** 登出 */
   const logout = () => {
@@ -68,12 +72,18 @@ export const useUserStore = defineStore("user", () => {
     token.value = ""
     roles.value = []
     resetRouter()
+    _resetTagsView()
   }
   /** 重置 Token */
   const resetToken = () => {
     removeToken()
     token.value = ""
     roles.value = []
+  }
+  /** 重置 visited views 和 cached views */
+  const _resetTagsView = () => {
+    tagsViewStore.delAllVisitedViews()
+    tagsViewStore.delAllCachedViews()
   }
 
   return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
