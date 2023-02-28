@@ -1,19 +1,22 @@
 import { ref } from "vue"
 import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/localStorage"
 
+const DEFAULT_THEME_NAME = "normal"
+type DefaultThemeNameType = typeof DEFAULT_THEME_NAME
+
+/** 注册的主题名称, 其中 DefaultThemeNameType 是必填的 */
+export type ThemeName = DefaultThemeNameType | "dark" | "dark-blue"
+
 interface IThemeList {
   title: string
   name: ThemeName
 }
 
-/** 注册的主题名称, 其中 normal 是必填的 */
-export type ThemeName = "normal" | "dark" | "dark-blue"
-
 /** 主题列表 */
 const themeList: IThemeList[] = [
   {
     title: "默认",
-    name: "normal"
+    name: DEFAULT_THEME_NAME
   },
   {
     title: "黑暗",
@@ -26,7 +29,7 @@ const themeList: IThemeList[] = [
 ]
 
 /** 正在应用的主题名称 */
-const activeThemeName = ref<ThemeName>(getActiveThemeName() || "normal")
+const activeThemeName = ref<ThemeName>(getActiveThemeName() || DEFAULT_THEME_NAME)
 
 const initTheme = () => {
   setHtmlClassName(activeThemeName.value)
@@ -34,8 +37,8 @@ const initTheme = () => {
 
 const setTheme = (value: ThemeName) => {
   activeThemeName.value = value
-  setHtmlClassName(activeThemeName.value)
-  setActiveThemeName(activeThemeName.value)
+  setHtmlClassName(value)
+  setActiveThemeName(value)
 }
 
 /** 在 html 根元素上挂载 class */
