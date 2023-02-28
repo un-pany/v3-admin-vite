@@ -14,20 +14,23 @@ export interface IGetTableRequestData {
   currentPage: number
   /** 查询条数 */
   size: number
-  /** 查询参数 */
+  /** 查询参数：用户名 */
   username?: string
+  /** 查询参数：手机号 */
   phone?: string
 }
 
+export interface IGetTableData {
+  createTime: string
+  email: string
+  id: string
+  phone: string
+  roles: string
+  status: boolean
+  username: string
+}
+
 export type GetTableResponseData = IApiResponseData<{
-  list: {
-    createTime: string
-    email: string
-    id: string
-    phone: string
-    roles: string
-    status: boolean
-    username: string
-  }[]
+  list: IGetTableData[]
   total: number
 }>
