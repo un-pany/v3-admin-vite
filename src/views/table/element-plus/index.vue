@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from "vue"
 import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDataApi } from "@/api/table"
+import { type IGetTableData } from "@/api/table/types/table"
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
@@ -58,7 +59,7 @@ const resetForm = () => {
 //#endregion
 
 //#region 删
-const handleDelete = (row: any) => {
+const handleDelete = (row: IGetTableData) => {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -74,16 +75,15 @@ const handleDelete = (row: any) => {
 
 //#region 改
 const currentUpdateId = ref<undefined | string>(undefined)
-const handleUpdate = (row: any) => {
+const handleUpdate = (row: IGetTableData) => {
   currentUpdateId.value = row.id
   formData.username = row.username
-  formData.password = row.password
   dialogVisible.value = true
 }
 //#endregion
 
 //#region 查
-const tableData = ref<any[]>([])
+const tableData = ref<IGetTableData[]>([])
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
   username: "",
@@ -212,7 +212,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
         <el-form-item prop="username" label="用户名">
           <el-input v-model="formData.username" placeholder="请输入" />
         </el-form-item>
-        <el-form-item prop="password" label="密码">
+        <el-form-item prop="password" label="密码" v-if="currentUpdateId === undefined">
           <el-input v-model="formData.password" placeholder="请输入" />
         </el-form-item>
       </el-form>
