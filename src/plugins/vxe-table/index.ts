@@ -3,6 +3,8 @@ import { type App } from "vue"
 import VXETable from "vxe-table"
 // https://github.com/x-extends/vxe-table-plugin-element
 import VXETablePluginElement from "vxe-table-plugin-element"
+import "vxe-table/lib/style.css"
+import "vxe-table-plugin-element/dist/style.css"
 
 VXETable.use(VXETablePluginElement)
 
