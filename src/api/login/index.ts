@@ -24,3 +24,12 @@ export function getUserInfoApi() {
     method: "get"
   })
 }
+
+
+/** 获取用户菜单 */
+export function getUserMenuApi() {
+  return request<Login.UserMenuResponseData>({
+    url: "users/menu",
+    method: "get"
+  })
+}

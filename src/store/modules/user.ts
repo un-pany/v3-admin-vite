@@ -5,7 +5,7 @@ import { usePermissionStore } from "./permission"
 import { useTagsViewStore } from "./tags-view"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
-import { loginApi, getUserInfoApi } from "@/api/login"
+import { loginApi, getUserInfoApi, getUserMenuApi } from "@/api/login";
 import { type ILoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
 
@@ -13,7 +13,7 @@ export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
   const username = ref<string>("")
-
+  const menus = ref<any[]>([])
   const permissionStore = usePermissionStore()
   const tagsViewStore = useTagsViewStore()
 
@@ -46,6 +46,20 @@ export const useUserStore = defineStore("user", () => {
         .then((res) => {
           roles.value = res.data.roles
           username.value = res.data.username
+          resolve(res)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
+
+  /** 获取用户菜单 */
+  const getMenu = () => {
+    return new Promise((resolve, reject) => {
+      getUserMenuApi()
+        .then((res) => {
+          menus.value = res.data.menu
           resolve(res)
         })
         .catch((error) => {
@@ -86,7 +100,7 @@ export const useUserStore = defineStore("user", () => {
     tagsViewStore.delAllCachedViews()
   }
 
-  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
+  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken, getMenu, menus }
 })
 
 /** 在 setup 外使用 */
