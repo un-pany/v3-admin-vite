@@ -8,6 +8,7 @@ import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
 import { type ILoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
+import asyncRouteSettings from "@/config/async-route"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
@@ -44,8 +45,15 @@ export const useUserStore = defineStore("user", () => {
     return new Promise((resolve, reject) => {
       getUserInfoApi()
         .then((res) => {
-          roles.value = res.data.roles
-          username.value = res.data.username
+          const data = res.data
+          username.value = data.username
+          // 验证返回的 roles 是否是一个非空数组
+          if (data.roles && data.roles.length > 0) {
+            roles.value = data.roles
+          } else {
+            // 塞入一个没有任何作用的默认角色，不然路由守卫逻辑会无限循环
+            roles.value = asyncRouteSettings.defaultRoles
+          }
           resolve(res)
         })
         .catch((error) => {
