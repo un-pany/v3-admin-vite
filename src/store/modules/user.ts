@@ -9,11 +9,13 @@ import { loginApi, getUserInfoApi } from "@/api/login"
 import { type ILoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
 import asyncRouteSettings from "@/config/async-route"
+import routesList from "@/utils/asyncRoutes.json"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
   const username = ref<string>("")
+  const asyncRoute = ref<string[]>([])
 
   const permissionStore = usePermissionStore()
   const tagsViewStore = useTagsViewStore()
@@ -61,6 +63,14 @@ export const useUserStore = defineStore("user", () => {
         })
     })
   }
+
+  /**获取动态路由 */
+  const getRouteList = () => {
+    return new Promise((resolve) => {
+      asyncRoute.value = [routesList]
+      resolve([routesList])
+    })
+  }
   /** 切换角色 */
   const changeRoles = async (role: string) => {
     const newToken = "token-" + role
@@ -94,7 +104,7 @@ export const useUserStore = defineStore("user", () => {
     tagsViewStore.delAllCachedViews()
   }
 
-  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
+  return { token, roles, username, asyncRoute, setRoles, login, getInfo, changeRoles, logout, resetToken, getRouteList }
 })
 
 /** 在 setup 外使用 */

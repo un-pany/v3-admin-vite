@@ -1,0 +1,30 @@
+{
+  "path": "/permission",
+  "redirect": "/permission/page",
+  "name": "Permission",
+  "meta": {
+    "title": "权限管理",
+    "svgIcon": "lock",
+    "roles": ["admin", "editor"],
+    "alwaysShow": true,
+    "level": 1
+  },
+  "children": [
+    {
+      "path": "page",
+      "name": "PagePermission",
+      "meta": {
+        "title": "页面权限",
+        "roles": ["admin"],
+        "level": 2
+      }
+    },
+    {
+      "path": "directive",
+      "name": "DirectivePermission",
+      "meta": {
+        "title": "指令权限"
+      }
+    }
+  ]
+}
