@@ -13,10 +13,10 @@ specifiers:
   '@vitejs/plugin-vue-jsx': ^3.0.0
   '@vue/eslint-config-prettier': ^7.1.0
   '@vue/eslint-config-typescript': ^11.0.2
-  '@vue/test-utils': ^2.3.0
+  '@vue/test-utils': ^2.3.1
   axios: ^1.3.4
   dayjs: ^1.11.7
-  element-plus: ^2.2.35
+  element-plus: ^2.2.36
   eslint: ^8.35.0
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-vue: ^9.9.0
@@ -53,7 +53,7 @@ dependencies:
   '@element-plus/icons-vue': 2.1.0_vue@3.2.47
   axios: 1.3.4
   dayjs: 1.11.7
-  element-plus: 2.2.35_vue@3.2.47
+  element-plus: 2.2.36_vue@3.2.47
   js-cookie: 3.0.1
   lodash-es: 4.17.21
   normalize.css: 8.0.1
@@ -80,7 +80,7 @@ devDependencies:
   '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.1.4+vue@3.2.47
   '@vue/eslint-config-prettier': 7.1.0_rlq4czn2p5niyau36qwtjimf2y
   '@vue/eslint-config-typescript': 11.0.2_mwzft5yawf6e3vmm364a6avhx4
-  '@vue/test-utils': 2.3.0_vue@3.2.47
+  '@vue/test-utils': 2.3.1_vue@3.2.47
   eslint: 8.35.0
   eslint-plugin-prettier: 4.2.1_rlq4czn2p5niyau36qwtjimf2y
   eslint-plugin-vue: 9.9.0_eslint@8.35.0
@@ -1399,8 +1399,8 @@ packages:
   /@vue/shared/3.2.47:
     resolution: {integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==}
 
-  /@vue/test-utils/2.3.0_vue@3.2.47:
-    resolution: {integrity: sha512-S8/9Z+B4VSsTUNtZtzS7J1TfxJbf10n+gcH9X8cASbG0Tp7qD6vqs/sUNlmpzk6i7+pP00ptauJp9rygyW89Ww==}
+  /@vue/test-utils/2.3.1_vue@3.2.47:
+    resolution: {integrity: sha512-tRtHRPEETQSUrqXgAewNZHm5iypxDFxwenfdcvMRm1kbGo4bcqHb1XHHlsaIjoDbLkuE2NYiF8vBQDNYrzlrSA==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
@@ -1707,7 +1707,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001462
-      electron-to-chromium: 1.4.323
+      electron-to-chromium: 1.4.325
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: true
@@ -2250,12 +2250,12 @@ packages:
       sigmund: 1.0.1
     dev: true
 
-  /electron-to-chromium/1.4.323:
-    resolution: {integrity: sha512-+a0hMEQxE8u1F1vOHcE0M18kQ2+4AwOXdRrU4avZ1LeR/sa9WAallYE3uES/PNcEGt/wCFcOgWcArSLx5C+WNQ==}
+  /electron-to-chromium/1.4.325:
+    resolution: {integrity: sha512-K1C03NT4I7BuzsRdCU5RWkgZxtswnKDYM6/eMhkEXqKu4e5T+ck610x3FPzu1y7HVFSiQKZqP16gnJzPpji1TQ==}
     dev: true
 
-  /element-plus/2.2.35_vue@3.2.47:
-    resolution: {integrity: sha512-if5QW41hQwVltekRS+avXYtqjRNra/fSgGstXKPR1lSJ81PWQccy+oztw/OP+USqZP/OejFs7rjLPk5MHgT40w==}
+  /element-plus/2.2.36_vue@3.2.47:
+    resolution: {integrity: sha512-9DzLqOVuw8P5Ck8Uqd9XdnDYVg2Z3iosZ1gtk2xDCWNqeoACpldP5gxa/Hbfgp4QeA3xC+f3g+UeoKKu79l28g==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
