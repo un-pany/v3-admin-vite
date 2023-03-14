@@ -43,6 +43,8 @@ v3-admin-vite is a free and open source middle and background management system 
 
 [Chinese documentation](https://juejin.cn/post/7089377403717287972)
 
+[Chinese getting started tutorial](https://juejin.cn/column/7207659644487139387)
+
 ## Gitee repository
 
 [Gitee](https://gitee.com/un-pany/v3-admin-vite)

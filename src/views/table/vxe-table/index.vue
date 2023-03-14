@@ -2,6 +2,7 @@
 import { nextTick, reactive, ref } from "vue"
 import { type ElMessageBoxOptions, ElMessageBox, ElMessage } from "element-plus"
 import { deleteTableDataApi, getTableDataApi } from "@/api/table"
+import { type GetTableResponseData } from "@/api/table/types/table"
 import RoleColumnSolts from "./tsx/RoleColumnSolts"
 import StatusColumnSolts from "./tsx/StatusColumnSolts"
 import {
@@ -142,7 +143,7 @@ const xGridOpt: VxeGridProps = reactive({
           let total = 0
           let result: IRowMeta[] = []
           /** 加载数据 */
-          const callback = (res: any) => {
+          const callback = (res: GetTableResponseData) => {
             if (res && res.data) {
               const resData = res.data
               // 总数

@@ -43,6 +43,8 @@
 
 [中文文档](https://juejin.cn/post/7089377403717287972)
 
+[手摸手教程](https://juejin.cn/column/7207659644487139387)
+
 ## 国内仓库
 
 [Gitee](https://gitee.com/un-pany/v3-admin-vite)

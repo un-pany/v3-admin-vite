@@ -3,6 +3,7 @@ import store from "@/store"
 import { defineStore } from "pinia"
 import { type RouteRecordRaw } from "vue-router"
 import { constantRoutes, asyncRoutes } from "@/router"
+import asyncRouteSettings from "@/config/async-route"
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   if (route.meta && route.meta.roles) {
@@ -38,7 +39,7 @@ export const usePermissionStore = defineStore("permission", () => {
 
   const setRoutes = (roles: string[]) => {
     let accessedRoutes
-    if (roles.includes("admin")) {
+    if (!asyncRouteSettings.open) {
       accessedRoutes = asyncRoutes
     } else {
       accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
