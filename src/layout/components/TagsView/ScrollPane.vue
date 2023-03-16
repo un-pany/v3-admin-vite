@@ -20,6 +20,11 @@ const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
   currentScrollLeft = scrollLeft
 }
 
+const wheelScroll = (e: any) => {
+  const val = (currentScrollLeft += e.wheelDelta / 4)
+  scrollbarRef.value!.setScrollLeft(val)
+}
+
 /** 点击滚动 */
 const scrollTo = (direction: "left" | "right") => {
   let scrollLeft = 0
@@ -48,7 +53,7 @@ const showScreenfull = computed(() => {
     <el-icon class="arrow left" @click="scrollTo('left')">
       <ArrowLeft />
     </el-icon>
-    <el-scrollbar ref="scrollbarRef" @scroll="scroll">
+    <el-scrollbar ref="scrollbarRef" @wheel.prevent="wheelScroll" @scroll="scroll">
       <div ref="scrollbarContentRef" class="scrollbar-content">
         <slot />
       </div>
