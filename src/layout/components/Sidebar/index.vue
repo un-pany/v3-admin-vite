@@ -98,7 +98,7 @@ const isCollapse = computed(() => {
 
 .el-menu {
   border: none;
-  height: 100%;
+  min-height: 100%;
   width: 100% !important;
 }
 
