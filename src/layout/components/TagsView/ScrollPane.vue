@@ -20,9 +20,12 @@ const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
   currentScrollLeft = scrollLeft
 }
 
-const wheelScroll = (e: any) => {
-  const val = (currentScrollLeft += e.wheelDelta / 4)
-  scrollbarRef.value!.setScrollLeft(val)
+const wheelScroll = ({ deltaY }: WheelEvent) => {
+  if (/^-/.test(deltaY.toString())) {
+    scrollTo("left")
+  } else {
+    scrollTo("right")
+  }
 }
 
 /** 点击滚动 */
