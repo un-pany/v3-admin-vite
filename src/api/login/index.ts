@@ -17,6 +17,7 @@ export function loginApi(data: Login.ILoginRequestData) {
     data
   })
 }
+
 /** 获取用户详情 */
 export function getUserInfoApi() {
   return request<Login.UserInfoResponseData>({

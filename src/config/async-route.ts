@@ -8,14 +8,14 @@ interface IAsyncRouteSettings {
   open: boolean
   /** 当动态路由功能关闭时：
    * 1. 应该将所有路由都写到常驻路由里面（表明所有登陆的用户能访问的页面都是一样的）
-   * 2. 系统自动给当前登录用户赋值一个默认的角色（默认为 admin，拥有所有页面权限）
+   * 2. 系统自动给当前登录用户赋值一个没有任何作用的默认角色
    */
   defaultRoles: Array<string>
 }
 
 const asyncRouteSettings: IAsyncRouteSettings = {
   open: true,
-  defaultRoles: ["admin"]
+  defaultRoles: ["DEFAULT_ROLE"]
 }
 
 export default asyncRouteSettings
