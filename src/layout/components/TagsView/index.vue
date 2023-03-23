@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { getCurrentInstance, onMounted, ref, watch } from "vue"
-import { type RouteRecordRaw, useRoute, useRouter } from "vue-router"
+import { type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
 import { type ITagView, useTagsViewStore } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
 import ScrollPane from "./ScrollPane.vue"
@@ -12,6 +12,8 @@ const router = useRouter()
 const route = useRoute()
 const tagsViewStore = useTagsViewStore()
 const permissionStore = usePermissionStore()
+
+const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
 
 const visible = ref(false)
 const top = ref(0)
@@ -161,8 +163,9 @@ onMounted(() => {
 
 <template>
   <div class="tags-view-container">
-    <ScrollPane class="tags-view-wrapper">
+    <ScrollPane class="tags-view-wrapper" :tagRefs="tagRefs">
       <router-link
+        ref="tagRefs"
         v-for="tag in tagsViewStore.visitedViews"
         :key="tag.path"
         :class="isActive(tag) ? 'active' : ''"
