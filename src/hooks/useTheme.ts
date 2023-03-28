@@ -40,13 +40,15 @@ const setHtmlClassName = (value: ThemeName) => {
   document.documentElement.className = value
 }
 
-watchEffect(() => {
-  const value = activeThemeName.value
-  setHtmlClassName(value)
-  setActiveThemeName(value)
-})
+const initTheme = () => {
+  watchEffect(() => {
+    const value = activeThemeName.value
+    setHtmlClassName(value)
+    setActiveThemeName(value)
+  })
+}
 
 /** 主题 hook */
 export function useTheme() {
-  return { themeList, activeThemeName, setTheme }
+  return { themeList, activeThemeName, initTheme, setTheme }
 }
