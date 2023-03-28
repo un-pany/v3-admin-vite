@@ -7,6 +7,7 @@ import zhCn from "element-plus/lib/locale/lang/zh-cn"
 /** 初始化主题 */
 const { initTheme } = useTheme()
 initTheme()
+
 /** 将 Element Plus 的语言设置为中文 */
 const locale = zhCn
 

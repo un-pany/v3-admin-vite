@@ -71,7 +71,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       vue(),
       vueJsx(),
       /** 将 SVG 静态图转化为 Vue 组件 */
-      svgLoader(),
+      svgLoader({ defaultImport: "url" }),
       /** SVG */
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],

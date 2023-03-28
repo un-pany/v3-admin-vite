@@ -50,5 +50,5 @@ const initTheme = () => {
 
 /** 主题 hook */
 export function useTheme() {
-  return { themeList, activeThemeName, initTheme, setTheme }
+  return { themeList, activeThemeName, setTheme }
 }
