@@ -49,7 +49,7 @@ const handleClickOutside = () => {
     <div :class="{ hasTagsView: showTagsView }" class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <NavigationBar />
-        <TagsView v-if="showTagsView" />
+        <TagsView v-show="showTagsView" />
       </div>
       <AppMain />
       <RightPanel v-if="showSettings">
