@@ -61,7 +61,7 @@ v3-admin-vite is a free and open source middle and background management system 
 # configure
 1. installation of the recommended plugins in the .vscode directory
 3. node version 16+
-4. pnpm version 7.x
+4. pnpm version 8.x
 
 # clone
 git clone https://github.com/un-pany/v3-admin-vite.git
