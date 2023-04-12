@@ -136,15 +136,13 @@ pnpm test
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
 </a>
 
-## 💕 感谢赞助（赞助的费用拿来在群里发红包了~）
-
-| 账号                                               | 头像                                                                                          |
-| -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| <a href="https://github.com/a3305278">a3305278</a> | <img src="https://avatars.githubusercontent.com/u/30458650?v=4" width="64px" height="64px" /> |
-
 ## 💕 感谢 Star
 
-小项目获取 star 不易，如果你喜欢这个项目的话，欢迎支持一个 star ！这是作者持续维护的唯一动力（小声：毕竟是免费的）
+小项目获取 star 不易，如果你喜欢这个项目的话，欢迎支持一个 star！这是作者持续维护的唯一动力（小声：毕竟是免费的）
+
+## ☕ Donate
+
+[查看捐赠方式](https://github.com/un-pany/v3-admin-vite/issues/69)
 
 ## 可有可无的群
 
