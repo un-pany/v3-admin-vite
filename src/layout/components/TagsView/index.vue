@@ -21,10 +21,6 @@ const left = ref(0)
 const selectedTag = ref<ITagView>({})
 let affixTags: ITagView[] = []
 
-const isActive = (tag: ITagView) => {
-  return tag.path === route.path
-}
-
 const isAffix = (tag: ITagView) => {
   return tag.meta?.affix
 }
@@ -73,44 +69,12 @@ const refreshSelectedTag = (view: ITagView) => {
   router.replace({ path: "/redirect" + view.path, query: view.query })
 }
 
-const closeSelectedTag = (view: ITagView) => {
-  tagsViewStore.delVisitedView(view)
-  tagsViewStore.delCachedView(view)
-  if (isActive(view)) {
-    toLastView(tagsViewStore.visitedViews, view)
-  }
-}
-
 const closeOthersTags = () => {
   if (selectedTag.value.fullPath !== route.path && selectedTag.value.fullPath !== undefined) {
     router.push(selectedTag.value.fullPath)
   }
   tagsViewStore.delOthersVisitedViews(selectedTag.value)
   tagsViewStore.delOthersCachedViews(selectedTag.value)
-}
-
-const closeAllTags = (view: ITagView) => {
-  tagsViewStore.delAllVisitedViews()
-  tagsViewStore.delAllCachedViews()
-  if (affixTags.some((tag) => tag.path === route.path)) {
-    return
-  }
-  toLastView(tagsViewStore.visitedViews, view)
-}
-
-const toLastView = (visitedViews: ITagView[], view: ITagView) => {
-  const latestView = visitedViews.slice(-1)[0]
-  if (latestView !== undefined && latestView.fullPath !== undefined) {
-    router.push(latestView.fullPath)
-  } else {
-    // 如果 TagsView 全部被关闭了，则默认重定向到主页
-    if (view.name === "Dashboard") {
-      // 重新加载主页
-      router.push({ path: "/redirect" + view.path, query: view.query })
-    } else {
-      router.push("/")
-    }
-  }
 }
 
 const openMenu = (tag: ITagView, e: MouseEvent) => {
@@ -168,23 +132,23 @@ onMounted(() => {
         ref="tagRefs"
         v-for="tag in tagsViewStore.visitedViews"
         :key="tag.path"
-        :class="isActive(tag) ? 'active' : ''"
+        :class="tagsViewStore.isActive(tag) ? 'active' : ''"
         :to="{ path: tag.path, query: tag.query }"
         class="tags-view-item"
-        @click.middle="!isAffix(tag) ? closeSelectedTag(tag) : ''"
+        @click.middle="!isAffix(tag) ? tagsViewStore.closeSelectedTag(tag) : ''"
         @contextmenu.prevent="openMenu(tag, $event)"
       >
         {{ tag.meta?.title }}
-        <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="closeSelectedTag(tag)">
+        <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="tagsViewStore.closeSelectedTag(tag)">
           <Close />
         </el-icon>
       </router-link>
     </ScrollPane>
     <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
       <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">关闭</li>
+      <li v-if="!isAffix(selectedTag)" @click="tagsViewStore.closeSelectedTag(selectedTag)">关闭</li>
       <li @click="closeOthersTags">关闭其它</li>
-      <li @click="closeAllTags(selectedTag)">关闭所有</li>
+      <li @click="tagsViewStore.closeAllTags(selectedTag, affixTags)">关闭所有</li>
     </ul>
   </div>
 </template>

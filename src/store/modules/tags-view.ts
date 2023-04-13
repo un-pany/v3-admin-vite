@@ -1,12 +1,17 @@
 import { ref } from "vue"
 import { defineStore } from "pinia"
 import { type RouteLocationNormalized } from "vue-router"
-
+import router from "@/router/index"
 export type ITagView = Partial<RouteLocationNormalized>
 
 export const useTagsViewStore = defineStore("tags-view", () => {
+  const route = router.currentRoute
   const visitedViews = ref<ITagView[]>([])
   const cachedViews = ref<string[]>([])
+
+  const isActive = (tag: ITagView) => {
+    return tag.path === route.value.path
+  }
 
   //#region add
   const addVisitedView = (view: ITagView) => {
@@ -43,6 +48,43 @@ export const useTagsViewStore = defineStore("tags-view", () => {
       }
     }
   }
+
+  const closeSelectedTag = (view: ITagView) => {
+    delVisitedView(view)
+    delCachedView(view)
+    if (isActive(view)) {
+      toLastView(visitedViews.value, view)
+    }
+  }
+
+  const closeCurrentTag = () => {
+    closeSelectedTag(route.value)
+  }
+
+  const closeAllTags = (view: ITagView, affixTags: ITagView[]) => {
+    delAllVisitedViews()
+    delAllCachedViews()
+    if (affixTags.some((tag) => tag.path === route.value.path)) {
+      return
+    }
+    toLastView(visitedViews.value, view)
+  }
+
+  const toLastView = (visitedViews: ITagView[], view: ITagView) => {
+    const latestView = visitedViews.slice(-1)[0]
+    if (latestView !== undefined && latestView.fullPath !== undefined) {
+      router.push(latestView.fullPath)
+    } else {
+      // 如果 TagsView 全部被关闭了，则默认重定向到主页
+      if (view.name === "Dashboard") {
+        // 重新加载主页
+        router.push({ path: "/redirect" + view.path, query: view.query })
+      } else {
+        router.push("/")
+      }
+    }
+  }
+
   const delCachedView = (view: ITagView) => {
     if (typeof view.name !== "string") return
     const index = cachedViews.value.indexOf(view.name)
@@ -89,6 +131,10 @@ export const useTagsViewStore = defineStore("tags-view", () => {
     delOthersVisitedViews,
     delOthersCachedViews,
     delAllVisitedViews,
-    delAllCachedViews
+    delAllCachedViews,
+    isActive,
+    closeSelectedTag,
+    closeCurrentTag,
+    closeAllTags
   }
 })
