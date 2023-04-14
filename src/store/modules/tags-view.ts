@@ -8,7 +8,10 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   const route = router.currentRoute
   const visitedViews = ref<ITagView[]>([])
   const cachedViews = ref<string[]>([])
-
+  const affixTags = ref<ITagView[]>([])
+  const setAffixTags = (tags: ITagView[]) => {
+    affixTags.value = tags
+  }
   const isActive = (tag: ITagView) => {
     return tag.path === route.value.path
   }
@@ -61,13 +64,24 @@ export const useTagsViewStore = defineStore("tags-view", () => {
     closeSelectedTag(route.value)
   }
 
-  const closeAllTags = (view: ITagView, affixTags: ITagView[]) => {
+  const closeAllTags = (view: ITagView) => {
     delAllVisitedViews()
     delAllCachedViews()
-    if (affixTags.some((tag) => tag.path === route.value.path)) {
+    if (affixTags.value.some((tag) => tag.path === route.value.path)) {
       return
     }
     toLastView(visitedViews.value, view)
+  }
+  const refreshSelectedTag = (view: ITagView) => {
+    delCachedView(view)
+    router.replace({ path: "/redirect" + view.path, query: view.query })
+  }
+  const closeOthersTags = (selectedTag: ITagView) => {
+    if (selectedTag.fullPath !== route.value.path && selectedTag.fullPath !== undefined) {
+      router.push(selectedTag.fullPath)
+    }
+    delOthersVisitedViews(selectedTag)
+    delOthersCachedViews(selectedTag)
   }
 
   const toLastView = (visitedViews: ITagView[], view: ITagView) => {
@@ -133,6 +147,10 @@ export const useTagsViewStore = defineStore("tags-view", () => {
     delAllVisitedViews,
     delAllCachedViews,
     isActive,
+    affixTags,
+    setAffixTags,
+    refreshSelectedTag,
+    closeOthersTags,
     closeSelectedTag,
     closeCurrentTag,
     closeAllTags

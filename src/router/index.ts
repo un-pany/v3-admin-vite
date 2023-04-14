@@ -217,6 +217,14 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: "useFullscreenLoading"
         }
+      },
+      {
+        path: "use-tags",
+        component: () => import("@/views/hook-demo/use-tags.vue"),
+        name: "UseTags",
+        meta: {
+          title: "useTags"
+        }
       }
     ]
   }

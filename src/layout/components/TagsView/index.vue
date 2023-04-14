@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 import { getCurrentInstance, onMounted, ref, watch } from "vue"
-import { type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
+import { type RouteRecordRaw, RouterLink, useRoute } from "vue-router"
 import { type ITagView, useTagsViewStore } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
 import ScrollPane from "./ScrollPane.vue"
 import path from "path-browserify"
 import { Close } from "@element-plus/icons-vue"
+import { useTags } from "@/hooks/useTags"
 
 const instance = getCurrentInstance()
-const router = useRouter()
 const route = useRoute()
 const tagsViewStore = useTagsViewStore()
 const permissionStore = usePermissionStore()
+
+const { close, closeAll, closeOther, refresh } = useTags()
 
 const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
 
@@ -19,7 +21,6 @@ const visible = ref(false)
 const top = ref(0)
 const left = ref(0)
 const selectedTag = ref<ITagView>({})
-let affixTags: ITagView[] = []
 
 const isAffix = (tag: ITagView) => {
   return tag.meta?.affix
@@ -48,8 +49,8 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
 }
 
 const initTags = () => {
-  affixTags = filterAffixTags(permissionStore.routes)
-  for (const tag of affixTags) {
+  tagsViewStore.setAffixTags(filterAffixTags(permissionStore.routes))
+  for (const tag of tagsViewStore.affixTags) {
     // 必须含有 name 属性
     if (tag.name) {
       tagsViewStore.addVisitedView(tag)
@@ -62,19 +63,6 @@ const addTags = () => {
     tagsViewStore.addVisitedView(route)
     tagsViewStore.addCachedView(route)
   }
-}
-
-const refreshSelectedTag = (view: ITagView) => {
-  tagsViewStore.delCachedView(view)
-  router.replace({ path: "/redirect" + view.path, query: view.query })
-}
-
-const closeOthersTags = () => {
-  if (selectedTag.value.fullPath !== route.path && selectedTag.value.fullPath !== undefined) {
-    router.push(selectedTag.value.fullPath)
-  }
-  tagsViewStore.delOthersVisitedViews(selectedTag.value)
-  tagsViewStore.delOthersCachedViews(selectedTag.value)
 }
 
 const openMenu = (tag: ITagView, e: MouseEvent) => {
@@ -135,20 +123,20 @@ onMounted(() => {
         :class="tagsViewStore.isActive(tag) ? 'active' : ''"
         :to="{ path: tag.path, query: tag.query }"
         class="tags-view-item"
-        @click.middle="!isAffix(tag) ? tagsViewStore.closeSelectedTag(tag) : ''"
+        @click.middle="!isAffix(tag) ? close(tag) : ''"
         @contextmenu.prevent="openMenu(tag, $event)"
       >
         {{ tag.meta?.title }}
-        <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="tagsViewStore.closeSelectedTag(tag)">
+        <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="close(tag)">
           <Close />
         </el-icon>
       </router-link>
     </ScrollPane>
     <ul v-show="visible" :style="{ left: left + 'px', top: top + 'px' }" class="contextmenu">
-      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li v-if="!isAffix(selectedTag)" @click="tagsViewStore.closeSelectedTag(selectedTag)">关闭</li>
-      <li @click="closeOthersTags">关闭其它</li>
-      <li @click="tagsViewStore.closeAllTags(selectedTag, affixTags)">关闭所有</li>
+      <li @click="refresh(selectedTag)">刷新</li>
+      <li v-if="!isAffix(selectedTag)" @click="close(selectedTag)">关闭</li>
+      <li @click="closeOther(selectedTag)">关闭其它</li>
+      <li @click="closeAll(selectedTag)">关闭所有</li>
     </ul>
   </div>
 </template>
