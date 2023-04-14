@@ -57,6 +57,44 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/echart",
+    component: Layout,
+    redirect: "/echart/bar-charts",
+    meta: {
+      title: "echarts",
+      svgIcon: "echarts"
+    },
+    children: [
+      {
+        path: "bar-charts",
+        component: () => import("@/views/charts/BarChartDemo.vue"),
+        name: "BarCharts",
+        meta: {
+          title: "Bar Charts",
+          keepAlive: true
+        }
+      },
+      {
+        path: "line-charts",
+        component: () => import("@/views/charts/LineChartDemo.vue"),
+        name: "LineCharts",
+        meta: {
+          title: "Line Charts",
+          keepAlive: true
+        }
+      },
+      {
+        path: "mixed-charts",
+        component: () => import("@/views/charts/MixedChartDemo.vue"),
+        name: "MixedCharts",
+        meta: {
+          title: "Mixed Charts",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
     path: "/unocss",
     component: Layout,
     redirect: "/unocss/index",
