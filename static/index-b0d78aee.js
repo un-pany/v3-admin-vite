@@ -1,0 +1,1 @@
+import{an as t}from"./index-39ba4f33.js";function e(e){return t({url:"table",method:"post",data:e})}function a(e){return t({url:`table/${e}`,method:"delete"})}function r(e){return t({url:"table",method:"put",data:e})}function n(e){return t({url:"table",method:"get",params:e})}export{e as c,a as d,n as g,r as u};
