@@ -11,7 +11,6 @@ import { loadDirectives } from "@/directives"
 // css
 import "uno.css"
 import "normalize.css"
-
 import "@/styles/index.scss"
 
 const app = createApp(App)

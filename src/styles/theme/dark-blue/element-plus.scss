@@ -1,3 +1,8 @@
+/**
+ * dark-blue 主题下的 Element Plus SCSS 变量
+ * 在此查阅所有可自定义的变量：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
+ */
+
 @use "sass:map";
 @use "element-plus/theme-chalk/src/mixins/function.scss" as *;
 @use "element-plus/theme-chalk/src/mixins/_var.scss" as *;
@@ -57,7 +62,7 @@ $fill-color: map.merge(
   $fill-color
 );
 
-// Background
+// background
 $bg-color: () !default;
 $bg-color: map.merge(
   (
