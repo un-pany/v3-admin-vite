@@ -120,7 +120,7 @@ const showScreenfull = computed(() => {
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>
-    <Screenfull v-if="showScreenfull" element=".app-main" openTips="内容区全屏" class="screenfull" />
+    <Screenfull v-if="showScreenfull" element=".app-main" open-tips="内容区全屏" class="screenfull" />
   </div>
 </template>
 

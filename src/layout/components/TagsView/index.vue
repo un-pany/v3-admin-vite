@@ -163,7 +163,7 @@ onMounted(() => {
 
 <template>
   <div class="tags-view-container">
-    <ScrollPane class="tags-view-wrapper" :tagRefs="tagRefs">
+    <ScrollPane class="tags-view-wrapper" :tag-refs="tagRefs">
       <router-link
         ref="tagRefs"
         v-for="tag in tagsViewStore.visitedViews"
