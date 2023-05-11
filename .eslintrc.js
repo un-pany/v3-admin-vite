@@ -5,15 +5,6 @@ module.exports = {
     node: true,
     es6: true
   },
-  globals: {
-    // script setup
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    withDefaults: "readonly",
-    // unplugin-vue-define-options
-    defineOptions: "readonly"
-  },
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
