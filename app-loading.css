@@ -4,24 +4,19 @@
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
-  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
-  -webkit-animation: loadingAnimation 1.8s infinite ease-in-out;
   animation: loadingAnimation 1.8s infinite ease-in-out;
 }
 
 #app-loading {
-  color: #409eff;
-  font-size: 10px;
-  margin: 80px auto;
   position: relative;
+  top: 45vh;
+  margin: 0 auto;
+  font-size: 10px;
+  color: #409eff;
   text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
-  top: 0;
+  transform: translateZ(0);
   transform: translate(-50%, 0);
 }
 
@@ -34,23 +29,11 @@
 
 #app-loading:before {
   left: -3.5em;
-  -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
 #app-loading:after {
   left: 3.5em;
-}
-
-@-webkit-keyframes loadingAnimation {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
 }
 
 @keyframes loadingAnimation {
