@@ -21,15 +21,25 @@ router.beforeEach(async (to, _from, next) => {
       next({ path: "/" })
       NProgress.done()
     } else {
+      // 当开启后端路由时，此处只是用来判断是否存有用户信息，可以改为其他信息判断
       // 检查用户是否已获得其权限角色
       if (userStore.roles.length === 0) {
         try {
           if (asyncRouteSettings.open) {
             // 注意：角色必须是一个数组！ 例如: ['admin'] 或 ['developer', 'editor']
             await userStore.getInfo()
+
+            // 如果路由信息在前端，则开启此处
+            // const roles = userStore.roles
+            // // 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
+            // permissionStore.setRoutes(roles)
+
+            // 如果路由信息在后端，则开启此处
+            // 生成后端返回的动态路由
+            await userStore.getRoutes()
+            const asyncRoutes = userStore.asyncRoutes
             const roles = userStore.roles
-            // 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
-            permissionStore.setRoutes(roles)
+            permissionStore.setDynamicRoutes(asyncRoutes, roles)
           } else {
             // 没有开启动态路由功能，则启用默认角色
             userStore.setRoles(asyncRouteSettings.defaultRoles)

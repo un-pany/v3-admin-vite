@@ -4,6 +4,7 @@ import { defineStore } from "pinia"
 import { type RouteRecordRaw } from "vue-router"
 import { constantRoutes, asyncRoutes } from "@/router"
 import asyncRouteSettings from "@/config/async-route"
+import { getDynamicRoute, redirectRoutes } from "@/utils/asyncRoute"
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   if (route.meta && route.meta.roles) {
@@ -48,7 +49,19 @@ export const usePermissionStore = defineStore("permission", () => {
     dynamicRoutes.value = accessedRoutes
   }
 
-  return { routes, dynamicRoutes, setRoutes }
+  // 后端返回路由
+  const setDynamicRoutes = (asyncRoutes: any[], roles: string[]) => {
+    const cloneRoutes = JSON.parse(JSON.stringify(asyncRoutes))
+    const resRoutes = getDynamicRoute(cloneRoutes)
+
+    // 添加额外的路由重定向
+    // 如果你的'/'并不是关联的组件，则需要添加额外的路由重定向
+    const rRoutes = redirectRoutes(roles, resRoutes)
+    routes.value = constantRoutes.concat(resRoutes)
+    dynamicRoutes.value = rRoutes
+  }
+
+  return { routes, dynamicRoutes, setRoutes, setDynamicRoutes }
 })
 
 /** 在 setup 外使用 */

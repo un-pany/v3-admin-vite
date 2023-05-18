@@ -9,6 +9,7 @@ import { loginApi, getUserInfoApi } from "@/api/login"
 import { type ILoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
 import asyncRouteSettings from "@/config/async-route"
+import { getRouters } from "@/router/dynamicRoute"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
@@ -94,7 +95,14 @@ export const useUserStore = defineStore("user", () => {
     tagsViewStore.delAllCachedViews()
   }
 
-  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
+  /** 获取动态路由 */
+  const asyncRoutes = ref<any[]>([])
+  const getRoutes = async () => {
+    const res = await getRouters()
+    asyncRoutes.value = res
+  }
+
+  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken, getRoutes, asyncRoutes }
 })
 
 /** 在 setup 外使用 */
