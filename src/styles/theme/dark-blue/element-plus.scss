@@ -4,9 +4,23 @@
  */
 
 @use "sass:map";
+@use "sass:math";
 @use "element-plus/theme-chalk/src/mixins/function.scss" as *;
 @use "element-plus/theme-chalk/src/mixins/_var.scss" as *;
+@use "element-plus/theme-chalk/src/mixins/mixins.scss" as *;
 @use "./variables.scss" as *;
+
+// 生成指定颜色的明亮/黑暗颜色
+@mixin set-color-mix-level($type, $number, $mode: "light", $mix-color: $color-white) {
+  $colors: map.deep-merge(
+    (
+      $type: (
+        "#{$mode}-#{$number}": mix($mix-color, map.get($colors, $type, "base"), math.percentage(math.div($number, 10)))
+      )
+    ),
+    $colors
+  ) !global;
+}
 
 $types: primary, success, warning, danger, error, info;
 
@@ -16,6 +30,7 @@ $success: #01efb7bb;
 $colors: () !default;
 $colors: map.deep-merge(
   (
+    "white": #ffffff,
     "primary": (
       "base": $color
     ),
@@ -24,6 +39,34 @@ $colors: map.deep-merge(
     )
   ),
   $colors
+);
+
+// background
+$bg-color: () !default;
+$bg-color: map.merge(
+  (
+    "": #021633,
+    "overlay": #021633
+  ),
+  $bg-color
+);
+
+// 生成--el-color-${type}-light-i
+@each $type in (primary) {
+  @for $i from 1 through 9 {
+    @include set-color-mix-level($type, $i, "light", map.get($bg-color, ""));
+  }
+  // --el-color-${type}-dark-2
+  @include set-color-mix-level($type, 2, "dark", #000);
+}
+
+// button
+$button: () !default;
+$button: map.merge(
+  (
+    "disabled-text-color": rgba(255, 255, 255, 0.5)
+  ),
+  $button
 );
 
 // text
@@ -62,16 +105,6 @@ $fill-color: map.merge(
   $fill-color
 );
 
-// background
-$bg-color: () !default;
-$bg-color: map.merge(
-  (
-    "": #021633,
-    "overlay": #021633
-  ),
-  $bg-color
-);
-
 // mask
 $mask-color: () !default;
 $mask-color: map.merge(
@@ -82,10 +115,13 @@ $mask-color: map.merge(
 );
 
 html.dark-blue {
-  @include set-css-var-value(("color", "primary"), $color);
+  @include set-css-color-type($colors, "primary");
   @include set-component-css-var("text-color", $text-color);
   @include set-component-css-var("border-color", $border);
   @include set-component-css-var("fill-color", $fill-color);
   @include set-component-css-var("bg-color", $bg-color);
   @include set-component-css-var("mask-color", $mask-color);
+  @include b(button) {
+    @include set-component-css-var("button", $button);
+  }
 }
