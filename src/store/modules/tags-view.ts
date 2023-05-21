@@ -2,14 +2,14 @@ import { ref } from "vue"
 import { defineStore } from "pinia"
 import { type RouteLocationNormalized } from "vue-router"
 
-export type ITagView = Partial<RouteLocationNormalized>
+export type TagView = Partial<RouteLocationNormalized>
 
 export const useTagsViewStore = defineStore("tags-view", () => {
-  const visitedViews = ref<ITagView[]>([])
+  const visitedViews = ref<TagView[]>([])
   const cachedViews = ref<string[]>([])
 
   //#region add
-  const addVisitedView = (view: ITagView) => {
+  const addVisitedView = (view: TagView) => {
     if (
       visitedViews.value.some((v, index) => {
         if (v.path === view.path) {
@@ -25,7 +25,7 @@ export const useTagsViewStore = defineStore("tags-view", () => {
     }
     visitedViews.value.push(Object.assign({}, view))
   }
-  const addCachedView = (view: ITagView) => {
+  const addCachedView = (view: TagView) => {
     if (typeof view.name !== "string") return
     if (cachedViews.value.includes(view.name)) return
     if (view.meta?.keepAlive) {
@@ -35,7 +35,7 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   //#endregion
 
   //#region del
-  const delVisitedView = (view: ITagView) => {
+  const delVisitedView = (view: TagView) => {
     for (const [i, v] of visitedViews.value.entries()) {
       if (v.path === view.path) {
         visitedViews.value.splice(i, 1)
@@ -43,7 +43,7 @@ export const useTagsViewStore = defineStore("tags-view", () => {
       }
     }
   }
-  const delCachedView = (view: ITagView) => {
+  const delCachedView = (view: TagView) => {
     if (typeof view.name !== "string") return
     const index = cachedViews.value.indexOf(view.name)
     index > -1 && cachedViews.value.splice(index, 1)
@@ -51,12 +51,12 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   //#endregion
 
   //#region delOthers
-  const delOthersVisitedViews = (view: ITagView) => {
+  const delOthersVisitedViews = (view: TagView) => {
     visitedViews.value = visitedViews.value.filter((v) => {
       return v.meta?.affix || v.path === view.path
     })
   }
-  const delOthersCachedViews = (view: ITagView) => {
+  const delOthersCachedViews = (view: TagView) => {
     if (typeof view.name !== "string") return
     const index = cachedViews.value.indexOf(view.name)
     if (index > -1) {

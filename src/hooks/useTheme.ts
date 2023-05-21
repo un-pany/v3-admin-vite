@@ -2,10 +2,10 @@ import { ref, watchEffect } from "vue"
 import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/localStorage"
 
 const DEFAULT_THEME_NAME = "normal"
-type DefaultThemeNameType = typeof DEFAULT_THEME_NAME
+type DefaultThemeName = typeof DEFAULT_THEME_NAME
 
-/** 注册的主题名称, 其中 DefaultThemeNameType 是必填的 */
-export type ThemeName = DefaultThemeNameType | "dark" | "dark-blue"
+/** 注册的主题名称, 其中 DefaultThemeName 是必填的 */
+export type ThemeName = DefaultThemeName | "dark" | "dark-blue"
 
 interface ThemeList {
   title: string

@@ -5,10 +5,10 @@ import { Bell } from "@element-plus/icons-vue"
 import NotifyList from "./NotifyList.vue"
 import { type ListItem, notifyData, messageData, todoData } from "./data"
 
-type TabNameType = "通知" | "消息" | "待办"
+type TabName = "通知" | "消息" | "待办"
 
 interface DataItem {
-  name: TabNameType
+  name: TabName
   type: "primary" | "success" | "warning" | "danger" | "info"
   list: ListItem[]
 }
@@ -26,7 +26,7 @@ const badgeMax = 99
 /** 面板宽度 */
 const popoverWidth = 350
 /** 当前 Tab */
-const activeName = ref<TabNameType>("通知")
+const activeName = ref<TabName>("通知")
 /** 所有数据 */
 const data = ref<DataItem[]>([
   // 通知数据

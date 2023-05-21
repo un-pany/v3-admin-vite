@@ -1,10 +1,10 @@
 import { ref, onMounted } from "vue"
 
-type OptionValueType = string | number
+type OptionValue = string | number
 
 /** Select 需要的数据格式 */
 interface SelectOption {
-  value: OptionValueType
+  value: OptionValue
   label: string
   disabled?: boolean
 }
@@ -26,7 +26,7 @@ export function useFetchSelect(props: FetchSelectProps) {
 
   const loading = ref<boolean>(false)
   const options = ref<SelectOption[]>([])
-  const value = ref<OptionValueType>("")
+  const value = ref<OptionValue>("")
 
   /** 调用接口获取数据 */
   const loadData = () => {
