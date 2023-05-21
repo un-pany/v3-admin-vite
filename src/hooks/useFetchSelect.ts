@@ -3,29 +3,29 @@ import { ref, onMounted } from "vue"
 type OptionValueType = string | number
 
 /** Select 需要的数据格式 */
-interface ISelectOption {
+interface SelectOption {
   value: OptionValueType
   label: string
   disabled?: boolean
 }
 
 /** 接口响应格式 */
-interface IApiData {
+interface ApiData {
   code: number
-  data: ISelectOption[]
+  data: SelectOption[]
   message: string
 }
 
 /** 入参格式，暂时只需要传递 api 函数即可 */
-interface IFetchSelectProps {
-  api: () => Promise<IApiData>
+interface FetchSelectProps {
+  api: () => Promise<ApiData>
 }
 
-export function useFetchSelect(props: IFetchSelectProps) {
+export function useFetchSelect(props: FetchSelectProps) {
   const { api } = props
 
   const loading = ref<boolean>(false)
-  const options = ref<ISelectOption[]>([])
+  const options = ref<SelectOption[]>([])
   const value = ref<OptionValueType>("")
 
   /** 调用接口获取数据 */

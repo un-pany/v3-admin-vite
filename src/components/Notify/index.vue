@@ -3,14 +3,14 @@ import { ref, computed } from "vue"
 import { ElMessage } from "element-plus"
 import { Bell } from "@element-plus/icons-vue"
 import NotifyList from "./NotifyList.vue"
-import { type IListItem, notifyData, messageData, todoData } from "./data"
+import { type ListItem, notifyData, messageData, todoData } from "./data"
 
 type TabNameType = "通知" | "消息" | "待办"
 
-interface IDataItem {
+interface DataItem {
   name: TabNameType
   type: "primary" | "success" | "warning" | "danger" | "info"
-  list: IListItem[]
+  list: ListItem[]
 }
 
 /** 角标当前值 */
@@ -28,7 +28,7 @@ const popoverWidth = 350
 /** 当前 Tab */
 const activeName = ref<TabNameType>("通知")
 /** 所有数据 */
-const data = ref<IDataItem[]>([
+const data = ref<DataItem[]>([
   // 通知数据
   {
     name: "通知",

@@ -1,4 +1,4 @@
-export interface ILoginRequestData {
+export interface LoginRequestData {
   /** admin 或 editor */
   username: "admin" | "editor"
   /** 密码 */
@@ -7,8 +7,8 @@ export interface ILoginRequestData {
   code: string
 }
 
-export type LoginCodeResponseData = IApiResponseData<string>
+export type LoginCodeResponseData = ApiResponseData<string>
 
-export type LoginResponseData = IApiResponseData<{ token: string }>
+export type LoginResponseData = ApiResponseData<{ token: string }>
 
-export type UserInfoResponseData = IApiResponseData<{ username: string; roles: string[] }>
+export type UserInfoResponseData = ApiResponseData<{ username: string; roles: string[] }>

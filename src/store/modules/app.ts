@@ -7,13 +7,13 @@ export enum DeviceType {
   Desktop
 }
 
-interface ISidebar {
+interface Sidebar {
   opened: boolean
   withoutAnimation: boolean
 }
 
 export const useAppStore = defineStore("app", () => {
-  const sidebar: ISidebar = reactive({
+  const sidebar: Sidebar = reactive({
     opened: getSidebarStatus() !== "closed",
     withoutAnimation: false
   })

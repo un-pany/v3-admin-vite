@@ -6,7 +6,7 @@ import { useTagsViewStore } from "./tags-view"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
-import { type ILoginRequestData } from "@/api/login/types/login"
+import { type LoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
 import asyncRouteSettings from "@/config/async-route"
 
@@ -23,7 +23,7 @@ export const useUserStore = defineStore("user", () => {
     roles.value = value
   }
   /** 登录 */
-  const login = (loginData: ILoginRequestData) => {
+  const login = (loginData: LoginRequestData) => {
     return new Promise((resolve, reject) => {
       loginApi({
         username: loginData.username,

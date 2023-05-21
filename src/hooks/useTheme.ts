@@ -7,13 +7,13 @@ type DefaultThemeNameType = typeof DEFAULT_THEME_NAME
 /** 注册的主题名称, 其中 DefaultThemeNameType 是必填的 */
 export type ThemeName = DefaultThemeNameType | "dark" | "dark-blue"
 
-interface IThemeList {
+interface ThemeList {
   title: string
   name: ThemeName
 }
 
 /** 主题列表 */
-const themeList: IThemeList[] = [
+const themeList: ThemeList[] = [
   {
     title: "默认",
     name: DEFAULT_THEME_NAME

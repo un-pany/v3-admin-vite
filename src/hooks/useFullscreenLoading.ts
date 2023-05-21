@@ -5,11 +5,11 @@ const defaultOptions = {
   text: "加载中..."
 }
 
-interface ILoadingInstance {
+interface LoadingInstance {
   close: () => void
 }
 
-interface IUseFullscreenLoading {
+interface UseFullscreenLoading {
   <T extends (...args: any[]) => ReturnType<T>>(fn: T, options?: LoadingOptions): (
     ...args: Parameters<T>
   ) => Promise<ReturnType<T>> | ReturnType<T>
@@ -25,8 +25,8 @@ interface IUseFullscreenLoading {
  * @param options LoadingOptions
  * @returns Function 一个新的函数，去执行它吧
  */
-export const useFullscreenLoading: IUseFullscreenLoading = (fn, options = {}) => {
-  let loadingInstance: ILoadingInstance
+export const useFullscreenLoading: UseFullscreenLoading = (fn, options = {}) => {
+  let loadingInstance: LoadingInstance
   const showLoading = (options: LoadingOptions) => {
     loadingInstance = ElLoading.service(options)
   }
