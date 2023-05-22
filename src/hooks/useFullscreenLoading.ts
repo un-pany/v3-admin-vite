@@ -26,8 +26,7 @@ export const useFullscreenLoading: UseFullscreenLoading = (fn, options = {}) => 
   return async (...args) => {
     try {
       loadingInstance = ElLoading.service({ ...defaultOptions, ...options })
-      const result = await fn(...args)
-      return result
+      return await fn(...args)
     } finally {
       loadingInstance?.close()
     }

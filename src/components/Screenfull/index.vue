@@ -25,12 +25,8 @@ const tips = ref<string>(props.openTips)
 const isFullscreen = ref<boolean>(false)
 
 const handleClick = () => {
-  if (!screenfull.isEnabled) {
-    ElMessage.warning("您的浏览器无法工作")
-    return
-  }
   const dom = document.querySelector(props.element) || undefined
-  screenfull.toggle(dom)
+  screenfull.isEnabled ? screenfull.toggle(dom) : ElMessage.warning("您的浏览器无法工作")
 }
 
 const handleChange = () => {
