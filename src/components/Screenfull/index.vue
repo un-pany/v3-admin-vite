@@ -39,9 +39,7 @@ watchEffect((onCleanup) => {
   screenfull.on("change", handleChange)
   // 卸载组件时自动执行
   onCleanup(() => {
-    if (screenfull.isEnabled) {
-      screenfull.off("change", handleChange)
-    }
+    screenfull.isEnabled && screenfull.off("change", handleChange)
   })
 })
 </script>
