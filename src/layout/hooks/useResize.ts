@@ -1,6 +1,7 @@
 import { watch, onBeforeMount, onMounted, onBeforeUnmount } from "vue"
 import { useRoute } from "vue-router"
-import { useAppStore, DeviceEnum } from "@/store/modules/app"
+import { useAppStore } from "@/store/modules/app"
+import { DeviceEnum } from "@/constants/app-key"
 
 /** 参考 Bootstrap 的响应式设计 WIDTH = 992 */
 const WIDTH = 992

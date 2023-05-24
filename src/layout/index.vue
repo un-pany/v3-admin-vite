@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { computed } from "vue"
-import { useAppStore, DeviceEnum } from "@/store/modules/app"
+import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { AppMain, NavigationBar, Settings, Sidebar, TagsView, RightPanel } from "./components"
 import useResize from "./hooks/useResize"
+import { DeviceEnum } from "@/constants/app-key"
 
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
