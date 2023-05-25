@@ -35,6 +35,7 @@ html.dark-blue {
   --el-mask-color: rgba(0, 0, 0, 0.5);
 }
 
+/** button */
 html.dark-blue .el-button {
   --el-button-disabled-text-color: rgba(255, 255, 255, 0.5);
 }
