@@ -41,34 +41,6 @@ $colors: map.deep-merge(
   $colors
 );
 
-// background
-$bg-color: () !default;
-$bg-color: map.merge(
-  (
-    "": #021633,
-    "overlay": #021633
-  ),
-  $bg-color
-);
-
-// 生成--el-color-${type}-light-i
-@each $type in (primary) {
-  @for $i from 1 through 9 {
-    @include set-color-mix-level($type, $i, "light", map.get($bg-color, ""));
-  }
-  // --el-color-${type}-dark-2
-  @include set-color-mix-level($type, 2, "dark", #000);
-}
-
-// button
-$button: () !default;
-$button: map.merge(
-  (
-    "disabled-text-color": rgba(255, 255, 255, 0.5)
-  ),
-  $button
-);
-
 // text
 $text-color-base: #fff;
 $text-color: () !default;
@@ -105,6 +77,25 @@ $fill-color: map.merge(
   $fill-color
 );
 
+// background
+$bg-color: () !default;
+$bg-color: map.merge(
+  (
+    "": #021633,
+    "overlay": #021633
+  ),
+  $bg-color
+);
+
+// 生成--el-color-${type}-light-i
+@each $type in (primary) {
+  @for $i from 1 through 9 {
+    @include set-color-mix-level($type, $i, "light", map.get($bg-color, ""));
+  }
+  // --el-color-${type}-dark-2
+  @include set-color-mix-level($type, 2, "dark", #000);
+}
+
 // mask
 $mask-color: () !default;
 $mask-color: map.merge(
@@ -112,6 +103,15 @@ $mask-color: map.merge(
     "": rgba(0, 0, 0, 0.5)
   ),
   $mask-color
+);
+
+// button
+$button: () !default;
+$button: map.merge(
+  (
+    "disabled-text-color": rgba(255, 255, 255, 0.5)
+  ),
+  $button
 );
 
 html.dark-blue {
