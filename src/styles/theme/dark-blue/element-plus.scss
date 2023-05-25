@@ -55,6 +55,15 @@ $text-color: map.merge(
   $text-color
 );
 
+// 生成 --el-color-${type}-light-i
+@each $type in (primary) {
+  @for $i from 1 through 9 {
+    @include set-color-mix-level($type, $i, "light", #021633);
+  }
+  // --el-color-${type}-dark-2
+  @include set-color-mix-level($type, 2, "dark", #000);
+}
+
 // border
 $border: () !default;
 $border: map.merge(
@@ -86,15 +95,6 @@ $bg-color: map.merge(
   ),
   $bg-color
 );
-
-// 生成--el-color-${type}-light-i
-@each $type in (primary) {
-  @for $i from 1 through 9 {
-    @include set-color-mix-level($type, $i, "light", map.get($bg-color, ""));
-  }
-  // --el-color-${type}-dark-2
-  @include set-color-mix-level($type, 2, "dark", #000);
-}
 
 // mask
 $mask-color: () !default;
