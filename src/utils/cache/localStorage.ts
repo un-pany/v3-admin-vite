@@ -1,6 +1,6 @@
 /** 统一处理 localStorage */
 
-import CacheKey from "@/constants/cacheKey"
+import CacheKey from "@/constants/cache-key"
 import { type SidebarOpened, type SidebarClosed } from "@/constants/app-key"
 import { type ThemeName } from "@/hooks/useTheme"
 
