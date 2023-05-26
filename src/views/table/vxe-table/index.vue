@@ -21,7 +21,7 @@ defineOptions({
 })
 
 //#region vxe-grid
-interface IRowMeta {
+interface RowMeta {
   id: string
   username: string
   roles: string
@@ -141,7 +141,7 @@ const xGridOpt: VxeGridProps = reactive({
         crudStore.clearTable()
         return new Promise<any>((resolve: Function) => {
           let total = 0
-          let result: IRowMeta[] = []
+          let result: RowMeta[] = []
           /** 加载数据 */
           const callback = (res: GetTableResponseData) => {
             if (res && res.data) {
@@ -269,7 +269,7 @@ const crudStore = reactive({
   /** 清空表格数据 */
   clearTable: () => xGridDom.value?.reloadData([]),
   /** 点击显示弹窗 */
-  onShowModal: (row?: IRowMeta) => {
+  onShowModal: (row?: RowMeta) => {
     if (row) {
       crudStore.isUpdate = true
       xModalOpt.title = "修改用户"
@@ -325,7 +325,7 @@ const crudStore = reactive({
     }
   },
   /** 删除 */
-  onDelete: (row: IRowMeta) => {
+  onDelete: (row: RowMeta) => {
     const tip = `确定 <strong style='color:red;'>删除</strong> 用户 <strong style='color:#409eff;'>${row.username}</strong> ？`
     const config: ElMessageBoxOptions = {
       type: "warning",
@@ -350,7 +350,7 @@ const crudStore = reactive({
   },
   /** 删除后是否返回上一页 */
   afterDelete: () => {
-    const tableData: IRowMeta[] = xGridDom.value!.getData()
+    const tableData: RowMeta[] = xGridDom.value!.getData()
     const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams = xGridDom.value?.getProxyInfo()?.pager
     if (pager && pager.currentPage > 1 && tableData.length === 1) {
       --pager.currentPage

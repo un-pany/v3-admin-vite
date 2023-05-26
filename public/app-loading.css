@@ -1,65 +1,45 @@
+/* 白屏阶段会执行的 CSS 加载动画 */
+
+#app-loading {
+  position: relative;
+  top: 45vh;
+  margin: 0 auto;
+  color: #409eff;
+  font-size: 12px;
+}
+
 #app-loading,
 #app-loading:before,
 #app-loading:after {
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: loadingAnimation 1.8s infinite ease-in-out;
-  animation: loadingAnimation 1.8s infinite ease-in-out;
-}
-
-#app-loading {
-  color: #409eff;
-  font-size: 10px;
-  margin: 80px auto;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-  top: 0;
-  transform: translate(-50%, 0);
+  animation: 2s ease-in-out infinite app-loading-animation;
 }
 
 #app-loading:before,
 #app-loading:after {
   content: "";
   position: absolute;
-  top: 0;
 }
 
 #app-loading:before {
-  left: -3.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
+  left: -4em;
+  animation-delay: -0.2s;
 }
 
 #app-loading:after {
-  left: 3.5em;
+  left: 4em;
+  animation-delay: 0.2s;
 }
 
-@-webkit-keyframes loadingAnimation {
+@keyframes app-loading-animation {
   0%,
   80%,
   100% {
-    box-shadow: 0 2.5em 0 -1.3em;
+    box-shadow: 0 2em 0 -2em;
   }
   40% {
-    box-shadow: 0 2.5em 0 0;
-  }
-}
-
-@keyframes loadingAnimation {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
+    box-shadow: 0 2em 0 0;
   }
 }

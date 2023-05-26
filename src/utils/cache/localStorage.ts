@@ -1,12 +1,13 @@
 /** 统一处理 localStorage */
 
-import CacheKey from "@/constants/cacheKey"
+import CacheKey from "@/constants/cache-key"
+import { type SidebarOpened, type SidebarClosed } from "@/constants/app-key"
 import { type ThemeName } from "@/hooks/useTheme"
 
 export const getSidebarStatus = () => {
   return localStorage.getItem(CacheKey.SIDEBAR_STATUS)
 }
-export const setSidebarStatus = (sidebarStatus: "opened" | "closed") => {
+export const setSidebarStatus = (sidebarStatus: SidebarOpened | SidebarClosed) => {
   localStorage.setItem(CacheKey.SIDEBAR_STATUS, sidebarStatus)
 }
 

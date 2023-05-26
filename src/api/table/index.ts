@@ -2,7 +2,7 @@ import { request } from "@/utils/service"
 import type * as Table from "./types/table"
 
 /** 增 */
-export function createTableDataApi(data: Table.ICreateTableRequestData) {
+export function createTableDataApi(data: Table.CreateTableRequestData) {
   return request({
     url: "table",
     method: "post",
@@ -19,7 +19,7 @@ export function deleteTableDataApi(id: string) {
 }
 
 /** 改 */
-export function updateTableDataApi(data: Table.IUpdateTableRequestData) {
+export function updateTableDataApi(data: Table.UpdateTableRequestData) {
   return request({
     url: "table",
     method: "put",
@@ -28,7 +28,7 @@ export function updateTableDataApi(data: Table.IUpdateTableRequestData) {
 }
 
 /** 查 */
-export function getTableDataApi(params: Table.IGetTableRequestData) {
+export function getTableDataApi(params: Table.GetTableRequestData) {
   return request<Table.GetTableResponseData>({
     url: "table",
     method: "get",

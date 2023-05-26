@@ -4,10 +4,10 @@ import { useUserStore } from "@/store/modules/user"
 import AdminDashboard from "./admin/index.vue"
 import EditorDashboard from "./editor/index.vue"
 
-type CurrentRoleType = "admin" | "editor"
+type CurrentRole = "admin" | "editor"
 
 const userStore = useUserStore()
-const currentRole = ref<CurrentRoleType>("admin")
+const currentRole = ref<CurrentRole>("admin")
 if (!userStore.roles.includes("admin")) {
   currentRole.value = "editor"
 }

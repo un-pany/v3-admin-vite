@@ -60,8 +60,8 @@
 ```bash
 # 配置
 1. 一键安装 .vscode 目录中推荐的插件
-3. node 版本 16+
-4. pnpm 版本 8.x
+2. node 版本 16+
+3. pnpm 版本 8.x
 
 # 克隆项目
 git clone https://github.com/un-pany/v3-admin-vite.git

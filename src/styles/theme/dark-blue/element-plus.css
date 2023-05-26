@@ -7,6 +7,12 @@
 html.dark-blue {
   /** color */
   --el-color-primary: #01efb7bb;
+  --el-color-primary-light-3: rgba(1, 147, 127, 0.8133333333);
+  --el-color-primary-light-5: rgba(2, 102, 99, 0.8666666667);
+  --el-color-primary-light-7: rgba(2, 65, 77, 0.92);
+  --el-color-primary-light-8: rgba(2, 49, 68, 0.9466666667);
+  --el-color-primary-light-9: rgba(2, 35, 59, 0.9733333333);
+  --el-color-primary-dark-2: rgba(1, 167, 128, 0.7866666667);
   --el-color-success: #01efb7bb;
   /** text-color */
   --el-text-color-primary: rgba(255, 255, 255, 0.8);
@@ -27,4 +33,9 @@ html.dark-blue {
   --el-bg-color-overlay: #021633;
   /** mask */
   --el-mask-color: rgba(0, 0, 0, 0.5);
+}
+
+/** button */
+html.dark-blue .el-button {
+  --el-button-disabled-text-color: rgba(255, 255, 255, 0.5);
 }

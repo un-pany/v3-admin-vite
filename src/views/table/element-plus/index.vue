@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from "vue"
 import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDataApi } from "@/api/table"
-import { type IGetTableData } from "@/api/table/types/table"
+import { type GetTableData } from "@/api/table/types/table"
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
@@ -59,7 +59,7 @@ const resetForm = () => {
 //#endregion
 
 //#region 删
-const handleDelete = (row: IGetTableData) => {
+const handleDelete = (row: GetTableData) => {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -75,7 +75,7 @@ const handleDelete = (row: IGetTableData) => {
 
 //#region 改
 const currentUpdateId = ref<undefined | string>(undefined)
-const handleUpdate = (row: IGetTableData) => {
+const handleUpdate = (row: GetTableData) => {
   currentUpdateId.value = row.id
   formData.username = row.username
   dialogVisible.value = true
@@ -83,7 +83,7 @@ const handleUpdate = (row: IGetTableData) => {
 //#endregion
 
 //#region 查
-const tableData = ref<IGetTableData[]>([])
+const tableData = ref<GetTableData[]>([])
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
   username: "",
