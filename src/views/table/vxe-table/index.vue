@@ -316,7 +316,7 @@ const crudStore = reactive({
   },
   /** 新增后是否跳入最后一页 */
   afterInsert: () => {
-    const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams = xGridDom.value?.getProxyInfo()?.pager
+    const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams | undefined = xGridDom.value?.getProxyInfo()?.pager
     if (pager) {
       const currTotal: number = pager.currentPage * pager.pageSize
       if (currTotal === pager.total) {
@@ -351,7 +351,7 @@ const crudStore = reactive({
   /** 删除后是否返回上一页 */
   afterDelete: () => {
     const tableData: RowMeta[] = xGridDom.value!.getData()
-    const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams = xGridDom.value?.getProxyInfo()?.pager
+    const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams | undefined = xGridDom.value?.getProxyInfo()?.pager
     if (pager && pager.currentPage > 1 && tableData.length === 1) {
       --pager.currentPage
     }

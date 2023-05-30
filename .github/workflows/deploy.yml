@@ -22,7 +22,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: "8.5.0"
+          version: "8.6.0"
 
       - name: Build
         run: pnpm install && pnpm build:prod
