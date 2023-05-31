@@ -6,7 +6,7 @@ import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import { type FormInstance, FormRules } from "element-plus"
 import { getLoginCodeApi } from "@/api/login"
-import { type ILoginRequestData } from "@/api/login/types/login"
+import { type LoginRequestData } from "@/api/login/types/login"
 
 const router = useRouter()
 const loginFormRef = ref<FormInstance | null>(null)
@@ -16,7 +16,7 @@ const loading = ref(false)
 /** 验证码图片 URL */
 const codeUrl = ref("")
 /** 登录表单数据 */
-const loginForm: ILoginRequestData = reactive({
+const loginForm: LoginRequestData = reactive({
   username: "admin",
   password: "12345678",
   code: ""

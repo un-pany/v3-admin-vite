@@ -2,18 +2,18 @@ import { ref, watchEffect } from "vue"
 import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/localStorage"
 
 const DEFAULT_THEME_NAME = "normal"
-type DefaultThemeNameType = typeof DEFAULT_THEME_NAME
+type DefaultThemeName = typeof DEFAULT_THEME_NAME
 
-/** 注册的主题名称, 其中 DefaultThemeNameType 是必填的 */
-export type ThemeName = DefaultThemeNameType | "dark" | "dark-blue"
+/** 注册的主题名称, 其中 DefaultThemeName 是必填的 */
+export type ThemeName = DefaultThemeName | "dark" | "dark-blue"
 
-interface IThemeList {
+interface ThemeList {
   title: string
   name: ThemeName
 }
 
 /** 主题列表 */
-const themeList: IThemeList[] = [
+const themeList: ThemeList[] = [
   {
     title: "默认",
     name: DEFAULT_THEME_NAME
@@ -31,19 +31,22 @@ const themeList: IThemeList[] = [
 /** 正在应用的主题名称 */
 const activeThemeName = ref<ThemeName>(getActiveThemeName() || DEFAULT_THEME_NAME)
 
+/** 设置主题 */
 const setTheme = (value: ThemeName) => {
   activeThemeName.value = value
 }
 
 /** 在 html 根元素上挂载 class */
-const setHtmlClassName = (value: ThemeName) => {
+const setHtmlRootClassName = (value: ThemeName) => {
   document.documentElement.className = value
 }
 
+/** 初始化 */
 const initTheme = () => {
+  // watchEffect 来收集副作用
   watchEffect(() => {
     const value = activeThemeName.value
-    setHtmlClassName(value)
+    setHtmlRootClassName(value)
     setActiveThemeName(value)
   })
 }

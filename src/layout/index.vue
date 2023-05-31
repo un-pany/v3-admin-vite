@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { computed } from "vue"
-import { useAppStore, DeviceType } from "@/store/modules/app"
+import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { AppMain, NavigationBar, Settings, Sidebar, TagsView, RightPanel } from "./components"
 import useResize from "./hooks/useResize"
+import { DeviceEnum } from "@/constants/app-key"
 
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
@@ -16,7 +17,7 @@ const classObj = computed(() => {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
-    mobile: appStore.device === DeviceType.Mobile,
+    mobile: appStore.device === DeviceEnum.Mobile,
     showGreyMode: showGreyMode.value,
     showColorWeakness: showColorWeakness.value
   }

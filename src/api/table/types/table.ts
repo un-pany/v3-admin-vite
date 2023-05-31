@@ -1,15 +1,15 @@
-export interface ICreateTableRequestData {
+export interface CreateTableRequestData {
   username: string
   password: string
 }
 
-export interface IUpdateTableRequestData {
+export interface UpdateTableRequestData {
   id: string
   username: string
   password?: string
 }
 
-export interface IGetTableRequestData {
+export interface GetTableRequestData {
   /** 当前页码 */
   currentPage: number
   /** 查询条数 */
@@ -20,7 +20,7 @@ export interface IGetTableRequestData {
   phone?: string
 }
 
-export interface IGetTableData {
+export interface GetTableData {
   createTime: string
   email: string
   id: string
@@ -30,7 +30,7 @@ export interface IGetTableData {
   username: string
 }
 
-export type GetTableResponseData = IApiResponseData<{
-  list: IGetTableData[]
+export type GetTableResponseData = ApiResponseData<{
+  list: GetTableData[]
   total: number
 }>
