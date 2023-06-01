@@ -2,14 +2,10 @@ import dayjs from "dayjs"
 
 /** 格式化时间 */
 export const formatDateTime = (time: string | number | Date) => {
-  if (!time) {
-    return "N/A"
-  }
-  const date = new Date(time)
-  return dayjs(date).format("YYYY-MM-DD HH:mm:ss")
+  return time ? dayjs(new Date(time)).format("YYYY-MM-DD HH:mm:ss") : "N/A"
 }
 
-/** 将全局 CSS 变量导入 JS 中使用 */
+/** 用 JS 获取全局 css 变量 */
 export const getCssVariableValue = (cssVariableName: string) => {
   let cssVariableValue = ""
   try {
@@ -19,4 +15,13 @@ export const getCssVariableValue = (cssVariableName: string) => {
     console.error(error)
   }
   return cssVariableValue
+}
+
+/** 用 JS 设置全局 CSS 变量 */
+export const setCssVariableValue = (cssVariableName: string, cssVariableValue: string) => {
+  try {
+    document.documentElement.style.setProperty(cssVariableName, cssVariableValue)
+  } catch (error) {
+    console.error(error)
+  }
 }
