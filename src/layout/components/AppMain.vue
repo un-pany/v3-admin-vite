@@ -13,7 +13,7 @@ const key = computed(() => {
 
 <template>
   <section class="app-main">
-    <div class="h-full overflow-auto app-main-scroll">
+    <div class="h-full overflow-auto">
       <router-view v-slot="{ Component }">
         <transition name="el-fade-in" mode="out-in">
           <keep-alive :include="tagsViewStore.cachedViews">
@@ -32,31 +32,6 @@ const key = computed(() => {
   position: relative;
   overflow: hidden;
   background-color: var(--v3-body-bg-color);
-}
-
-.app-main-scroll {
-  &::-webkit-scrollbar {
-    width: 8px;
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 16px;
-    background-color: #d6d7d9;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #c0c3c5;
-  }
-
-  &::-webkit-scrollbar-thumb:active {
-    background-color: #acafb2;
-  }
-
-  &::-webkit-scrollbar-button {
-    background: transparent;
-    height: 10px;
-  }
 }
 
 .fixed-header + .app-main {
