@@ -1,6 +1,6 @@
 import { reactive, ref, watch } from "vue"
 import { defineStore } from "pinia"
-import { getSidebarStatus, setSidebarStatus } from "@/utils/cache/localStorage"
+import { getSidebarStatus, setSidebarStatus } from "@/utils/cache/local-storage"
 import { DeviceEnum, SIDEBAR_OPENED, SIDEBAR_CLOSED } from "@/constants/app-key"
 
 interface Sidebar {

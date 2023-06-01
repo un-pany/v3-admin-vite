@@ -1,5 +1,5 @@
 import { ref, watchEffect } from "vue"
-import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/localStorage"
+import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/local-storage"
 
 const DEFAULT_THEME_NAME = "normal"
 type DefaultThemeName = typeof DEFAULT_THEME_NAME
