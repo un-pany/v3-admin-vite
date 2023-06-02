@@ -13,7 +13,7 @@ const key = computed(() => {
 
 <template>
   <section class="app-main">
-    <div class="h-full overflow-auto">
+    <div class="app-scrollbar">
       <router-view v-slot="{ Component }">
         <transition name="el-fade-in" mode="out-in">
           <keep-alive :include="tagsViewStore.cachedViews">
@@ -26,12 +26,20 @@ const key = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins.scss";
+
 .app-main {
   min-height: calc(100vh - var(--v3-navigationbar-height));
   width: 100%;
   position: relative;
   overflow: hidden;
   background-color: var(--v3-body-bg-color);
+}
+
+.app-scrollbar {
+  height: 100%;
+  overflow: auto;
+  @include scrollbar;
 }
 
 .fixed-header + .app-main {
