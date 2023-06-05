@@ -23,4 +23,7 @@
   &::-webkit-scrollbar-thumb:active {
     background-color: #90939999;
   }
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
 }
