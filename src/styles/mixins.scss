@@ -5,3 +5,25 @@
     clear: both;
   }
 }
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; // 也要兼容 height 样式
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    background-color: #d6d7d9;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #c0c3c5;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background-color: #acafb2;
+  }
+  &::-webkit-scrollbar-button {
+    background: transparent;
+    height: 10px;
+  }
+}
