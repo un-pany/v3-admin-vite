@@ -5,7 +5,7 @@ export const isArray = (arg: unknown) => {
 
 /** 判断是否为字符串 */
 export const isString = (str: unknown) => {
-  return typeof str === "string" || str instanceof String || false
+  return typeof str === "string" || str instanceof String
 }
 
 /** 判断是否为外链 */

@@ -20,9 +20,8 @@ function createService() {
       // apiData 是 api 返回的数据
       const apiData = response.data
       // 二进制数据则直接返回
-      if (response.request.responseType === "blob" || response.request.responseType === "arraybuffer") {
-        return apiData
-      }
+      const responseType = response.request?.responseType
+      if (responseType === "blob" || responseType === "arraybuffer") return apiData
       // 这个 code 是和后端约定的业务 code
       const code = apiData.code
       // 如果没有 code, 代表这不是项目后端开发的 api
