@@ -4,10 +4,10 @@ import { describe, expect, it } from "vitest"
  * @description 该文件所有示例均是为了向你演示 Vitest 最基本的用法
  * @link https://cn.vitest.dev/api
  * @api describe: 形成一个作用域
- * @api test/it: 定义了一组关于测试期望的方法。它接收测试名称和一个含有测试期望的函数
- * @api expect: 创建断言
- * @api toBe: 可用于断言基础对象是否相等，或者对象是否共享相同的引用
- * @api toEqual: 断言检查值是否等于接收值，或者是同样的结构，如果是对象类型（将会使用递归的方法进行比较）
+ * @api test/it: 定义了一组关于测试期望的方法，它接收测试名称和一个含有测试期望的函数
+ * @api expect: 用来创建断言
+ * @api toBe: 可以用于断言原始类型是否相等，或者对象是否共享相同的引用
+ * @api toEqual: 断言实际值是否等于接收到的值或具有相同的结构（如果是对象，则递归比较它们）
  */
 
 const author1 = {
