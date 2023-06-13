@@ -7,6 +7,7 @@ const route = useRoute()
 const tagsViewStore = useTagsViewStore()
 
 const key = computed(() => {
+  // 返回 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用
   return route.path
 })
 </script>
