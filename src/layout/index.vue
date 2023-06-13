@@ -12,14 +12,15 @@ const settingsStore = useSettingsStore()
 /** Layout 布局响应式 */
 useResize()
 
-const classObj = computed(() => {
+/** 定义计算属性 layoutClasses，用于控制布局的类名 */
+const layoutClasses = computed(() => {
   return {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
     mobile: appStore.device === DeviceEnum.Mobile,
-    showGreyMode: showGreyMode.value,
-    showColorWeakness: showColorWeakness.value
+    showGreyMode: settingsStore.showGreyMode,
+    showColorWeakness: settingsStore.showColorWeakness
   }
 })
 
@@ -32,27 +33,29 @@ const showTagsView = computed(() => {
 const fixedHeader = computed(() => {
   return settingsStore.fixedHeader
 })
-const showGreyMode = computed(() => {
-  return settingsStore.showGreyMode
-})
-const showColorWeakness = computed(() => {
-  return settingsStore.showColorWeakness
-})
+
+/** 用于处理点击 mobile 端侧边栏遮罩层的事件 */
 const handleClickOutside = () => {
   appStore.closeSidebar(false)
 }
 </script>
 
 <template>
-  <div :class="classObj" class="app-wrapper">
-    <div v-if="classObj.mobile && classObj.openSidebar" class="drawer-bg" @click="handleClickOutside" />
+  <div :class="layoutClasses" class="app-wrapper">
+    <!-- mobile 端侧边栏遮罩层 -->
+    <div v-if="layoutClasses.mobile && layoutClasses.openSidebar" class="drawer-bg" @click="handleClickOutside" />
+    <!-- 左侧边栏 -->
     <Sidebar class="sidebar-container" />
+    <!-- 主容器 -->
     <div :class="{ hasTagsView: showTagsView }" class="main-container">
+      <!-- 头部导航栏和标签栏 -->
       <div :class="{ 'fixed-header': fixedHeader }">
         <NavigationBar />
         <TagsView v-show="showTagsView" />
       </div>
+      <!-- 页面主体内容 -->
       <AppMain />
+      <!-- 右侧设置面板 -->
       <RightPanel v-if="showSettings">
         <Settings />
       </RightPanel>
@@ -62,6 +65,7 @@ const handleClickOutside = () => {
 
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
+$transition-time: 0.35s;
 
 .app-wrapper {
   @include clearfix;
@@ -89,13 +93,13 @@ const handleClickOutside = () => {
 
 .main-container {
   min-height: 100%;
-  transition: margin-left 0.28s;
+  transition: margin-left $transition-time;
   margin-left: var(--v3-sidebar-width);
   position: relative;
 }
 
 .sidebar-container {
-  transition: width 0.28s;
+  transition: width $transition-time;
   width: var(--v3-sidebar-width) !important;
   height: 100%;
   position: fixed;
@@ -113,7 +117,7 @@ const handleClickOutside = () => {
   right: 0;
   z-index: 9;
   width: calc(100% - var(--v3-sidebar-width));
-  transition: width 0.28s;
+  transition: width $transition-time;
 }
 
 .hideSidebar {
@@ -128,13 +132,13 @@ const handleClickOutside = () => {
   }
 }
 
-// for mobile response 适配移动端
+// 适配 mobile 端
 .mobile {
   .main-container {
     margin-left: 0px;
   }
   .sidebar-container {
-    transition: transform 0.28s;
+    transition: transform $transition-time;
     width: var(--v3-sidebar-width) !important;
   }
   &.openSidebar {
