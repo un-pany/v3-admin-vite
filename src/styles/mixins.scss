@@ -1,3 +1,4 @@
+/** 清除浮动 */
 @mixin clearfix {
   &:after {
     content: "";
@@ -6,6 +7,7 @@
   }
 }
 
+/** 美化原生滚动条 */
 @mixin scrollbar {
   // 整个滚动条
   &::-webkit-scrollbar {
@@ -23,7 +25,18 @@
   &::-webkit-scrollbar-thumb:active {
     background-color: #90939999;
   }
+  // 当同时有垂直滚动条和水平滚动条时交汇的部分
   &::-webkit-scrollbar-corner {
     background-color: transparent;
   }
+}
+
+/** 文本溢出时显示省略号 */
+@mixin ellipsis {
+  // 隐藏溢出的文本
+  overflow: hidden;
+  // 防止文本换行
+  white-space: nowrap;
+  // 文本内容溢出容器时，文本末尾显示省略号
+  text-overflow: ellipsis;
 }
