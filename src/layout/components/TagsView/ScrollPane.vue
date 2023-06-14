@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { type PropType, computed, ref, watch, nextTick } from "vue"
+import { type PropType, ref, watch, nextTick } from "vue"
 import { RouterLink, useRoute } from "vue-router"
 import { ElScrollbar } from "element-plus"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
@@ -16,7 +16,9 @@ const props = defineProps({
 const route = useRoute()
 const settingsStore = useSettingsStore()
 
+/** 滚动条组件元素的引用 */
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+/** 滚动条内容元素的引用 */
 const scrollbarContentRef = ref<HTMLDivElement>()
 
 /** 当前滚动条距离左边的距离 */
@@ -92,6 +94,7 @@ const moveTo = () => {
   }
 }
 
+/** 监听路由变化，移动到目标位置 */
 watch(
   route,
   () => {
@@ -101,10 +104,6 @@ watch(
     deep: true
   }
 )
-
-const showScreenfull = computed(() => {
-  return settingsStore.showScreenfull
-})
 </script>
 
 <template>
@@ -120,7 +119,7 @@ const showScreenfull = computed(() => {
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>
-    <Screenfull v-if="showScreenfull" element=".app-main" open-tips="内容区全屏" class="screenfull" />
+    <Screenfull v-if="settingsStore.showScreenfull" element=".app-main" open-tips="内容区全屏" class="screenfull" />
   </div>
 </template>
 
@@ -143,7 +142,7 @@ const showScreenfull = computed(() => {
   }
   .el-scrollbar {
     flex: 1;
-    // 横向超出窗口长度时，显示滚动条
+    // 防止换行（超出宽度时，显示滚动条）
     white-space: nowrap;
     .scrollbar-content {
       display: inline-block;
