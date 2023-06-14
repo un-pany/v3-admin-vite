@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from "vue"
 import { useRouter } from "vue-router"
+import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { useUserStore } from "@/store/modules/user"
@@ -16,22 +16,14 @@ const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const userStore = useUserStore()
 
-const sidebar = computed(() => {
-  return appStore.sidebar
-})
-const showNotify = computed(() => {
-  return settingsStore.showNotify
-})
-const showThemeSwitch = computed(() => {
-  return settingsStore.showThemeSwitch
-})
-const showScreenfull = computed(() => {
-  return settingsStore.showScreenfull
-})
+const { sidebar } = storeToRefs(appStore)
+const { showNotify, showThemeSwitch, showScreenfull } = storeToRefs(settingsStore)
 
+/** 切换侧边栏 */
 const toggleSidebar = () => {
   appStore.toggleSidebar(false)
 }
+/** 登出 */
 const logout = () => {
   userStore.logout()
   router.push("/login")
@@ -87,7 +79,7 @@ const logout = () => {
   }
   .breadcrumb {
     float: left;
-    // 参考 Bootstrap 的响应式设计 WIDTH = 576
+    // 参考 Bootstrap 的响应式设计将宽度设置为 576
     @media screen and (max-width: 576px) {
       display: none;
     }
