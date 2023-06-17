@@ -2,8 +2,5 @@
 
 .app-main {
   background-color: $theme-bg-color !important;
-  // 指令权限页面 @/views/permission/directive.vue
-  .permission-alert {
-    background-color: lighten($theme-bg-color, 8%);
-  }
+  // 写在这里...
 }
