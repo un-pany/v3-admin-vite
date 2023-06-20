@@ -11,12 +11,11 @@ import {
   type VxeModalInstance,
   type VxeModalProps,
   type VxeFormInstance,
-  type VxeFormProps,
-  type VxeGridPropTypes,
-  type VxeFormDefines
+  type VxeFormProps
 } from "vxe-table"
 
 defineOptions({
+  // 命名当前组件
   name: "VxeTable"
 })
 
@@ -136,26 +135,22 @@ const xGridOpt: VxeGridProps = reactive({
       total: "total"
     },
     ajax: {
-      query: ({ page, form }: VxeGridPropTypes.ProxyAjaxQueryParams) => {
+      query: ({ page, form }) => {
         xGridOpt.loading = true
         crudStore.clearTable()
-        return new Promise<any>((resolve: Function) => {
+        return new Promise((resolve) => {
           let total = 0
           let result: RowMeta[] = []
           /** 加载数据 */
           const callback = (res: GetTableResponseData) => {
-            if (res && res.data) {
-              const resData = res.data
+            if (res?.data) {
               // 总数
-              if (Number.isInteger(resData.total)) {
-                total = resData.total
-              }
-              // 分页数据
-              if (Array.isArray(resData.list)) {
-                result = resData.list
-              }
+              total = res.data.total
+              // 列表数据
+              result = res.data.list
             }
             xGridOpt.loading = false
+            // 返回值有格式要求，详情见 vxe-table 官方文档
             resolve({ total, result })
           }
 
@@ -191,7 +186,7 @@ const xModalOpt: VxeModalProps = reactive({
 
 //#region vxe-form
 const xFormDom = ref<VxeFormInstance>()
-const xFormOpt = reactive<VxeFormProps>({
+const xFormOpt: VxeFormProps = reactive({
   span: 24,
   titleWidth: "100px",
   loading: false,
@@ -234,11 +229,11 @@ const xFormOpt = reactive<VxeFormProps>({
       {
         required: true,
         validator: ({ itemValue }) => {
-          if (!itemValue) {
-            return new Error("请输入")
-          }
-          if (!itemValue.trim()) {
-            return new Error("空格无效")
+          switch (true) {
+            case !itemValue:
+              return new Error("请输入")
+            case !itemValue.trim():
+              return new Error("空格无效")
           }
         }
       }
@@ -247,11 +242,11 @@ const xFormOpt = reactive<VxeFormProps>({
       {
         required: true,
         validator: ({ itemValue }) => {
-          if (!itemValue) {
-            return new Error("请输入")
-          }
-          if (!itemValue.trim()) {
-            return new Error("空格无效")
+          switch (true) {
+            case !itemValue:
+              return new Error("请输入")
+            case !itemValue.trim():
+              return new Error("空格无效")
           }
         }
       }
@@ -260,9 +255,9 @@ const xFormOpt = reactive<VxeFormProps>({
 })
 //#endregion
 
-//#region CRUD
+//#region 增删改查
 const crudStore = reactive({
-  /** 表单类型：修改：true 新增：false */
+  /** 表单类型，true 表示修改，false 表示新增 */
   isUpdate: true,
   /** 加载表格数据 */
   commitQuery: () => xGridDom.value?.commitProxy("query"),
@@ -280,11 +275,8 @@ const crudStore = reactive({
       xModalOpt.title = "新增用户"
     }
     // 禁用表单项
-    if (xFormOpt.items) {
-      if (xFormOpt.items[0]?.itemRender?.props) {
-        xFormOpt.items[0].itemRender.props.disabled = crudStore.isUpdate
-      }
-    }
+    const props = xFormOpt.items?.[0]?.itemRender?.props
+    props && (props.disabled = crudStore.isUpdate)
     xModalDom.value?.open()
     nextTick(() => {
       !crudStore.isUpdate && xFormDom.value?.reset()
@@ -294,39 +286,38 @@ const crudStore = reactive({
   /** 确定并保存 */
   onSubmitForm: () => {
     if (xFormOpt.loading) return
-    xFormDom.value?.validate((errMap?: VxeFormDefines.ValidateErrorMapParams) => {
+    xFormDom.value?.validate((errMap) => {
       if (errMap) return
       xFormOpt.loading = true
-      const callback = (err?: any) => {
+      const callback = () => {
         xFormOpt.loading = false
-        if (err) return
         xModalDom.value?.close()
         ElMessage.success("操作成功")
         !crudStore.isUpdate && crudStore.afterInsert()
         crudStore.commitQuery()
       }
       if (crudStore.isUpdate) {
-        // 调用修改接口
+        // 模拟调用修改接口成功
         setTimeout(() => callback(), 1000)
       } else {
-        // 调用新增接口
+        // 模拟调用新增接口成功
         setTimeout(() => callback(), 1000)
       }
     })
   },
   /** 新增后是否跳入最后一页 */
   afterInsert: () => {
-    const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams | undefined = xGridDom.value?.getProxyInfo()?.pager
+    const pager = xGridDom.value?.getProxyInfo()?.pager
     if (pager) {
-      const currTotal: number = pager.currentPage * pager.pageSize
-      if (currTotal === pager.total) {
+      const currentTotal = pager.currentPage * pager.pageSize
+      if (currentTotal === pager.total) {
         ++pager.currentPage
       }
     }
   },
   /** 删除 */
   onDelete: (row: RowMeta) => {
-    const tip = `确定 <strong style='color:red;'>删除</strong> 用户 <strong style='color:#409eff;'>${row.username}</strong> ？`
+    const tip = `确定 <strong style="color: red"> 删除 </strong> 用户 <strong style="color: #409eff"> ${row.username} </strong> ？`
     const config: ElMessageBoxOptions = {
       type: "warning",
       showClose: true,
@@ -336,28 +327,24 @@ const crudStore = reactive({
       confirmButtonText: "确定",
       dangerouslyUseHTMLString: true
     }
-    ElMessageBox.confirm(tip, "提示", config)
-      .then(() => {
-        deleteTableDataApi(row.id)
-          .then(() => {
-            ElMessage.success("删除成功")
-            crudStore.afterDelete()
-            crudStore.commitQuery()
-          })
-          .catch(() => 1)
+    ElMessageBox.confirm(tip, "提示", config).then(() => {
+      deleteTableDataApi(row.id).then(() => {
+        ElMessage.success("删除成功")
+        crudStore.afterDelete()
+        crudStore.commitQuery()
       })
-      .catch(() => 1)
+    })
   },
   /** 删除后是否返回上一页 */
   afterDelete: () => {
     const tableData: RowMeta[] = xGridDom.value!.getData()
-    const pager: VxeGridPropTypes.ProxyAjaxQueryPageParams | undefined = xGridDom.value?.getProxyInfo()?.pager
+    const pager = xGridDom.value?.getProxyInfo()?.pager
     if (pager && pager.currentPage > 1 && tableData.length === 1) {
       --pager.currentPage
     }
   },
   /** 更多自定义方法 */
-  moreFunc: () => {}
+  moreFn: () => {}
 })
 //#endregion
 </script>
@@ -384,5 +371,3 @@ const crudStore = reactive({
     </vxe-modal>
   </div>
 </template>
-
-<style lang="scss" scoped></style>
