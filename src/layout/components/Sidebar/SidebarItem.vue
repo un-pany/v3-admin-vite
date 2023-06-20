@@ -1,27 +1,21 @@
 <script lang="ts" setup>
-import { type PropType, computed } from "vue"
+import { computed } from "vue"
 import { type RouteRecordRaw } from "vue-router"
 import SidebarItemLink from "./SidebarItemLink.vue"
 import { isExternal } from "@/utils/validate"
 import path from "path-browserify"
 
-const props = defineProps({
-  item: {
-    type: Object as PropType<RouteRecordRaw>,
-    required: true
-  },
-  isCollapse: {
-    type: Boolean,
-    default: false
-  },
-  isFirstLevel: {
-    type: Boolean,
-    default: true
-  },
-  basePath: {
-    type: String,
-    default: ""
-  }
+interface Props {
+  item: RouteRecordRaw
+  isCollapse?: boolean
+  isFirstLevel?: boolean
+  basePath?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isCollapse: false,
+  isFirstLevel: true,
+  basePath: ""
 })
 
 /** 是否始终显示根菜单 */
