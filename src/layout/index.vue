@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed } from "vue"
+import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { AppMain, NavigationBar, Settings, Sidebar, TagsView, RightPanel } from "./components"
@@ -8,6 +9,8 @@ import { DeviceEnum } from "@/constants/app-key"
 
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
+
+const { showGreyMode, showColorWeakness, showSettings, showTagsView, fixedHeader } = storeToRefs(settingsStore)
 
 /** Layout 布局响应式 */
 useResize()
@@ -19,19 +22,9 @@ const layoutClasses = computed(() => {
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
     mobile: appStore.device === DeviceEnum.Mobile,
-    showGreyMode: settingsStore.showGreyMode,
-    showColorWeakness: settingsStore.showColorWeakness
+    showGreyMode: showGreyMode.value,
+    showColorWeakness: showColorWeakness.value
   }
-})
-
-const showSettings = computed(() => {
-  return settingsStore.showSettings
-})
-const showTagsView = computed(() => {
-  return settingsStore.showTagsView
-})
-const fixedHeader = computed(() => {
-  return settingsStore.fixedHeader
 })
 
 /** 用于处理点击 mobile 端侧边栏遮罩层的事件 */
