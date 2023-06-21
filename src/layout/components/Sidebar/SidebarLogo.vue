@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-const props = defineProps({
-  collapse: {
-    type: Boolean,
-    default: true
-  }
+interface Props {
+  collapse?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  collapse: true
 })
 </script>
 

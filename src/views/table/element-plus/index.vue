@@ -7,6 +7,7 @@ import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@el
 import { usePagination } from "@/hooks/usePagination"
 
 defineOptions({
+  // 命名当前组件
   name: "ElementPlus"
 })
 
@@ -25,29 +26,32 @@ const formRules: FormRules = reactive({
   password: [{ required: true, trigger: "blur", message: "请输入密码" }]
 })
 const handleCreate = () => {
-  formRef.value?.validate((valid: boolean) => {
+  formRef.value?.validate((valid: boolean, fields) => {
     if (valid) {
       if (currentUpdateId.value === undefined) {
-        createTableDataApi({
-          username: formData.username,
-          password: formData.password
-        }).then(() => {
-          ElMessage.success("新增成功")
-          dialogVisible.value = false
-          getTableData()
-        })
+        createTableDataApi(formData)
+          .then(() => {
+            ElMessage.success("新增成功")
+            getTableData()
+          })
+          .finally(() => {
+            dialogVisible.value = false
+          })
       } else {
         updateTableDataApi({
           id: currentUpdateId.value,
           username: formData.username
-        }).then(() => {
-          ElMessage.success("修改成功")
-          dialogVisible.value = false
-          getTableData()
         })
+          .then(() => {
+            ElMessage.success("修改成功")
+            getTableData()
+          })
+          .finally(() => {
+            dialogVisible.value = false
+          })
       }
     } else {
-      return false
+      console.error("表单校验不通过", fields)
     }
   })
 }
@@ -109,20 +113,11 @@ const getTableData = () => {
     })
 }
 const handleSearch = () => {
-  if (paginationData.currentPage === 1) {
-    getTableData()
-  }
-  paginationData.currentPage = 1
+  paginationData.currentPage === 1 ? getTableData() : (paginationData.currentPage = 1)
 }
 const resetSearch = () => {
   searchFormRef.value?.resetFields()
-  if (paginationData.currentPage === 1) {
-    getTableData()
-  }
-  paginationData.currentPage = 1
-}
-const handleRefresh = () => {
-  getTableData()
+  handleSearch()
 }
 //#endregion
 
@@ -156,8 +151,8 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-tooltip content="下载">
             <el-button type="primary" :icon="Download" circle />
           </el-tooltip>
-          <el-tooltip content="刷新表格">
-            <el-button type="primary" :icon="RefreshRight" circle @click="handleRefresh" />
+          <el-tooltip content="刷新当前页">
+            <el-button type="primary" :icon="RefreshRight" circle @click="getTableData" />
           </el-tooltip>
         </div>
       </div>

@@ -23,43 +23,17 @@ export const useUserStore = defineStore("user", () => {
     roles.value = value
   }
   /** 登录 */
-  const login = (loginData: LoginRequestData) => {
-    return new Promise((resolve, reject) => {
-      loginApi({
-        username: loginData.username,
-        password: loginData.password,
-        code: loginData.code
-      })
-        .then((res) => {
-          setToken(res.data.token)
-          token.value = res.data.token
-          resolve(true)
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
+  const login = async ({ username, password, code }: LoginRequestData) => {
+    const { data } = await loginApi({ username, password, code })
+    setToken(data.token)
+    token.value = data.token
   }
   /** 获取用户详情 */
-  const getInfo = () => {
-    return new Promise((resolve, reject) => {
-      getUserInfoApi()
-        .then((res) => {
-          const data = res.data
-          username.value = data.username
-          // 验证返回的 roles 是否是一个非空数组
-          if (data.roles && data.roles.length > 0) {
-            roles.value = data.roles
-          } else {
-            // 塞入一个没有任何作用的默认角色，不然路由守卫逻辑会无限循环
-            roles.value = asyncRouteSettings.defaultRoles
-          }
-          resolve(res)
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
+  const getInfo = async () => {
+    const { data } = await getUserInfoApi()
+    username.value = data.username
+    // 验证返回的 roles 是否为一个非空数组，否则塞入一个没有任何作用的默认角色，防止路由守卫逻辑进入无限循环
+    roles.value = data.roles?.length > 0 ? data.roles : asyncRouteSettings.defaultRoles
   }
   /** 切换角色 */
   const changeRoles = async (role: string) => {
@@ -88,7 +62,7 @@ export const useUserStore = defineStore("user", () => {
     token.value = ""
     roles.value = []
   }
-  /** 重置 visited views 和 cached views */
+  /** 重置 Visited Views 和 Cached Views */
   const _resetTagsView = () => {
     tagsViewStore.delAllVisitedViews()
     tagsViewStore.delAllCachedViews()

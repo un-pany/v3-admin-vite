@@ -78,23 +78,6 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       }),
       /** UnoCSS */
       UnoCSS()
-      /** 自动按需引入 (已更改为完整引入，所以注释了) */
-      // AutoImport({
-      //   dts: "./types/auto-imports.d.ts",
-      //   /** 自动按需导入 Element Plus 相关函数，比如 ElMessage */
-      //   resolvers: [ElementPlusResolver()],
-      //   /** 根据自动按需导入的相关 API，生成 .eslintrc-auto-import.json 文件供 Eslint 识别 */
-      //   eslintrc: {
-      //     enabled: true, // 默认 false
-      //     filepath: "./types/.eslintrc-auto-import.json", // 默认 "./.eslintrc-auto-import.json"
-      //     globalsPropValue: true // 默认 true (true | false | "readonly" | "readable" | "writable" | "writeable")
-      //   }
-      // }),
-      // Components({
-      //   dts: "./types/components.d.ts",
-      //   /** 自动按需导入 Element Plus 组件 */
-      //   resolvers: [ElementPlusResolver()]
-      // })
     ],
     /** Vitest 单元测试配置：https://cn.vitest.dev/config */
     test: {

@@ -1,67 +1,59 @@
 <script lang="ts" setup>
-import { type PropType, computed } from "vue"
+import { computed } from "vue"
 import { type RouteRecordRaw } from "vue-router"
 import SidebarItemLink from "./SidebarItemLink.vue"
 import { isExternal } from "@/utils/validate"
 import path from "path-browserify"
 
-const props = defineProps({
-  item: {
-    type: Object as PropType<RouteRecordRaw>,
-    required: true
-  },
-  isCollapse: {
-    type: Boolean,
-    default: false
-  },
-  isFirstLevel: {
-    type: Boolean,
-    default: true
-  },
-  basePath: {
-    type: String,
-    default: ""
-  }
+interface Props {
+  item: RouteRecordRaw
+  isCollapse?: boolean
+  isFirstLevel?: boolean
+  basePath?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isCollapse: false,
+  isFirstLevel: true,
+  basePath: ""
 })
 
-const alwaysShowRootMenu = computed(() => {
-  return props.item.meta && props.item.meta.alwaysShow
+/** 是否始终显示根菜单 */
+const alwaysShowRootMenu = computed(() => props.item.meta?.alwaysShow)
+
+/** 显示的子菜单 */
+const showingChildren = computed(() => {
+  return props.item.children?.filter((child) => !child.meta?.hidden) ?? []
 })
 
+/** 显示的子菜单数量 */
 const showingChildNumber = computed(() => {
-  if (props.item.children) {
-    const showingChildren = props.item.children.filter((item) => {
-      return !(item.meta && item.meta.hidden)
-    })
-    return showingChildren.length
-  }
-  return 0
+  return showingChildren.value.length
 })
 
+/** 唯一的子菜单项 */
 const theOnlyOneChild = computed(() => {
-  if (showingChildNumber.value > 1) {
-    return null
+  const number = showingChildNumber.value
+  switch (true) {
+    case number > 1:
+      return null
+    case number === 1:
+      return showingChildren.value[0]
+    default:
+      return { ...props.item, path: "" }
   }
-  if (props.item.children) {
-    for (const child of props.item.children) {
-      if (!child.meta || !child.meta.hidden) {
-        return child
-      }
-    }
-  }
-  // If there is no children, return itself with path removed,
-  // because this.basePath already contains item's path information
-  return { ...props.item, path: "" }
 })
 
+/** 解析路径 */
 const resolvePath = (routePath: string) => {
-  if (isExternal(routePath)) {
-    return routePath
+  switch (true) {
+    case isExternal(routePath):
+      return routePath
+    case isExternal(props.basePath):
+      return props.basePath
+    default:
+      return path.resolve(props.basePath, routePath)
   }
-  if (isExternal(props.basePath)) {
-    return props.basePath
-  }
-  return path.resolve(props.basePath, routePath)
 }
 </script>
 
@@ -70,7 +62,7 @@ const resolvePath = (routePath: string) => {
     <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
       <SidebarItemLink v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
         <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
-          <svg-icon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
+          <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
           <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
           <template v-if="theOnlyOneChild.meta.title" #title>
             {{ theOnlyOneChild.meta.title }}
@@ -80,9 +72,9 @@ const resolvePath = (routePath: string) => {
     </template>
     <el-sub-menu v-else :index="resolvePath(props.item.path)" teleported>
       <template #title>
-        <svg-icon v-if="props.item.meta && props.item.meta.svgIcon" :name="props.item.meta.svgIcon" />
-        <component v-else-if="props.item.meta && props.item.meta.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
-        <span v-if="props.item.meta && props.item.meta.title">{{ props.item.meta.title }}</span>
+        <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" />
+        <component v-else-if="props.item.meta?.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
+        <span v-if="props.item.meta?.title">{{ props.item.meta.title }}</span>
       </template>
       <template v-if="props.item.children">
         <sidebar-item

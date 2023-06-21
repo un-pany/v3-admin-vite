@@ -6,20 +6,21 @@ import { compile } from "path-to-regexp"
 const route = useRoute()
 const router = useRouter()
 
+/** 定义响应式数据 breadcrumbs，用于存储面包屑导航信息 */
 const breadcrumbs = ref<RouteLocationMatched[]>([])
 
+/** 获取面包屑导航信息 */
 const getBreadcrumb = () => {
-  breadcrumbs.value = route.matched.filter((item) => {
-    return item.meta && item.meta.title && item.meta.breadcrumb !== false
-  })
+  breadcrumbs.value = route.matched.filter((item) => item.meta?.title && item.meta?.breadcrumb !== false)
 }
 
+/** 编译路由路径 */
 const pathCompile = (path: string) => {
-  const { params } = route
   const toPath = compile(path)
-  return toPath(params)
+  return toPath(route.params)
 }
 
+/** 处理面包屑导航点击事件 */
 const handleLink = (item: RouteLocationMatched) => {
   const { redirect, path } = item
   if (redirect) {
@@ -29,16 +30,16 @@ const handleLink = (item: RouteLocationMatched) => {
   router.push(pathCompile(path))
 }
 
+/** 监听路由变化，更新面包屑导航信息 */
 watch(
   () => route.path,
   (path) => {
-    if (path.startsWith("/redirect/")) {
-      return
-    }
+    if (path.startsWith("/redirect/")) return
     getBreadcrumb()
   }
 )
 
+/** 初始化面包屑导航信息 */
 getBreadcrumb()
 </script>
 

@@ -1,18 +1,12 @@
 <script lang="ts" setup>
-import { ref } from "vue"
 import { useUserStore } from "@/store/modules/user"
-import AdminDashboard from "./admin/index.vue"
-import EditorDashboard from "./editor/index.vue"
-
-type CurrentRole = "admin" | "editor"
+import Admin from "./components/Admin.vue"
+import Editor from "./components/Editor.vue"
 
 const userStore = useUserStore()
-const currentRole = ref<CurrentRole>("admin")
-if (!userStore.roles.includes("admin")) {
-  currentRole.value = "editor"
-}
+const isAdmin = userStore.roles.includes("admin")
 </script>
 
 <template>
-  <component :is="currentRole === 'admin' ? AdminDashboard : EditorDashboard" />
+  <component :is="isAdmin ? Admin : Editor" />
 </template>

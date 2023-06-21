@@ -30,7 +30,7 @@ html.dark-blue {
   --el-fill-color-blank: #031e47;
   /** bg-color */
   --el-bg-color: #021633;
-  --el-bg-color-overlay: #021633;
+  --el-bg-color-overlay: #031e47;
   /** mask */
   --el-mask-color: rgba(0, 0, 0, 0.5);
 }

@@ -3,22 +3,19 @@ import { ref, watchEffect } from "vue"
 import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
 
-const props = defineProps({
+interface Props {
+  element?: string
+  openTips?: string
+  exitTips?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
   /** 全屏的元素，默认是 html */
-  element: {
-    type: String,
-    default: "html"
-  },
+  element: "html",
   /** 打开全屏提示语 */
-  openTips: {
-    type: String,
-    default: "全屏"
-  },
+  openTips: "全屏",
   /** 关闭全屏提示语 */
-  exitTips: {
-    type: String,
-    default: "退出全屏"
-  }
+  exitTips: "退出全屏"
 })
 
 const tips = ref<string>(props.openTips)
@@ -47,7 +44,7 @@ watchEffect((onCleanup) => {
 <template>
   <div @click="handleClick">
     <el-tooltip effect="dark" :content="tips" placement="bottom">
-      <svg-icon :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
+      <SvgIcon :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
     </el-tooltip>
   </div>
 </template>

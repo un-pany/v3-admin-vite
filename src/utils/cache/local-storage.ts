@@ -12,7 +12,7 @@ export const setSidebarStatus = (sidebarStatus: SidebarOpened | SidebarClosed) =
 }
 
 export const getActiveThemeName = () => {
-  return localStorage.getItem(CacheKey.ACTIVE_THEME_NAME) as ThemeName
+  return localStorage.getItem(CacheKey.ACTIVE_THEME_NAME) as ThemeName | null
 }
 export const setActiveThemeName = (themeName: ThemeName) => {
   localStorage.setItem(CacheKey.ACTIVE_THEME_NAME, themeName)
