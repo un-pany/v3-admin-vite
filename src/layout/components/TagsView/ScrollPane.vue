@@ -110,7 +110,7 @@ watch(
     <el-icon class="arrow left" @click="scrollTo('left')">
       <ArrowLeft />
     </el-icon>
-    <el-scrollbar ref="scrollbarRef" @wheel.prevent="wheelScroll" @scroll="scroll">
+    <el-scrollbar ref="scrollbarRef" @wheel.passive="wheelScroll" @scroll="scroll">
       <div ref="scrollbarContentRef" class="scrollbar-content">
         <slot />
       </div>
