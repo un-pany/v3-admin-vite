@@ -44,7 +44,7 @@ watchEffect((onCleanup) => {
 <template>
   <div @click="handleClick">
     <el-tooltip effect="dark" :content="tips" placement="bottom">
-      <svg-icon :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
+      <SvgIcon :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
     </el-tooltip>
   </div>
 </template>
