@@ -1,1 +1,0 @@
-import{_ as a,f as e,h as s,j as r,k as n,o as t}from"./index-91a7a3a4.js";const o={class:"app-container"};const c=a({},[["render",function(a,c){const d=e("router-view"),i=e("el-card");return t(),s("div",o,[r(i,{header:"menu 1"},{default:n((()=>[r(d)])),_:1})])}]]);export{c as default};
