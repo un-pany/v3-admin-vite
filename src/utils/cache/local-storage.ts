@@ -43,6 +43,11 @@ export const getVisitedViews = () => {
   return JSON.parse(json ?? "[]") as TagView[]
 }
 export const setVisitedViews = (views: TagView[]) => {
+  views.forEach((view) => {
+    // 删除不必要的属性，防止 JSON.stringify 处理到循环引用
+    delete view.matched
+    delete view.redirectedFrom
+  })
   localStorage.setItem(CacheKey.VISITED_VIEWS, JSON.stringify(views))
 }
 export const getCachedViews = () => {
