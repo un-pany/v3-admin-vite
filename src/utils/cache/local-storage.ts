@@ -14,6 +14,9 @@ export const getConfigLayout = () => {
 export const setConfigLayout = (settings: LayoutSettings) => {
   localStorage.setItem(CacheKey.CONFIG_LAYOUT, JSON.stringify(settings))
 }
+export const removeConfigLayout = () => {
+  localStorage.removeItem(CacheKey.CONFIG_LAYOUT)
+}
 //#endregion
 
 //#region 侧边栏状态

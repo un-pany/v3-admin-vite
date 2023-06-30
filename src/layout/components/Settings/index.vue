@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
+import { removeConfigLayout } from "@/utils/cache/local-storage"
+import { Refresh } from "@element-plus/icons-vue"
 
 const settingsStore = useSettingsStore()
 
@@ -29,6 +31,12 @@ const switchSettings = {
   显示灰色模式: showGreyMode,
   显示色弱模式: showColorWeakness
 }
+
+/** 重置配置 */
+const reset = () => {
+  removeConfigLayout()
+  location.reload()
+}
 </script>
 
 <template>
@@ -38,6 +46,7 @@ const switchSettings = {
       <span class="setting-name">{{ settingName }}</span>
       <el-switch v-model="settingValue.value" />
     </div>
+    <el-button type="danger" :icon="Refresh" @click="reset">重 置</el-button>
   </div>
 </template>
 
@@ -55,6 +64,10 @@ const switchSettings = {
     .setting-name {
       @include ellipsis;
     }
+  }
+  .el-button {
+    margin-top: 40px;
+    width: 100%;
   }
 }
 </style>
