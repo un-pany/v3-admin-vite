@@ -3,6 +3,7 @@ import store from "@/store"
 import { defineStore } from "pinia"
 import { usePermissionStore } from "./permission"
 import { useTagsViewStore } from "./tags-view"
+import { useSettingsStore } from "./settings"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
@@ -17,6 +18,7 @@ export const useUserStore = defineStore("user", () => {
 
   const permissionStore = usePermissionStore()
   const tagsViewStore = useTagsViewStore()
+  const settingsStore = useSettingsStore()
 
   /** 设置角色数组 */
   const setRoles = (value: string[]) => {
@@ -64,8 +66,10 @@ export const useUserStore = defineStore("user", () => {
   }
   /** 重置 Visited Views 和 Cached Views */
   const _resetTagsView = () => {
-    tagsViewStore.delAllVisitedViews()
-    tagsViewStore.delAllCachedViews()
+    if (!settingsStore.cacheTagsView) {
+      tagsViewStore.delAllVisitedViews()
+      tagsViewStore.delAllCachedViews()
+    }
   }
 
   return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }

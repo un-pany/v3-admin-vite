@@ -14,6 +14,8 @@ interface LayoutSettings {
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
+  /** 是否缓存标签栏 */
+  cacheTagsView: boolean
   /** 是否显示灰色模式 */
   showGreyMode: boolean
   /** 是否显示色弱模式 */
@@ -28,6 +30,7 @@ const layoutSettings: LayoutSettings = {
   showNotify: true,
   showThemeSwitch: true,
   showScreenfull: true,
+  cacheTagsView: false,
   showGreyMode: false,
   showColorWeakness: false
 }
