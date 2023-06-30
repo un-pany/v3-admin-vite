@@ -1,5 +1,7 @@
+import { getConfigLayout } from "@/utils/cache/local-storage"
+
 /** 布局配置 */
-interface LayoutSettings {
+export interface LayoutSettings {
   /** 是否显示 Settings Panel */
   showSettings: boolean
   /** 是否显示标签栏 */
@@ -22,7 +24,7 @@ interface LayoutSettings {
   showColorWeakness: boolean
 }
 
-const layoutSettings: LayoutSettings = {
+export const layoutSettings: LayoutSettings = getConfigLayout() ?? {
   showSettings: true,
   showTagsView: true,
   fixedHeader: true,
@@ -34,5 +36,3 @@ const layoutSettings: LayoutSettings = {
   showGreyMode: false,
   showColorWeakness: false
 }
-
-export default layoutSettings
