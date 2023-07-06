@@ -1,4 +1,5 @@
 import dayjs from "dayjs"
+import { removeConfigLayout } from "@/utils/cache/local-storage"
 
 /** 格式化时间 */
 export const formatDateTime = (time: string | number | Date) => {
@@ -24,4 +25,10 @@ export const setCssVariableValue = (cssVariableName: string, cssVariableValue: s
   } catch (error) {
     console.error(error)
   }
+}
+
+/** 重置项目配置 */
+export const resetConfigLayout = () => {
+  removeConfigLayout()
+  location.reload()
 }
