@@ -1,13 +1,21 @@
 /** Layout 相关 */
 
-.app-wrapper {
+#app {
   color: $font-color;
+  // 右侧设置面板
+  .handle-button {
+    background-color: lighten($theme-bg-color, 20%) !important;
+  }
+}
+
+.app-wrapper {
+  // Logo
+  .layout-logo-container {
+    background-color: lighten($theme-bg-color, 2%) !important;
+  }
 
   // 侧边栏
   .sidebar-container {
-    .sidebar-logo-container {
-      background-color: lighten($theme-bg-color, 2%) !important;
-    }
     .el-menu {
       background-color: lighten($theme-bg-color, 4%) !important;
       .el-menu-item {
@@ -24,6 +32,11 @@
     }
   }
 
+  // Header
+  .layout-header {
+    border-bottom: 1px solid lighten($theme-bg-color, 10%) !important;
+  }
+
   // 顶部导航栏
   .navigation-bar {
     background-color: $theme-bg-color;
@@ -37,7 +50,6 @@
   // TagsView
   .tags-view-container {
     background-color: $theme-bg-color !important;
-    border-bottom: 1px solid lighten($theme-bg-color, 10%) !important;
     .tags-view-item {
       background-color: $theme-bg-color !important;
       color: $font-color !important;
@@ -57,10 +69,5 @@
         color: $active-font-color;
       }
     }
-  }
-
-  // 右侧设置面板
-  .handle-button {
-    background-color: lighten($theme-bg-color, 20%) !important;
   }
 }

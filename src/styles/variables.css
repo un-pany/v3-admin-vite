@@ -4,6 +4,7 @@
   --v3-body-bg-color: #f2f3f5;
   /** Header 区域 = NavigationBar 组件 + TagsView 组件 */
   --v3-header-height: calc(var(--v3-navigationbar-height) + var(--v3-tagsview-height));
+  --v3-header-bg-color: #ffffff;
   /** NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
   /** Sidebar 组件 */
@@ -15,8 +16,6 @@
   --v3-sidebar-menu-hover-bg-color: #ffffff10;
   --v3-sidebar-menu-text-color: #c0c4cc;
   --v3-sidebar-menu-active-text-color: #ffffff;
-  /** SidebarLogo 组件 */
-  --v3-sidebarlogo-bg-color: #001428;
   /** TagsView 组件 */
   --v3-tagsview-height: 34px;
   --v3-tagsview-tag-text-color: #495060;

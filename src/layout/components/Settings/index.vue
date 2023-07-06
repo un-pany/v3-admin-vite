@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { watchEffect } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import { removeConfigLayout } from "@/utils/cache/local-storage"
@@ -8,8 +9,9 @@ const settingsStore = useSettingsStore()
 
 /** 使用 storeToRefs 将提取的属性保持其响应性 */
 const {
+  layoutMode,
   showTagsView,
-  showSidebarLogo,
+  showLogo,
   fixedHeader,
   showNotify,
   showThemeSwitch,
@@ -22,7 +24,7 @@ const {
 /** 定义 switch 设置项 */
 const switchSettings = {
   显示标签栏: showTagsView,
-  "显示侧边栏 Logo": showSidebarLogo,
+  "显示 Logo": showLogo,
   "固定 Header": fixedHeader,
   显示消息通知: showNotify,
   显示切换主题按钮: showThemeSwitch,
@@ -31,6 +33,11 @@ const switchSettings = {
   显示灰色模式: showGreyMode,
   显示色弱模式: showColorWeakness
 }
+
+/** 非左侧模式时，Header 都是 fixed 布局 */
+watchEffect(() => {
+  layoutMode.value !== "left" && (fixedHeader.value = true)
+})
 
 /** 重置配置 */
 const reset = () => {
@@ -41,10 +48,16 @@ const reset = () => {
 
 <template>
   <div class="setting-container">
-    <h4>系统布局配置</h4>
+    <h4>布局配置</h4>
+    <el-radio-group v-model="layoutMode">
+      <el-radio label="left">左侧模式</el-radio>
+      <el-radio label="top">顶部模式（开发中）</el-radio>
+      <el-radio label="left-top">混合模式</el-radio>
+    </el-radio-group>
+    <h4>功能配置</h4>
     <div class="setting-item" v-for="(settingValue, settingName, index) in switchSettings" :key="index">
       <span class="setting-name">{{ settingName }}</span>
-      <el-switch v-model="settingValue.value" />
+      <el-switch v-model="settingValue.value" :disabled="layoutMode !== 'left' && settingName === '固定 Header'" />
     </div>
     <el-button type="danger" :icon="Refresh" @click="reset">重 置</el-button>
   </div>
@@ -57,7 +70,8 @@ const reset = () => {
   padding: 20px;
   .setting-item {
     font-size: 14px;
-    padding: 6px 0;
+    color: var(--el-text-color-regular);
+    padding: 5px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -5,8 +5,8 @@ import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { useUserStore } from "@/store/modules/user"
 import { UserFilled } from "@element-plus/icons-vue"
-import Breadcrumb from "../Breadcrumb/index.vue"
 import Hamburger from "../Hamburger/index.vue"
+import Breadcrumb from "../Breadcrumb/index.vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
 import Notify from "@/components/Notify/index.vue"
@@ -68,7 +68,7 @@ const logout = () => {
 .navigation-bar {
   height: var(--v3-navigationbar-height);
   overflow: hidden;
-  background: #fff;
+  background: var(--v3-header-bg-color);
   .hamburger {
     display: flex;
     align-items: center;

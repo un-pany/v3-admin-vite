@@ -30,10 +30,7 @@ const key = computed(() => {
 @import "@/styles/mixins.scss";
 
 .app-main {
-  min-height: calc(100vh - var(--v3-navigationbar-height));
   width: 100%;
-  position: relative;
-  overflow: hidden;
   background-color: var(--v3-body-bg-color);
 }
 
@@ -41,20 +38,5 @@ const key = computed(() => {
   height: 100%;
   overflow: auto;
   @include scrollbar;
-}
-
-.fixed-header + .app-main {
-  padding-top: var(--v3-navigationbar-height);
-  height: 100vh;
-  overflow: auto;
-}
-
-.hasTagsView {
-  .app-main {
-    min-height: calc(100vh - var(--v3-header-height));
-  }
-  .fixed-header + .app-main {
-    padding-top: var(--v3-header-height);
-  }
 }
 </style>

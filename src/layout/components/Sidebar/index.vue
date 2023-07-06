@@ -6,7 +6,7 @@ import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"
 import SidebarItem from "./SidebarItem.vue"
-import SidebarLogo from "./SidebarLogo.vue"
+import Logo from "../Logo/index.vue"
 import { getCssVariableValue } from "@/utils"
 
 const v3SidebarMenuBgColor = getCssVariableValue("--v3-sidebar-menu-bg-color")
@@ -18,7 +18,7 @@ const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
 
-const { showSidebarLogo } = storeToRefs(settingsStore)
+const { layoutMode, showLogo } = storeToRefs(settingsStore)
 
 const activeMenu = computed(() => {
   const {
@@ -29,11 +29,12 @@ const activeMenu = computed(() => {
 })
 
 const isCollapse = computed(() => !appStore.sidebar.opened)
+const isLogo = computed(() => layoutMode.value === "left" && showLogo.value)
 </script>
 
 <template>
-  <div :class="{ 'has-logo': showSidebarLogo }">
-    <SidebarLogo v-if="showSidebarLogo" :collapse="isCollapse" />
+  <div :class="{ 'has-logo': isLogo }">
+    <Logo v-if="isLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
