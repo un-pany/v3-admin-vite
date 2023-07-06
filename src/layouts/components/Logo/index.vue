@@ -3,9 +3,9 @@ import { computed } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import { getCssVariableValue } from "@/utils"
-import logo from "@/assets/layout/logo.png?url"
-import logoText1 from "@/assets/layout/logo-text-1.png?url"
-import logoText2 from "@/assets/layout/logo-text-2.png?url"
+import logo from "@/assets/layouts/logo.png?url"
+import logoText1 from "@/assets/layouts/logo-text-1.png?url"
+import logoText2 from "@/assets/layouts/logo-text-2.png?url"
 
 interface Props {
   collapse?: boolean

@@ -4,7 +4,7 @@ import CacheKey from "@/constants/cache-key"
 import { type SidebarOpened, type SidebarClosed } from "@/constants/app-key"
 import { type ThemeName } from "@/hooks/useTheme"
 import { type TagView } from "@/store/modules/tags-view"
-import { type LayoutSettings } from "@/config/layout"
+import { type LayoutSettings } from "@/config/layouts"
 
 //#region 系统布局配置
 export const getConfigLayout = () => {

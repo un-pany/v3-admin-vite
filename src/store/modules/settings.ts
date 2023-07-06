@@ -1,6 +1,6 @@
 import { type Ref, ref, watch } from "vue"
 import { defineStore } from "pinia"
-import { type LayoutSettings, layoutSettings } from "@/config/layout"
+import { type LayoutSettings, layoutSettings } from "@/config/layouts"
 import { setConfigLayout } from "@/utils/cache/local-storage"
 
 type SettingsStore = {
