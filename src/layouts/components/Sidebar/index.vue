@@ -29,7 +29,11 @@ const activeMenu = computed(() => {
 })
 
 const isCollapse = computed(() => !appStore.sidebar.opened)
-const isLogo = computed(() => layoutMode.value === "left" && showLogo.value)
+const isLeft = computed(() => layoutMode.value === "left")
+const isLogo = computed(() => isLeft.value && showLogo.value)
+const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
+const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
+const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
 </script>
 
 <template>
@@ -39,9 +43,9 @@ const isLogo = computed(() => layoutMode.value === "left" && showLogo.value)
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        :background-color="v3SidebarMenuBgColor"
-        :text-color="v3SidebarMenuTextColor"
-        :active-text-color="v3SidebarMenuActiveTextColor"
+        :background-color="backgroundColor"
+        :text-color="textColor"
+        :active-text-color="activeTextColor"
         :unique-opened="true"
         :collapse-transition="false"
         mode="vertical"
@@ -126,7 +130,6 @@ const isLogo = computed(() => layoutMode.value === "left" && showLogo.value)
   :deep(.el-sub-menu) {
     &.is-active {
       .el-sub-menu__title {
-        color: var(--v3-sidebar-menu-active-text-color) !important;
         @include tip-line;
       }
     }
