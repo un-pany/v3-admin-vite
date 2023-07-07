@@ -3,6 +3,7 @@ import { watchEffect } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import { resetConfigLayout } from "@/utils"
+import SelectLayoutMode from "./SelectLayoutMode.vue"
 import { Refresh } from "@element-plus/icons-vue"
 
 const settingsStore = useSettingsStore()
@@ -43,11 +44,8 @@ watchEffect(() => {
 <template>
   <div class="setting-container">
     <h4>布局配置</h4>
-    <el-radio-group v-model="layoutMode">
-      <el-radio label="left">左侧模式</el-radio>
-      <el-radio label="top">顶部模式（开发中）</el-radio>
-      <el-radio label="left-top">混合模式</el-radio>
-    </el-radio-group>
+    <SelectLayoutMode />
+    <el-divider />
     <h4>功能配置</h4>
     <div class="setting-item" v-for="(settingValue, settingName, index) in switchSettings" :key="index">
       <span class="setting-name">{{ settingName }}</span>
