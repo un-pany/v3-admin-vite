@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from "vue"
 import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDataApi } from "@/api/table"
-import { type IGetTableData } from "@/api/table/types/table"
+import { type GetTableData } from "@/api/table/types/table"
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
 
 defineOptions({
+  // 命名当前组件
   name: "ElementPlus"
 })
 
@@ -25,29 +26,32 @@ const formRules: FormRules = reactive({
   password: [{ required: true, trigger: "blur", message: "请输入密码" }]
 })
 const handleCreate = () => {
-  formRef.value?.validate((valid: boolean) => {
+  formRef.value?.validate((valid: boolean, fields) => {
     if (valid) {
       if (currentUpdateId.value === undefined) {
-        createTableDataApi({
-          username: formData.username,
-          password: formData.password
-        }).then(() => {
-          ElMessage.success("新增成功")
-          dialogVisible.value = false
-          getTableData()
-        })
+        createTableDataApi(formData)
+          .then(() => {
+            ElMessage.success("新增成功")
+            getTableData()
+          })
+          .finally(() => {
+            dialogVisible.value = false
+          })
       } else {
         updateTableDataApi({
           id: currentUpdateId.value,
           username: formData.username
-        }).then(() => {
-          ElMessage.success("修改成功")
-          dialogVisible.value = false
-          getTableData()
         })
+          .then(() => {
+            ElMessage.success("修改成功")
+            getTableData()
+          })
+          .finally(() => {
+            dialogVisible.value = false
+          })
       }
     } else {
-      return false
+      console.error("表单校验不通过", fields)
     }
   })
 }
@@ -59,7 +63,7 @@ const resetForm = () => {
 //#endregion
 
 //#region 删
-const handleDelete = (row: IGetTableData) => {
+const handleDelete = (row: GetTableData) => {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
@@ -75,7 +79,7 @@ const handleDelete = (row: IGetTableData) => {
 
 //#region 改
 const currentUpdateId = ref<undefined | string>(undefined)
-const handleUpdate = (row: IGetTableData) => {
+const handleUpdate = (row: GetTableData) => {
   currentUpdateId.value = row.id
   formData.username = row.username
   dialogVisible.value = true
@@ -83,7 +87,7 @@ const handleUpdate = (row: IGetTableData) => {
 //#endregion
 
 //#region 查
-const tableData = ref<IGetTableData[]>([])
+const tableData = ref<GetTableData[]>([])
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
   username: "",
@@ -109,20 +113,11 @@ const getTableData = () => {
     })
 }
 const handleSearch = () => {
-  if (paginationData.currentPage === 1) {
-    getTableData()
-  }
-  paginationData.currentPage = 1
+  paginationData.currentPage === 1 ? getTableData() : (paginationData.currentPage = 1)
 }
 const resetSearch = () => {
   searchFormRef.value?.resetFields()
-  if (paginationData.currentPage === 1) {
-    getTableData()
-  }
-  paginationData.currentPage = 1
-}
-const handleRefresh = () => {
-  getTableData()
+  handleSearch()
 }
 //#endregion
 
@@ -156,8 +151,8 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-tooltip content="下载">
             <el-button type="primary" :icon="Download" circle />
           </el-tooltip>
-          <el-tooltip content="刷新表格">
-            <el-button type="primary" :icon="RefreshRight" circle @click="handleRefresh" />
+          <el-tooltip content="刷新当前页">
+            <el-button type="primary" :icon="RefreshRight" circle @click="getTableData" />
           </el-tooltip>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layout/logo.png">
+  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
   <span><a href="./README.md">English</a> | 中文</span>
 </div>
@@ -60,8 +60,8 @@
 ```bash
 # 配置
 1. 一键安装 .vscode 目录中推荐的插件
-3. node 版本 16+
-4. pnpm 版本 8.x
+2. node 版本 16+
+3. pnpm 版本 8.x
 
 # 克隆项目
 git clone https://github.com/un-pany/v3-admin-vite.git
@@ -155,4 +155,4 @@ QQ 群：1014374415（左）&& 加我微信，拉你进微信群（右）
 
 [MIT](./LICENSE)
 
-Copyright (c) 2022 [pany](https://github.com/pany-ang)
+Copyright (c) 2022-present [pany](https://github.com/pany-ang)

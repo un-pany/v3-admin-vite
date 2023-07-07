@@ -1,0 +1,127 @@
+/**
+ * dark-blue 主题下的 Element Plus SCSS 变量
+ * 在此查阅所有可自定义的变量：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
+ */
+
+@use "sass:map";
+@use "sass:math";
+@use "element-plus/theme-chalk/src/mixins/function.scss" as *;
+@use "element-plus/theme-chalk/src/mixins/_var.scss" as *;
+@use "element-plus/theme-chalk/src/mixins/mixins.scss" as *;
+@use "./variables.scss" as *;
+
+// 生成指定颜色的明亮/黑暗颜色
+@mixin set-color-mix-level($type, $number, $mode: "light", $mix-color: $color-white) {
+  $colors: map.deep-merge(
+    (
+      $type: (
+        "#{$mode}-#{$number}": mix($mix-color, map.get($colors, $type, "base"), math.percentage(math.div($number, 10)))
+      )
+    ),
+    $colors
+  ) !global;
+}
+
+$types: primary, success, warning, danger, error, info;
+
+$color: $theme-color;
+$success: #01efb7bb;
+
+$colors: () !default;
+$colors: map.deep-merge(
+  (
+    "white": #ffffff,
+    "primary": (
+      "base": $color
+    ),
+    "success": (
+      "base": $success
+    )
+  ),
+  $colors
+);
+
+// text
+$text-color-base: #fff;
+$text-color: () !default;
+$text-color: map.merge(
+  (
+    "primary": rgba($text-color-base, 0.8),
+    "regular": rgba($text-color-base, 0.8),
+    "secondary": rgba($text-color-base, 0.8),
+    "placeholder": rgba($text-color-base, 0.8),
+    "disabled": rgba($text-color-base, 0.3)
+  ),
+  $text-color
+);
+
+// 生成 --el-color-${type}-light-i
+@each $type in (primary) {
+  @for $i from 1 through 9 {
+    @include set-color-mix-level($type, $i, "light", #021633);
+  }
+  // --el-color-${type}-dark-2
+  @include set-color-mix-level($type, 2, "dark", #000);
+}
+
+// border
+$border: () !default;
+$border: map.merge(
+  (
+    "": #01efb755,
+    "light": #01efb755,
+    "lighter": #01efb755
+  ),
+  $border
+);
+
+// fill
+$fill-color: () !default;
+$fill-color: map.merge(
+  (
+    "": #01efb710,
+    "light": #01efb710,
+    "blank": #031e47
+  ),
+  $fill-color
+);
+
+// background
+$bg-color: () !default;
+$bg-color: map.merge(
+  (
+    "": #021633,
+    "overlay": #031e47
+  ),
+  $bg-color
+);
+
+// mask
+$mask-color: () !default;
+$mask-color: map.merge(
+  (
+    "": rgba(0, 0, 0, 0.5)
+  ),
+  $mask-color
+);
+
+// button
+$button: () !default;
+$button: map.merge(
+  (
+    "disabled-text-color": rgba(255, 255, 255, 0.5)
+  ),
+  $button
+);
+
+html.dark-blue {
+  @include set-css-color-type($colors, "primary");
+  @include set-component-css-var("text-color", $text-color);
+  @include set-component-css-var("border-color", $border);
+  @include set-component-css-var("fill-color", $fill-color);
+  @include set-component-css-var("bg-color", $bg-color);
+  @include set-component-css-var("mask-color", $mask-color);
+  @include b(button) {
+    @include set-component-css-var("button", $button);
+  }
+}

@@ -5,23 +5,12 @@ module.exports = {
     node: true,
     es6: true
   },
-  globals: {
-    // script setup
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    withDefaults: "readonly",
-    // unplugin-vue-define-options
-    defineOptions: "readonly"
-  },
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
     "@vue/typescript/recommended",
     "@vue/prettier",
     "@vue/eslint-config-typescript"
-    // unplugin-auto-import 自动生成的文件
-    // "./types/.eslintrc-auto-import.json"
   ],
   parser: "vue-eslint-parser",
   parserOptions: {

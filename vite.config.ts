@@ -7,8 +7,6 @@ import vueJsx from "@vitejs/plugin-vue-jsx"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import svgLoader from "vite-svg-loader"
 import UnoCSS from "unocss/vite"
-// @ts-expect-error
-import DefineOptions from "unplugin-vue-define-options/vite"
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default (configEnv: ConfigEnv): UserConfigExport => {
@@ -79,26 +77,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         symbolId: "icon-[dir]-[name]"
       }),
       /** UnoCSS */
-      UnoCSS(),
-      /** DefineOptions 可以更简单的注册组件名称 */
-      DefineOptions()
-      /** 自动按需引入 (已更改为完整引入，所以注释了) */
-      // AutoImport({
-      //   dts: "./types/auto-imports.d.ts",
-      //   /** 自动按需导入 Element Plus 相关函数，比如 ElMessage */
-      //   resolvers: [ElementPlusResolver()],
-      //   /** 根据自动按需导入的相关 API，生成 .eslintrc-auto-import.json 文件供 Eslint 识别 */
-      //   eslintrc: {
-      //     enabled: true, // 默认 false
-      //     filepath: "./types/.eslintrc-auto-import.json", // 默认 "./.eslintrc-auto-import.json"
-      //     globalsPropValue: true // 默认 true (true | false | "readonly" | "readable" | "writable" | "writeable")
-      //   }
-      // }),
-      // Components({
-      //   dts: "./types/components.d.ts",
-      //   /** 自动按需导入 Element Plus 组件 */
-      //   resolvers: [ElementPlusResolver()]
-      // })
+      UnoCSS()
     ],
     /** Vitest 单元测试配置：https://cn.vitest.dev/config */
     test: {

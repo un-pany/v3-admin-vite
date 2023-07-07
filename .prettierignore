@@ -5,4 +5,4 @@ node_modules
 dist
 dist-ssr
 *.local
-*.d.ts
+.npmrc

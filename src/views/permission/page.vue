@@ -10,13 +10,13 @@ const handleRolesChange = () => {
 
 <template>
   <div class="app-container">
-    <el-tag type="success" size="large"> 当前页面只有 admin 权限可见 </el-tag>
     <SwitchRoles @change="handleRolesChange" />
+    <el-tag type="warning" size="large">当前页面只有 admin 权限可见，切换权限后将不能进入该页面</el-tag>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .el-tag {
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 </style>

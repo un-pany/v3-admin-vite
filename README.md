@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layout/logo.png">
+  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
   <span>English | <a href="./README.zh-CN.md">中文</a></span>
 </div>
@@ -60,8 +60,8 @@ v3-admin-vite is a free and open source middle and background management system 
 ```bash
 # configure
 1. installation of the recommended plugins in the .vscode directory
-3. node version 16+
-4. pnpm version 8.x
+2. node version 16+
+3. pnpm version 8.x
 
 # clone
 git clone https://github.com/un-pany/v3-admin-vite.git
@@ -155,4 +155,4 @@ QQ group：1014374415 (left) && add me on WeChat，Invite you to join WeChat gro
 
 [MIT](./LICENSE)
 
-Copyright (c) 2022 [pany](https://github.com/pany-ang)
+Copyright (c) 2022-present [pany](https://github.com/pany-ang)
