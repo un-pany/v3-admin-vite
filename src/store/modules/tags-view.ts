@@ -1,12 +1,21 @@
-import { ref } from "vue"
+import { ref, watchEffect } from "vue"
 import { defineStore } from "pinia"
+import { useSettingsStore } from "./settings"
 import { type RouteLocationNormalized } from "vue-router"
+import { getVisitedViews, setVisitedViews, getCachedViews, setCachedViews } from "@/utils/cache/local-storage"
 
 export type TagView = Partial<RouteLocationNormalized>
 
 export const useTagsViewStore = defineStore("tags-view", () => {
-  const visitedViews = ref<TagView[]>([])
-  const cachedViews = ref<string[]>([])
+  const { cacheTagsView } = useSettingsStore()
+  const visitedViews = ref<TagView[]>(cacheTagsView ? getVisitedViews() : [])
+  const cachedViews = ref<string[]>(cacheTagsView ? getCachedViews() : [])
+
+  /** 缓存标签栏数据 */
+  watchEffect(() => {
+    setVisitedViews(visitedViews.value)
+    setCachedViews(cachedViews.value)
+  })
 
   //#region add
   const addVisitedView = (view: TagView) => {

@@ -6,7 +6,7 @@ import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"
 import SidebarItem from "./SidebarItem.vue"
-import SidebarLogo from "./SidebarLogo.vue"
+import Logo from "../Logo/index.vue"
 import { getCssVariableValue } from "@/utils"
 
 const v3SidebarMenuBgColor = getCssVariableValue("--v3-sidebar-menu-bg-color")
@@ -18,7 +18,7 @@ const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
 
-const { showSidebarLogo } = storeToRefs(settingsStore)
+const { layoutMode, showLogo } = storeToRefs(settingsStore)
 
 const activeMenu = computed(() => {
   const {
@@ -29,18 +29,23 @@ const activeMenu = computed(() => {
 })
 
 const isCollapse = computed(() => !appStore.sidebar.opened)
+const isLeft = computed(() => layoutMode.value === "left")
+const isLogo = computed(() => isLeft.value && showLogo.value)
+const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
+const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
+const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
 </script>
 
 <template>
-  <div :class="{ 'has-logo': showSidebarLogo }">
-    <SidebarLogo v-if="showSidebarLogo" :collapse="isCollapse" />
+  <div :class="{ 'has-logo': isLogo }">
+    <Logo v-if="isLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        :background-color="v3SidebarMenuBgColor"
-        :text-color="v3SidebarMenuTextColor"
-        :active-text-color="v3SidebarMenuActiveTextColor"
+        :background-color="backgroundColor"
+        :text-color="textColor"
+        :active-text-color="activeTextColor"
         :unique-opened="true"
         :collapse-transition="false"
         mode="vertical"
@@ -125,7 +130,6 @@ const isCollapse = computed(() => !appStore.sidebar.opened)
   :deep(.el-sub-menu) {
     &.is-active {
       .el-sub-menu__title {
-        color: var(--v3-sidebar-menu-active-text-color) !important;
         @include tip-line;
       }
     }

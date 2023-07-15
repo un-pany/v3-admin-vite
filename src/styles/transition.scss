@@ -14,12 +14,12 @@
   transform: translateX(30px);
 }
 
-// sidebar-logo-fade
-.sidebar-logo-fade-enter-active,
-.sidebar-logo-fade-leave-active {
+// layout-logo-fade
+.layout-logo-fade-enter-active,
+.layout-logo-fade-leave-active {
   transition: opacity 1.5s;
 }
-.sidebar-logo-fade-enter-from,
-.sidebar-logo-fade-leave-to {
+.layout-logo-fade-enter-from,
+.layout-logo-fade-leave-to {
   opacity: 0;
 }
