@@ -23,6 +23,12 @@ const bgCloor = computed(() => {
     ? getCssVariableValue("--v3-header-bg-color")
     : getCssVariableValue("--v3-sidebar-menu-bg-color")
 })
+
+const logoHeight = computed(() => {
+  return layoutMode.value !== "top"
+    ? getCssVariableValue("--v3-header-height")
+    : getCssVariableValue("--v3-navigationbar-height")
+})
 </script>
 
 <template>
@@ -42,8 +48,8 @@ const bgCloor = computed(() => {
 .layout-logo-container {
   position: relative;
   width: 100%;
-  height: var(--v3-header-height);
-  line-height: var(--v3-header-height);
+  height: v-bind(logoHeight);
+  line-height: v-bind(logoHeight);
   background-color: v-bind(bgCloor);
   text-align: center;
   overflow: hidden;

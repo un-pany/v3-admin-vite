@@ -30,6 +30,13 @@
     .el-sub-menu__title {
       background-color: lighten($theme-bg-color, 4%) !important;
     }
+    .el-sub-menu {
+      &.is-active {
+        .el-sub-menu__title {
+          color: $active-font-color !important;
+        }
+      }
+    }
   }
 
   // Header

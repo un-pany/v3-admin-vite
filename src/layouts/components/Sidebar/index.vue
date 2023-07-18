@@ -8,6 +8,7 @@ import { useSettingsStore } from "@/store/modules/settings"
 import SidebarItem from "./SidebarItem.vue"
 import Logo from "../Logo/index.vue"
 import { getCssVariableValue } from "@/utils"
+import { DeviceEnum } from "@/constants/app-key"
 
 const v3SidebarMenuBgColor = getCssVariableValue("--v3-sidebar-menu-bg-color")
 const v3SidebarMenuTextColor = getCssVariableValue("--v3-sidebar-menu-text-color")
@@ -18,6 +19,7 @@ const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
 
+const { sidebar, device } = storeToRefs(appStore)
 const { layoutMode, showLogo } = storeToRefs(settingsStore)
 
 const activeMenu = computed(() => {
@@ -28,12 +30,25 @@ const activeMenu = computed(() => {
   return activeMenu ? activeMenu : path
 })
 
-const isCollapse = computed(() => !appStore.sidebar.opened)
+const isCollapse = computed(() => !sidebar.value.opened)
 const isLeft = computed(() => layoutMode.value === "left")
+const isTop = computed(() => layoutMode.value === "top")
+const isMobile = computed(() => device.value === DeviceEnum.Mobile)
 const isLogo = computed(() => isLeft.value && showLogo.value)
 const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
 const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
 const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
+const sidebarMenuItemHeight = computed(() => {
+  return layoutMode.value !== "top"
+    ? getCssVariableValue("--v3-sidebar-menu-item-height")
+    : getCssVariableValue("--v3-navigationbar-height")
+})
+const sidebarMenuHoverBgColor = computed(() => {
+  return layoutMode.value !== "top" ? getCssVariableValue("--v3-sidebar-menu-hover-bg-color") : "transparent"
+})
+const tipLineWidth = computed(() => {
+  return layoutMode.value !== "top" ? "2px" : "0px"
+})
 </script>
 
 <template>
@@ -42,13 +57,13 @@ const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextCo
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
-        :collapse="isCollapse"
+        :collapse="isCollapse && !isTop"
         :background-color="backgroundColor"
         :text-color="textColor"
         :active-text-color="activeTextColor"
         :unique-opened="true"
         :collapse-transition="false"
-        mode="vertical"
+        :mode="isTop && !isMobile ? 'horizontal' : 'vertical'"
       >
         <SidebarItem
           v-for="route in permissionStore.routes"
@@ -56,6 +71,7 @@ const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextCo
           :item="route"
           :base-path="route.path"
           :is-collapse="isCollapse"
+          :is-top="isTop"
         />
       </el-menu>
     </el-scrollbar>
@@ -69,7 +85,7 @@ const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextCo
     position: absolute;
     top: 0;
     left: 0;
-    width: 2px;
+    width: v-bind(tipLineWidth);
     height: 100%;
     background-color: var(--v3-sidebar-menu-tip-line-bg-color);
   }
@@ -107,16 +123,25 @@ const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextCo
 
 :deep(.el-menu-item),
 :deep(.el-sub-menu__title),
-:deep(.el-sub-menu .el-menu-item) {
-  height: var(--v3-sidebar-menu-item-height);
-  line-height: var(--v3-sidebar-menu-item-height);
+:deep(.el-sub-menu .el-menu-item),
+:deep(.el-menu--horizontal .el-menu-item) {
+  height: v-bind(sidebarMenuItemHeight);
+  line-height: v-bind(sidebarMenuItemHeight);
   &.is-active,
   &:hover {
-    background-color: var(--v3-sidebar-menu-hover-bg-color);
+    background-color: v-bind(sidebarMenuHoverBgColor);
   }
   display: block;
   * {
     vertical-align: middle;
+  }
+}
+
+:deep(.el-sub-menu) {
+  &.is-active {
+    .el-sub-menu__title {
+      color: v-bind(activeTextColor) !important;
+    }
   }
 }
 
