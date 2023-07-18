@@ -23,16 +23,10 @@ const bgCloor = computed(() => {
     ? getCssVariableValue("--v3-header-bg-color")
     : getCssVariableValue("--v3-sidebar-menu-bg-color")
 })
-
-const logoHeight = computed(() => {
-  return layoutMode.value !== "top"
-    ? getCssVariableValue("--v3-header-height")
-    : getCssVariableValue("--v3-navigationbar-height")
-})
 </script>
 
 <template>
-  <div class="layout-logo-container" :class="{ collapse: props.collapse }">
+  <div class="layout-logo-container" :class="{ collapse: props.collapse, 'layout-mode-top': layoutMode === 'top' }">
     <transition name="layout-logo-fade">
       <router-link v-if="props.collapse" key="collapse" to="/">
         <img :src="logo" class="layout-logo" />
@@ -48,8 +42,8 @@ const logoHeight = computed(() => {
 .layout-logo-container {
   position: relative;
   width: 100%;
-  height: v-bind(logoHeight);
-  line-height: v-bind(logoHeight);
+  height: var(--v3-header-height);
+  line-height: var(--v3-header-height);
   background-color: v-bind(bgCloor);
   text-align: center;
   overflow: hidden;
@@ -60,6 +54,11 @@ const logoHeight = computed(() => {
     height: 100%;
     vertical-align: middle;
   }
+}
+
+.layout-mode-top {
+  height: var(--v3-navigationbar-height);
+  line-height: var(--v3-navigationbar-height);
 }
 
 .collapse {
