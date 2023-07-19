@@ -63,6 +63,7 @@ $transition-time: 0.35s;
 }
 
 .layout-header {
+  background-color: var(--v3-header-bg-color);
   box-shadow: var(--el-box-shadow-lighter);
 }
 

@@ -9,26 +9,22 @@
 }
 
 .app-wrapper {
-  // Logo
-  .layout-logo-container {
-    background-color: lighten($theme-bg-color, 2%) !important;
-  }
-
   // 侧边栏
   .sidebar-container {
+    background-color: lighten($theme-bg-color, 2%);
     .el-menu {
-      background-color: lighten($theme-bg-color, 4%) !important;
+      background-color: lighten($theme-bg-color, 2%) !important;
       .el-menu-item {
-        background-color: lighten($theme-bg-color, 4%) !important;
+        background-color: lighten($theme-bg-color, 2%) !important;
         &.is-active,
         &:hover {
-          background-color: lighten($theme-bg-color, 8%) !important;
+          background-color: lighten($theme-bg-color, 6%) !important;
           color: $active-font-color !important;
         }
       }
     }
     .el-sub-menu__title {
-      background-color: lighten($theme-bg-color, 4%) !important;
+      background-color: lighten($theme-bg-color, 2%) !important;
     }
     .el-sub-menu {
       &.is-active {
@@ -41,6 +37,7 @@
 
   // Header
   .layout-header {
+    background-color: $theme-bg-color;
     border-bottom: 1px solid lighten($theme-bg-color, 10%) !important;
   }
 

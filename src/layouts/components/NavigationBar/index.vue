@@ -77,28 +77,29 @@ const logout = () => {
   height: var(--v3-navigationbar-height);
   overflow: hidden;
   background: var(--v3-header-bg-color);
+  display: flex;
+  justify-content: space-between;
   .hamburger {
     display: flex;
     align-items: center;
     height: 100%;
-    float: left;
     padding: 0 15px;
     cursor: pointer;
   }
   .breadcrumb {
-    float: left;
+    flex: 1;
     // 参考 Bootstrap 的响应式设计将宽度设置为 576
     @media screen and (max-width: 576px) {
       display: none;
     }
   }
   .sidebar {
-    float: left;
-    width: 992px;
-    height: 100%;
+    flex: 1;
+    :deep(.el-menu) {
+      background-color: transparent;
+    }
   }
   .right-menu {
-    float: right;
     margin-right: 10px;
     height: 100%;
     display: flex;

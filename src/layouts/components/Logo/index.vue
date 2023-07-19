@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { computed } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
-import { getCssVariableValue } from "@/utils"
 import logo from "@/assets/layouts/logo.png?url"
 import logoText1 from "@/assets/layouts/logo-text-1.png?url"
 import logoText2 from "@/assets/layouts/logo-text-2.png?url"
@@ -17,12 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const settingsStore = useSettingsStore()
 const { layoutMode } = storeToRefs(settingsStore)
-
-const bgCloor = computed(() => {
-  return layoutMode.value !== "left"
-    ? getCssVariableValue("--v3-header-bg-color")
-    : getCssVariableValue("--v3-sidebar-menu-bg-color")
-})
 </script>
 
 <template>
@@ -44,7 +36,7 @@ const bgCloor = computed(() => {
   width: 100%;
   height: var(--v3-header-height);
   line-height: var(--v3-header-height);
-  background-color: v-bind(bgCloor);
+  background-color: transparent;
   text-align: center;
   overflow: hidden;
   .layout-logo {

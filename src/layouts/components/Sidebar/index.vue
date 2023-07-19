@@ -93,12 +93,14 @@ const tipLineWidth = computed(() => {
 
 .has-logo {
   .el-scrollbar {
-    height: calc(100% - var(--v3-header-height));
+    // 多 1% 是为了在左侧模式时侧边栏最底部不显示 1px 左右的白色线条
+    height: calc(101% - var(--v3-header-height));
   }
 }
 
 .el-scrollbar {
-  height: 100%;
+  // 多 5% 是为了在顶部模式时不显示垂直滚动条
+  height: 105%;
   :deep(.scrollbar-wrapper) {
     // 限制水平宽度
     overflow-x: hidden !important;

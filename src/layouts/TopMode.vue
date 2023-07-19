@@ -52,6 +52,7 @@ $transition-time: 0.35s;
 }
 
 .layout-header {
+  background-color: var(--v3-header-bg-color);
   box-shadow: var(--el-box-shadow-lighter);
 }
 
@@ -67,9 +68,6 @@ $transition-time: 0.35s;
 }
 
 .hasTagsView {
-  .sidebar-container {
-    padding-top: var(--v3-header-height);
-  }
   .app-main {
     padding-top: var(--v3-header-height);
   }
