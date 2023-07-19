@@ -24,7 +24,7 @@ ElNotification({
   position: "bottom-right"
 })
 ElNotification({
-  title: "提示",
+  title: "破坏性更新",
   type: "warning",
   message: h(
     "span",
@@ -32,11 +32,23 @@ ElNotification({
       style: "color: teal; cursor: pointer;",
       onClick: resetConfigLayout
     },
-    "由于平台 4.1.0 版本新增了多种布局模式，如果出现白屏情况，点击这里或手动前往控制台清理 LocalStorage 缓存数据后刷新页面即可！"
+    "由于平台 4.1.0 版本新增了多种布局模式，如果第一次出现白屏情况，点击这里或手动前往控制台清理 LocalStorage 缓存数据后刷新页面即可！"
   ),
   duration: 0,
   position: "bottom-right",
   offset: 150
+})
+ElNotification({
+  title: "服务挂了",
+  type: "error",
+  message: h(
+    "a",
+    { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/92" },
+    "近期 API 服务不太稳定，请等我更换服务（可以加交流群第一时间获取进度），如果急需登录可以点击这里自己模拟一下数据"
+  ),
+  duration: 0,
+  position: "bottom-right",
+  offset: 300
 })
 </script>
 
