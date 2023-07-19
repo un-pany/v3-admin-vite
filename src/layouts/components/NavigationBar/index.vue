@@ -98,6 +98,13 @@ const logout = () => {
     :deep(.el-menu) {
       background-color: transparent;
     }
+    :deep(.el-sub-menu) {
+      &.is-active {
+        .el-sub-menu__title {
+          color: var(--el-menu-active-color) !important;
+        }
+      }
+    }
   }
   .right-menu {
     margin-right: 10px;
