@@ -5,6 +5,7 @@ import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import useResize from "./hooks/useResize"
 import LeftMode from "./LeftMode.vue"
+import TopMode from "./TopMode.vue"
 import LeftTopMode from "./LeftTopMode.vue"
 import { Settings, RightPanel } from "./components"
 import { DeviceEnum } from "@/constants/app-key"
@@ -40,6 +41,8 @@ watchEffect(() => {
   <div :class="classes">
     <!-- 左侧模式 -->
     <LeftMode v-if="layoutMode === 'left' || appStore.device === DeviceEnum.Mobile" />
+    <!-- 顶部模式 -->
+    <TopMode v-else-if="layoutMode === 'top'" />
     <!-- 混合模式 -->
     <LeftTopMode v-else-if="layoutMode === 'left-top'" />
     <!-- 右侧设置面板 -->

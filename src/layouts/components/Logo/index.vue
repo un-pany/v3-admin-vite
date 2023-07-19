@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { computed } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
-import { getCssVariableValue } from "@/utils"
 import logo from "@/assets/layouts/logo.png?url"
 import logoText1 from "@/assets/layouts/logo-text-1.png?url"
 import logoText2 from "@/assets/layouts/logo-text-2.png?url"
@@ -17,16 +15,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const settingsStore = useSettingsStore()
 const { layoutMode } = storeToRefs(settingsStore)
-
-const bgCloor = computed(() => {
-  return layoutMode.value !== "left"
-    ? getCssVariableValue("--v3-header-bg-color")
-    : getCssVariableValue("--v3-sidebar-menu-bg-color")
-})
 </script>
 
 <template>
-  <div class="layout-logo-container" :class="{ collapse: props.collapse }">
+  <div class="layout-logo-container" :class="{ collapse: props.collapse, 'layout-mode-top': layoutMode === 'top' }">
     <transition name="layout-logo-fade">
       <router-link v-if="props.collapse" key="collapse" to="/">
         <img :src="logo" class="layout-logo" />
@@ -44,7 +36,7 @@ const bgCloor = computed(() => {
   width: 100%;
   height: var(--v3-header-height);
   line-height: var(--v3-header-height);
-  background-color: v-bind(bgCloor);
+  background-color: transparent;
   text-align: center;
   overflow: hidden;
   .layout-logo {
@@ -54,6 +46,11 @@ const bgCloor = computed(() => {
     height: 100%;
     vertical-align: middle;
   }
+}
+
+.layout-mode-top {
+  height: var(--v3-navigationbar-height);
+  line-height: var(--v3-navigationbar-height);
 }
 
 .collapse {
