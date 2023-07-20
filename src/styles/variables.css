@@ -7,7 +7,7 @@
   --v3-header-bg-color: #ffffff;
   /** NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
-  /** Sidebar 组件 */
+  /** Sidebar 组件（左侧模式全部生效、顶部模式全部不生效、混合模式非颜色部分生效） */
   --v3-sidebar-width: 220px;
   --v3-sidebar-hide-width: 58px;
   --v3-sidebar-menu-item-height: 60px;

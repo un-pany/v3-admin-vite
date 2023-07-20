@@ -23,7 +23,7 @@ const isLeftTop = computed(() => layoutMode.value === "left-top")
         </el-container>
       </el-container>
     </el-tooltip>
-    <el-tooltip content="顶部模式（开发中）">
+    <el-tooltip content="顶部模式">
       <el-container class="layout-mode top" :class="{ active: isTop }" @click="layoutMode = 'top'">
         <el-header />
         <el-main />

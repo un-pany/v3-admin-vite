@@ -8,12 +8,14 @@ import path from "path-browserify"
 interface Props {
   item: RouteRecordRaw
   isCollapse?: boolean
+  isTop?: boolean
   isFirstLevel?: boolean
   basePath?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   isCollapse: false,
+  isTop: false,
   isFirstLevel: true,
   basePath: ""
 })
@@ -58,7 +60,10 @@ const resolvePath = (routePath: string) => {
 </script>
 
 <template>
-  <div v-if="!props.item.meta?.hidden" :class="{ 'simple-mode': props.isCollapse, 'first-level': props.isFirstLevel }">
+  <div
+    v-if="!props.item.meta?.hidden"
+    :class="{ 'simple-mode': props.isCollapse && !isTop, 'first-level': props.isFirstLevel }"
+  >
     <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
       <SidebarItemLink v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
         <el-menu-item :index="resolvePath(theOnlyOneChild.path)">

@@ -4,17 +4,27 @@
 .el-popper {
   border: none !important;
   .el-menu {
-    background-color: lighten($theme-bg-color, 4%) !important;
+    background-color: lighten($theme-bg-color, 2%) !important;
     .el-menu-item {
-      background-color: lighten($theme-bg-color, 4%) !important;
+      background-color: lighten($theme-bg-color, 2%) !important;
       &.is-active,
       &:hover {
-        background-color: lighten($theme-bg-color, 8%) !important;
+        background-color: lighten($theme-bg-color, 6%) !important;
         color: $active-font-color !important;
       }
     }
     .el-sub-menu__title {
-      background-color: lighten($theme-bg-color, 4%) !important;
+      background-color: lighten($theme-bg-color, 2%) !important;
     }
+    .el-sub-menu {
+      &.is-active {
+        .el-sub-menu__title {
+          color: $active-font-color !important;
+        }
+      }
+    }
+  }
+  .el-menu--horizontal {
+    border: none;
   }
 }
