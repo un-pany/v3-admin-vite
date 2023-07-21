@@ -1,3 +1,4 @@
+import { flatMultiLevelRoutes } from "@/utils/routerHelper"
 import { type RouteRecordRaw, createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 
 const Layouts = () => import("@/layouts/index.vue")
@@ -141,7 +142,8 @@ export const constantRoutes: RouteRecordRaw[] = [
             component: () => import("@/views/menu/menu1/menu1-1/index.vue"),
             name: "Menu1-1",
             meta: {
-              title: "menu1-1"
+              title: "menu1-1",
+              keepAlive: true
             }
           },
           {
@@ -158,7 +160,8 @@ export const constantRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/menu/menu1/menu1-2/menu1-2-1/index.vue"),
                 name: "Menu1-2-1",
                 meta: {
-                  title: "menu1-2-1"
+                  title: "menu1-2-1",
+                  keepAlive: true
                 }
               },
               {
@@ -166,7 +169,8 @@ export const constantRoutes: RouteRecordRaw[] = [
                 component: () => import("@/views/menu/menu1/menu1-2/menu1-2-2/index.vue"),
                 name: "Menu1-2-2",
                 meta: {
-                  title: "menu1-2-2"
+                  title: "menu1-2-2",
+                  keepAlive: true
                 }
               }
             ]
@@ -176,7 +180,8 @@ export const constantRoutes: RouteRecordRaw[] = [
             component: () => import("@/views/menu/menu1/menu1-3/index.vue"),
             name: "Menu1-3",
             meta: {
-              title: "menu1-3"
+              title: "menu1-3",
+              keepAlive: true
             }
           }
         ]
@@ -186,7 +191,8 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/menu/menu2/index.vue"),
         name: "Menu2",
         meta: {
-          title: "menu2"
+          title: "menu2",
+          keepAlive: true
         }
       }
     ]
@@ -274,7 +280,7 @@ const router = createRouter({
     import.meta.env.VITE_ROUTER_HISTORY === "hash"
       ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
       : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
-  routes: constantRoutes
+  routes: flatMultiLevelRoutes(constantRoutes)
 })
 
 /** 重置路由 */
