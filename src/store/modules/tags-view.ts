@@ -44,6 +44,8 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   }
 
   const delCachedView = (view: TagView) => {
+    const { length } = visitedViews.value.filter((v) => v.name === view.name)
+    if (length > 1) return
     if (typeof view.name !== "string") return
     const index = cachedViews.value.indexOf(view.name)
     if (index !== -1) cachedViews.value.splice(index, 1)

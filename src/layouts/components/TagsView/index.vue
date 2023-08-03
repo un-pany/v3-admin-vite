@@ -83,8 +83,9 @@ const refreshSelectedTag = (view: TagView) => {
 
 /** 关闭当前正在右键操作的标签页 */
 const closeSelectedTag = (view: TagView) => {
-  tagsViewStore.delVisitedView(view)
+  // 由于 delCachedView 内部需要先根据 visitedViews 来做判断, 这里必须把 delCachedView 放在 delVisitedView 的前面
   tagsViewStore.delCachedView(view)
+  tagsViewStore.delVisitedView(view)
   isActive(view) && toLastView(tagsViewStore.visitedViews, view)
 }
 
