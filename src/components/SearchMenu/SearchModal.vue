@@ -1,51 +1,52 @@
 <script setup lang="ts">
-import { RouteRecordName, useRouter } from "vue-router"
+import { ref, computed, shallowRef } from "vue"
+import { type RouteRecordName, type RouteRecordRaw, useRouter } from "vue-router"
+import { usePermissionStore } from "@/store/modules/permission"
+import { useAppStore } from "@/store/modules/app"
 import SearchResult from "./SearchResult.vue"
 import SearchFooter from "./SearchFooter.vue"
-import { ref, computed, shallowRef } from "vue"
-import { cloneDeep } from "lodash-es"
-import { useDebounceFn, onKeyStroke } from "@vueuse/core"
-import { usePermissionStoreHook } from "@/store/modules/permission"
-import { useAppStore } from "@/store/modules/app"
-import { DeviceEnum } from "@/constants/app-key"
-import { RouteRecordRaw } from "vue-router"
 import { ElScrollbar } from "element-plus"
+import { cloneDeep } from "lodash-es"
+import { DeviceEnum } from "@/constants/app-key"
+import { useDebounceFn, onKeyStroke } from "@vueuse/core"
 
 interface Props {
-  /** 弹窗显隐 */
-  value: boolean
+  /** 控制显隐 */
+  modelValue: boolean
 }
 
-interface Emits {
-  (e: "update:value", val: boolean): void
-}
+const props = defineProps<Props>()
+const emit = defineEmits<{
+  "update:modelValue": [boolean]
+}>()
 
 const appStore = useAppStore()
-const emit = defineEmits<Emits>()
-const props = withDefaults(defineProps<Props>(), {})
 const router = useRouter()
-const keyword = ref("")
+
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
 const resultRef = ref<InstanceType<typeof SearchResult>>()
 const activeRouteName = ref<RouteRecordName>("")
 const inputRef = ref<HTMLInputElement | null>(null)
+
+const keyword = ref("")
 const resultOptions = shallowRef<RouteRecordRaw[]>([])
+
 const handleSearch = useDebounceFn(search, 300)
 
 const visible = computed({
   get() {
-    return props.value
+    return props.modelValue
   },
   set(val: boolean) {
-    emit("update:value", val)
+    emit("update:modelValue", val)
   }
 })
 
 /** 树形菜单 */
-const menusData = computed(() => cloneDeep(usePermissionStoreHook().routes))
+const menusData = computed(() => cloneDeep(usePermissionStore().routes))
 
 /** 将树形菜单扁平化为一维数组，用于菜单查询 */
-function flatTree<T extends RouteRecordRaw>(arr: T[], result: T[] = []) {
+function flatTree(arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) {
   arr.forEach((item) => {
     result.push(item)
     item.children && flatTree(item.children, result)
