@@ -32,7 +32,7 @@ export const usePermissionStore = defineStore("permission", () => {
   const setRoutes = (roles: string[]) => {
     const accessedRoutes = routeSettings.async ? filterAsyncRoutes(asyncRoutes, roles) : asyncRoutes
     routes.value = constantRoutes.concat(accessedRoutes)
-    dynamicRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes
+    dynamicRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
   }
 
   return { routes, dynamicRoutes, setRoutes }
