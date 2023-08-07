@@ -1,5 +1,6 @@
 import { type RouteRecordRaw, createRouter } from "vue-router"
 import { history, flatMultiLevelRoutes } from "./helper"
+import routeSettings from "@/config/route"
 
 const Layouts = () => import("@/layouts/index.vue")
 
@@ -124,7 +125,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/menu/menu1",
     name: "Menu",
     meta: {
-      title: "多级菜单缓存",
+      title: "多级路由",
       svgIcon: "menu"
     },
     children: [
@@ -277,7 +278,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
 
 const router = createRouter({
   history,
-  routes: flatMultiLevelRoutes(constantRoutes)
+  routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes
 })
 
 /** 重置路由 */
