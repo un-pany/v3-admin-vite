@@ -1,5 +1,5 @@
-import { flatMultiLevelRoutes } from "@/utils/routerHelper"
-import { type RouteRecordRaw, createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+import { type RouteRecordRaw, createRouter } from "vue-router"
+import { history, flatMultiLevelRoutes } from "./helper"
 
 const Layouts = () => import("@/layouts/index.vue")
 
@@ -276,10 +276,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history:
-    import.meta.env.VITE_ROUTER_HISTORY === "hash"
-      ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
-      : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  history,
   routes: flatMultiLevelRoutes(constantRoutes)
 })
 

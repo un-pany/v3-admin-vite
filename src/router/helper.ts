@@ -8,6 +8,12 @@ import {
 } from "vue-router"
 import { cloneDeep, omit } from "lodash-es"
 
+/** 路由模式 */
+export const history =
+  import.meta.env.VITE_ROUTER_HISTORY === "hash"
+    ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
+    : createWebHistory(import.meta.env.VITE_PUBLIC_PATH)
+
 /** 路由降级（把三级及其以上的路由转化为二级路由） */
 export const flatMultiLevelRoutes = (routes: RouteRecordRaw[]) => {
   const routesMirror = cloneDeep(routes)
@@ -32,10 +38,7 @@ const isMultipleRoute = (route: RouteRecordRaw) => {
 const promoteRouteLevel = (route: RouteRecordRaw) => {
   // 创建 router 实例是为了获取到当前传入的 route 的所有路由信息
   let router: Router | null = createRouter({
-    history:
-      import.meta.env.VITE_ROUTER_HISTORY === "hash"
-        ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
-        : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+    history,
     routes: [route]
   })
   const routes = router.getRoutes()

@@ -4,7 +4,7 @@ import { defineStore } from "pinia"
 import { type RouteRecordRaw } from "vue-router"
 import { constantRoutes, asyncRoutes } from "@/router"
 import asyncRouteSettings from "@/config/async-route"
-import { flatMultiLevelRoutes } from "@/utils/routerHelper"
+import { flatMultiLevelRoutes } from "@/router/helper"
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   const routeRoles = route.meta?.roles
