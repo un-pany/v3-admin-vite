@@ -124,7 +124,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/menu/menu1",
     name: "Menu",
     meta: {
-      title: "多级菜单",
+      title: "多级菜单缓存",
       svgIcon: "menu"
     },
     children: [
