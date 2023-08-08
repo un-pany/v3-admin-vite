@@ -131,22 +131,20 @@ onKeyStroke("ArrowDown", handleDown)
     top="5vh"
     class="search-dialog"
     v-model="visible"
-    :show-close="false"
-    :width="appStore.device === DeviceEnum.Mobile ? '80vw' : '36vw'"
+    :width="appStore.device === DeviceEnum.Mobile ? '80vw' : '30vw'"
     :before-close="handleClose"
-    :style="{ borderRadius: '6px' }"
-    append-to-body
     @opened="inputRef?.focus()"
     @closed="inputRef?.blur()"
+    append-to-body
   >
     <el-input ref="inputRef" size="large" v-model="keyword" clearable placeholder="搜索菜单" @input="handleSearch">
       <template #prefix>
-        <SvgIcon name="search" class="text-24px" />
+        <SvgIcon name="search" text-18px />
       </template>
     </el-input>
-    <div class="search-result-container">
+    <div>
       <el-scrollbar ref="scrollbarRef" max-height="calc(90vh - 140px)">
-        <el-empty v-if="resultOptions.length === 0" description="暂无搜索结果" />
+        <el-empty v-if="resultOptions.length === 0" description="暂无搜索结果" :image-size="100" />
         <SearchResult
           v-else
           ref="resultRef"
@@ -163,29 +161,13 @@ onKeyStroke("ArrowDown", handleDown)
 </template>
 
 <style lang="scss">
-.search-result-container {
-  margin: 12px 0;
-}
-
 .search-dialog {
   .el-dialog__header {
     display: none;
   }
 
-  .el-dialog__body {
-    padding-top: 12px;
-    padding-bottom: 0;
-  }
-
-  .el-input__inner {
-    font-size: 1.2em;
-  }
-
   .el-dialog__footer {
-    padding-bottom: 10px;
-    box-shadow:
-      0 -1px 0 0 #e0e3e8,
-      0 -3px 6px 0 rgb(69 98 155 / 12%);
+    border-top: 1px solid var(--el-border-color);
   }
 }
 </style>

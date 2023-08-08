@@ -60,6 +60,7 @@ defineExpose({ handleScroll })
 
 <template>
   <div ref="resultRef" class="result">
+    <p>搜索结果</p>
     <div
       v-for="(item, index) in options"
       :key="item.name"
@@ -70,11 +71,11 @@ defineExpose({ handleScroll })
       @mouseenter="handleMouse(item)"
     >
       <component v-if="item.meta?.elIcon" :is="item.meta?.elIcon" class="w-22px" />
-      <SvgIcon v-else :name="item.meta?.svgIcon ?? 'search_item_menu'" class="text-22px" />
+      <SvgIcon v-else :name="item.meta?.svgIcon ?? ''" class="text-22px" />
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>
-      <SvgIcon v-if="active === item.name" name="keyboard_enter" class="text-22px" />
+      <SvgIcon v-if="active === item.name" name="keyboard-enter" class="text-22px" />
     </div>
   </div>
 </template>

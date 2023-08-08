@@ -12,16 +12,16 @@ const appStore = useAppStore()
 <template>
   <div class="search-footer text-#333 dark:text-white">
     <span class="search-footer-item">
-      <SvgIcon name="keyboard_enter" />
+      <SvgIcon name="keyboard-enter" />
       确认
     </span>
     <span class="search-footer-item">
-      <SvgIcon name="keyboard_up" />
-      <SvgIcon name="keyboard_down" />
+      <SvgIcon name="keyboard-up" />
+      <SvgIcon name="keyboard-down" />
       切换
     </span>
     <span class="search-footer-item">
-      <SvgIcon name="keyboard_esc" />
+      <SvgIcon name="keyboard-esc" />
       关闭
     </span>
     <p v-if="appStore.device !== DeviceEnum.Mobile && props.total > 0" class="search-footer-total">
