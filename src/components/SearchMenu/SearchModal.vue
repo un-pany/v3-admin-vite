@@ -128,14 +128,14 @@ onKeyStroke("ArrowDown", handleDown)
 
 <template>
   <el-dialog
-    top="5vh"
-    class="search-dialog"
     v-model="visible"
-    :width="appStore.device === DeviceEnum.Mobile ? '80vw' : '30vw'"
     :before-close="handleClose"
     @opened="inputRef?.focus()"
     @closed="inputRef?.blur()"
     append-to-body
+    class="search-modal"
+    :width="appStore.device === DeviceEnum.Mobile ? '80vw' : '40vw'"
+    top="5vh"
   >
     <el-input ref="inputRef" size="large" v-model="keyword" clearable placeholder="搜索菜单" @input="handleSearch">
       <template #prefix>
@@ -143,16 +143,13 @@ onKeyStroke("ArrowDown", handleDown)
       </template>
     </el-input>
     <div>
-      <el-scrollbar ref="scrollbarRef" max-height="calc(90vh - 140px)">
-        <el-empty v-if="resultOptions.length === 0" description="暂无搜索结果" :image-size="100" />
-        <SearchResult
-          v-else
-          ref="resultRef"
-          v-model:value="activeRouteName"
-          :options="resultOptions"
-          @sure="handleEnter"
-        />
-      </el-scrollbar>
+      <el-empty v-if="resultOptions.length === 0" description="暂无搜索结果" :image-size="100" />
+      <template v-else>
+        <p>搜索结果</p>
+        <el-scrollbar ref="scrollbarRef" max-height="40vh">
+          <SearchResult ref="resultRef" v-model:value="activeRouteName" :options="resultOptions" @sure="handleEnter" />
+        </el-scrollbar>
+      </template>
     </div>
     <template #footer>
       <SearchFooter :total="resultOptions.length" />
@@ -161,11 +158,10 @@ onKeyStroke("ArrowDown", handleDown)
 </template>
 
 <style lang="scss">
-.search-dialog {
+.search-modal {
   .el-dialog__header {
     display: none;
   }
-
   .el-dialog__footer {
     border-top: 1px solid var(--el-border-color);
   }

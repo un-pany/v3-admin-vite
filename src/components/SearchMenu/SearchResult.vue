@@ -39,8 +39,8 @@ function handleMouse(item: Props["options"][number]) {
 }
 
 function resizeResult() {
-  // el-scrollbar max-height="calc(90vh - 140px)"
-  innerHeight.value = window.innerHeight - window.innerHeight / 10 - 140
+  // el-scrollbar max-height="40vh"
+  innerHeight.value = Number((window.innerHeight * 0.4).toFixed(1))
 }
 
 useResizeObserver(resultRef, resizeResult)
@@ -60,7 +60,6 @@ defineExpose({ handleScroll })
 
 <template>
   <div ref="resultRef" class="result">
-    <p>搜索结果</p>
     <div
       v-for="(item, index) in options"
       :key="item.name"
