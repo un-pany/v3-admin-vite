@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref, computed, shallowRef } from "vue"
+import { computed, ref, shallowRef } from "vue"
 import { type RouteRecordName, type RouteRecordRaw, useRouter } from "vue-router"
-import { usePermissionStore } from "@/store/modules/permission"
 import { useAppStore } from "@/store/modules/app"
+import { usePermissionStore } from "@/store/modules/permission"
 import SearchResult from "./SearchResult.vue"
 import SearchFooter from "./SearchFooter.vue"
 import { ElScrollbar } from "element-plus"
-import { cloneDeep } from "lodash-es"
+import { cloneDeep, debounce } from "lodash-es"
 import { DeviceEnum } from "@/constants/app-key"
-import { useDebounceFn, onKeyStroke } from "@vueuse/core"
+import { onKeyStroke } from "@vueuse/core"
 
 interface Props {
   /** 控制显隐 */
@@ -23,15 +23,27 @@ const emit = defineEmits<{
 const appStore = useAppStore()
 const router = useRouter()
 
-const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
-const resultRef = ref<InstanceType<typeof SearchResult>>()
-const activeRouteName = ref<RouteRecordName>("")
 const inputRef = ref<HTMLInputElement | null>(null)
+const scrollbarRef = ref<InstanceType<typeof ElScrollbar> | null>(null)
+const searchResultRef = ref<InstanceType<typeof SearchResult> | null>(null)
 
 const keyword = ref("")
+const activeRouteName = ref<RouteRecordName>("")
 const resultOptions = shallowRef<RouteRecordRaw[]>([])
 
-const handleSearch = useDebounceFn(search, 300)
+/** 搜索（防抖） */
+const handleSearch = debounce(() => {
+  const flatMenusData = flatTree(menusData.value)
+  resultOptions.value = flatMenusData.filter((menu) =>
+    keyword.value ? menu.meta?.title?.toLocaleLowerCase().includes(keyword.value.toLocaleLowerCase().trim()) : false
+  )
+  // 默认选中查询结果的第一项
+  if (resultOptions.value?.length > 0) {
+    activeRouteName.value = resultOptions.value[0].name!
+  } else {
+    activeRouteName.value = ""
+  }
+}, 500)
 
 const visible = computed({
   get() {
@@ -54,20 +66,6 @@ function flatTree(arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) {
   return result
 }
 
-/** 查询 */
-function search() {
-  const flatMenusData = flatTree(menusData.value)
-  resultOptions.value = flatMenusData.filter((menu) =>
-    keyword.value ? menu.meta?.title?.toLocaleLowerCase().includes(keyword.value.toLocaleLowerCase().trim()) : false
-  )
-  // 默认选中查询结果的第一项
-  if (resultOptions.value?.length > 0) {
-    activeRouteName.value = resultOptions.value[0].name!
-  } else {
-    activeRouteName.value = ""
-  }
-}
-
 function handleClose() {
   visible.value = false
   /** 延时处理防止用户看到重置数据的操作 */
@@ -78,7 +76,7 @@ function handleClose() {
 }
 
 function scrollTo(index: number) {
-  const scrollTop = resultRef.value?.handleScroll(index)
+  const scrollTop = searchResultRef.value?.handleScroll(index)
   // 手动控制 el-scrollbar 滚动条滚动，设置滚动条到顶部的距离
   scrollTop && scrollbarRef.value?.setScrollTop(scrollTop)
 }
@@ -147,7 +145,12 @@ onKeyStroke("ArrowDown", handleDown)
       <template v-else>
         <p>搜索结果</p>
         <el-scrollbar ref="scrollbarRef" max-height="40vh">
-          <SearchResult ref="resultRef" v-model:value="activeRouteName" :options="resultOptions" @sure="handleEnter" />
+          <SearchResult
+            ref="searchResultRef"
+            v-model:value="activeRouteName"
+            :options="resultOptions"
+            @sure="handleEnter"
+          />
         </el-scrollbar>
       </template>
     </div>

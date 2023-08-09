@@ -2,18 +2,18 @@
 import { ref } from "vue"
 import SearchModal from "./SearchModal.vue"
 
-const visible = ref(false)
-const toggle = () => {
-  visible.value = !visible.value
+const modalVisible = ref<boolean>(false)
+const handleOpen = () => {
+  modalVisible.value = true
 }
 </script>
 
 <template>
   <div>
     <el-tooltip effect="dark" content="搜索菜单" placement="bottom">
-      <SvgIcon name="search" @click="toggle" />
+      <SvgIcon name="search" @click="handleOpen" />
     </el-tooltip>
-    <SearchModal v-model="visible" />
+    <SearchModal v-model="modalVisible" />
   </div>
 </template>
 
