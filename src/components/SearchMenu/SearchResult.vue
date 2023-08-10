@@ -1,104 +1,119 @@
-<script setup lang="ts">
-import { useResizeObserver } from "@vueuse/core"
-import { ref, computed, getCurrentInstance, onMounted } from "vue"
-import { RouteRecordName, RouteRecordRaw } from "vue-router"
+<script lang="ts" setup>
+import { computed, getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue"
+import { type RouteRecordName, type RouteRecordRaw } from "vue-router"
 
 interface Props {
-  value: RouteRecordName
-  options: RouteRecordRaw[]
+  modelValue: RouteRecordName
+  list: RouteRecordRaw[]
 }
 
-interface Emits {
-  (e: "update:value", val: Props["value"]): void
-  (e: "sure"): void
-}
+const props = defineProps<Props>()
+const emit = defineEmits<{
+  "update:modelValue": [RouteRecordName]
+}>()
 
-const resultRef = ref<HTMLDivElement>()
-const innerHeight = ref(0)
-const props = withDefaults(defineProps<Props>(), {})
-const emit = defineEmits<Emits>()
 const instance = getCurrentInstance()
+const scrollbarHeight = ref<number>(0)
 
-const itemStyle = (item: RouteRecordRaw) => ({
-  background: item.name === active.value ? "var(--el-color-primary)" : "",
-  color: item.name === active.value ? "#fff" : ""
-})
-
-const active = computed({
+/** 选中的菜单 */
+const activeRouteName = computed({
   get() {
-    return props.value
+    return props.modelValue
   },
-  set(val: Props["value"]) {
-    emit("update:value", val)
+  set(value: RouteRecordName) {
+    emit("update:modelValue", value)
   }
 })
 
+/** 菜单的样式 */
+const itemStyle = (item: RouteRecordRaw) => {
+  const flag = item.name === activeRouteName.value
+  return {
+    background: flag ? "var(--el-color-primary)" : "",
+    color: flag ? "#fff" : ""
+  }
+}
+
 /** 鼠标移入 */
-function handleMouse(item: Props["options"][number]) {
-  active.value = item.name as string
+const handleMouseenter = (item: RouteRecordRaw) => {
+  activeRouteName.value = item.name!
 }
 
-function resizeResult() {
+/** 计算滚动可视区高度 */
+const getScrollbarHeight = () => {
   // el-scrollbar max-height="40vh"
-  innerHeight.value = Number((window.innerHeight * 0.4).toFixed(1))
+  scrollbarHeight.value = Number((window.innerHeight * 0.4).toFixed(1))
 }
 
-useResizeObserver(resultRef, resizeResult)
-
-function handleScroll(index: number) {
-  const curInstance = instance?.proxy?.$refs[`resultItemRef${index}`] as HTMLElement[]
-  if (!curInstance) return 0
-  const curRef = curInstance[0]
-  const scrollTop = curRef.offsetTop + 128 // 128 = 两个 result-item（56 + 56 = 112）高度加上下 margin（8 + 8 = 16）
-  return scrollTop > innerHeight.value ? scrollTop - innerHeight.value : 0
+/** 根据下标计算到顶部的距离 */
+const getScrollTop = (index: number) => {
+  const currentInstance = instance?.proxy?.$refs[`resultItemRef${index}`] as HTMLDivElement[]
+  if (!currentInstance) return 0
+  const currentRef = currentInstance[0]
+  const scrollTop = currentRef.offsetTop + 128 // 128 = 两个 result-item （56 + 56 = 112）高度与上下 margin（8 + 8 = 16）大小之和
+  return scrollTop > scrollbarHeight.value ? scrollTop - scrollbarHeight.value : 0
 }
 
-onMounted(resizeResult)
+/** 在组件挂载前添加窗口大小变化事件监听器 */
+onBeforeMount(() => {
+  window.addEventListener("resize", getScrollbarHeight)
+})
 
-defineExpose({ handleScroll })
+/** 在组件挂载时立即计算滚动可视区高度 */
+onMounted(() => {
+  getScrollbarHeight()
+})
+
+/** 在组件卸载前移除窗口大小变化事件监听器 */
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", getScrollbarHeight)
+})
+
+defineExpose({ getScrollTop })
 </script>
 
 <template>
-  <div ref="resultRef" class="result">
+  <!-- 外层 div 不能删除，是用来接收父组件 click 事件的 -->
+  <div>
     <div
-      v-for="(item, index) in options"
-      :key="item.name"
-      :ref="'resultItemRef' + index"
-      class="result-item dark:bg-#1d1d1d"
+      v-for="(item, index) in list"
+      :key="index"
+      :ref="`resultItemRef${index}`"
+      class="result-item"
       :style="itemStyle(item)"
-      @click="$emit('sure')"
-      @mouseenter="handleMouse(item)"
+      @mouseenter="handleMouseenter(item)"
     >
-      <component v-if="item.meta?.elIcon" :is="item.meta?.elIcon" class="w-22px" />
-      <SvgIcon v-else :name="item.meta?.svgIcon ?? ''" class="text-22px" />
+      <SvgIcon v-if="item.meta?.svgIcon" :name="item.meta.svgIcon" />
+      <component v-else-if="item.meta?.elIcon" :is="item.meta.elIcon" class="el-icon" />
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>
-      <SvgIcon v-if="active === item.name" name="keyboard-enter" class="text-22px" />
+      <SvgIcon v-if="activeRouteName === item.name" name="keyboard-enter" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.result {
-  padding-bottom: 12px;
-
-  &-item {
-    display: flex;
-    align-items: center;
-    height: 56px;
-    padding: 14px;
-    margin-top: 8px;
-    cursor: pointer;
-    border: 0.1px solid #ccc;
-    border-radius: 4px;
-    transition: all 300ms;
-
-    &-title {
-      display: flex;
-      flex: 1;
-      margin-left: 5px;
-    }
+.result-item {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 15px;
+  margin-top: 8px;
+  border: 1px solid var(--el-border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  .svg-icon {
+    min-width: 1em;
+    font-size: 18px;
+  }
+  .el-icon {
+    width: 1em;
+    font-size: 18px;
+  }
+  &-title {
+    flex: 1;
+    margin-left: 12px;
   }
 }
 </style>

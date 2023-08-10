@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, ref, shallowRef } from "vue"
 import { type RouteRecordName, type RouteRecordRaw, useRouter } from "vue-router"
 import { useAppStore } from "@/store/modules/app"
@@ -8,10 +8,9 @@ import SearchFooter from "./SearchFooter.vue"
 import { ElScrollbar } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
 import { DeviceEnum } from "@/constants/app-key"
-import { onKeyStroke } from "@vueuse/core"
 
 interface Props {
-  /** 控制显隐 */
+  /** 控制 modal 显隐 */
   modelValue: boolean
 }
 
@@ -28,37 +27,36 @@ const scrollbarRef = ref<InstanceType<typeof ElScrollbar> | null>(null)
 const searchResultRef = ref<InstanceType<typeof SearchResult> | null>(null)
 
 const keyword = ref("")
+const resultList = shallowRef<RouteRecordRaw[]>([])
 const activeRouteName = ref<RouteRecordName>("")
-const resultOptions = shallowRef<RouteRecordRaw[]>([])
+
+/** 控制搜索对话框宽度 */
+const modalWidth = computed(() => (appStore.device === DeviceEnum.Mobile ? "80vw" : "40vw"))
+/** 控制搜索对话框显隐 */
+const modalVisible = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value: boolean) {
+    emit("update:modelValue", value)
+  }
+})
+/** 树形菜单 */
+const menusData = computed(() => cloneDeep(usePermissionStore().routes))
 
 /** 搜索（防抖） */
 const handleSearch = debounce(() => {
   const flatMenusData = flatTree(menusData.value)
-  resultOptions.value = flatMenusData.filter((menu) =>
+  resultList.value = flatMenusData.filter((menu) =>
     keyword.value ? menu.meta?.title?.toLocaleLowerCase().includes(keyword.value.toLocaleLowerCase().trim()) : false
   )
-  // 默认选中查询结果的第一项
-  if (resultOptions.value?.length > 0) {
-    activeRouteName.value = resultOptions.value[0].name!
-  } else {
-    activeRouteName.value = ""
-  }
+  // 默认选中搜索结果的第一项
+  const length = resultList.value?.length
+  activeRouteName.value = length > 0 ? resultList.value[0].name! : ""
 }, 500)
 
-const visible = computed({
-  get() {
-    return props.modelValue
-  },
-  set(val: boolean) {
-    emit("update:modelValue", val)
-  }
-})
-
-/** 树形菜单 */
-const menusData = computed(() => cloneDeep(usePermissionStore().routes))
-
-/** 将树形菜单扁平化为一维数组，用于菜单查询 */
-function flatTree(arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) {
+/** 将树形菜单扁平化为一维数组，用于菜单搜索 */
+const flatTree = (arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) => {
   arr.forEach((item) => {
     result.push(item)
     item.children && flatTree(item.children, result)
@@ -66,107 +64,105 @@ function flatTree(arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) {
   return result
 }
 
-function handleClose() {
-  visible.value = false
-  /** 延时处理防止用户看到重置数据的操作 */
+/** 关闭搜索对话框 */
+const handleClose = () => {
+  modalVisible.value = false
+  // 延时处理防止用户看到重置数据的操作
   setTimeout(() => {
-    resultOptions.value = []
     keyword.value = ""
+    resultList.value = []
   }, 200)
 }
 
-function scrollTo(index: number) {
-  const scrollTop = searchResultRef.value?.handleScroll(index)
+/** 根据下标位置进行滚动 */
+const scrollTo = (index: number) => {
+  const scrollTop = searchResultRef.value?.getScrollTop(index)
   // 手动控制 el-scrollbar 滚动条滚动，设置滚动条到顶部的距离
   scrollTop && scrollbarRef.value?.setScrollTop(scrollTop)
 }
 
-/** key up */
-function handleUp() {
-  const { length } = resultOptions.value
+/** 键盘上键 */
+const handleUp = () => {
+  const { length } = resultList.value
   if (length === 0) return
-  const index = resultOptions.value.findIndex((item) => item.name === activeRouteName.value)
+  const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
   if (index === 0) {
-    // 如果已处在顶部，按下 keyup 跳转到底部
-    activeRouteName.value = resultOptions.value[length - 1].name!
-    scrollTo(resultOptions.value.length - 1)
+    // 如果已处在顶部，跳转到底部
+    activeRouteName.value = resultList.value[length - 1].name!
+    scrollTo(resultList.value.length - 1)
   } else {
-    activeRouteName.value = resultOptions.value[index - 1].name!
+    activeRouteName.value = resultList.value[index - 1].name!
     scrollTo(index - 1)
   }
 }
 
-/** key down */
-function handleDown() {
-  const { length } = resultOptions.value
+/** 键盘下键 */
+const handleDown = () => {
+  const { length } = resultList.value
   if (length === 0) return
-  const index = resultOptions.value.findIndex((item) => item.name === activeRouteName.value)
-  if (index + 1 === length) {
-    // 如果已处在底部，按下 keydown 跳转到顶部
-    activeRouteName.value = resultOptions.value[0].name!
+  const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
+  if (index === length - 1) {
+    // 如果已处在底部，跳转到顶部
+    activeRouteName.value = resultList.value[0].name!
     scrollTo(0)
   } else {
-    activeRouteName.value = resultOptions.value[index + 1].name!
+    activeRouteName.value = resultList.value[index + 1].name!
     scrollTo(index + 1)
   }
 }
 
-/** key enter */
-function handleEnter() {
-  const { length } = resultOptions.value
+/** 键盘回车键 */
+const handleEnter = () => {
+  const { length } = resultList.value
   if (length === 0 || !activeRouteName.value) return
   router.push({ name: activeRouteName.value })
   handleClose()
 }
-
-onKeyStroke("Enter", handleEnter)
-onKeyStroke("ArrowUp", handleUp)
-onKeyStroke("ArrowDown", handleDown)
 </script>
 
 <template>
   <el-dialog
-    v-model="visible"
-    :before-close="handleClose"
+    v-model="modalVisible"
     @opened="inputRef?.focus()"
     @closed="inputRef?.blur()"
-    append-to-body
-    class="search-modal"
-    :width="appStore.device === DeviceEnum.Mobile ? '80vw' : '40vw'"
+    @keydown.up="handleUp"
+    @keydown.down="handleDown"
+    @keydown.enter="handleEnter"
+    :before-close="handleClose"
+    :width="modalWidth"
     top="5vh"
+    class="search-modal__private"
+    append-to-body
   >
-    <el-input ref="inputRef" size="large" v-model="keyword" clearable placeholder="搜索菜单" @input="handleSearch">
+    <el-input ref="inputRef" v-model="keyword" @input="handleSearch" placeholder="搜索菜单" size="large" clearable>
       <template #prefix>
-        <SvgIcon name="search" text-18px />
+        <SvgIcon name="search" />
       </template>
     </el-input>
-    <div>
-      <el-empty v-if="resultOptions.length === 0" description="暂无搜索结果" :image-size="100" />
-      <template v-else>
-        <p>搜索结果</p>
-        <el-scrollbar ref="scrollbarRef" max-height="40vh">
-          <SearchResult
-            ref="searchResultRef"
-            v-model:value="activeRouteName"
-            :options="resultOptions"
-            @sure="handleEnter"
-          />
-        </el-scrollbar>
-      </template>
-    </div>
+    <el-empty v-if="resultList.length === 0" description="暂无搜索结果" :image-size="100" />
+    <template v-else>
+      <p>搜索结果</p>
+      <el-scrollbar ref="scrollbarRef" max-height="40vh">
+        <SearchResult ref="searchResultRef" v-model="activeRouteName" :list="resultList" @click="handleEnter" />
+      </el-scrollbar>
+    </template>
     <template #footer>
-      <SearchFooter :total="resultOptions.length" />
+      <SearchFooter :total="resultList.length" />
     </template>
   </el-dialog>
 </template>
 
 <style lang="scss">
-.search-modal {
+.search-modal__private {
+  .svg-icon {
+    font-size: 18px;
+  }
   .el-dialog__header {
     display: none;
   }
   .el-dialog__footer {
     border-top: 1px solid var(--el-border-color);
+    padding: var(--el-dialog-padding-primary);
   }
 }
 </style>

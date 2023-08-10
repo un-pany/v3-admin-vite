@@ -1,58 +1,57 @@
-<script setup lang="ts">
-import { DeviceEnum } from "@/constants/app-key"
+<script lang="ts" setup>
+import { computed } from "vue"
 import { useAppStore } from "@/store/modules/app"
+import { DeviceEnum } from "@/constants/app-key"
 
-const props = withDefaults(defineProps<{ total: number }>(), {
+interface Props {
+  total: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
   total: 0
 })
 
 const appStore = useAppStore()
+const isMobile = computed(() => appStore.device === DeviceEnum.Mobile)
 </script>
 
 <template>
-  <div class="search-footer text-#333 dark:text-white">
-    <span class="search-footer-item">
-      <SvgIcon name="keyboard-enter" />
-      确认
-    </span>
-    <span class="search-footer-item">
-      <SvgIcon name="keyboard-up" />
-      <SvgIcon name="keyboard-down" />
-      切换
-    </span>
-    <span class="search-footer-item">
-      <SvgIcon name="keyboard-esc" />
-      关闭
-    </span>
-    <p v-if="appStore.device !== DeviceEnum.Mobile && props.total > 0" class="search-footer-total">
-      共 {{ props.total }} 项
-    </p>
+  <div class="search-footer">
+    <template v-if="!isMobile">
+      <span class="search-footer-item">
+        <SvgIcon name="keyboard-enter" />
+        <span>确认</span>
+      </span>
+      <span class="search-footer-item">
+        <SvgIcon name="keyboard-up" />
+        <SvgIcon name="keyboard-down" />
+        <span>切换</span>
+      </span>
+      <span class="search-footer-item">
+        <SvgIcon name="keyboard-esc" />
+        <span>关闭</span>
+      </span>
+    </template>
+    <span class="search-footer-total">共 {{ props.total }} 项</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .search-footer {
   display: flex;
-  margin: 5px 0;
-
+  color: var(--el-text-color-secondary);
   &-item {
     display: flex;
     align-items: center;
-    margin-right: 14px;
+    margin-right: 12px;
+    .svg-icon {
+      margin-right: 5px;
+      padding: 2px;
+      font-size: 20px;
+      background-color: var(--el-fill-color);
+    }
   }
-
-  .svg-icon {
-    padding: 2px;
-    margin-right: 3px;
-    font-size: 20px;
-    box-shadow:
-      inset 0 -2px #cdcde6,
-      inset 0 0 1px 1px #fff,
-      0 1px 2px 1px #1e235a66;
-  }
-
   &-total {
-    padding: 0;
     margin: 0 0 0 auto;
   }
 }
