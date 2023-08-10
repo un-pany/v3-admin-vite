@@ -18,6 +18,8 @@ export interface LayoutSettings {
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
+  /** 是否显示搜索按钮 */
+  showSearchMenu: boolean
   /** 是否缓存标签栏 */
   cacheTagsView: boolean
   /** 是否显示灰色模式 */
@@ -35,6 +37,7 @@ export const layoutSettings: LayoutSettings = getConfigLayout() ?? {
   showNotify: true,
   showThemeSwitch: true,
   showScreenfull: true,
+  showSearchMenu: true,
   cacheTagsView: false,
   showGreyMode: false,
   showColorWeakness: false
