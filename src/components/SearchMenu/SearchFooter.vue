@@ -40,6 +40,7 @@ const isMobile = computed(() => appStore.device === DeviceEnum.Mobile)
 .search-footer {
   display: flex;
   color: var(--el-text-color-secondary);
+  font-size: 14px;
   &-item {
     display: flex;
     align-items: center;
