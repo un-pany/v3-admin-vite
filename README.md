@@ -6,10 +6,18 @@
 
 ## ⚡ Introduction
 
-v3-admin-vite is a free and open source middle and background management system basic solution, based on mainstream framework such as Vue3, TypeScript, Element Plus, Pinia and Vite.
+v3-admin-vite is a free and open source middle and background management system basic solution, based on mainstream framework such as Vue3, TypeScript, Element Plus, Pinia and Vite
 
 - Vue-Cli 5.x: [v3-admin](https://github.com/un-pany/v3-admin)
 - Electron desktop: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
+
+## ❤️ Generate electricity with love
+
+- **Completely free**：But hopefully you order a star !!!
+- **Very concise**：No complicated encapsulation, no complicated type gymnastics, out of the box
+- **Detailed annotations**：Each configuration item is written with as detailed comments as possible
+- **Latest dependencies**: Regularly update all third-party dependencies to the latest version
+- **Very specification**: The code style is unified, the naming style is unified, and the comment style is unified
 
 ## Feature
 
@@ -26,7 +34,6 @@ v3-admin-vite is a free and open source middle and background management system 
 - **Prettier**： Code formatting
 - **Axios**: Promise based HTTP client (encapsulated)
 - **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
-- **Annotation**：Each configuration item is written with as detailed comments as possible
 - **Mobile Compatible**: The layout is compatible with mobile page resolution
 
 ## Functions
@@ -35,9 +42,10 @@ v3-admin-vite is a free and open source middle and background management system 
 - **Authority management**: Built-in page permissions (dynamic routing), instruction permissions, permission functions
 - **Multiple Environments**: Development, Staging, Production
 - **Multiple themes**: Normal, Dark, Dark Blue, theme modes
+- **Multiple layouts**：Built-in left, top, left-top three layout modes
 - **Error page**: 403, 404
 - **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar
+- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, HooK (Composables)
 
 ## 📚 Document
 
