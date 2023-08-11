@@ -8,12 +8,21 @@
 
 V3 Admin Vite is a free and open source middle and background management system basic solution, based on mainstream framework such as Vue3, TypeScript, Element Plus, Pinia and Vite
 
-- Vue-Cli 5.x: [v3-admin](https://github.com/un-pany/v3-admin)
+- Vue Cli 5.x: [v3-admin](https://github.com/un-pany/v3-admin)
 - Electron desktop: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
-China repository
+China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 
-- Gitee: [link](https://gitee.com/un-pany/v3-admin-vite)
+## 📚 Document
+
+- Chinese documentation: [link](https://juejin.cn/post/7089377403717287972)
+- Chinese getting started tutorial: [link](https://juejin.cn/column/7207659644487139387)
+
+## 📺 Online preview
+
+| Location     | account             | Link                                            |
+| ------------ | ------------------- | ----------------------------------------------- |
+| github-pages | `admin` or `editor` | [link](https://un-pany.github.io/v3-admin-vite) |
 
 ## ❤️ Generate electricity with love
 
@@ -22,18 +31,6 @@ China repository
 - **Detailed annotations**：Each configuration item is written with as detailed comments as possible
 - **Latest dependencies**: Regularly update all third-party dependencies to the latest version
 - **Very specification**: The code style is unified, the naming style is unified, and the comment style is unified
-
-## 📚 Document
-
-[Chinese documentation](https://juejin.cn/post/7089377403717287972)
-
-[Chinese getting started tutorial](https://juejin.cn/column/7207659644487139387)
-
-## Online preview
-
-| Location     | account             | Link                                            |
-| ------------ | ------------------- | ----------------------------------------------- |
-| github-pages | `admin` or `editor` | [link](https://un-pany.github.io/v3-admin-vite) |
 
 ## Feature
 
