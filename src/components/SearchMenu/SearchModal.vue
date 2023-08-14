@@ -5,7 +5,7 @@ import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import SearchResult from "./SearchResult.vue"
 import SearchFooter from "./SearchFooter.vue"
-import { ElScrollbar } from "element-plus"
+import { ElMessage, ElScrollbar } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
 import { DeviceEnum } from "@/constants/app-key"
 
@@ -119,7 +119,11 @@ const handleDown = () => {
 /** 键盘回车键 */
 const handleEnter = () => {
   const { length } = resultList.value
-  if (length === 0 || !activeRouteName.value) return
+  if (length === 0) return
+  if (!activeRouteName.value) {
+    ElMessage.error("无法通过搜索功能进入该菜单，请为对应的路由设置唯一的 Name")
+    return
+  }
   router.push({ name: activeRouteName.value })
   handleClose()
 }
