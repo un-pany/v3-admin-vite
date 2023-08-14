@@ -30,6 +30,9 @@ const keyword = ref("")
 const resultList = shallowRef<RouteRecordRaw[]>([])
 const activeRouteName = ref<RouteRecordName>("")
 
+// 此变量表示是否按下了 up 键或 down 键，用于解决和 mouseenter 事件的冲突
+const isPressUpOrDown = ref(false)
+
 /** 控制搜索对话框宽度 */
 const modalWidth = computed(() => (appStore.device === DeviceEnum.Mobile ? "80vw" : "40vw"))
 /** 控制搜索对话框显隐 */
@@ -84,6 +87,7 @@ const scrollTo = (index: number) => {
 
 /** 键盘上键 */
 const handleUp = () => {
+  isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
   const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
@@ -99,6 +103,7 @@ const handleUp = () => {
 
 /** 键盘下键 */
 const handleDown = () => {
+  isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
   const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
@@ -119,6 +124,11 @@ const handleEnter = () => {
   router.push({ name: activeRouteName.value })
   handleClose()
 }
+
+/** 释放 up 键或 down 键时，重置变量 */
+const handleUpOrDownKeyup = () => {
+  isPressUpOrDown.value = false
+}
 </script>
 
 <template>
@@ -129,6 +139,7 @@ const handleEnter = () => {
     @keydown.up="handleUp"
     @keydown.down="handleDown"
     @keydown.enter="handleEnter"
+    @keyup.up.down="handleUpOrDownKeyup"
     :before-close="handleClose"
     :width="modalWidth"
     top="5vh"
@@ -144,7 +155,13 @@ const handleEnter = () => {
     <template v-else>
       <p>搜索结果</p>
       <el-scrollbar ref="scrollbarRef" max-height="40vh">
-        <SearchResult ref="searchResultRef" v-model="activeRouteName" :list="resultList" @click="handleEnter" />
+        <SearchResult
+          ref="searchResultRef"
+          v-model="activeRouteName"
+          :list="resultList"
+          :isPressUpOrDown="isPressUpOrDown"
+          @click="handleEnter"
+        />
       </el-scrollbar>
     </template>
     <template #footer>
