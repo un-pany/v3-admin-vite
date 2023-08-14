@@ -76,9 +76,10 @@ const handleClose = () => {
 
 /** 根据下标位置进行滚动 */
 const scrollTo = (index: number) => {
-  const scrollTop = searchResultRef.value?.getScrollTop(index)
+  if (!searchResultRef.value) return
+  const scrollTop = searchResultRef.value.getScrollTop(index)
   // 手动控制 el-scrollbar 滚动条滚动，设置滚动条到顶部的距离
-  scrollTop && scrollbarRef.value?.setScrollTop(scrollTop)
+  scrollbarRef.value?.setScrollTop(scrollTop)
 }
 
 /** 键盘上键 */
