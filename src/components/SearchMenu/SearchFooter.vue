@@ -7,9 +7,7 @@ interface Props {
   total: number
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  total: 0
-})
+const props = defineProps<Props>()
 
 const appStore = useAppStore()
 const isMobile = computed(() => appStore.device === DeviceEnum.Mobile)
