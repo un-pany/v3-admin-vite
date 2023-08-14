@@ -121,7 +121,7 @@ const handleEnter = () => {
   const { length } = resultList.value
   if (length === 0) return
   if (!activeRouteName.value) {
-    ElMessage.error("被搜索到的路由的 name 是必须的，请检查是否设置了路由的 name")
+    ElMessage.error("无法通过搜索功能进入该菜单，请检查是否设置了路由的 Name")
     return
   }
   router.push({ name: activeRouteName.value })
