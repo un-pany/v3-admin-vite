@@ -26,12 +26,11 @@ const inputRef = ref<HTMLInputElement | null>(null)
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar> | null>(null)
 const searchResultRef = ref<InstanceType<typeof SearchResult> | null>(null)
 
-const keyword = ref("")
+const keyword = ref<string>("")
 const resultList = shallowRef<RouteRecordRaw[]>([])
 const activeRouteName = ref<RouteRecordName>("")
-
-// 此变量表示是否按下了 up 键或 down 键，用于解决和 mouseenter 事件的冲突
-const isPressUpOrDown = ref(false)
+/** 是否按下了上键或下键（用于解决和 mouseenter 事件的冲突） */
+const isPressUpOrDown = ref<boolean>(false)
 
 /** 控制搜索对话框宽度 */
 const modalWidth = computed(() => (appStore.device === DeviceEnum.Mobile ? "80vw" : "40vw"))
@@ -125,8 +124,8 @@ const handleEnter = () => {
   handleClose()
 }
 
-/** 释放 up 键或 down 键时，重置变量 */
-const handleUpOrDownKeyup = () => {
+/** 释放上键或下键 */
+const handleReleaseUpOrDown = () => {
   isPressUpOrDown.value = false
 }
 </script>
@@ -139,7 +138,7 @@ const handleUpOrDownKeyup = () => {
     @keydown.up="handleUp"
     @keydown.down="handleDown"
     @keydown.enter="handleEnter"
-    @keyup.up.down="handleUpOrDownKeyup"
+    @keyup.up.down="handleReleaseUpOrDown"
     :before-close="handleClose"
     :width="modalWidth"
     top="5vh"

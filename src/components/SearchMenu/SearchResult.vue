@@ -37,7 +37,7 @@ const itemStyle = (item: RouteRecordRaw) => {
 
 /** 鼠标移入 */
 const handleMouseenter = (item: RouteRecordRaw) => {
-  // 如果是因为按下 up 键或 down 键而触发了 mouseenter 事件，则不设置当前激活菜单
+  // 如果上键或下键与 mouseenter 事件同时生效，则以上下键为准，不执行该函数的赋值逻辑
   if (props.isPressUpOrDown) return
   activeRouteName.value = item.name!
 }
