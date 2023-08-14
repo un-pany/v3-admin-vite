@@ -154,7 +154,7 @@ const handleUpOrDownKeyup = () => {
     <el-empty v-if="resultList.length === 0" description="暂无搜索结果" :image-size="100" />
     <template v-else>
       <p>搜索结果</p>
-      <el-scrollbar ref="scrollbarRef" max-height="40vh">
+      <el-scrollbar ref="scrollbarRef" max-height="40vh" always>
         <SearchResult
           ref="searchResultRef"
           v-model="activeRouteName"
