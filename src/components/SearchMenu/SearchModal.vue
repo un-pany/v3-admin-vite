@@ -26,9 +26,11 @@ const inputRef = ref<HTMLInputElement | null>(null)
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar> | null>(null)
 const searchResultRef = ref<InstanceType<typeof SearchResult> | null>(null)
 
-const keyword = ref("")
+const keyword = ref<string>("")
 const resultList = shallowRef<RouteRecordRaw[]>([])
 const activeRouteName = ref<RouteRecordName>("")
+/** 是否按下了上键或下键（用于解决和 mouseenter 事件的冲突） */
+const isPressUpOrDown = ref<boolean>(false)
 
 /** 控制搜索对话框宽度 */
 const modalWidth = computed(() => (appStore.device === DeviceEnum.Mobile ? "80vw" : "40vw"))
@@ -76,13 +78,15 @@ const handleClose = () => {
 
 /** 根据下标位置进行滚动 */
 const scrollTo = (index: number) => {
-  const scrollTop = searchResultRef.value?.getScrollTop(index)
+  if (!searchResultRef.value) return
+  const scrollTop = searchResultRef.value.getScrollTop(index)
   // 手动控制 el-scrollbar 滚动条滚动，设置滚动条到顶部的距离
-  scrollTop && scrollbarRef.value?.setScrollTop(scrollTop)
+  scrollbarRef.value?.setScrollTop(scrollTop)
 }
 
 /** 键盘上键 */
 const handleUp = () => {
+  isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
   const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
@@ -98,6 +102,7 @@ const handleUp = () => {
 
 /** 键盘下键 */
 const handleDown = () => {
+  isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
   const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
@@ -118,6 +123,11 @@ const handleEnter = () => {
   router.push({ name: activeRouteName.value })
   handleClose()
 }
+
+/** 释放上键或下键 */
+const handleReleaseUpOrDown = () => {
+  isPressUpOrDown.value = false
+}
 </script>
 
 <template>
@@ -128,6 +138,7 @@ const handleEnter = () => {
     @keydown.up="handleUp"
     @keydown.down="handleDown"
     @keydown.enter="handleEnter"
+    @keyup.up.down="handleReleaseUpOrDown"
     :before-close="handleClose"
     :width="modalWidth"
     top="5vh"
@@ -142,8 +153,14 @@ const handleEnter = () => {
     <el-empty v-if="resultList.length === 0" description="暂无搜索结果" :image-size="100" />
     <template v-else>
       <p>搜索结果</p>
-      <el-scrollbar ref="scrollbarRef" max-height="40vh">
-        <SearchResult ref="searchResultRef" v-model="activeRouteName" :list="resultList" @click="handleEnter" />
+      <el-scrollbar ref="scrollbarRef" max-height="40vh" always>
+        <SearchResult
+          ref="searchResultRef"
+          v-model="activeRouteName"
+          :list="resultList"
+          :isPressUpOrDown="isPressUpOrDown"
+          @click="handleEnter"
+        />
       </el-scrollbar>
     </template>
     <template #footer>

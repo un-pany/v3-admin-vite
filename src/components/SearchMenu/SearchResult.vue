@@ -5,6 +5,7 @@ import { type RouteRecordName, type RouteRecordRaw } from "vue-router"
 interface Props {
   modelValue: RouteRecordName
   list: RouteRecordRaw[]
+  isPressUpOrDown: boolean
 }
 
 const props = defineProps<Props>()
@@ -36,6 +37,8 @@ const itemStyle = (item: RouteRecordRaw) => {
 
 /** 鼠标移入 */
 const handleMouseenter = (item: RouteRecordRaw) => {
+  // 如果上键或下键与 mouseenter 事件同时生效，则以上下键为准，不执行该函数的赋值逻辑
+  if (props.isPressUpOrDown) return
   activeRouteName.value = item.name!
 }
 
