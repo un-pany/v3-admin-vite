@@ -28,7 +28,7 @@ const searchResultRef = ref<InstanceType<typeof SearchResult> | null>(null)
 
 const keyword = ref<string>("")
 const resultList = shallowRef<RouteRecordRaw[]>([])
-const activeRouteName = ref<RouteRecordName>("")
+const activeRouteName = ref<RouteRecordName | undefined>(undefined)
 /** 是否按下了上键或下键（用于解决和 mouseenter 事件的冲突） */
 const isPressUpOrDown = ref<boolean>(false)
 
@@ -54,7 +54,7 @@ const handleSearch = debounce(() => {
   )
   // 默认选中搜索结果的第一项
   const length = resultList.value?.length
-  activeRouteName.value = length > 0 ? resultList.value[0].name! : ""
+  activeRouteName.value = length > 0 ? resultList.value[0].name : undefined
 }, 500)
 
 /** 将树形菜单扁平化为一维数组，用于菜单搜索 */
@@ -89,13 +89,22 @@ const handleUp = () => {
   isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
+  // 获取该 name 在菜单中第一次出现的位置
   const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
+  // 如果已处在顶部
   if (index === 0) {
-    // 如果已处在顶部，跳转到底部
-    activeRouteName.value = resultList.value[length - 1].name!
-    scrollTo(resultList.value.length - 1)
+    const bottomName = resultList.value[length - 1].name
+    // 如果顶部和底部的 bottomName 相同，且长度大于 1，就再跳一个位置（可解决遇到首尾两个相同 name 导致的上键不能生效的问题）
+    if (activeRouteName.value === bottomName && length > 1) {
+      activeRouteName.value = resultList.value[length - 2].name
+      scrollTo(length - 2)
+    } else {
+      // 跳转到底部
+      activeRouteName.value = bottomName
+      scrollTo(length - 1)
+    }
   } else {
-    activeRouteName.value = resultList.value[index - 1].name!
+    activeRouteName.value = resultList.value[index - 1].name
     scrollTo(index - 1)
   }
 }
@@ -105,13 +114,22 @@ const handleDown = () => {
   isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
-  const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
+  // 获取该 name 在菜单中最后一次出现的位置（可解决遇到连续两个相同 name 导致的下键不能生效的问题）
+  const index = resultList.value.map((item) => item.name).lastIndexOf(activeRouteName.value)
+  // 如果已处在底部
   if (index === length - 1) {
-    // 如果已处在底部，跳转到顶部
-    activeRouteName.value = resultList.value[0].name!
-    scrollTo(0)
+    const topName = resultList.value[0].name
+    // 如果底部和顶部的 topName 相同，且长度大于 1，就再跳一个位置（可解决遇到首尾两个相同 name 导致的下键不能生效的问题）
+    if (activeRouteName.value === topName && length > 1) {
+      activeRouteName.value = resultList.value[1].name
+      scrollTo(1)
+    } else {
+      // 跳转到顶部
+      activeRouteName.value = topName
+      scrollTo(0)
+    }
   } else {
-    activeRouteName.value = resultList.value[index + 1].name!
+    activeRouteName.value = resultList.value[index + 1].name
     scrollTo(index + 1)
   }
 }
@@ -120,11 +138,17 @@ const handleDown = () => {
 const handleEnter = () => {
   const { length } = resultList.value
   if (length === 0) return
-  if (!activeRouteName.value) {
-    ElMessage.error("无法通过搜索功能进入该菜单，请为对应的路由设置唯一的 Name")
+  const name = activeRouteName.value
+  if (!name) {
+    ElMessage.warning("无法通过搜索进入该菜单，请为对应的路由设置唯一的 Name")
     return
   }
-  router.push({ name: activeRouteName.value })
+  try {
+    router.push({ name })
+  } catch {
+    ElMessage.error("该菜单有必填的动态参数，无法通过搜索进入")
+    return
+  }
   handleClose()
 }
 

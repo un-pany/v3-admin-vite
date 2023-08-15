@@ -3,14 +3,14 @@ import { computed, getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted
 import { type RouteRecordName, type RouteRecordRaw } from "vue-router"
 
 interface Props {
-  modelValue: RouteRecordName
+  modelValue: RouteRecordName | undefined
   list: RouteRecordRaw[]
   isPressUpOrDown: boolean
 }
 
 const props = defineProps<Props>()
 const emit = defineEmits<{
-  "update:modelValue": [RouteRecordName]
+  "update:modelValue": [RouteRecordName | undefined]
 }>()
 
 const instance = getCurrentInstance()
@@ -21,7 +21,7 @@ const activeRouteName = computed({
   get() {
     return props.modelValue
   },
-  set(value: RouteRecordName) {
+  set(value: RouteRecordName | undefined) {
     emit("update:modelValue", value)
   }
 })
@@ -39,7 +39,7 @@ const itemStyle = (item: RouteRecordRaw) => {
 const handleMouseenter = (item: RouteRecordRaw) => {
   // 如果上键或下键与 mouseenter 事件同时生效，则以上下键为准，不执行该函数的赋值逻辑
   if (props.isPressUpOrDown) return
-  activeRouteName.value = item.name!
+  activeRouteName.value = item.name
 }
 
 /** 计算滚动可视区高度 */
@@ -91,7 +91,7 @@ defineExpose({ getScrollTop })
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>
-      <SvgIcon v-if="activeRouteName === item.name" name="keyboard-enter" />
+      <SvgIcon v-if="activeRouteName && activeRouteName === item.name" name="keyboard-enter" />
     </div>
   </div>
 </template>
