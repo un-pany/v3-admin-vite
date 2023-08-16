@@ -141,7 +141,7 @@ const tipLineWidth = computed(() => {
 
 :deep(.el-sub-menu) {
   &.is-active {
-    .el-sub-menu__title {
+    > .el-sub-menu__title {
       color: v-bind(activeTextColor) !important;
     }
   }
