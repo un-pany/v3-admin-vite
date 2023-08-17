@@ -9,26 +9,26 @@
 }
 
 #app-loading,
-#app-loading:before,
-#app-loading:after {
+#app-loading::before,
+#app-loading::after {
   width: 2em;
   height: 2em;
   border-radius: 50%;
   animation: 2s ease-in-out infinite app-loading-animation;
 }
 
-#app-loading:before,
-#app-loading:after {
+#app-loading::before,
+#app-loading::after {
   content: "";
   position: absolute;
 }
 
-#app-loading:before {
+#app-loading::before {
   left: -4em;
   animation-delay: -0.2s;
 }
 
-#app-loading:after {
+#app-loading::after {
   left: 4em;
   animation-delay: 0.2s;
 }
