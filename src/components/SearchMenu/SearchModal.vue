@@ -140,13 +140,13 @@ const handleEnter = () => {
   const { length } = resultList.value
   if (length === 0) return
   const name = activeRouteName.value
-  const path = resultList.value.find((i) => i.name === name)?.path
-  if (!name) {
-    ElMessage.warning("无法通过搜索进入该菜单，请为对应的路由设置唯一的 Name")
+  const path = resultList.value.find((item) => item.name === name)?.path
+  if (path && isExternal(path)) {
+    window.open(path, "_blank", "noopener, noreferrer")
     return
   }
-  if (path && isExternal(path)) {
-    window.open(path, "_blank", "noopener,noreferrer")
+  if (!name) {
+    ElMessage.warning("无法通过搜索进入该菜单，请为对应的路由设置唯一的 Name")
     return
   }
   try {
