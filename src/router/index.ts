@@ -6,7 +6,7 @@ const Layouts = () => import("@/layouts/index.vue")
 
 /**
  * 常驻路由
- * 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置 Name 属性
+ * 除了 redirect/403/404/login 等隐藏页面以及外链，其他页面建议设置 Name 属性
  */
 export const constantRoutes: RouteRecordRaw[] = [
   {

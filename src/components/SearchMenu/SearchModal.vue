@@ -8,6 +8,7 @@ import SearchFooter from "./SearchFooter.vue"
 import { ElMessage, ElScrollbar } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
 import { DeviceEnum } from "@/constants/app-key"
+import { isExternal } from "@/utils/validate"
 
 interface Props {
   /** 控制 modal 显隐 */
@@ -139,6 +140,11 @@ const handleEnter = () => {
   const { length } = resultList.value
   if (length === 0) return
   const name = activeRouteName.value
+  const path = resultList.value.find((item) => item.name === name)?.path
+  if (path && isExternal(path)) {
+    window.open(path, "_blank", "noopener, noreferrer")
+    return
+  }
   if (!name) {
     ElMessage.warning("无法通过搜索进入该菜单，请为对应的路由设置唯一的 Name")
     return
