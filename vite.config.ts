@@ -52,11 +52,12 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       reportCompressedSize: false,
       /** 打包后静态资源目录 */
       assetsDir: "static",
+      /** 分块策略 */
       rollupOptions: {
         output: {
           manualChunks: {
             vue: ["vue", "vue-router", "pinia"],
-            utils: ["lodash-es", "js-cookie", "screenfull", "path-browserify", "path-to-regexp"],
+            elment: ["element-plus", "@element-plus/icons-vue"],
             vxe: ["vxe-table", "vxe-table-plugin-element", "xe-utils"]
           }
         }
