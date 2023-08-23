@@ -6,6 +6,7 @@ import { type GetTableResponseData } from "@/api/table/types/table"
 import RoleColumnSolts from "./tsx/RoleColumnSolts"
 import StatusColumnSolts from "./tsx/StatusColumnSolts"
 import {
+  VxeGridPropTypes,
   type VxeGridInstance,
   type VxeGridProps,
   type VxeModalInstance,
@@ -134,26 +135,14 @@ const xGridOpt: VxeGridProps = reactive({
     props: {
       total: "total"
     },
+    /** 代理配置（任何使用 Promise API 的任何库都可以对接数据代理） */
     ajax: {
-      query: ({ page, form }) => {
+      query: async ({ page, form }: VxeGridPropTypes.ProxyAjaxQueryParams) => {
         xGridOpt.loading = true
         crudStore.clearTable()
-        return new Promise((resolve) => {
-          let total = 0
-          let result: RowMeta[] = []
-          /** 加载数据 */
-          const callback = (res: GetTableResponseData) => {
-            if (res?.data) {
-              // 总数
-              total = res.data.total
-              // 列表数据
-              result = res.data.list
-            }
-            xGridOpt.loading = false
-            // 返回值有格式要求，详情见 vxe-table 官方文档
-            resolve({ total, result })
-          }
-
+        let total = 0
+        let result: RowMeta[] = []
+        try {
           /** 接口需要的参数 */
           const params = {
             username: form.username || undefined,
@@ -162,8 +151,19 @@ const xGridOpt: VxeGridProps = reactive({
             currentPage: page.currentPage
           }
           /** 调用接口 */
-          getTableDataApi(params).then(callback).catch(callback)
-        })
+          const res: GetTableResponseData = await getTableDataApi(params)
+          if (res?.data) {
+            // 总数
+            total = res.data.total
+            // 列表数据
+            result = res.data.list
+          }
+        } catch (reason: any) {
+          console.error(reason)
+        }
+        xGridOpt.loading = false
+        // 返回值有格式要求，详情见 vxe-table 官方文档
+        return { total, result }
       }
     }
   }
@@ -228,6 +228,7 @@ const xFormOpt: VxeFormProps = reactive({
     username: [
       {
         required: true,
+        /** 返回一个 Error 或者 Promise<new Error("提示消息")> */
         validator: ({ itemValue }) => {
           switch (true) {
             case !itemValue:
@@ -235,6 +236,7 @@ const xFormOpt: VxeFormProps = reactive({
             case !itemValue.trim():
               return new Error("空格无效")
           }
+          return Promise.resolve()
         }
       }
     ],
@@ -248,6 +250,7 @@ const xFormOpt: VxeFormProps = reactive({
             case !itemValue.trim():
               return new Error("空格无效")
           }
+          return Promise.resolve()
         }
       }
     ]
@@ -308,11 +311,8 @@ const crudStore = reactive({
   /** 新增后是否跳入最后一页 */
   afterInsert: () => {
     const pager = xGridDom.value?.getProxyInfo()?.pager
-    if (pager) {
-      const currentTotal = pager.currentPage * pager.pageSize
-      if (currentTotal === pager.total) {
-        ++pager.currentPage
-      }
+    if (pager && pager.total === pager.currentPage * pager.pageSize) {
+      ++pager.currentPage
     }
   },
   /** 删除 */
@@ -339,7 +339,7 @@ const crudStore = reactive({
   afterDelete: () => {
     const tableData: RowMeta[] = xGridDom.value!.getData()
     const pager = xGridDom.value?.getProxyInfo()?.pager
-    if (pager && pager.currentPage > 1 && tableData.length === 1) {
+    if (pager && pager.currentPage > 1 && [1, pager.pageSize].includes(tableData.length)) {
       --pager.currentPage
     }
   },
