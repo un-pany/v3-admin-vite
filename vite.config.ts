@@ -48,6 +48,8 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     build: {
       /** 消除打包大小超过 500kb 警告 */
       chunkSizeWarningLimit: 2000,
+      /** 禁用 gzip 压缩大小报告 */
+      reportCompressedSize: false,
       /** 打包后静态资源目录 */
       assetsDir: "static",
       rollupOptions: {
@@ -61,7 +63,12 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       }
     },
     esbuild: {
-      drop: ["console", "debugger"]
+      /** 在打包代码时移除 console.log */
+      pure: ["console.log"],
+      /** 在打包代码时移除 debugger */
+      drop: ["debugger"],
+      /** 在打包代码时移除所有注释 */
+      legalComments: "none"
     },
     /** Vite 插件 */
     plugins: [
