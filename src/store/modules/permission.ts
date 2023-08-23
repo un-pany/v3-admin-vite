@@ -3,7 +3,8 @@ import store from "@/store"
 import { defineStore } from "pinia"
 import { type RouteRecordRaw } from "vue-router"
 import { constantRoutes, asyncRoutes } from "@/router"
-import asyncRouteSettings from "@/config/async-route"
+import { flatMultiLevelRoutes } from "@/router/helper"
+import routeSettings from "@/config/route"
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   const routeRoles = route.meta?.roles
@@ -29,9 +30,9 @@ export const usePermissionStore = defineStore("permission", () => {
   const dynamicRoutes = ref<RouteRecordRaw[]>([])
 
   const setRoutes = (roles: string[]) => {
-    const accessedRoutes = asyncRouteSettings.open ? filterAsyncRoutes(asyncRoutes, roles) : asyncRoutes
+    const accessedRoutes = routeSettings.async ? filterAsyncRoutes(asyncRoutes, roles) : asyncRoutes
     routes.value = constantRoutes.concat(accessedRoutes)
-    dynamicRoutes.value = accessedRoutes
+    dynamicRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
   }
 
   return { routes, dynamicRoutes, setRoutes }

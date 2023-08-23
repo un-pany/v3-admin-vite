@@ -17,6 +17,7 @@ const {
   showNotify,
   showThemeSwitch,
   showScreenfull,
+  showSearchMenu,
   cacheTagsView,
   showGreyMode,
   showColorWeakness
@@ -30,6 +31,7 @@ const switchSettings = {
   显示消息通知: showNotify,
   显示切换主题按钮: showThemeSwitch,
   显示全屏按钮: showScreenfull,
+  显示搜索按钮: showSearchMenu,
   是否缓存标签栏: cacheTagsView,
   显示灰色模式: showGreyMode,
   显示色弱模式: showColorWeakness

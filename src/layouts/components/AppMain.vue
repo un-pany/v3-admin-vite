@@ -23,6 +23,10 @@ const key = computed(() => {
         </transition>
       </router-view>
     </div>
+    <!-- 返回顶部 -->
+    <el-backtop />
+    <!-- 返回顶部（固定 Header 情况下） -->
+    <el-backtop target=".app-scrollbar" />
   </section>
 </template>
 

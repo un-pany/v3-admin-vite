@@ -1,6 +1,6 @@
 /** 清除浮动 */
 @mixin clearfix {
-  &:after {
+  &::after {
     content: "";
     display: table;
     clear: both;
