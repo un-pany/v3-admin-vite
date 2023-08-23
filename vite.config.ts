@@ -52,9 +52,13 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       reportCompressedSize: false,
       /** 打包后静态资源目录 */
       assetsDir: "static",
-      /** 分块策略 */
       rollupOptions: {
         output: {
+          /**
+           * 分块策略
+           * 1. 注意这些包名必须存在，否则打包会报错
+           * 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
+           */
           manualChunks: {
             vue: ["vue", "vue-router", "pinia"],
             element: ["element-plus", "@element-plus/icons-vue"],
@@ -63,12 +67,13 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
         }
       }
     },
+    /** 混淆器 */
     esbuild: {
-      /** 在打包代码时移除 console.log */
+      /** 打包时移除 console.log */
       pure: ["console.log"],
-      /** 在打包代码时移除 debugger */
+      /** 打包时移除 debugger */
       drop: ["debugger"],
-      /** 在打包代码时移除所有注释 */
+      /** 打包时移除所有注释 */
       legalComments: "none"
     },
     /** Vite 插件 */
