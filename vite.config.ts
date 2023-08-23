@@ -47,23 +47,29 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
     },
     build: {
       /** 消除打包大小超过 500kb 警告 */
-      chunkSizeWarningLimit: 2000,
-      /** Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效 */
-      minify: "terser",
-      /** 在打包代码时移除 console.log、debugger 和 注释 */
-      terserOptions: {
-        compress: {
-          drop_console: false,
-          drop_debugger: true,
-          pure_funcs: ["console.log"]
-        },
-        format: {
-          /** 删除注释 */
-          comments: false
-        }
-      },
+      chunkSizeWarningLimit: 2048,
+      /** 禁用 gzip 压缩大小报告 */
+      reportCompressedSize: false,
       /** 打包后静态资源目录 */
-      assetsDir: "static"
+      assetsDir: "static",
+      /** 分块策略 */
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vue: ["vue", "vue-router", "pinia"],
+            elment: ["element-plus", "@element-plus/icons-vue"],
+            vxe: ["vxe-table", "vxe-table-plugin-element", "xe-utils"]
+          }
+        }
+      }
+    },
+    esbuild: {
+      /** 在打包代码时移除 console.log */
+      pure: ["console.log"],
+      /** 在打包代码时移除 debugger */
+      drop: ["debugger"],
+      /** 在打包代码时移除所有注释 */
+      legalComments: "none"
     },
     /** Vite 插件 */
     plugins: [
