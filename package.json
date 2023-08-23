@@ -63,7 +63,6 @@
     "lint-staged": "14.0.0",
     "prettier": "3.0.2",
     "sass": "1.66.1",
-    "terser": "5.19.2",
     "typescript": "5.1.6",
     "unocss": "0.55.2",
     "vite": "4.4.9",
