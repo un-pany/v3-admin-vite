@@ -7,10 +7,12 @@ import routeSettings from "@/config/route"
 import isWhiteList from "@/config/white-list"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
+import { setRouteEmitter } from "@/utils/route-listener"
 
 NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async (to, _from, next) => {
+  setRouteEmitter(to)
   NProgress.start()
   const userStore = useUserStoreHook()
   const permissionStore = usePermissionStoreHook()

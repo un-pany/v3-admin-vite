@@ -11,6 +11,7 @@ const Layouts = () => import("@/layouts/index.vue")
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/redirect",
+    name: "Redirect",
     component: Layouts,
     meta: {
       hidden: true

@@ -1,17 +1,16 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, ref, watch } from "vue"
-import { type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
-import { type TagView, useTagsViewStore } from "@/store/modules/tags-view"
-import { usePermissionStore } from "@/store/modules/permission"
+import { getCurrentInstance, ref, watch } from "vue"
+import { RouterLink, useRoute, useRouter } from "vue-router"
 import ScrollPane from "./ScrollPane.vue"
-import path from "path-browserify"
 import { Close } from "@element-plus/icons-vue"
 
 const instance = getCurrentInstance()
 const router = useRouter()
 const route = useRoute()
-const tagsViewStore = useTagsViewStore()
-const permissionStore = usePermissionStore()
+type selectedTagType = {
+  tag: TagProps
+  index: number
+}
 
 /** 标签页组件元素的引用数组 */
 const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
@@ -23,108 +22,50 @@ const top = ref(0)
 /** 右键菜单的 left 位置 */
 const left = ref(0)
 /** 当前正在右键操作的标签页 */
-const selectedTag = ref<TagView>({})
-/** 固定的标签页 */
-let affixTags: TagView[] = []
-
+const selectedTag = ref<selectedTagType>()
 /** 判断标签页是否激活 */
-const isActive = (tag: TagView) => {
+const isActive = (tag: TagProps) => {
   return tag.path === route.path
 }
 
-/** 判断标签页是否固定 */
-const isAffix = (tag: TagView) => {
-  return tag.meta?.affix
-}
-
-/** 筛选出固定标签页 */
-const filterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
-  const tags: TagView[] = []
-  routes.forEach((route) => {
-    if (isAffix(route)) {
-      const tagPath = path.resolve(basePath, route.path)
-      tags.push({
-        fullPath: tagPath,
-        path: tagPath,
-        name: route.name,
-        meta: { ...route.meta }
-      })
-    }
-    if (route.children) {
-      const childTags = filterAffixTags(route.children, route.path)
-      tags.push(...childTags)
+/** 刷新当前正在右键操作的标签页 */
+const refreshSelectedTag = async (selectedTag: selectedTagType) => {
+  tabBarStore.deleteCache(selectedTag.tag)
+  await router.push({
+    name: "Redirect",
+    params: {
+      path: route.fullPath
     }
   })
-  return tags
-}
-
-/** 初始化标签页 */
-const initTags = () => {
-  affixTags = filterAffixTags(permissionStore.routes)
-  for (const tag of affixTags) {
-    // 必须含有 name 属性
-    tag.name && tagsViewStore.addVisitedView(tag)
-  }
-}
-
-/** 添加标签页 */
-const addTags = () => {
-  if (route.name) {
-    tagsViewStore.addVisitedView(route)
-    tagsViewStore.addCachedView(route)
-  }
-}
-
-/** 刷新当前正在右键操作的标签页 */
-const refreshSelectedTag = (view: TagView) => {
-  tagsViewStore.delCachedView(view)
-  router.replace({ path: "/redirect" + view.path, query: view.query })
+  tabBarStore.addCache(selectedTag.tag.name)
 }
 
 /** 关闭当前正在右键操作的标签页 */
-const closeSelectedTag = (view: TagView) => {
-  tagsViewStore.delVisitedView(view)
-  tagsViewStore.delCachedView(view)
-  isActive(view) && toLastView(tagsViewStore.visitedViews, view)
+const closeSelectedTag = (tag: TagProps, idx: number) => {
+  tabBarStore.deleteTag(idx, tag)
+  if (tag.fullPath === route.fullPath) {
+    const latest = tagList.value[idx - 1]
+    router.push({ name: latest.name })
+  }
 }
 
 /** 关闭其他标签页 */
-const closeOthersTags = () => {
-  const fullPath = selectedTag.value.fullPath
-  if (fullPath !== route.path && fullPath !== undefined) {
-    router.push(fullPath)
-  }
-  tagsViewStore.delOthersVisitedViews(selectedTag.value)
-  tagsViewStore.delOthersCachedViews(selectedTag.value)
+const closeOthersTags = (selectedTag: selectedTagType) => {
+  const filterList = tagList.value.filter((el, idx) => {
+    return idx === 0 || idx === selectedTag.index
+  })
+  tabBarStore.freshTabList(filterList)
+  router.push({ name: selectedTag.tag.name })
 }
 
 /** 关闭所有标签页 */
-const closeAllTags = (view: TagView) => {
-  tagsViewStore.delAllVisitedViews()
-  tagsViewStore.delAllCachedViews()
-  if (affixTags.some((tag) => tag.path === route.path)) return
-  toLastView(tagsViewStore.visitedViews, view)
-}
-
-/** 跳转到最后一个标签页 */
-const toLastView = (visitedViews: TagView[], view: TagView) => {
-  const latestView = visitedViews.slice(-1)[0]
-  const fullPath = latestView?.fullPath
-  if (fullPath !== undefined) {
-    router.push(fullPath)
-  } else {
-    // 如果 TagsView 全部被关闭了，则默认重定向到主页
-    if (view.name === "Dashboard") {
-      // 重新加载主页
-      router.push({ path: "/redirect" + view.path, query: view.query })
-    } else {
-      router.push("/")
-    }
-  }
+const closeAllTags = () => {
+  tabBarStore.resetTabList()
+  router.push({ name: "Dashboard" })
 }
 
 /** 打开右键菜单面板 */
-const openMenu = (tag: TagView, e: MouseEvent) => {
+const openMenu = (tag: TagProps, idx: number, e: MouseEvent) => {
   const menuMinWidth = 105
   // 当前组件距离浏览器左端的距离
   const offsetLeft = instance!.proxy!.$el.getBoundingClientRect().left
@@ -139,7 +80,10 @@ const openMenu = (tag: TagView, e: MouseEvent) => {
   // 显示面板
   visible.value = true
   // 更新当前正在右键操作的标签页
-  selectedTag.value = tag
+  selectedTag.value = {
+    tag,
+    index: idx
+  }
 }
 
 /** 关闭右键菜单面板 */
@@ -147,24 +91,28 @@ const closeMenu = () => {
   visible.value = false
 }
 
-watch(
-  route,
-  () => {
-    addTags()
-  },
-  {
-    deep: true
-  }
-)
-
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
 })
+import useTabBarStore, { TagProps } from "@/store/modules/tab-bar"
+import { computed } from "vue"
+import { onUnmounted } from "vue"
+import { listenerRouteChange, removeRouteListener } from "@/utils/route-listener"
+import { RouteLocationNormalized } from "vue-router"
 
-onMounted(() => {
-  initTags()
-  addTags()
+const tabBarStore = useTabBarStore()
+const tagList = computed(() => {
+  return tabBarStore.getTabList
 })
+listenerRouteChange((route: RouteLocationNormalized) => {
+  if (!route.meta.affix && !tagList.value.some((tag) => tag.fullPath === route.fullPath)) {
+    tabBarStore.updateTabList(route)
+  }
+})
+onUnmounted(() => {
+  removeRouteListener()
+})
+console.log(tagList)
 </script>
 
 <template>
@@ -172,25 +120,25 @@ onMounted(() => {
     <ScrollPane class="tags-view-wrapper" :tag-refs="tagRefs">
       <router-link
         ref="tagRefs"
-        v-for="tag in tagsViewStore.visitedViews"
-        :key="tag.path"
+        v-for="(tag, index) in tagList"
+        :key="tag.fullPath"
         :class="{ active: isActive(tag) }"
         class="tags-view-item"
-        :to="{ path: tag.path, query: tag.query }"
-        @click.middle="!isAffix(tag) && closeSelectedTag(tag)"
-        @contextmenu.prevent="openMenu(tag, $event)"
+        :to="{ path: tag.fullPath, query: tag.query }"
+        @click.middle="!false && closeSelectedTag(tag, index)"
+        @contextmenu.prevent="openMenu(tag, index, $event)"
       >
-        {{ tag.meta?.title }}
-        <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="closeSelectedTag(tag)">
+        {{ tag.title }}
+        <el-icon v-if="!tag.meta?.affix" :size="12" @click.prevent.stop="closeSelectedTag(tag, index)">
           <Close />
         </el-icon>
       </router-link>
     </ScrollPane>
     <ul v-show="visible" class="contextmenu" :style="{ left: left + 'px', top: top + 'px' }">
-      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">关闭</li>
-      <li @click="closeOthersTags">关闭其它</li>
-      <li @click="closeAllTags(selectedTag)">关闭所有</li>
+      <li @click="refreshSelectedTag(selectedTag!)">刷新</li>
+      <li v-if="!selectedTag?.tag.meta?.affix" @click="closeSelectedTag(selectedTag!.tag, selectedTag!.index)">关闭</li>
+      <li @click="closeOthersTags(selectedTag!)">关闭其它</li>
+      <li @click="closeAllTags">关闭所有</li>
     </ul>
   </div>
 </template>

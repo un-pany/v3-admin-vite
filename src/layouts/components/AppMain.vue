@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import { useTagsViewStore } from "@/store/modules/tags-view"
+import useTabBarStore from "@/store/modules/tab-bar"
+import { computed } from "vue"
 
-const tagsViewStore = useTagsViewStore()
+const tabBarStore = useTabBarStore()
+const cacheList = computed(() => tabBarStore.getCacheList)
 </script>
 
 <template>
   <section class="app-main">
     <div class="app-scrollbar">
-      <RouterView>
-        <template #default="{ Component, route }">
-          <transition name="fade" mode="out-in" appear>
-            <keep-alive v-if="route.meta.keepAlive" :include="tagsViewStore.cachedViews">
-              <component :is="Component" :key="route.fullPath" />
-            </keep-alive>
-            <component v-else :is="Component" :key="route.fullPath" />
-          </transition>
-        </template>
-      </RouterView>
+      <router-view v-slot="{ Component, route }">
+        <transition name="fade" mode="out-in" appear>
+          <component :is="Component" v-if="route.meta.ignoreCache" :key="route.fullPath" />
+          <keep-alive v-else :include="cacheList">
+            <component :is="Component" :key="route.fullPath" />
+          </keep-alive>
+        </transition>
+      </router-view>
     </div>
     <!-- 返回顶部 -->
     <el-backtop />
