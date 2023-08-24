@@ -6,6 +6,9 @@ import { usePermissionStore } from "@/store/modules/permission"
 import ScrollPane from "./ScrollPane.vue"
 import path from "path-browserify"
 import { Close } from "@element-plus/icons-vue"
+import { listenerRouteChange, removeRouteListener } from "@/utils/route-listener"
+import { onUnmounted } from "vue"
+import { RouteLocationNormalized } from "vue-router"
 
 const instance = getCurrentInstance()
 const router = useRouter()
@@ -146,16 +149,12 @@ const openMenu = (tag: TagView, e: MouseEvent) => {
 const closeMenu = () => {
   visible.value = false
 }
-
-watch(
-  route,
-  () => {
-    addTags()
-  },
-  {
-    deep: true
+listenerRouteChange((route: RouteLocationNormalized) => {
+  if (!route.meta.affix && !tagsViewStore.visitedViews.some((tag) => tag.fullPath === route.fullPath)) {
+    tagsViewStore.addVisitedView(route)
+    tagsViewStore.addCachedView(route)
   }
-)
+}, true)
 
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
@@ -164,6 +163,9 @@ watch(visible, (value) => {
 onMounted(() => {
   initTags()
   addTags()
+})
+onUnmounted(() => {
+  removeRouteListener()
 })
 </script>
 
