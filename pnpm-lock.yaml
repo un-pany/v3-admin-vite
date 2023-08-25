@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@element-plus/icons-vue':
     specifier: 2.1.0
@@ -20,7 +24,7 @@ dependencies:
     specifier: 4.17.21
     version: 4.17.21
   mitt:
-    specifier: ^3.0.1
+    specifier: 3.0.1
     version: 3.0.1
   normalize.css:
     specifier: 8.0.1
@@ -5315,7 +5319,3 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

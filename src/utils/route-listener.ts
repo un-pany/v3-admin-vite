@@ -1,27 +1,24 @@
-/**
- * 单独监听路由会浪费渲染性能。使用发布订阅模式去进行分发管理。
- */
-import mitt, { Handler } from "mitt"
-import type { RouteLocationNormalized } from "vue-router"
+/** 单独监听路由会浪费渲染性能，使用发布订阅模式去进行分发管理 */
+
+import mitt, { type Handler } from "mitt"
+import { type RouteLocationNormalized } from "vue-router"
+
+type HandlerParam = (route: RouteLocationNormalized) => void
 
 const emitter = mitt()
-
 const key = Symbol("ROUTE_CHANGE")
-
 let latestRoute: RouteLocationNormalized
 
-export function setRouteEmitter(to: RouteLocationNormalized) {
+export const setRouteEmitter = (to: RouteLocationNormalized) => {
   emitter.emit(key, to)
   latestRoute = to
 }
 
-export function listenerRouteChange(handler: (route: RouteLocationNormalized) => void, immediate = true) {
+export const listenerRouteChange = (handler: HandlerParam, immediate = true) => {
   emitter.on(key, handler as Handler)
-  if (immediate && latestRoute) {
-    handler(latestRoute)
-  }
+  immediate && latestRoute && handler(latestRoute)
 }
 
-export function removeRouteListener() {
+export const removeRouteListener = () => {
   emitter.off(key)
 }

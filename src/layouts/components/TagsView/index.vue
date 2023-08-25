@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, ref, watch } from "vue"
-import { type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
+import { getCurrentInstance, onMounted, onUnmounted, ref, watch } from "vue"
+import { type RouteLocationNormalizedLoaded, type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
 import { type TagView, useTagsViewStore } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
-import ScrollPane from "./ScrollPane.vue"
-import path from "path-browserify"
-import { Close } from "@element-plus/icons-vue"
 import { listenerRouteChange, removeRouteListener } from "@/utils/route-listener"
-import { onUnmounted } from "vue"
-import { RouteLocationNormalized } from "vue-router"
+import path from "path-browserify"
+import ScrollPane from "./ScrollPane.vue"
+import { Close } from "@element-plus/icons-vue"
 
 const instance = getCurrentInstance()
 const router = useRouter()
@@ -71,7 +69,7 @@ const initTags = () => {
 }
 
 /** 添加标签页 */
-const addTags = () => {
+const addTags = (route: RouteLocationNormalizedLoaded) => {
   if (route.name) {
     tagsViewStore.addVisitedView(route)
     tagsViewStore.addCachedView(route)
@@ -149,12 +147,10 @@ const openMenu = (tag: TagView, e: MouseEvent) => {
 const closeMenu = () => {
   visible.value = false
 }
-listenerRouteChange((route: RouteLocationNormalized) => {
-  if (!route.meta.affix && !tagsViewStore.visitedViews.some((tag) => tag.fullPath === route.fullPath)) {
-    tagsViewStore.addVisitedView(route)
-    tagsViewStore.addCachedView(route)
-  }
-}, true)
+
+listenerRouteChange((route) => {
+  addTags(route)
+}, false)
 
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
@@ -162,8 +158,9 @@ watch(visible, (value) => {
 
 onMounted(() => {
   initTags()
-  addTags()
+  addTags(route)
 })
+
 onUnmounted(() => {
   removeRouteListener()
 })
