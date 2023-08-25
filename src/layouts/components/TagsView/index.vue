@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, onUnmounted, ref, watch } from "vue"
+import { getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { type RouteLocationNormalizedLoaded, type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
 import { type TagView, useTagsViewStore } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
@@ -161,7 +161,7 @@ onMounted(() => {
   addTags(route)
 })
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   removeRouteListener()
 })
 </script>
