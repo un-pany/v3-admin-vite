@@ -23,6 +23,11 @@ export const listenerRouteChange = (callback: Callback, immediate = false) => {
 }
 
 /** 移除路由变化事件监听器 */
-export const removeRouteListener = () => {
+export const removeRouteListener = (callback: Callback) => {
+  emitter.off(key, callback as Handler)
+}
+
+/** 移除所有路由变化事件监听器 */
+export const removeAllRouteListener = () => {
   emitter.off(key)
 }

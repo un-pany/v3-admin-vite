@@ -148,10 +148,6 @@ const closeMenu = () => {
   visible.value = false
 }
 
-listenerRouteChange((route) => {
-  addTags(route)
-})
-
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
 })
@@ -161,9 +157,17 @@ onMounted(() => {
   addTags(route)
 })
 
+//#region 监听路由
+const callback = (route: RouteLocationNormalizedLoaded) => {
+  addTags(route)
+}
+
+listenerRouteChange(callback)
+
 onBeforeUnmount(() => {
-  removeRouteListener()
+  removeRouteListener(callback)
 })
+//#endregion
 </script>
 
 <template>
