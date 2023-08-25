@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted, ref, watch } from "vue"
-import { type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
+import { getCurrentInstance, onMounted, onUnmounted, ref, watch } from "vue"
+import { type RouteLocationNormalizedLoaded, type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
 import { type TagView, useTagsViewStore } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
-import ScrollPane from "./ScrollPane.vue"
+import { listenerRouteChange, removeRouteListener } from "@/utils/route-listener"
 import path from "path-browserify"
+import ScrollPane from "./ScrollPane.vue"
 import { Close } from "@element-plus/icons-vue"
 
 const instance = getCurrentInstance()
@@ -68,7 +69,7 @@ const initTags = () => {
 }
 
 /** 添加标签页 */
-const addTags = () => {
+const addTags = (route: RouteLocationNormalizedLoaded) => {
   if (route.name) {
     tagsViewStore.addVisitedView(route)
     tagsViewStore.addCachedView(route)
@@ -147,15 +148,9 @@ const closeMenu = () => {
   visible.value = false
 }
 
-watch(
-  route,
-  () => {
-    addTags()
-  },
-  {
-    deep: true
-  }
-)
+listenerRouteChange((route) => {
+  addTags(route)
+})
 
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
@@ -163,7 +158,11 @@ watch(visible, (value) => {
 
 onMounted(() => {
   initTags()
-  addTags()
+  addTags(route)
+})
+
+onUnmounted(() => {
+  removeRouteListener()
 })
 </script>
 
