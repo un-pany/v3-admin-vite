@@ -3,22 +3,26 @@
 import mitt, { type Handler } from "mitt"
 import { type RouteLocationNormalized } from "vue-router"
 
-type HandlerParam = (route: RouteLocationNormalized) => void
+/** 回调函数的类型 */
+type Callback = (route: RouteLocationNormalized) => void
 
 const emitter = mitt()
 const key = Symbol("ROUTE_CHANGE")
 let latestRoute: RouteLocationNormalized
 
+/** 设置最新的路由信息 */
 export const setRouteEmitter = (to: RouteLocationNormalized) => {
   emitter.emit(key, to)
   latestRoute = to
 }
 
-export const listenerRouteChange = (handler: HandlerParam, immediate = true) => {
-  emitter.on(key, handler as Handler)
-  immediate && latestRoute && handler(latestRoute)
+/** 设置路由变化时的回调函数（可以选择立即执行一次回调函数） */
+export const listenerRouteChange = (callback: Callback, immediate = false) => {
+  emitter.on(key, callback as Handler)
+  immediate && latestRoute && callback(latestRoute)
 }
 
+/** 移除路由变化事件监听器 */
 export const removeRouteListener = () => {
   emitter.off(key)
 }

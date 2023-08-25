@@ -150,7 +150,7 @@ const closeMenu = () => {
 
 listenerRouteChange((route) => {
   addTags(route)
-}, false)
+})
 
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
