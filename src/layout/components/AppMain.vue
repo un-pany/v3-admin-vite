@@ -1,16 +1,24 @@
 <script lang="ts" setup>
-import { CompConsumer } from "./comp-consumer"
+import { useTagsViewStore } from "@/store/modules/tags-view"
+const tagsViewStore = useTagsViewStore()
 </script>
 
 <template>
   <section class="app-main">
     <div class="app-scrollbar">
-      <router-view v-slot="{ Component }">
+      <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
+      <router-view v-slot="{ Component, route }">
         <transition name="el-fade-in" mode="out-in">
-          <CompConsumer :component="Component" />
+          <keep-alive :include="tagsViewStore.cachedViews">
+            <component :is="Component" :key="route.path" />
+          </keep-alive>
         </transition>
       </router-view>
     </div>
+    <!-- 返回顶部 -->
+    <el-backtop />
+    <!-- 返回顶部（固定 Header 情况下） -->
+    <el-backtop target=".app-scrollbar" />
   </section>
 </template>
 
@@ -18,10 +26,7 @@ import { CompConsumer } from "./comp-consumer"
 @import "@/styles/mixins.scss";
 
 .app-main {
-  min-height: calc(100vh - var(--v3-navigationbar-height));
   width: 100%;
-  position: relative;
-  overflow: hidden;
   background-color: var(--v3-body-bg-color);
 }
 
@@ -29,20 +34,5 @@ import { CompConsumer } from "./comp-consumer"
   height: 100%;
   overflow: auto;
   @include scrollbar;
-}
-
-.fixed-header + .app-main {
-  padding-top: var(--v3-navigationbar-height);
-  height: 100vh;
-  overflow: auto;
-}
-
-.hasTagsView {
-  .app-main {
-    min-height: calc(100vh - var(--v3-header-height));
-  }
-  .fixed-header + .app-main {
-    padding-top: var(--v3-header-height);
-  }
 }
 </style>
