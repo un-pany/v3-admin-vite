@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { ref, watch, nextTick } from "vue"
+import { ref, nextTick } from "vue"
 import { RouterLink, useRoute } from "vue-router"
+import { useSettingsStore } from "@/store/modules/settings"
+import { useRouteListener } from "@/hooks/useRouteListener"
+import Screenfull from "@/components/Screenfull/index.vue"
 import { ElScrollbar } from "element-plus"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
-import { useSettingsStore } from "@/store/modules/settings"
-import Screenfull from "@/components/Screenfull/index.vue"
 
 interface Props {
   tagRefs: InstanceType<typeof RouterLink>[]
@@ -14,6 +15,7 @@ const props = defineProps<Props>()
 
 const route = useRoute()
 const settingsStore = useSettingsStore()
+const { listenerRouteChange } = useRouteListener()
 
 /** 滚动条组件元素的引用 */
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
@@ -94,15 +96,9 @@ const moveTo = () => {
 }
 
 /** 监听路由变化，移动到目标位置 */
-watch(
-  route,
-  () => {
-    nextTick(moveTo)
-  },
-  {
-    deep: true
-  }
-)
+listenerRouteChange(() => {
+  nextTick(moveTo)
+})
 </script>
 
 <template>

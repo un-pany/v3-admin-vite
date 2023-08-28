@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { ref, watch } from "vue"
+import { ref } from "vue"
 import { type RouteLocationMatched, useRoute, useRouter } from "vue-router"
+import { useRouteListener } from "@/hooks/useRouteListener"
 import { compile } from "path-to-regexp"
 
 const route = useRoute()
 const router = useRouter()
+const { listenerRouteChange } = useRouteListener()
 
 /** 定义响应式数据 breadcrumbs，用于存储面包屑导航信息 */
 const breadcrumbs = ref<RouteLocationMatched[]>([])
@@ -31,13 +33,10 @@ const handleLink = (item: RouteLocationMatched) => {
 }
 
 /** 监听路由变化，更新面包屑导航信息 */
-watch(
-  () => route.path,
-  (path) => {
-    if (path.startsWith("/redirect/")) return
-    getBreadcrumb()
-  }
-)
+listenerRouteChange((route) => {
+  if (route.path.startsWith("/redirect/")) return
+  getBreadcrumb()
+})
 
 /** 初始化面包屑导航信息 */
 getBreadcrumb()
