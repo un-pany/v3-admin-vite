@@ -26,7 +26,7 @@ const querySuccess = async () => {
   // 1. getSuccessApi 是一个函数而非函数调用
   // 2. 如需给 getSuccessApi 函数传递参数，请在后面的括号中进行（真正的 getSuccessApi 调用）
   const res = await useFullscreenLoading(getSuccessApi)([2, 3, 3])
-  ElMessage.success(`${res.message}，传参为${res.data.list}`)
+  ElMessage.success(`${res.message}，传参为 ${res.data.list.toString()}`)
 }
 
 const queryError = async () => {
