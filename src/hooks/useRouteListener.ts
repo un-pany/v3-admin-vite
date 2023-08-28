@@ -10,7 +10,7 @@ const key = Symbol("ROUTE_CHANGE")
 let latestRoute: RouteLocationNormalized
 
 /** 设置最新的路由信息，触发路由变化事件 */
-const setRouteChange = (to: RouteLocationNormalized) => {
+export const setRouteChange = (to: RouteLocationNormalized) => {
   // 触发事件
   emitter.emit(key, to)
   // 缓存最新的路由信息
@@ -44,5 +44,5 @@ export function useRouteListener() {
     }
   })
 
-  return { setRouteChange, listenerRouteChange, removeRouteListener }
+  return { listenerRouteChange, removeRouteListener }
 }
