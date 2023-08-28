@@ -46,7 +46,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       }
     },
     build: {
-      /** 消除打包大小超过 500kb 警告 */
+      /** 单个 chunk 文件的大小超过 2048KB 时发出警告 */
       chunkSizeWarningLimit: 2048,
       /** 禁用 gzip 压缩大小报告 */
       reportCompressedSize: false,
