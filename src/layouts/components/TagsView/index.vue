@@ -152,7 +152,7 @@ const closeMenu = () => {
 /** 监听路由变化 */
 listenerRouteChange((route) => {
   addTags(route)
-})
+}, true)
 
 watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
@@ -160,7 +160,6 @@ watch(visible, (value) => {
 
 onMounted(() => {
   initTags()
-  addTags(route)
 })
 </script>
 
