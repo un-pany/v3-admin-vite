@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { useTagsViewStore } from "@/store/modules/tags-view"
+// import { CompConsumer } from "./CompConsumer"
+
 const tagsViewStore = useTagsViewStore()
 </script>
 
@@ -12,6 +14,7 @@ const tagsViewStore = useTagsViewStore()
           <keep-alive :include="tagsViewStore.cachedViews">
             <component :is="Component" :key="route.path" />
           </keep-alive>
+          <!-- <CompConsumer :component="Component" /> -->
         </transition>
       </router-view>
     </div>
