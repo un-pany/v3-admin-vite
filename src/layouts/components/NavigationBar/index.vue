@@ -55,9 +55,6 @@ const logout = () => {
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <a target="_blank" href="https://juejin.cn/post/7089377403717287972">
-              <el-dropdown-item>中文文档</el-dropdown-item>
-            </a>
             <a target="_blank" href="https://github.com/un-pany/v3-admin-vite">
               <el-dropdown-item>GitHub</el-dropdown-item>
             </a>

@@ -6,7 +6,7 @@ const Layouts = () => import("@/layouts/index.vue")
 
 /**
  * 常驻路由
- * 除了 redirect/403/404/login 等隐藏页面以及外链，其他页面建议设置 Name 属性
+ * 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置 Name 属性
  */
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -26,6 +26,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/403",
     component: () => import("@/views/error-page/403.vue"),
     meta: {
+      title: "403",
       hidden: true
     }
   },
@@ -33,6 +34,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/404",
     component: () => import("@/views/error-page/404.vue"),
     meta: {
+      title: "404",
       hidden: true
     },
     alias: "/:pathMatch(.*)*"
@@ -41,6 +43,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/login",
     component: () => import("@/views/login/index.vue"),
     meta: {
+      title: "登录",
       hidden: true
     }
   },
@@ -71,7 +74,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/unocss/index.vue"),
         name: "UnoCSS",
         meta: {
-          title: "原子 CSS",
+          title: "UnoCSS",
           svgIcon: "unocss"
         }
       }
@@ -79,15 +82,25 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: "/link",
-    component: Layouts,
+    meta: {
+      title: "外链",
+      svgIcon: "link"
+    },
     children: [
       {
         path: "https://juejin.cn/post/7089377403717287972",
         component: () => {},
-        name: "Link",
+        name: "Link1",
         meta: {
-          title: "外链",
-          svgIcon: "link"
+          title: "中文文档"
+        }
+      },
+      {
+        path: "https://juejin.cn/column/7207659644487139387",
+        component: () => {},
+        name: "Link2",
+        meta: {
+          title: "新手教程"
         }
       }
     ]
