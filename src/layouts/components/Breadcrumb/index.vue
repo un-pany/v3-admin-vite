@@ -36,10 +36,7 @@ const handleLink = (item: RouteLocationMatched) => {
 listenerRouteChange((route) => {
   if (route.path.startsWith("/redirect/")) return
   getBreadcrumb()
-})
-
-/** 初始化面包屑导航信息 */
-getBreadcrumb()
+}, true)
 </script>
 
 <template>
