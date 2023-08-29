@@ -71,7 +71,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/views/unocss/index.vue"),
         name: "UnoCSS",
         meta: {
-          title: "unocss",
+          title: "原子 CSS",
           svgIcon: "unocss"
         }
       }
@@ -207,7 +207,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/hook-demo/use-fetch-select",
     name: "HookDemo",
     meta: {
-      title: "hook 示例",
+      title: "Hook 示例",
       elIcon: "Menu",
       alwaysShow: true
     },

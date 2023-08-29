@@ -3,6 +3,7 @@ import { useUserStoreHook } from "@/store/modules/user"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { ElMessage } from "element-plus"
 import { setRouteChange } from "@/hooks/useRouteListener"
+import { useTitle } from "@/hooks/useTitle"
 import { getToken } from "@/utils/cache/cookies"
 import { fixBlankPage } from "@/utils/fix-blank-page"
 import routeSettings from "@/config/route"
@@ -10,6 +11,7 @@ import isWhiteList from "@/config/white-list"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 
+const { setTitle } = useTitle()
 NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async (to, _from, next) => {
@@ -73,6 +75,7 @@ router.afterEach((to) => {
   setRouteChange(to)
 })
 
-router.afterEach(() => {
+router.afterEach((to) => {
+  setTitle(to.meta.title)
   NProgress.done()
 })
