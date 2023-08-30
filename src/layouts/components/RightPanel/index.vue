@@ -32,7 +32,7 @@ const show = ref(false)
   background-color: var(--v3-rightpanel-button-bg-color);
   position: fixed;
   top: v-bind(buttonTopCss);
-  right: 0px;
+  right: 0;
   border-radius: 6px 0 0 6px;
   z-index: 10;
   cursor: pointer;

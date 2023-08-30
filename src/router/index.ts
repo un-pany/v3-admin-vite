@@ -240,6 +240,14 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: "useFullscreenLoading"
         }
+      },
+      {
+        path: "use-watermark",
+        component: () => import("@/views/hook-demo/use-watermark.vue"),
+        name: "UseWatermark",
+        meta: {
+          title: "useWatermark"
+        }
       }
     ]
   }

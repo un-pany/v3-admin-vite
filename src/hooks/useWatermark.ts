@@ -1,52 +1,61 @@
+import { type Ref, getCurrentInstance, onBeforeUnmount, ref, shallowRef } from "vue"
 import { throttle } from "lodash-es"
-import { Ref, getCurrentInstance, onBeforeUnmount, ref, shallowRef } from "vue"
-
-const defaultConfig = {
-  /** 文本颜色 */
-  textColor: "#000",
-  /** 文本透明度 */
-  textOpacity: 0.2,
-  /** 文本字体大小 */
-  textSize: "16px",
-  /** 文本字体 */
-  fontFamily: "serif",
-  /** 倾斜角度 */
-  angle: -20,
-  /** canvas 宽度 */
-  width: 180,
-  /** canvas 高度 */
-  height: 100
-}
 
 type TargetNode<T> = T & { _observer?: MutationObserver }
 
-export function useWatermark(wrapperEl: Ref<HTMLElement | null> = ref(document.body)) {
-  const watermarkEl = shallowRef<HTMLElement | null>()
-  const newConfig = ref<typeof defaultConfig | null>()
+type DefaultConfig = typeof defaultConfig
 
-  const clear = () => {
-    if (!wrapperEl.value || !watermarkEl.value) return
-    wrapperEl.value.removeChild(watermarkEl.value)
-    watermarkEl.value = null
-    // 移除对水印容器的监听
-    removeResizeListener(wrapperEl.value)
-  }
+/** 默认配置 */
+const defaultConfig = {
+  /** 文本颜色 */
+  color: "#c0c4cc",
+  /** 文本透明度 */
+  opacity: 0.5,
+  /** 文本字体大小 */
+  size: "16px",
+  /** 文本字体 */
+  family: "serif",
+  /** 文本倾斜角度 */
+  angle: -20,
+  /** canvas 宽度 */
+  width: 200,
+  /** canvas 高度 */
+  height: 150
+}
+
+/** body 元素 */
+const bodyEl = ref<HTMLElement>(document.body)
+
+export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
+  /** 最终配置 */
+  let mergeConfig: DefaultConfig
+  /** 水印元素 */
+  const watermarkEl = shallowRef<HTMLElement | null>(null)
 
   const createBase64 = (text: string) => {
-    const { width, height, angle, textSize, textColor, textOpacity } = newConfig.value ?? defaultConfig
+    const { color, opacity, size, family, angle, width, height } = mergeConfig ?? defaultConfig
     const canvasEl = document.createElement("canvas")
     canvasEl.width = width
     canvasEl.height = height
     const ctx = canvasEl.getContext("2d")
     if (ctx) {
-      ctx.clearRect(0, 0, width, height)
+      ctx.fillStyle = color
+      ctx.globalAlpha = opacity
+      ctx.font = size + " " + family
       ctx.rotate((Math.PI / 180) * angle)
-      ctx.font = `${textSize} serif`
-      ctx.fillStyle = textColor
-      ctx.globalAlpha = textOpacity
+      ctx.clearRect(0, 0, width, height)
       ctx.fillText(text, 0, height / 2)
     }
     return canvasEl.toDataURL()
+  }
+
+  /** 清除水印 */
+  const clear = () => {
+    if (!parentEl.value || !watermarkEl.value) return
+    parentEl.value.removeChild(watermarkEl.value)
+    watermarkEl.value = null
+    // 移除对水印容器的监听
+    removeResizeListener(parentEl.value)
   }
 
   function updateWatermark(
@@ -63,7 +72,7 @@ export function useWatermark(wrapperEl: Ref<HTMLElement | null> = ref(document.b
   }
 
   const createWatermark = (text: string) => {
-    if (!wrapperEl.value) return
+    if (!parentEl.value) return
     if (watermarkEl.value) {
       updateWatermark({ text })
       return
@@ -71,26 +80,25 @@ export function useWatermark(wrapperEl: Ref<HTMLElement | null> = ref(document.b
     const div = document.createElement("div")
     watermarkEl.value = div
     div.style.pointerEvents = "none"
-    div.style.top = "0px"
-    div.style.left = "0px"
+    div.style.top = "0"
+    div.style.left = "0"
     div.style.position = "absolute"
     div.style.zIndex = "100000"
-    const { clientWidth, clientHeight } = wrapperEl.value
-    updateWatermark({ text, width: clientWidth, height: clientHeight })
-    wrapperEl.value.appendChild(div)
-    return
+    const { clientWidth, clientHeight } = parentEl.value
+    updateWatermark({ width: clientWidth, height: clientHeight, text })
+    parentEl.value.appendChild(div)
   }
 
-  const setWatermark = (text: string, options: Partial<typeof defaultConfig> = {}) => {
-    if (!wrapperEl.value) return
+  const setWatermark = (text: string, config: Partial<DefaultConfig> = {}) => {
+    if (!parentEl.value) return
     // 设置水印容器为相对定位
-    wrapperEl.value.style.position = "relative"
+    parentEl.value.style.position = "relative"
     // 合并配置
-    newConfig.value = { ...defaultConfig, ...options }
+    mergeConfig = { ...defaultConfig, ...config }
     // 创建水印
     createWatermark(text)
     // 监听水印容器变化
-    addResizeListener(wrapperEl.value)
+    addResizeListener(parentEl.value)
     // 当前组件实例卸载前删除水印
     getCurrentInstance() && onBeforeUnmount(clear)
   }
