@@ -1,7 +1,7 @@
 import { type Ref, getCurrentInstance, onBeforeUnmount, ref, shallowRef } from "vue"
 import { throttle } from "lodash-es"
 
-type TargetNode<T> = T & { _observer?: MutationObserver }
+type TargetNode<T> = T & { _mutationObserver?: MutationObserver; _resizeObserver?: ResizeObserver }
 
 type DefaultConfig = typeof defaultConfig
 
@@ -54,17 +54,17 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     if (!parentEl.value || !watermarkEl.value) return
     parentEl.value.removeChild(watermarkEl.value)
     watermarkEl.value = null
-    // 移除对水印容器的监听
-    removeResizeListener(parentEl.value)
+    // 移除对水印容器的监听（DOM 变化 & DOM 大小变化）
+    removeDomListener(parentEl.value)
   }
 
-  function updateWatermark(
-    options: {
-      width?: number
-      height?: number
-      text?: string
-    } = {}
-  ) {
+  const updateWatermark = (
+    options: Partial<{
+      width: number
+      height: number
+      text: string
+    }> = {}
+  ) => {
     if (!watermarkEl.value) return
     options.width && (watermarkEl.value.style.width = `${options.width}px`)
     options.height && (watermarkEl.value.style.height = `${options.height}px`)
@@ -83,7 +83,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     div.style.top = "0"
     div.style.left = "0"
     div.style.position = "absolute"
-    div.style.zIndex = "100000"
+    div.style.zIndex = "9999"
     const { clientWidth, clientHeight } = parentEl.value
     updateWatermark({ width: clientWidth, height: clientHeight, text })
     parentEl.value.appendChild(div)
@@ -97,55 +97,76 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     mergeConfig = { ...defaultConfig, ...config }
     // 创建水印
     createWatermark(text)
-    // 监听水印容器变化
-    addResizeListener(parentEl.value)
+    // 监听水印容器变化（DOM 变化 & DOM 大小变化）
+    addDomListener(parentEl.value)
     // 当前组件实例卸载前删除水印
     getCurrentInstance() && onBeforeUnmount(clear)
   }
 
-  const defendRemoveWatermark = (mutationList: MutationRecord[], targetNode: HTMLElement) => {
-    mutationList.forEach((mutation) => {
-      switch (mutation.type) {
-        case "childList":
-          mutation.removedNodes.forEach((item) => {
-            item === watermarkEl.value && targetNode.appendChild(watermarkEl.value)
-          })
-          break
-        case "attributes":
-          if (watermarkEl.value!.style.display === "none") {
-            watermarkEl.value!.style.display = "block"
-          }
-          break
-      }
-    })
+  const addDomListener = (targetNode: TargetNode<HTMLElement>) => {
+    if (targetNode._mutationObserver || targetNode._resizeObserver || !watermarkEl.value) return
+    // 监听 mutation 变化（DOM 变化）
+    addMutationListener(targetNode)
+    // 监听 resize 变化（DOM 大小变化）
+    addResizeListener(targetNode)
+  }
+
+  const removeDomListener = (targetNode: TargetNode<HTMLElement>) => {
+    // 取消 mutation 监听
+    targetNode._mutationObserver?.disconnect()
+    targetNode._mutationObserver = undefined
+    // 取消 resize 监听
+    targetNode._resizeObserver?.unobserve(targetNode)
+    targetNode._resizeObserver = undefined
+  }
+
+  const addMutationListener = (targetNode: TargetNode<HTMLElement>) => {
+    // 观察器的配置（需要观察什么变动）
+    const observerOptions: MutationObserverInit = {
+      // 观察属性变动
+      attributes: true,
+      // 观察目标子节点的变化，是否有添加或者删除
+      childList: true,
+      // 观察后代节点，默认为 false
+      subtree: true
+    }
+    // 当观察到变动时执行的回调
+    const mutationCallback = (mutationList: MutationRecord[]) => {
+      // 水印的防御（防止用户手动删除水印元素或通过 CSS 隐藏水印）
+      mutationList.forEach((mutation) => {
+        console.log("mutation: ", mutation)
+        switch (mutation.type) {
+          case "childList":
+            mutation.removedNodes.forEach((item) => {
+              item === watermarkEl.value && targetNode.appendChild(watermarkEl.value)
+            })
+            break
+          case "attributes":
+            if (watermarkEl.value!.style.display === "none") {
+              watermarkEl.value!.style.display = "block"
+            } else if (watermarkEl.value!.style.visibility === "hidden") {
+              watermarkEl.value!.style.visibility = "visible"
+            }
+            break
+        }
+      })
+    }
+    // 创建一个观察器实例并传入回调
+    const mutationObserver = new MutationObserver(mutationCallback)
+    // 以上述配置开始观察目标节点
+    mutationObserver.observe(targetNode, observerOptions)
+    targetNode._mutationObserver = mutationObserver
   }
 
   const addResizeListener = (targetNode: TargetNode<HTMLElement>) => {
-    if (targetNode._observer || !watermarkEl.value) return
-    // 观察器的配置（需要观察什么变动）
-    const observerOptions: MutationObserverInit = {
-      // 观察目标子节点的变化，是否有添加或者删除
-      attributes: true,
-      // 观察属性变动
-      childList: true
-    }
-    // 当观察到变动时执行的回调
-    const callback = throttle((mutationList: MutationRecord[]) => {
+    // 当 targetNode 元素大小变化时去更新整个水印的大小
+    const resizeCallback = throttle(() => {
       const { clientWidth, clientHeight } = targetNode
       updateWatermark({ width: clientWidth, height: clientHeight })
-      // 明水印的防御
-      defendRemoveWatermark(mutationList, targetNode)
     }, 500)
-    // 创建一个观察器实例并传入回调
-    const observer = new MutationObserver(callback)
-    // 以上述配置开始观察目标节点
-    observer.observe(targetNode, observerOptions)
-    targetNode._observer = observer
-  }
-
-  const removeResizeListener = (targetNode: TargetNode<HTMLElement>) => {
-    targetNode._observer?.disconnect()
-    targetNode._observer = undefined
+    const resizeObserver = new ResizeObserver(resizeCallback)
+    resizeObserver.observe(targetNode)
+    targetNode._resizeObserver = resizeObserver
   }
 
   return { setWatermark, clear }
