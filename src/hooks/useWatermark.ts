@@ -134,7 +134,6 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     const mutationCallback = (mutationList: MutationRecord[]) => {
       // 水印的防御（防止用户手动删除水印元素或通过 CSS 隐藏水印）
       mutationList.forEach((mutation) => {
-        console.log("mutation: ", mutation)
         switch (mutation.type) {
           case "childList":
             mutation.removedNodes.forEach((item) => {
