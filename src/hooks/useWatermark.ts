@@ -1,7 +1,7 @@
 import { type Ref, onBeforeUnmount, ref } from "vue"
 import { debounce } from "lodash-es"
 
-type TargetNode<T> = T & { _mutationObserver?: MutationObserver; _resizeObserver?: ResizeObserver }
+type Observer = { mutationObserver?: MutationObserver; resizeObserver?: ResizeObserver }
 
 type DefaultConfig = typeof defaultConfig
 
@@ -38,6 +38,11 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   let mergeConfig: DefaultConfig
   /** 水印元素 */
   let watermarkEl: HTMLElement | null = null
+  /** 观察器 */
+  const observer: Observer = {
+    mutationObserver: undefined,
+    resizeObserver: undefined
+  }
 
   /** 设置水印 */
   const setWatermark = (text: string, config: Partial<DefaultConfig> = {}) => {
@@ -124,9 +129,9 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   }
 
   /** 监听水印容器的变化（DOM 变化 & DOM 大小变化） */
-  const addParentElListener = (targetNode: TargetNode<HTMLElement>) => {
+  const addParentElListener = (targetNode: HTMLElement) => {
     // 防止重复添加监听
-    if (targetNode._mutationObserver || targetNode._resizeObserver) return
+    if (observer.mutationObserver || observer.resizeObserver) return
     // 监听 DOM 变化
     addMutationListener(targetNode)
     // 监听 DOM 大小变化
@@ -134,17 +139,17 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   }
 
   /** 移除对水印容器的监听 */
-  const removeParentElListener = (targetNode: TargetNode<HTMLElement>) => {
+  const removeParentElListener = (targetNode: HTMLElement) => {
     // 移除 mutation 监听
-    targetNode._mutationObserver?.disconnect()
-    targetNode._mutationObserver = undefined
+    observer.mutationObserver?.disconnect()
+    observer.mutationObserver = undefined
     // 移除 resize 监听
-    targetNode._resizeObserver?.unobserve(targetNode)
-    targetNode._resizeObserver = undefined
+    observer.resizeObserver?.unobserve(targetNode)
+    observer.resizeObserver = undefined
   }
 
   /** 监听 DOM 变化 */
-  const addMutationListener = (targetNode: TargetNode<HTMLElement>) => {
+  const addMutationListener = (targetNode: HTMLElement) => {
     // 观察器的配置（需要观察哪些变动）
     const mutationObserverOptions: MutationObserverInit = {
       // 观察目标节点属性变动
@@ -173,24 +178,22 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
       })
     }, 500)
     // 创建一个观察器实例并传入回调
-    const mutationObserver = new MutationObserver(mutationCallback)
+    observer.mutationObserver = new MutationObserver(mutationCallback)
     // 以上述配置开始观察目标节点
-    mutationObserver.observe(targetNode, mutationObserverOptions)
-    targetNode._mutationObserver = mutationObserver
+    observer.mutationObserver.observe(targetNode, mutationObserverOptions)
   }
 
   /** 监听 DOM 大小变化 */
-  const addResizeListener = (targetNode: TargetNode<HTMLElement>) => {
+  const addResizeListener = (targetNode: HTMLElement) => {
     // 当 targetNode 元素大小变化时去更新整个水印的大小
     const resizeCallback = debounce(() => {
       const { clientWidth, clientHeight } = targetNode
       updateWatermarkEl({ width: clientWidth, height: clientHeight })
     }, 500)
     // 创建一个观察器实例并传入回调
-    const resizeObserver = new ResizeObserver(resizeCallback)
+    observer.resizeObserver = new ResizeObserver(resizeCallback)
     // 开始观察目标节点
-    resizeObserver.observe(targetNode)
-    targetNode._resizeObserver = resizeObserver
+    observer.resizeObserver.observe(targetNode)
   }
 
   /** 在组件卸载前移除水印以及各种监听 */
