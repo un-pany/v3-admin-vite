@@ -28,7 +28,7 @@ const bodyEl = ref<HTMLElement>(document.body)
 
 /**
  * 创建水印
- * 1. 可以选择传入挂载水印的容器元素，默认时 body
+ * 1. 可以选择传入挂载水印的容器元素，默认是 body
  * 2. 做了水印防御，能有效防御别人打开控制台删除或隐藏水印
  */
 export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
@@ -59,13 +59,6 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     // 监听水印容器变化
     addParentElListener(parentEl.value)
   }
-
-  /** 刷新水印（防御时调用） */
-  const updateWatermark = debounce(() => {
-    clearWatermark()
-    createWatermarkEl()
-    addParentElListener(parentEl.value!)
-  }, 500)
 
   /** 创建水印元素 */
   const createWatermarkEl = () => {
@@ -128,6 +121,13 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     removeParentElListener(parentEl.value)
   }
 
+  /** 刷新水印（防御时调用） */
+  const updateWatermark = debounce(() => {
+    clearWatermark()
+    createWatermarkEl()
+    addParentElListener(parentEl.value!)
+  }, 100)
+
   /** 监听水印容器的变化（DOM 变化 & DOM 大小变化） */
   const addParentElListener = (targetNode: HTMLElement) => {
     // 防止重复添加监听
@@ -162,21 +162,22 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     // 当观察到变动时执行的回调
     const mutationCallback = debounce((mutationList: MutationRecord[]) => {
       // 水印的防御（防止用户手动删除水印元素或通过 CSS 隐藏水印）
-      mutationList.forEach((mutation) => {
+      const defense = debounce((mutation: MutationRecord) => {
         switch (mutation.type) {
+          case "attributes":
+            mutation.target === watermarkEl && updateWatermark()
+            break
           case "childList":
             mutation.removedNodes.forEach((item) => {
               item === watermarkEl && targetNode.appendChild(watermarkEl)
             })
             break
-          case "attributes":
-            if (mutation.target === watermarkEl) {
-              updateWatermark()
-            }
-            break
         }
+      }, 100)
+      mutationList.forEach((mutation) => {
+        defense(mutation)
       })
-    }, 500)
+    }, 100)
     // 创建一个观察器实例并传入回调
     observer.mutationObserver = new MutationObserver(mutationCallback)
     // 以上述配置开始观察目标节点

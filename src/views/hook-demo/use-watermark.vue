@@ -11,7 +11,7 @@ const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark }
   <div class="app-container">
     <h4>
       该示例是演示：通过调用 hook，开启或关闭水印，
-      支持局部、全局、自定义样式（颜色、透明度、字体大小、字体、倾斜角度等）， 并自带一定的防删除和自适应功能
+      支持局部、全局、自定义样式（颜色、透明度、字体大小、字体、倾斜角度等），并自带防御（防删、防隐藏）和自适应功能
     </h4>
     <div ref="localRef" class="local" />
     <el-button-group>
