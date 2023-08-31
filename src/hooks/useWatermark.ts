@@ -56,11 +56,11 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   }
 
   /** 刷新水印（防御时调用） */
-  const updateWatermark = () => {
+  const updateWatermark = debounce(() => {
     clearWatermark()
     createWatermarkEl()
     addParentElListener(parentEl.value!)
-  }
+  }, 500)
 
   /** 创建水印元素 */
   const createWatermarkEl = () => {
@@ -155,7 +155,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
       subtree: true
     }
     // 当观察到变动时执行的回调
-    const mutationCallback = (mutationList: MutationRecord[]) => {
+    const mutationCallback = debounce((mutationList: MutationRecord[]) => {
       // 水印的防御（防止用户手动删除水印元素或通过 CSS 隐藏水印）
       mutationList.forEach((mutation) => {
         switch (mutation.type) {
@@ -165,11 +165,13 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
             })
             break
           case "attributes":
-            updateWatermark()
+            if (mutation.target === watermarkEl) {
+              updateWatermark()
+            }
             break
         }
       })
-    }
+    }, 500)
     // 创建一个观察器实例并传入回调
     const mutationObserver = new MutationObserver(mutationCallback)
     // 以上述配置开始观察目标节点
