@@ -41,7 +41,7 @@ const queryError = async () => {
 <template>
   <div class="app-container">
     <h4>该示例是演示：通过将要执行的函数传递给 hook，让 hook 自动开启全屏 loading，函数执行结束后自动关闭 loading</h4>
-    <el-button @click="querySuccess">查询成功</el-button>
-    <el-button @click="queryError">查询失败</el-button>
+    <el-button type="primary" @click="querySuccess">查询成功</el-button>
+    <el-button type="danger" @click="queryError">查询失败</el-button>
   </div>
 </template>

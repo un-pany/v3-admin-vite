@@ -26,7 +26,6 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/403",
     component: () => import("@/views/error-page/403.vue"),
     meta: {
-      title: "403",
       hidden: true
     }
   },
@@ -34,7 +33,6 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/404",
     component: () => import("@/views/error-page/404.vue"),
     meta: {
-      title: "404",
       hidden: true
     },
     alias: "/:pathMatch(.*)*"
@@ -43,7 +41,6 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/login",
     component: () => import("@/views/login/index.vue"),
     meta: {
-      title: "登录",
       hidden: true
     }
   },
