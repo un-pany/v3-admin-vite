@@ -19,6 +19,7 @@ const {
   showScreenfull,
   showSearchMenu,
   cacheTagsView,
+  showWatermark,
   showGreyMode,
   showColorWeakness
 } = storeToRefs(settingsStore)
@@ -33,6 +34,7 @@ const switchSettings = {
   显示全屏按钮: showScreenfull,
   显示搜索按钮: showSearchMenu,
   是否缓存标签栏: cacheTagsView,
+  开启系统水印: showWatermark,
   显示灰色模式: showGreyMode,
   显示色弱模式: showColorWeakness
 }

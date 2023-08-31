@@ -22,6 +22,8 @@ export interface LayoutSettings {
   showSearchMenu: boolean
   /** 是否缓存标签栏 */
   cacheTagsView: boolean
+  /** 开启系统水印 */
+  showWatermark: boolean
   /** 是否显示灰色模式 */
   showGreyMode: boolean
   /** 是否显示色弱模式 */
@@ -40,6 +42,7 @@ const defaultSettings: LayoutSettings = {
   showScreenfull: true,
   showSearchMenu: true,
   cacheTagsView: false,
+  showWatermark: true,
   showGreyMode: false,
   showColorWeakness: false
 }
