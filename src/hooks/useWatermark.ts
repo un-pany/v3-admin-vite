@@ -63,7 +63,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     mergeConfig = { ...defaultConfig, ...config }
     // 创建或更新水印元素
     watermarkEl ? updateWatermarkEl() : createWatermarkEl()
-    // 是否监听水印元素和容器元素的变化
+    // 监听水印元素和容器元素的变化
     addElListener(parentEl.value)
   }
 
@@ -122,6 +122,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     try {
       parentEl.value.removeChild(watermarkEl)
     } catch {
+      // 比如在无防御情况下，用户打开控制台删除了这个元素
       console.warn("水印元素已不存在，请重新创建")
     } finally {
       watermarkEl = null
@@ -137,6 +138,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
 
   /** 监听水印元素和容器元素的变化（DOM 变化 & DOM 大小变化） */
   const addElListener = (targetNode: HTMLElement) => {
+    // 判断是否开启防御
     if (mergeConfig.defense) {
       // 防止重复添加监听
       if (!observer.watermarkElMutationObserver && !observer.parentElMutationObserver) {
@@ -144,6 +146,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
         addMutationListener(targetNode)
       }
     } else {
+      // 无防御时不需要 mutation 监听
       removeListener("mutation")
     }
     // 防止重复添加监听
