@@ -69,16 +69,19 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
 
   /** 创建水印元素 */
   const createWatermarkEl = () => {
+    const isBody = parentEl.value!.tagName.toLowerCase() === bodyEl.value.tagName.toLowerCase()
+    const watermarkElPosition = isBody ? "fixed" : "absolute"
+    const parentElPosition = isBody ? "" : "relative"
     watermarkEl = document.createElement("div")
     watermarkEl.style.pointerEvents = "none"
     watermarkEl.style.top = "0"
     watermarkEl.style.left = "0"
-    watermarkEl.style.position = "absolute"
+    watermarkEl.style.position = watermarkElPosition
     watermarkEl.style.zIndex = "99999"
     const { clientWidth, clientHeight } = parentEl.value!
     updateWatermarkEl({ width: clientWidth, height: clientHeight })
     // 设置水印容器为相对定位
-    parentEl.value!.style.position = "relative"
+    parentEl.value!.style.position = parentElPosition
     // 将水印元素添加到水印容器中
     parentEl.value!.appendChild(watermarkEl)
   }
