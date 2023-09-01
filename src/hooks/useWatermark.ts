@@ -64,7 +64,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     // 创建或更新水印元素
     watermarkEl ? updateWatermarkEl() : createWatermarkEl()
     // 是否监听水印元素和容器元素的变化
-    mergeConfig.defense ? addElListener(parentEl.value) : removeListener("mutation")
+    addElListener(parentEl.value)
   }
 
   /** 创建水印元素 */
@@ -137,14 +137,20 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
 
   /** 监听水印元素和容器元素的变化（DOM 变化 & DOM 大小变化） */
   const addElListener = (targetNode: HTMLElement) => {
-    // 防止重复添加监听
-    if (observer.watermarkElMutationObserver || observer.parentElMutationObserver || observer.parentElResizeObserver) {
-      return
+    if (mergeConfig.defense) {
+      // 防止重复添加监听
+      if (!observer.watermarkElMutationObserver && !observer.parentElMutationObserver) {
+        // 监听 DOM 变化
+        addMutationListener(targetNode)
+      }
+    } else {
+      removeListener("mutation")
     }
-    // 监听 DOM 变化
-    addMutationListener(targetNode)
-    // 监听 DOM 大小变化
-    addResizeListener(targetNode)
+    // 防止重复添加监听
+    if (!observer.parentElResizeObserver) {
+      // 监听 DOM 大小变化
+      addResizeListener(targetNode)
+    }
   }
 
   /** 移除对水印元素和容器元素的监听，传参可指定要移除哪个监听，不传默认移除全部监听 */
