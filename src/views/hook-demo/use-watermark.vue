@@ -15,16 +15,19 @@ const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark }
     </h4>
     <div ref="localRef" class="local" />
     <el-button-group>
-      <el-button type="primary" @click="setWatermark('创建局部水印', { color: '#409eff' })">创建局部水印</el-button>
-      <el-button type="warning" @click="setWatermark('重置局部水印', { color: '#e6a23c' })">重置局部水印</el-button>
+      <el-button type="primary" @click="setWatermark('局部水印', { color: '#409eff' })">创建局部水印</el-button>
+      <el-button type="warning" @click="setWatermark('没有防御功能的局部水印', { color: '#e6a23c', defense: false })">
+        关闭防御功能
+      </el-button>
       <el-button type="danger" @click="clearWatermark">清除局部水印</el-button>
     </el-button-group>
     <el-button-group>
-      <el-button type="primary" @click="setGlobalWatermark('创建全局水印', { color: '#409eff' })">
-        创建全局水印
-      </el-button>
-      <el-button type="warning" @click="setGlobalWatermark('重置全局水印', { color: '#e6a23c' })">
-        重置全局水印
+      <el-button type="primary" @click="setGlobalWatermark('全局水印', { color: '#409eff' })">创建全局水印</el-button>
+      <el-button
+        type="warning"
+        @click="setGlobalWatermark('没有防御功能的全局水印', { color: '#e6a23c', defense: false })"
+      >
+        关闭防御功能
       </el-button>
       <el-button type="danger" @click="clearGlobalWatermark">清除全局水印</el-button>
     </el-button-group>
