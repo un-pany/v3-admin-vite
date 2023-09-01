@@ -61,31 +61,26 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     backupText = text
     // 合并配置
     mergeConfig = { ...defaultConfig, ...config }
-    // 创建水印元素
-    createWatermarkEl()
+    // 创建或更新水印元素
+    watermarkEl ? updateWatermarkEl() : createWatermarkEl()
     // 是否监听水印元素和容器元素的变化
-    mergeConfig.defense ? addElListener(parentEl.value) : removeListener()
+    addElListener(parentEl.value)
   }
 
   /** 创建水印元素 */
   const createWatermarkEl = () => {
-    if (watermarkEl) {
-      updateWatermarkEl()
-      return
-    }
-    const div = document.createElement("div")
-    div.style.pointerEvents = "none"
-    div.style.top = "0"
-    div.style.left = "0"
-    div.style.position = "absolute"
-    div.style.zIndex = "99999"
-    watermarkEl = div
+    watermarkEl = document.createElement("div")
+    watermarkEl.style.pointerEvents = "none"
+    watermarkEl.style.top = "0"
+    watermarkEl.style.left = "0"
+    watermarkEl.style.position = "absolute"
+    watermarkEl.style.zIndex = "99999"
     const { clientWidth, clientHeight } = parentEl.value!
     updateWatermarkEl({ width: clientWidth, height: clientHeight })
     // 设置水印容器为相对定位
     parentEl.value!.style.position = "relative"
     // 将水印元素添加到水印容器中
-    parentEl.value!.appendChild(div)
+    parentEl.value!.appendChild(watermarkEl)
   }
 
   /** 更新水印元素 */
@@ -124,8 +119,13 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     // 移除对水印元素和容器元素的监听
     removeListener()
     // 移除水印元素
-    parentEl.value.removeChild(watermarkEl)
-    watermarkEl = null
+    try {
+      parentEl.value.removeChild(watermarkEl)
+    } catch {
+      console.warn("水印元素已不存在，请重新创建")
+    } finally {
+      watermarkEl = null
+    }
   }
 
   /** 刷新水印（防御时调用） */
@@ -137,26 +137,36 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
 
   /** 监听水印元素和容器元素的变化（DOM 变化 & DOM 大小变化） */
   const addElListener = (targetNode: HTMLElement) => {
-    // 防止重复添加监听
-    if (observer.watermarkElMutationObserver || observer.parentElMutationObserver || observer.parentElResizeObserver) {
-      return
+    if (mergeConfig.defense) {
+      // 防止重复添加监听
+      if (!observer.watermarkElMutationObserver && !observer.parentElMutationObserver) {
+        // 监听 DOM 变化
+        addMutationListener(targetNode)
+      }
+    } else {
+      removeListener("mutation")
     }
-    // 监听 DOM 变化
-    addMutationListener(targetNode)
-    // 监听 DOM 大小变化
-    addResizeListener(targetNode)
+    // 防止重复添加监听
+    if (!observer.parentElResizeObserver) {
+      // 监听 DOM 大小变化
+      addResizeListener(targetNode)
+    }
   }
 
-  /** 移除对水印元素和容器元素的监听 */
-  const removeListener = () => {
+  /** 移除对水印元素和容器元素的监听，传参可指定要移除哪个监听，不传默认移除全部监听 */
+  const removeListener = (kind: "mutation" | "resize" | "all" = "all") => {
     // 移除 mutation 监听
-    observer.watermarkElMutationObserver?.disconnect()
-    observer.watermarkElMutationObserver = undefined
-    observer.parentElMutationObserver?.disconnect()
-    observer.parentElMutationObserver = undefined
+    if (kind === "mutation" || kind === "all") {
+      observer.watermarkElMutationObserver?.disconnect()
+      observer.watermarkElMutationObserver = undefined
+      observer.parentElMutationObserver?.disconnect()
+      observer.parentElMutationObserver = undefined
+    }
     // 移除 resize 监听
-    observer.parentElResizeObserver?.disconnect()
-    observer.parentElResizeObserver = undefined
+    if (kind === "resize" || kind === "all") {
+      observer.parentElResizeObserver?.disconnect()
+      observer.parentElResizeObserver = undefined
+    }
   }
 
   /** 监听 DOM 变化 */
