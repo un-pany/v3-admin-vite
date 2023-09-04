@@ -31,10 +31,11 @@ const tagsViewStore = useTagsViewStore()
 .app-main {
   width: 100%;
   background-color: var(--v3-body-bg-color);
+  display: flex;
 }
 
 .app-scrollbar {
-  height: 100%;
+  flex-grow: 1;
   overflow: auto;
   @include scrollbar;
 }
