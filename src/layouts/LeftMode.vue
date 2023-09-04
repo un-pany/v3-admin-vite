@@ -86,6 +86,12 @@ $transition-time: 0.35s;
   position: relative;
 }
 
+.layout-header {
+  box-shadow: var(--el-box-shadow-lighter);
+  position: relative;
+  z-index: 9;
+}
+
 .fixed-header {
   position: fixed;
   top: 0;
@@ -93,10 +99,6 @@ $transition-time: 0.35s;
   z-index: 9;
   width: calc(100% - var(--v3-sidebar-width));
   transition: width $transition-time;
-}
-
-.layout-header {
-  box-shadow: var(--el-box-shadow-lighter);
 }
 
 .app-main {
