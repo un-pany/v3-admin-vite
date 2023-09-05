@@ -87,7 +87,7 @@ $transition-time: 0.35s;
 }
 
 .fixed-header {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   right: 0;
   z-index: 9;
@@ -96,6 +96,8 @@ $transition-time: 0.35s;
 }
 
 .layout-header {
+  position: relative;
+  z-index: 9;
   box-shadow: var(--el-box-shadow-lighter);
 }
 
