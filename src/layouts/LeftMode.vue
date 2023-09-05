@@ -86,19 +86,19 @@ $transition-time: 0.35s;
   position: relative;
 }
 
-.layout-header {
-  box-shadow: var(--el-box-shadow-lighter);
-  position: relative;
-  z-index: 9;
-}
-
 .fixed-header {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   right: 0;
   z-index: 9;
   width: calc(100% - var(--v3-sidebar-width));
   transition: width $transition-time;
+}
+
+.layout-header {
+  position: relative;
+  z-index: 9;
+  box-shadow: var(--el-box-shadow-lighter);
 }
 
 .app-main {
