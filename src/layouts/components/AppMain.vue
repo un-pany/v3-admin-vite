@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { useTagsViewStore } from "@/store/modules/tags-view"
-// import { CompConsumer } from "./CompConsumer"
+import { useSettingsStore } from "@/store/modules/settings"
+import Footer from "./Footer/index.vue"
 
 const tagsViewStore = useTagsViewStore()
+const settingsStore = useSettingsStore()
 </script>
 
 <template>
@@ -12,11 +14,12 @@ const tagsViewStore = useTagsViewStore()
       <router-view v-slot="{ Component, route }">
         <transition name="el-fade-in" mode="out-in">
           <keep-alive :include="tagsViewStore.cachedViews">
-            <component :is="Component" :key="route.path" />
+            <component :is="Component" :key="route.path" class="app-container-grow" />
           </keep-alive>
-          <!-- <CompConsumer :component="Component" /> -->
         </transition>
       </router-view>
+      <!-- 页脚 -->
+      <Footer v-if="settingsStore.showFooter" />
     </div>
     <!-- 返回顶部 -->
     <el-backtop />
@@ -38,5 +41,10 @@ const tagsViewStore = useTagsViewStore()
   flex-grow: 1;
   overflow: auto;
   @include scrollbar;
+  display: flex;
+  flex-direction: column;
+  .app-container-grow {
+    flex-grow: 1;
+  }
 }
 </style>
