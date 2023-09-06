@@ -77,7 +77,7 @@ const tipLineWidth = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@mixin tip-line {
+%tip-line {
   &::before {
     content: "";
     position: absolute;
@@ -147,7 +147,7 @@ const tipLineWidth = computed(() => {
 
 :deep(.el-menu-item) {
   &.is-active {
-    @include tip-line;
+    @extend %tip-line;
   }
 }
 
@@ -155,7 +155,7 @@ const tipLineWidth = computed(() => {
   :deep(.el-sub-menu) {
     &.is-active {
       .el-sub-menu__title {
-        @include tip-line;
+        @extend %tip-line;
       }
     }
   }

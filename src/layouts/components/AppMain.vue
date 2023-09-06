@@ -40,7 +40,7 @@ const settingsStore = useSettingsStore()
 .app-scrollbar {
   flex-grow: 1;
   overflow: auto;
-  @include scrollbar;
+  @extend %scrollbar;
   display: flex;
   flex-direction: column;
   .app-container-grow {

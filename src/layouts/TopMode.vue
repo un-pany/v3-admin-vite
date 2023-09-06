@@ -31,7 +31,7 @@ const { showTagsView, showLogo } = storeToRefs(settingsStore)
 $transition-time: 0.35s;
 
 .app-wrapper {
-  @include clearfix;
+  @extend %clearfix;
   width: 100%;
 }
 
