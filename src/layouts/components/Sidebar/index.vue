@@ -145,18 +145,14 @@ const tipLineWidth = computed(() => {
   }
 }
 
-:deep(.el-menu-item) {
-  &.is-active {
-    @extend %tip-line;
-  }
+:deep(.el-menu-item.is-active) {
+  @extend %tip-line;
 }
 
 .el-menu--collapse {
-  :deep(.el-sub-menu) {
-    &.is-active {
-      .el-sub-menu__title {
-        @extend %tip-line;
-      }
+  :deep(.el-sub-menu.is-active) {
+    .el-sub-menu__title {
+      @extend %tip-line;
     }
   }
 }
