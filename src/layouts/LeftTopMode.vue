@@ -43,7 +43,7 @@ const layoutClasses = computed(() => {
 $transition-time: 0.35s;
 
 .app-wrapper {
-  @include clearfix;
+  @extend %clearfix;
   width: 100%;
 }
 
