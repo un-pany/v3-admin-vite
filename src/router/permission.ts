@@ -23,27 +23,25 @@ router.beforeEach(async (to, _from, next) => {
   const token = getToken()
 
   // 判断该用户是否已经登录
-  if (!token || token === '') {
+  if (!token || token === "") {
     // 如果在免登录的白名单中，则直接进入
     if (isWhiteList(to)) {
       next()
-    }
-    else {
+    } else {
       NProgress.done()
-      next('/login')
+      next("/login")
     }
     return
   }
 
   // 如果已经登录，并准备进入 Login 页面，则重定向到主页
-  if (to.path === '/login') {
+  if (to.path === "/login") {
     NProgress.done()
-    return next({ path: '/' })
+    return next({ path: "/" })
   }
 
   // 如果用户已经获得其权限角色
-  if (userStore.roles.length !== 0)
-    return next()
+  if (userStore.roles.length !== 0) return next()
 
   // 否则要重新获取权限角色
   try {
@@ -54,25 +52,22 @@ router.beforeEach(async (to, _from, next) => {
 
       // 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
       permissionStore.setRoutes(roles)
-    }
-    else {
+    } else {
       // 没有开启动态路由功能，则启用默认角色
       userStore.setRoles(routeSettings.defaultRoles)
       permissionStore.setRoutes(routeSettings.defaultRoles)
     }
 
     // 将'有访问权限的动态路由' 添加到 Router 中
-    permissionStore.dynamicRoutes
-      .forEach(route => router.addRoute(route))
+    permissionStore.dynamicRoutes.forEach((route) => router.addRoute(route))
 
     next({ ...to, replace: true })
-  }
-  catch (err: any) {
+  } catch (err: any) {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
-    ElMessage.error(err.message || '路由守卫过程发生错误')
+    ElMessage.error(err.message || "路由守卫过程发生错误")
     NProgress.done()
-    next('/login')
+    next("/login")
   }
 })
 
