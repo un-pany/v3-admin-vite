@@ -47,6 +47,11 @@ const sidebarMenuHoverBgColor = computed(() => {
 const tipLineWidth = computed(() => {
   return layoutMode.value !== "top" ? "2px" : "0px"
 })
+
+// 当菜单栏为Top模式隐藏滚动块
+const hiddenScrollbarThumb = computed(() => {
+  return layoutMode.value === "top" ? "hidden" : "inherit"
+})
 </script>
 
 <template>
@@ -98,7 +103,7 @@ const tipLineWidth = computed(() => {
 
 .el-scrollbar {
   // 多 5% 是为了在顶部模式时不显示垂直滚动条
-  height: 105%;
+  height: 100%;
   :deep(.scrollbar-wrapper) {
     // 限制水平宽度
     overflow-x: hidden !important;
@@ -108,9 +113,9 @@ const tipLineWidth = computed(() => {
   }
   // 滚动条
   :deep(.el-scrollbar__bar) {
-    &.is-horizontal {
-      // 隐藏水平滚动条
-      display: none;
+    // 当菜单栏为Top模式隐藏滚动块
+    .el-scrollbar__thumb {
+      display: v-bind(hiddenScrollbarThumb);
     }
   }
 }
