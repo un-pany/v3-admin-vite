@@ -49,7 +49,7 @@ const tipLineWidth = computed(() => {
 })
 // 当为顶部模式时隐藏垂直滚动条
 const hiddenScrollbarVerticalBar = computed(() => {
-  return layoutMode.value === "top" ? "none" : "inherit"
+  return layoutMode.value === "top" ? "none" : "block"
 })
 </script>
 
