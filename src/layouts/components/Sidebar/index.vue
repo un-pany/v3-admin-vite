@@ -50,7 +50,7 @@ const tipLineWidth = computed(() => {
 
 // 当菜单栏为Top模式隐藏滚动块
 const hiddenScrollbarThumb = computed(() => {
-  return layoutMode.value === "top" ? "hidden" : "inherit"
+  return layoutMode.value === "top" ? "none" : "inherit"
 })
 </script>
 
