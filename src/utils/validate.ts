@@ -1,6 +1,6 @@
 /** 判断是否为数组 */
 export const isArray = (arg: unknown) => {
-  return Array.isArray ? Array.isArray(arg) : Object.prototype.toString.call(arg) === "[object Array]"
+  return Array.isArray(arg) ? true : Object.prototype.toString.call(arg) === "[object Array]"
 }
 
 /** 判断是否为字符串 */
