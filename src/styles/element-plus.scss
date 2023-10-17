@@ -6,6 +6,10 @@
   th.el-table__cell {
     background-color: var(--el-fill-color-light) !important;
   }
+  // 行元素
+  tr {
+    background-color: transparent;
+  }
 }
 
 // 分页
