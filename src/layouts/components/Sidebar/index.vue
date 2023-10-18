@@ -129,6 +129,10 @@ const hiddenScrollbarVerticalBar = computed(() => {
   width: 100% !important;
 }
 
+.el-menu--horizontal {
+  height: v-bind(sidebarMenuItemHeight);
+}
+
 :deep(.el-menu-item),
 :deep(.el-sub-menu__title),
 :deep(.el-sub-menu .el-menu-item),
