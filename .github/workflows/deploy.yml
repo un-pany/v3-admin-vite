@@ -14,15 +14,15 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Node.js 18.16.1
+      - name: Setup Node.js 18.18.2
         uses: actions/setup-node@master
         with:
-          node-version: 18.18.0
+          node-version: 18.18.2
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8.7.6
+          version: 8.10.2
 
       - name: Build
         run: pnpm install && pnpm build:prod
