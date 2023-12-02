@@ -40,6 +40,10 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
           /** 是否允许跨域 */
           changeOrigin: true
         }
+      },
+      /** 预热常用文件，提高初始页面加载速度 */
+      warmup: {
+        clientFiles: ["./src/{views,components}/*.vue"]
       }
     },
     build: {
