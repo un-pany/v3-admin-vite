@@ -65,8 +65,8 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 ```bash
 # configure
 1. installation of the recommended plugins in the .vscode directory
-2. node version 16+
-3. pnpm version 8.x
+2. node version 18.x or 20+
+3. pnpm version 8.x or latest
 
 # clone
 git clone https://github.com/un-pany/v3-admin-vite.git
