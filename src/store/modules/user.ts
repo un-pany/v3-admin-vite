@@ -6,10 +6,12 @@ import { useTagsViewStore } from "./tags-view"
 import { useSettingsStore } from "./settings"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import router, { resetRouter } from "@/router"
-import { loginApi, getUserInfoApi } from "@/api/login"
-import { type LoginRequestData } from "@/api/login/types/login"
+import { LoginService } from "@/api/login"
+import { ILoginService, type LoginRequestData } from "@/api/login/types/login"
 import { type RouteRecordRaw } from "vue-router"
 import routeSettings from "@/config/route"
+
+const loginService: ILoginService = new LoginService()
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
@@ -26,13 +28,13 @@ export const useUserStore = defineStore("user", () => {
   }
   /** 登录 */
   const login = async ({ username, password, code }: LoginRequestData) => {
-    const { data } = await loginApi({ username, password, code })
+    const { data } = await loginService.loginApi({ username, password, code })
     setToken(data.token)
     token.value = data.token
   }
   /** 获取用户详情 */
   const getInfo = async () => {
-    const { data } = await getUserInfoApi()
+    const { data } = await loginService.getUserInfoApi()
     username.value = data.username
     // 验证返回的 roles 是否为一个非空数组，否则塞入一个没有任何作用的默认角色，防止路由守卫逻辑进入无限循环
     roles.value = data.roles?.length > 0 ? data.roles : routeSettings.defaultRoles

@@ -7,6 +7,13 @@ export interface LoginRequestData {
   code: string
 }
 
+/** 抽象的登录服务接口 */
+export interface ILoginService {
+  getLoginCodeApi(): Promise<any>
+  loginApi(data: any): Promise<any>
+  getUserInfoApi(): Promise<any>
+}
+
 export type LoginCodeResponseData = ApiResponseData<string>
 
 export type LoginResponseData = ApiResponseData<{ token: string }>

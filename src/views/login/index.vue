@@ -4,11 +4,14 @@ import { useRouter } from "vue-router"
 import { useUserStore } from "@/store/modules/user"
 import { type FormInstance, type FormRules } from "element-plus"
 import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
-import { getLoginCodeApi } from "@/api/login"
-import { type LoginRequestData } from "@/api/login/types/login"
+import { LoginService } from "@/api/login"
+import { type LoginRequestData, ILoginService } from "@/api/login/types/login"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 
 const router = useRouter()
+
+/** 登录实例 */
+const loginService: ILoginService = new LoginService()
 
 /** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)
@@ -60,7 +63,7 @@ const createCode = () => {
   loginFormData.code = ""
   // 获取验证码
   codeUrl.value = ""
-  getLoginCodeApi().then((res) => {
+  loginService.getLoginCodeApi().then((res) => {
     codeUrl.value = res.data
   })
 }
