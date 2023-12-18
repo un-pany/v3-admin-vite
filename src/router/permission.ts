@@ -1,5 +1,6 @@
 import router from "@/router"
 import { useUserStoreHook } from "@/store/modules/user"
+import { useAuthStoreHook } from "@/store/modules/auth"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { ElMessage } from "element-plus"
 import { setRouteChange } from "@/hooks/useRouteListener"
@@ -18,6 +19,7 @@ router.beforeEach(async (to, _from, next) => {
   fixBlankPage()
   NProgress.start()
   const userStore = useUserStoreHook()
+  const authStore = useAuthStoreHook()
   const permissionStore = usePermissionStoreHook()
   const token = getToken()
 
@@ -47,7 +49,7 @@ router.beforeEach(async (to, _from, next) => {
   try {
     if (routeSettings.async) {
       // 注意：角色必须是一个数组！ 例如: ['admin'] 或 ['developer', 'editor']
-      await userStore.getInfo()
+      await authStore.getInfo()
       const roles = userStore.roles
       // 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
       permissionStore.setRoutes(roles)
