@@ -10,6 +10,7 @@ import routeSettings from "@/config/route"
 import isWhiteList from "@/config/white-list"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
+import { handleApiError } from "@/utils/error-handler"
 
 const { setTitle } = useTitle()
 NProgress.configure({ showSpinner: false })
@@ -61,10 +62,11 @@ router.beforeEach(async (to, _from, next) => {
     // 确保添加路由已完成
     // 设置 replace: true, 因此导航将不会留下历史记录
     next({ ...to, replace: true })
-  } catch (err: any) {
+  } catch (error: any) {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
+    handleApiError(error)
     userStore.resetToken()
-    ElMessage.error(err.message || "路由守卫过程发生错误")
+    ElMessage.error(error.message || "路由守卫过程发生错误")
     NProgress.done()
     next("/login")
   }

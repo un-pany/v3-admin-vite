@@ -5,6 +5,7 @@ import { type RouteRecordRaw } from "vue-router"
 import { constantRoutes, asyncRoutes } from "@/router"
 import { flatMultiLevelRoutes } from "@/router/helper"
 import routeSettings from "@/config/route"
+import { handleApiError } from "@/utils/error-handler"
 
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   const routeRoles = route.meta?.roles
@@ -30,9 +31,15 @@ export const usePermissionStore = defineStore("permission", () => {
   const dynamicRoutes = ref<RouteRecordRaw[]>([])
 
   const setRoutes = (roles: string[]) => {
-    const accessedRoutes = routeSettings.async ? filterAsyncRoutes(asyncRoutes, roles) : asyncRoutes
-    routes.value = constantRoutes.concat(accessedRoutes)
-    dynamicRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
+    try {
+      const accessedRoutes = routeSettings.async ? filterAsyncRoutes(asyncRoutes, roles) : asyncRoutes
+      routes.value = constantRoutes.concat(accessedRoutes)
+      dynamicRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
+    } catch (error) {
+      if (error instanceof Error) {
+        handleApiError(error)
+      }
+    }
   }
 
   return { routes, dynamicRoutes, setRoutes }

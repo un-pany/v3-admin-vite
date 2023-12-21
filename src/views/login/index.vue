@@ -7,6 +7,7 @@ import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import { getLoginCodeApi } from "@/api/login"
 import { type LoginRequestData } from "@/api/login/types/login"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+import { handleApiError } from "@/utils/error-handler"
 
 const router = useRouter()
 
@@ -60,9 +61,11 @@ const createCode = () => {
   loginFormData.code = ""
   // 获取验证码
   codeUrl.value = ""
-  getLoginCodeApi().then((res) => {
-    codeUrl.value = res.data
-  })
+  getLoginCodeApi()
+    .then((res) => {
+      codeUrl.value = res.data
+    })
+    .catch(handleApiError)
 }
 
 /** 初始化验证码 */
