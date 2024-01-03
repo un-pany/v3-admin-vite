@@ -1,4 +1,4 @@
-name: Build And Deploy v3-admin-vite
+name: Build And Deploy openGemini-Dashboard
 
 on:
   push:
