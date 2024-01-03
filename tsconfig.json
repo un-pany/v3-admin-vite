@@ -4,7 +4,8 @@
     /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
     "useDefineForClassFields": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    //"moduleResolution": "bundler",
+    "moduleResolution": "node",
     /** TS 严格模式 */
     "strict": true,
     "jsx": "preserve",
@@ -23,7 +24,7 @@
       "node",
       "vite/client",
       /** Element Plus 的 Volar 插件支持 */
-      "element-plus/global",
+      //"element-plus/global",
       "vitest"
     ],
     /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
