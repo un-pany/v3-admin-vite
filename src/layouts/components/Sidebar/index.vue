@@ -29,7 +29,7 @@ const activeMenu = computed(() => {
   } = route
   return activeMenu ? activeMenu : path
 })
-
+const noHiddenRoutes = computed(() => permissionStore.routes.filter((item) => !item.meta?.hidden))
 const isCollapse = computed(() => !sidebar.value.opened)
 const isLeft = computed(() => layoutMode.value === "left")
 const isTop = computed(() => layoutMode.value === "top")
@@ -68,7 +68,7 @@ const hiddenScrollbarVerticalBar = computed(() => {
         :mode="isTop && !isMobile ? 'horizontal' : 'vertical'"
       >
         <SidebarItem
-          v-for="route in permissionStore.routes"
+          v-for="route in noHiddenRoutes"
           :key="route.path"
           :item="route"
           :base-path="route.path"
