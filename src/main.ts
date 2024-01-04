@@ -9,7 +9,6 @@ import { loadSvg } from "@/icons"
 import { loadPlugins } from "@/plugins"
 import { loadDirectives } from "@/directives"
 // css
-import "uno.css"
 import "normalize.css"
 import "element-plus/dist/index.css"
 import "element-plus/theme-chalk/dark/css-vars.css"
