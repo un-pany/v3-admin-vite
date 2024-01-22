@@ -1,10 +1,5 @@
-export interface CreateTableRequestData {
-  username: string
-  password: string
-}
-
-export interface UpdateTableRequestData {
-  id: string
+export interface CreateOrUpdateTableRequestData {
+  id?: string
   username: string
   password?: string
 }

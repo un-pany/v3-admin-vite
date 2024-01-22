@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive, ref, watch } from "vue"
+import { reactive, ref, watch, nextTick } from "vue"
 import { createTableDataApi, deleteTableDataApi, updateTableDataApi, getTableDataApi } from "@/api/table"
 import { type GetTableData } from "@/api/table/types/table"
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
@@ -25,40 +25,28 @@ const formRules: FormRules = reactive({
   username: [{ required: true, trigger: "blur", message: "请输入用户名" }],
   password: [{ required: true, trigger: "blur", message: "请输入密码" }]
 })
-const handleCreate = () => {
+const handleCreateOrUpdate = () => {
   formRef.value?.validate((valid: boolean, fields) => {
-    if (valid) {
-      if (currentUpdateId.value === undefined) {
-        createTableDataApi(formData)
-          .then(() => {
-            ElMessage.success("新增成功")
-            getTableData()
-          })
-          .finally(() => {
-            dialogVisible.value = false
-          })
-      } else {
-        updateTableDataApi({
-          id: currentUpdateId.value,
-          username: formData.username
-        })
-          .then(() => {
-            ElMessage.success("修改成功")
-            getTableData()
-          })
-          .finally(() => {
-            dialogVisible.value = false
-          })
-      }
-    } else {
-      console.error("表单校验不通过", fields)
-    }
+    if (!valid) return console.error("表单校验不通过", fields)
+    loading.value = true
+    const api = currentUpdateId.value === undefined ? createTableDataApi : updateTableDataApi
+    api({
+      id: currentUpdateId.value,
+      ...formData
+    })
+      .then(() => {
+        ElMessage.success("操作成功")
+        dialogVisible.value = false
+        getTableData()
+      })
+      .finally(() => {
+        loading.value = false
+      })
   })
 }
 const resetForm = () => {
   currentUpdateId.value = undefined
-  formData.username = ""
-  formData.password = ""
+  formRef.value?.resetFields()
 }
 //#endregion
 
@@ -80,9 +68,12 @@ const handleDelete = (row: GetTableData) => {
 //#region 改
 const currentUpdateId = ref<undefined | string>(undefined)
 const handleUpdate = (row: GetTableData) => {
-  currentUpdateId.value = row.id
-  formData.username = row.username
   dialogVisible.value = true
+  // 必须延迟赋值，防止 resetFields 方法将数据重置错误
+  nextTick(() => {
+    currentUpdateId.value = row.id
+    formData.username = row.username
+  })
 }
 //#endregion
 
@@ -200,7 +191,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
     <el-dialog
       v-model="dialogVisible"
       :title="currentUpdateId === undefined ? '新增用户' : '修改用户'"
-      @close="resetForm"
+      @closed="resetForm"
       width="30%"
     >
       <el-form ref="formRef" :model="formData" :rules="formRules" label-width="100px" label-position="left">
@@ -213,7 +204,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
       </el-form>
       <template #footer>
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleCreate">确认</el-button>
+        <el-button type="primary" @click="handleCreateOrUpdate" :loading="loading">确认</el-button>
       </template>
     </el-dialog>
   </div>
