@@ -15,8 +15,8 @@ dependencies:
     specifier: 1.11.10
     version: 1.11.10
   element-plus:
-    specifier: 2.5.4
-    version: 2.5.4(vue@3.4.15)
+    specifier: 2.5.5
+    version: 2.5.5(vue@3.4.15)
   js-cookie:
     specifier: 3.0.5
     version: 3.0.5
@@ -1938,7 +1938,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001583
-      electron-to-chromium: 1.4.655
+      electron-to-chromium: 1.4.656
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
     dev: true
@@ -2462,12 +2462,12 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /electron-to-chromium@1.4.655:
-    resolution: {integrity: sha512-2yszojF7vIZ68adIOvzV4bku8OZad9w5H9xF3ZAMZjPuOjBarlflUkjN6DggdV+L71WZuKUfKUhov/34+G5QHg==}
+  /electron-to-chromium@1.4.656:
+    resolution: {integrity: sha512-9AQB5eFTHyR3Gvt2t/NwR0le2jBSUNwCnMbUCejFWHD+so4tH40/dRLgoE+jxlPeWS43XJewyvCv+I8LPMl49Q==}
     dev: true
 
-  /element-plus@2.5.4(vue@3.4.15):
-    resolution: {integrity: sha512-3z2BQ53B93wypOLFq+vmT2XibTGRm3WODVPdAGymqTVGRIeUfFh17ysymn81ZvEVs4b8Dq6Fxr3I1B/9NUwZ0A==}
+  /element-plus@2.5.5(vue@3.4.15):
+    resolution: {integrity: sha512-yGU/MruLOWI0ImQPFCyFM4cXtHtILJNAi0hhLImcxjRukjgQLYNkvcvbwqNgBUt808KSeKF9MyxENFyBQLTg+Q==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
