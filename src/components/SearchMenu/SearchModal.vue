@@ -10,15 +10,8 @@ import { cloneDeep, debounce } from "lodash-es"
 import { DeviceEnum } from "@/constants/app-key"
 import { isExternal } from "@/utils/validate"
 
-interface Props {
-  /** 控制 modal 显隐 */
-  modelValue: boolean
-}
-
-const props = defineProps<Props>()
-const emit = defineEmits<{
-  "update:modelValue": [boolean]
-}>()
+/** 控制 modal 显隐 */
+const modelValue = defineModel<boolean>({ required: true })
 
 const appStore = useAppStore()
 const router = useRouter()
@@ -35,15 +28,6 @@ const isPressUpOrDown = ref<boolean>(false)
 
 /** 控制搜索对话框宽度 */
 const modalWidth = computed(() => (appStore.device === DeviceEnum.Mobile ? "80vw" : "40vw"))
-/** 控制搜索对话框显隐 */
-const modalVisible = computed({
-  get() {
-    return props.modelValue
-  },
-  set(value: boolean) {
-    emit("update:modelValue", value)
-  }
-})
 /** 树形菜单 */
 const menusData = computed(() => cloneDeep(usePermissionStore().routes))
 
@@ -69,7 +53,7 @@ const flatTree = (arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) => {
 
 /** 关闭搜索对话框 */
 const handleClose = () => {
-  modalVisible.value = false
+  modelValue.value = false
   // 延时处理防止用户看到重置数据的操作
   setTimeout(() => {
     keyword.value = ""
@@ -166,7 +150,7 @@ const handleReleaseUpOrDown = () => {
 
 <template>
   <el-dialog
-    v-model="modalVisible"
+    v-model="modelValue"
     @opened="inputRef?.focus()"
     @closed="inputRef?.blur()"
     @keydown.up="handleUp"
