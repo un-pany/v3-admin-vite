@@ -79,8 +79,8 @@ const resolvePath = (routePath: string) => {
         <span v-if="props.item.meta?.title">{{ props.item.meta.title }}</span>
       </template>
       <template v-if="props.item.children">
-        <sidebar-item
-          v-for="child in props.item.children"
+        <SidebarItem
+          v-for="child in showingChildren"
           :key="child.path"
           :item="child"
           :is-collapse="props.isCollapse"
