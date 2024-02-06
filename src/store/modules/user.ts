@@ -20,10 +20,6 @@ export const useUserStore = defineStore("user", () => {
   const tagsViewStore = useTagsViewStore()
   const settingsStore = useSettingsStore()
 
-  /** 设置角色数组 */
-  const setRoles = (value: string[]) => {
-    roles.value = value
-  }
   /** 登录 */
   const login = async ({ username, password, code }: LoginRequestData) => {
     const { data } = await loginApi({ username, password, code })
@@ -72,7 +68,7 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  return { token, roles, username, setRoles, login, getInfo, changeRoles, logout, resetToken }
+  return { token, roles, username, login, getInfo, changeRoles, logout, resetToken }
 })
 
 /** 在 setup 外使用 */
