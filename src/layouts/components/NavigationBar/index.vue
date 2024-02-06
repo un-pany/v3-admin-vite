@@ -13,18 +13,16 @@ import Notify from "@/components/Notify/index.vue"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
 import SearchMenu from "@/components/SearchMenu/index.vue"
-import { DeviceEnum } from "@/constants/app-key"
+import { useDevice } from "@/hooks/useDevice"
 
+const { isMobile } = useDevice()
 const router = useRouter()
 const appStore = useAppStore()
-const settingsStore = useSettingsStore()
 const userStore = useUserStore()
-
-const { sidebar, device } = storeToRefs(appStore)
+const settingsStore = useSettingsStore()
 const { layoutMode, showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
 
 const isTop = computed(() => layoutMode.value === "top")
-const isMobile = computed(() => device.value === DeviceEnum.Mobile)
 
 /** 切换侧边栏 */
 const toggleSidebar = () => {
@@ -40,7 +38,12 @@ const logout = () => {
 
 <template>
   <div class="navigation-bar">
-    <Hamburger v-if="!isTop || isMobile" :is-active="sidebar.opened" class="hamburger" @toggle-click="toggleSidebar" />
+    <Hamburger
+      v-if="!isTop || isMobile"
+      :is-active="appStore.sidebar.opened"
+      class="hamburger"
+      @toggle-click="toggleSidebar"
+    />
     <Breadcrumb v-if="!isTop || isMobile" class="breadcrumb" />
     <Sidebar v-if="isTop && !isMobile" class="sidebar" />
     <div class="right-menu">

@@ -1,20 +1,19 @@
 <script lang="ts" setup>
 import { computed, ref, shallowRef } from "vue"
 import { type RouteRecordName, type RouteRecordRaw, useRouter } from "vue-router"
-import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import SearchResult from "./SearchResult.vue"
 import SearchFooter from "./SearchFooter.vue"
 import { ElMessage, ElScrollbar } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
-import { DeviceEnum } from "@/constants/app-key"
+import { useDevice } from "@/hooks/useDevice"
 import { isExternal } from "@/utils/validate"
 
 /** 控制 modal 显隐 */
 const modelValue = defineModel<boolean>({ required: true })
 
-const appStore = useAppStore()
 const router = useRouter()
+const { isMobile } = useDevice()
 
 const inputRef = ref<HTMLInputElement | null>(null)
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar> | null>(null)
@@ -27,7 +26,7 @@ const activeRouteName = ref<RouteRecordName | undefined>(undefined)
 const isPressUpOrDown = ref<boolean>(false)
 
 /** 控制搜索对话框宽度 */
-const modalWidth = computed(() => (appStore.device === DeviceEnum.Mobile ? "80vw" : "40vw"))
+const modalWidth = computed(() => (isMobile.value ? "80vw" : "40vw"))
 /** 树形菜单 */
 const menusData = computed(() => cloneDeep(usePermissionStore().routes))
 

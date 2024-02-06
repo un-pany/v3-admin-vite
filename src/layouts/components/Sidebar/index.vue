@@ -7,19 +7,18 @@ import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"
 import SidebarItem from "./SidebarItem.vue"
 import Logo from "../Logo/index.vue"
+import { useDevice } from "@/hooks/useDevice"
 import { getCssVariableValue } from "@/utils"
-import { DeviceEnum } from "@/constants/app-key"
 
 const v3SidebarMenuBgColor = getCssVariableValue("--v3-sidebar-menu-bg-color")
 const v3SidebarMenuTextColor = getCssVariableValue("--v3-sidebar-menu-text-color")
 const v3SidebarMenuActiveTextColor = getCssVariableValue("--v3-sidebar-menu-active-text-color")
 
+const { isMobile } = useDevice()
 const route = useRoute()
 const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
-
-const { sidebar, device } = storeToRefs(appStore)
 const { layoutMode, showLogo } = storeToRefs(settingsStore)
 
 const activeMenu = computed(() => {
@@ -30,10 +29,9 @@ const activeMenu = computed(() => {
   return activeMenu ? activeMenu : path
 })
 const noHiddenRoutes = computed(() => permissionStore.routes.filter((item) => !item.meta?.hidden))
-const isCollapse = computed(() => !sidebar.value.opened)
+const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLeft = computed(() => layoutMode.value === "left")
 const isTop = computed(() => layoutMode.value === "top")
-const isMobile = computed(() => device.value === DeviceEnum.Mobile)
 const isLogo = computed(() => isLeft.value && showLogo.value)
 const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
 const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))

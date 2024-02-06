@@ -4,7 +4,6 @@ import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 
 const settingsStore = useSettingsStore()
-
 const { layoutMode } = storeToRefs(settingsStore)
 
 const isLeft = computed(() => layoutMode.value === "left")

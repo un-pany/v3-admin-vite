@@ -4,11 +4,11 @@ import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { AppMain, NavigationBar, Sidebar, TagsView } from "./components"
-import { DeviceEnum } from "@/constants/app-key"
+import { useDevice } from "@/hooks/useDevice"
 
+const { isMobile } = useDevice()
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
-
 const { showTagsView, fixedHeader } = storeToRefs(settingsStore)
 
 /** 定义计算属性 layoutClasses，用于控制布局的类名 */
@@ -17,7 +17,7 @@ const layoutClasses = computed(() => {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
-    mobile: appStore.device === DeviceEnum.Mobile
+    mobile: isMobile.value
   }
 })
 
