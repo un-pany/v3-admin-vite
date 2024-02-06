@@ -22,19 +22,13 @@ router.beforeEach(async (to, _from, next) => {
   // 判断该用户是否已经登录
   if (!token) {
     // 如果在免登录的白名单中，则直接进入
-    if (isWhiteList(to)) {
-      next()
-    } else {
-      // 其他没有访问权限的页面将被重定向到登录页面
-      NProgress.done()
-      next("/login")
-    }
-    return
+    if (isWhiteList(to)) return next()
+    // 其他没有访问权限的页面将被重定向到登录页面
+    return next("/login")
   }
 
   // 如果已经登录，并准备进入 Login 页面，则重定向到主页
   if (to.path === "/login") {
-    NProgress.done()
     return next({ path: "/" })
   }
 
@@ -44,16 +38,11 @@ router.beforeEach(async (to, _from, next) => {
   // 否则要重新获取权限角色
   try {
     await userStore.getInfo()
-    if (routeSettings.async) {
-      // 注意：角色必须是一个数组！ 例如: ['admin'] 或 ['developer', 'editor']
-      const roles = userStore.roles
-      // 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由）
-      permissionStore.setRoutes(roles)
-    } else {
-      // 没有开启动态路由功能，则启用默认角色来生成
-      permissionStore.setRoutes(routeSettings.defaultRoles)
-    }
-    // 将'有访问权限的动态路由' 添加到 Router 中
+    // 注意：角色必须是一个数组！ 例如: ["admin"] 或 ["developer", "editor"]
+    const roles = userStore.roles
+    // 生成可访问的 Routes
+    routeSettings.async ? permissionStore.setRoutes(roles) : permissionStore.setAllRoutes()
+    // 将 "有访问权限的动态路由" 添加到 Router 中
     permissionStore.dynamicRoutes.forEach((route) => router.addRoute(route))
     // 确保添加路由已完成
     // 设置 replace: true, 因此导航将不会留下历史记录
@@ -62,7 +51,6 @@ router.beforeEach(async (to, _from, next) => {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
     ElMessage.error(err.message || "路由守卫过程发生错误")
-    NProgress.done()
     next("/login")
   }
 })

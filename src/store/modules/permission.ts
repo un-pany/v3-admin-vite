@@ -29,13 +29,23 @@ export const usePermissionStore = defineStore("permission", () => {
   const routes = ref<RouteRecordRaw[]>([])
   const dynamicRoutes = ref<RouteRecordRaw[]>([])
 
+  /** 根据角色生成可访问的 Routes（可访问路由 = 常驻路由 + 有访问权限的动态路由） */
   const setRoutes = (roles: string[]) => {
-    const accessedRoutes = routeSettings.async ? filterAsyncRoutes(asyncRoutes, roles) : asyncRoutes
+    const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+    _set(accessedRoutes)
+  }
+
+  /** 所有路由 = 所有常驻路由 + 所有动态路由 */
+  const setAllRoutes = () => {
+    _set(asyncRoutes)
+  }
+
+  const _set = (accessedRoutes: RouteRecordRaw[]) => {
     routes.value = constantRoutes.concat(accessedRoutes)
     dynamicRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
   }
 
-  return { routes, dynamicRoutes, setRoutes }
+  return { routes, dynamicRoutes, setRoutes, setAllRoutes }
 })
 
 /** 在 setup 外使用 */

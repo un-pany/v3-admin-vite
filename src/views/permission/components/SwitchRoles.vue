@@ -2,16 +2,10 @@
 import { ref, watch } from "vue"
 import { useUserStore } from "@/store/modules/user"
 
-/** Vue 3.3+ defineEmits 语法 */
-const emit = defineEmits<{
-  change: []
-}>()
-
 const userStore = useUserStore()
 const switchRoles = ref(userStore.roles[0])
-watch(switchRoles, async (value) => {
-  await userStore.changeRoles(value)
-  emit("change")
+watch(switchRoles, (value) => {
+  userStore.changeRoles(value)
 })
 </script>
 
@@ -19,7 +13,7 @@ watch(switchRoles, async (value) => {
   <div>
     <div>你的权限：{{ userStore.roles }}</div>
     <div class="switch-roles">
-      <span>切换权限：</span>
+      <span>切换权限（模拟权限变化后重新登陆）：</span>
       <el-radio-group v-model="switchRoles">
         <el-radio-button label="editor" />
         <el-radio-button label="admin" />

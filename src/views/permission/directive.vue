@@ -1,20 +1,13 @@
 <script lang="ts" setup>
-import { ref } from "vue"
-import { checkPermission } from "@/utils/permission" // checkPermission 权限判断函数
+import { checkPermission } from "@/utils/permission"
 import SwitchRoles from "./components/SwitchRoles.vue"
-
-/** key 是为了能每次切换权限的时候重新初始化指令 */
-const key = ref(1)
-const handleRolesChange = () => {
-  key.value++
-}
 </script>
 
 <template>
   <div class="app-container">
-    <SwitchRoles @change="handleRolesChange" />
+    <SwitchRoles />
     <!-- v-permission 示例 -->
-    <div :key="key" class="margin-top-30">
+    <div class="margin-top-30">
       <div>
         <el-tag v-permission="['admin']" type="success" size="large" effect="plain">
           这里采用了 v-permission="['admin']" 所以只有 admin 可以看见这句话
@@ -32,7 +25,7 @@ const handleRolesChange = () => {
       </div>
     </div>
     <!-- checkPermission 示例 -->
-    <div :key="`checkPermission${key}`" class="margin-top-30">
+    <div class="margin-top-30">
       <el-tag type="warning" size="large">
         例如 Element Plus 的 el-tab-pane 或 el-table-column 以及其它动态渲染 Dom 的场景不适合使用
         v-permission，这种情况下你可以通过 v-if 和 checkPermission 来实现：

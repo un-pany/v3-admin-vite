@@ -1,14 +1,12 @@
 import { ref } from "vue"
 import store from "@/store"
 import { defineStore } from "pinia"
-import { usePermissionStore } from "./permission"
 import { useTagsViewStore } from "./tags-view"
 import { useSettingsStore } from "./settings"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
-import router, { resetRouter } from "@/router"
+import { resetRouter } from "@/router"
 import { loginApi, getUserInfoApi } from "@/api/login"
 import { type LoginRequestData } from "@/api/login/types/login"
-import { type RouteRecordRaw } from "vue-router"
 import routeSettings from "@/config/route"
 
 export const useUserStore = defineStore("user", () => {
@@ -16,7 +14,6 @@ export const useUserStore = defineStore("user", () => {
   const roles = ref<string[]>([])
   const username = ref<string>("")
 
-  const permissionStore = usePermissionStore()
   const tagsViewStore = useTagsViewStore()
   const settingsStore = useSettingsStore()
 
@@ -33,18 +30,13 @@ export const useUserStore = defineStore("user", () => {
     // 验证返回的 roles 是否为一个非空数组，否则塞入一个没有任何作用的默认角色，防止路由守卫逻辑进入无限循环
     roles.value = data.roles?.length > 0 ? data.roles : routeSettings.defaultRoles
   }
-  /** 切换角色 */
+  /** 模拟角色变化 */
   const changeRoles = async (role: string) => {
     const newToken = "token-" + role
     token.value = newToken
     setToken(newToken)
-    await getInfo()
-    permissionStore.setRoutes(roles.value)
-    resetRouter()
-    permissionStore.dynamicRoutes.forEach((item: RouteRecordRaw) => {
-      router.addRoute(item)
-    })
-    _resetTagsView()
+    // 用刷新页面代替重新登陆
+    window.location.reload()
   }
   /** 登出 */
   const logout = () => {
