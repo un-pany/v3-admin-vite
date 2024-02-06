@@ -4,6 +4,13 @@ export enum DeviceEnum {
   Desktop
 }
 
+/** 布局模式 */
+export enum LayoutModeEnum {
+  Left = "left",
+  Top = "top",
+  LeftTop = "left-top"
+}
+
 /** 侧边栏打开状态常量 */
 export const SIDEBAR_OPENED = "opened"
 /** 侧边栏关闭状态常量 */

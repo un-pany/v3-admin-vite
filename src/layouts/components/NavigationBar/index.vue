@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed } from "vue"
 import { useRouter } from "vue-router"
 import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
@@ -14,15 +13,15 @@ import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Screenfull from "@/components/Screenfull/index.vue"
 import SearchMenu from "@/components/SearchMenu/index.vue"
 import { useDevice } from "@/hooks/useDevice"
+import { useLayoutMode } from "@/hooks/useLayoutMode"
 
 const { isMobile } = useDevice()
+const { isTop } = useLayoutMode()
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
-const { layoutMode, showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
-
-const isTop = computed(() => layoutMode.value === "top")
+const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
 const toggleSidebar = () => {

@@ -5,6 +5,7 @@ import { useSettingsStore } from "@/store/modules/settings"
 import useResize from "./hooks/useResize"
 import { useWatermark } from "@/hooks/useWatermark"
 import { useDevice } from "@/hooks/useDevice"
+import { useLayoutMode } from "@/hooks/useLayoutMode"
 import LeftMode from "./LeftMode.vue"
 import TopMode from "./TopMode.vue"
 import LeftTopMode from "./LeftTopMode.vue"
@@ -16,9 +17,9 @@ useResize()
 
 const { setWatermark, clearWatermark } = useWatermark()
 const { isMobile } = useDevice()
+const { isLeft, isTop, isLeftTop } = useLayoutMode()
 const settingsStore = useSettingsStore()
-const { showSettings, layoutMode, showTagsView, showWatermark, showGreyMode, showColorWeakness } =
-  storeToRefs(settingsStore)
+const { showSettings, showTagsView, showWatermark, showGreyMode, showColorWeakness } = storeToRefs(settingsStore)
 
 const classes = computed(() => {
   return {
@@ -46,11 +47,11 @@ watchEffect(() => {
 <template>
   <div :class="classes">
     <!-- 左侧模式 -->
-    <LeftMode v-if="layoutMode === 'left' || isMobile" />
+    <LeftMode v-if="isLeft || isMobile" />
     <!-- 顶部模式 -->
-    <TopMode v-else-if="layoutMode === 'top'" />
+    <TopMode v-else-if="isTop" />
     <!-- 混合模式 -->
-    <LeftTopMode v-else-if="layoutMode === 'left-top'" />
+    <LeftTopMode v-else-if="isLeftTop" />
     <!-- 右侧设置面板 -->
     <RightPanel v-if="showSettings">
       <Settings />
