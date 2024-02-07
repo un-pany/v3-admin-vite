@@ -35,7 +35,7 @@ export const useUserStore = defineStore("user", () => {
     const newToken = "token-" + role
     token.value = newToken
     setToken(newToken)
-    // 用刷新页面代替重新登陆
+    // 用刷新页面代替重新登录
     window.location.reload()
   }
   /** 登出 */
