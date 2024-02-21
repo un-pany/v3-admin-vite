@@ -1,3 +1,4 @@
+# 修改配置后重启编辑器
 # 配置项文档：https://editorconfig.org/
 
 # 告知 EditorConfig 插件，当前即是根文件
@@ -7,9 +8,9 @@ root = true
 [*]
 ## 设置字符集
 charset = utf-8
-## 缩进风格 space | tab，建议 space
+## 缩进风格 space | tab，建议 space（会自动继承给 Prettier）
 indent_style = space
-## 缩进的空格数（修改这里的话需要将 prettier.config.js 和 .vscode -> settings.json 也同步修改）
+## 缩进的空格数（会自动继承给 Prettier）
 indent_size = 2
 ## 换行符类型 lf | cr | crlf，一般都是设置为 lf
 end_of_line = lf
