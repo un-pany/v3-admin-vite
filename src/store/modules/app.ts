@@ -22,6 +22,9 @@ export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
   const device = ref<DeviceEnum>(DeviceEnum.Desktop)
 
+  /** 全屏 */
+  const isFullscreen = ref<boolean>(false)
+
   /** 监听侧边栏 opened 状态 */
   watch(
     () => sidebar.opened,
@@ -42,6 +45,10 @@ export const useAppStore = defineStore("app", () => {
   const toggleDevice = (value: DeviceEnum) => {
     device.value = value
   }
+  /** 全屏状态改变 */
+  const fullscreenStateChange = (state: boolean) => {
+    isFullscreen.value = state
+  }
 
-  return { device, sidebar, toggleSidebar, closeSidebar, toggleDevice }
+  return { device, sidebar, isFullscreen, toggleSidebar, closeSidebar, toggleDevice, fullscreenStateChange }
 })

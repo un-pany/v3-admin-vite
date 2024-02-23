@@ -2,6 +2,7 @@
 import { computed, ref, watchEffect } from "vue"
 import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
+import { useAppStore } from "@/store/modules/app"
 
 interface Props {
   /** 全屏的元素，默认是 html */
@@ -21,6 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
   content: false
 })
 
+const appStore = useAppStore()
+
 //#region 全屏
 const isFullscreen = ref<boolean>(false)
 const fullscreenTips = computed(() => {
@@ -35,6 +38,7 @@ const handleFullscreenClick = () => {
 }
 const handleFullscreenChange = () => {
   isFullscreen.value = screenfull.isFullscreen
+  appStore.fullscreenStateChange(isFullscreen.value)
 }
 watchEffect((onCleanup) => {
   // 挂载组件时自动执行

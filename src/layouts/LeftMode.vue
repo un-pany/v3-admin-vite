@@ -25,6 +25,15 @@ const layoutClasses = computed(() => {
 const handleClickOutside = () => {
   appStore.closeSidebar(false)
 }
+
+/** 用于判断app-main是否为全屏模式 */
+const appMainFullscreen = computed(() => {
+  if (appStore.isFullscreen) {
+    const classList = (document?.fullscreenElement as Element | null)?.classList || []
+    return Array.from(classList).includes("app-main")
+  }
+  return false
+})
 </script>
 
 <template>
@@ -41,7 +50,7 @@ const handleClickOutside = () => {
         <TagsView v-show="showTagsView" />
       </div>
       <!-- 页面主体内容 -->
-      <AppMain class="app-main" />
+      <AppMain class="app-main" :class="{ fullscreen: appMainFullscreen }" />
     </div>
   </div>
 </template>
@@ -111,6 +120,10 @@ $transition-time: 0.35s;
   padding-top: var(--v3-navigationbar-height);
   height: 100vh;
   overflow: auto;
+
+  &.fullscreen {
+    padding-top: 0;
+  }
 }
 
 .hasTagsView {
@@ -119,6 +132,10 @@ $transition-time: 0.35s;
   }
   .fixed-header + .app-main {
     padding-top: var(--v3-header-height);
+
+    &.fullscreen {
+      padding-top: 0;
+    }
   }
 }
 
