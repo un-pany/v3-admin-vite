@@ -10,11 +10,7 @@ interface SelectOption {
 }
 
 /** 接口响应格式 */
-interface ApiData {
-  code: number
-  data: SelectOption[]
-  message: string
-}
+type ApiData = ApiResponseData<SelectOption[]>
 
 /** 入参格式，暂时只需要传递 api 函数即可 */
 interface FetchSelectProps {
