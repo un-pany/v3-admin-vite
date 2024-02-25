@@ -255,7 +255,7 @@ export const constantRoutes: RouteRecordRaw[] = [
  * 用来放置有权限 (Roles 属性) 的路由
  * 必须带有 Name 属性
  */
-export const asyncRoutes: RouteRecordRaw[] = [
+export const dynamicRoutes: RouteRecordRaw[] = [
   {
     path: "/permission",
     component: Layouts,
