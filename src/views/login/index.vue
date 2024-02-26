@@ -7,8 +7,11 @@ import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
 import { getLoginCodeApi } from "@/api/login"
 import { type LoginRequestData } from "@/api/login/types/login"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+import Owl from "./components/Owl.vue"
+import { useFocus } from "./hooks/useFocus"
 
 const router = useRouter()
+const { isFocus, handleBlur, handleFocus } = useFocus()
 
 /** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)
@@ -72,6 +75,7 @@ createCode()
 <template>
   <div class="login-container">
     <ThemeSwitch class="theme-switch" />
+    <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
         <img src="@/assets/layouts/logo-text-2.png" />
@@ -97,6 +101,8 @@ createCode()
               :prefix-icon="Lock"
               size="large"
               show-password
+              @blur="handleBlur"
+              @focus="handleFocus"
             />
           </el-form-item>
           <el-form-item prop="code">
@@ -135,6 +141,7 @@ createCode()
 <style lang="scss" scoped>
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
