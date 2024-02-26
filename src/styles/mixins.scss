@@ -40,30 +40,3 @@
   // 文本内容溢出容器时，文本末尾显示省略号
   text-overflow: ellipsis;
 }
-@mixin transition($timeSlot...) {
-  -webkit-transition: $timeSlot;
-  -moz-transition: $timeSlot;
-  -o-transition: $timeSlot;
-  -ms-transition: $timeSlot;
-  transition: $timeSlot;
-}
-@mixin transform($translate) {
-  -webkit-transform: $translate;
-  -moz-transform: $translate;
-  -o-transform: $translate;
-  -ms-transform: $translate;
-  transform: $translate;
-}
-
-@mixin transformOrigin($origin) {
-  -webkit-transform-origin: $origin;
-  -moz-transform-origin: $origin;
-  -o-transform-origin: $origin;
-  -ms-transform-origin: $origin;
-  transform-origin: $origin;
-}
-@mixin backgroundImage($url) {
-  background-image: $url;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-}
