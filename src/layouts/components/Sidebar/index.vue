@@ -139,10 +139,6 @@ const hiddenScrollbarVerticalBar = computed(() => {
   &:hover {
     background-color: v-bind(sidebarMenuHoverBgColor);
   }
-  display: block;
-  * {
-    vertical-align: middle;
-  }
 }
 
 :deep(.el-sub-menu) {
