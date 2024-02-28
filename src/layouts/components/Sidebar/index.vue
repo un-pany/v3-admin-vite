@@ -68,7 +68,6 @@ const hiddenScrollbarVerticalBar = computed(() => {
           :key="route.path"
           :item="route"
           :base-path="route.path"
-          :is-collapse="isCollapse"
           :is-top="isTop"
         />
       </el-menu>
