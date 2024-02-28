@@ -7,12 +7,10 @@ import path from "path-browserify"
 
 interface Props {
   item: RouteRecordRaw
-  isTop?: boolean
   basePath?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  isTop: false,
   basePath: ""
 })
 
