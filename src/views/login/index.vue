@@ -154,6 +154,7 @@ createCode()
   }
   .login-card {
     width: 480px;
+    max-width: 90%;
     border-radius: 20px;
     box-shadow: 0 0 10px #dcdfe6;
     background-color: #fff;
