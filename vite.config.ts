@@ -73,7 +73,7 @@ export default (configEnv: ConfigEnv): UserConfigExport => {
       /** 打包时移除 console.log */
       pure: ["console.log"],
       /** 打包时移除 debugger */
-      drop: ["debugger"],
+      drop: configEnv.mode === "production" ? ["debugger"] : [],
       /** 打包时移除所有注释 */
       legalComments: "none"
     },
