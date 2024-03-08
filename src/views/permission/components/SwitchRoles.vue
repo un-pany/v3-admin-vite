@@ -11,12 +11,12 @@ watch(switchRoles, (value) => {
 
 <template>
   <div>
-    <div>你的权限：{{ userStore.roles }}</div>
+    <div>你的角色：{{ userStore.roles }}</div>
     <div class="switch-roles">
-      <span>切换权限（模拟权限变化后重新登录）：</span>
+      <span>切换用户（模拟重新登录）：</span>
       <el-radio-group v-model="switchRoles">
-        <el-radio-button label="editor" />
-        <el-radio-button label="admin" />
+        <el-radio-button label="editor" value="editor" />
+        <el-radio-button label="admin" value="admin" />
       </el-radio-group>
     </div>
   </div>

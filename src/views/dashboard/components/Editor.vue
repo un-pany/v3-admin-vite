@@ -1,6 +1,6 @@
 <template>
   <div class="app-container center">
-    <el-empty description="Editor 权限可见" />
+    <el-empty description="欢迎来到 editor 角色专属首页" />
   </div>
 </template>
 

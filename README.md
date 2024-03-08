@@ -51,14 +51,14 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 
 ## Functions
 
-- **User management**: log in, log out of the demo
-- **Authority management**: Built-in page permissions (dynamic routing), instruction permissions, permission functions
+- **User management**: Log in and out of the demo
+- **Authority management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission functions), and route navigation guards
 - **Multiple Environments**: Development, Staging, Production
-- **Multiple themes**: Normal, Dark, Dark Blue, theme modes
-- **Multiple layouts**：Built-in left, top, left-top three layout modes
+- **Multiple themes**: Normal, Dark, Dark Blue, three theme modes
+- **Multiple layouts**：Left, Top, Left Top, three layout modes
 - **Error page**: 403, 404
 - **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, HooK (Composables)
+- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, Hook (Composables)
 
 ## 🚀 Development
 
