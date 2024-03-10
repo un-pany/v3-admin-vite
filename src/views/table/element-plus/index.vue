@@ -5,6 +5,7 @@ import { type CreateOrUpdateTableRequestData, type GetTableData } from "@/api/ta
 import { type FormInstance, type FormRules, ElMessage, ElMessageBox } from "element-plus"
 import { Search, Refresh, CirclePlus, Delete, Download, RefreshRight } from "@element-plus/icons-vue"
 import { usePagination } from "@/hooks/usePagination"
+import { cloneDeep } from "lodash-es"
 
 defineOptions({
   // 命名当前组件
@@ -22,7 +23,7 @@ const DEFAULT_FORM_DATA: CreateOrUpdateTableRequestData = {
 }
 const dialogVisible = ref<boolean>(false)
 const formRef = ref<FormInstance | null>(null)
-const formData = ref<CreateOrUpdateTableRequestData>(JSON.parse(JSON.stringify(DEFAULT_FORM_DATA)))
+const formData = ref<CreateOrUpdateTableRequestData>(cloneDeep(DEFAULT_FORM_DATA))
 const formRules: FormRules<CreateOrUpdateTableRequestData> = {
   username: [{ required: true, trigger: "blur", message: "请输入用户名" }],
   password: [{ required: true, trigger: "blur", message: "请输入密码" }]
@@ -45,7 +46,7 @@ const handleCreateOrUpdate = () => {
 }
 const resetForm = () => {
   formRef.value?.clearValidate()
-  formData.value = JSON.parse(JSON.stringify(DEFAULT_FORM_DATA))
+  formData.value = cloneDeep(DEFAULT_FORM_DATA)
 }
 //#endregion
 
@@ -67,7 +68,7 @@ const handleDelete = (row: GetTableData) => {
 //#region 改
 const handleUpdate = (row: GetTableData) => {
   dialogVisible.value = true
-  formData.value = JSON.parse(JSON.stringify(row))
+  formData.value = cloneDeep(row)
 }
 //#endregion
 
