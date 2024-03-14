@@ -7,7 +7,7 @@ import VXETablePluginElement from "vxe-table-plugin-element"
 VXETable.use(VXETablePluginElement)
 
 /** 全局默认参数 */
-VXETable.setup({
+VXETable.config({
   /** 全局尺寸 */
   size: "medium",
   /** 全局 zIndex 起始值，如果项目的的 z-index 样式值过大时就需要跟随设置更大，避免被遮挡 */
