@@ -20,6 +20,23 @@ html {
   height: 100%;
 }
 
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: wave 0.7s ease-in;
+}
+@keyframes wave {
+  from {
+    clip-path: circle(0% at var(--x) var(--y));
+  }
+  to {
+    clip-path: circle(150% at var(--x) var(--y));
+  }
+}
+
 body {
   height: 100%;
   background-color: var(--v3-body-bg-color);
