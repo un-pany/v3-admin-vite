@@ -12,7 +12,7 @@
 
 @keyframes clip-animation {
   from {
-    clip-path: circle(0 at var(--v3-theme-x) var(--v3-theme-y));
+    clip-path: circle(0px at var(--v3-theme-x) var(--v3-theme-y));
   }
   to {
     clip-path: circle(var(--v3-theme-r) at var(--v3-theme-x) var(--v3-theme-y));
