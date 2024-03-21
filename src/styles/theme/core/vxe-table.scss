@@ -1,58 +1,55 @@
 /**
- * Vxe Table SCSS 变量
- * 在此查阅所有可自定义的变量：https://github.com/x-extends/vxe-table/blob/master/styles/variable.scss
+ * Vxe Table CSS 变量
+ * 在此查阅所有可自定义的变量：https://github.com/x-extends/vxe-table/blob/master/styles/css-variable.scss
  */
 
-/** font */
-$vxe-font-color: $font-color;
+* {
+  /*color*/
+  --vxe-font-color: #{$font-color};
+  --vxe-primary-color: #{$theme-color};
+  --vxe-success-color: #{$theme-color};
 
-/** color */
-$vxe-primary-color: $theme-color;
-$vxe-success-color: $theme-color;
+  /*input/radio/checkbox*/
+  --vxe-input-border-color: #{$theme-color};
+  --vxe-input-disabled-color: #{$theme-color};
+  --vxe-input-disabled-background-color: #{lighten($theme-bg-color, 12%)};
 
-/** input/radio/checkbox */
-$vxe-input-border-color: $theme-color;
-$vxe-input-disabled-color: $theme-color;
-$vxe-input-disabled-background-color: lighten($theme-bg-color, 12%);
+  /*popup*/
+  --vxe-table-popup-border-color: #{$border-color};
 
-/** popup */
-$vxe-table-popup-border-color: $border-color;
+  /*table*/
+  --vxe-table-border-color: #{$border-color};
+  --vxe-table-header-background-color: #{lighten($theme-bg-color, 8%)};
+  --vxe-table-body-background-color: #{lighten($theme-bg-color, 4%)};
+  --vxe-table-row-hover-background-color: #{lighten($theme-bg-color, 8%)};
+  --vxe-table-row-current-background-color: #{lighten($theme-bg-color, 8%)};
+  --vxe-table-row-hover-current-background-color: #{lighten($theme-bg-color, 8%)};
+  --vxe-table-checkbox-range-background-color: #{lighten($theme-bg-color, 8%)};
 
-/** table */
-$vxe-table-font-color: $font-color;
-$vxe-table-border-color: $border-color;
-$vxe-table-header-background-color: lighten($theme-bg-color, 8%);
-$vxe-table-body-background-color: lighten($theme-bg-color, 4%);
-$vxe-table-row-hover-background-color: lighten($theme-bg-color, 8%);
-$vxe-table-row-current-background-color: lighten($theme-bg-color, 8%);
-$vxe-table-row-hover-current-background-color: lighten($theme-bg-color, 8%);
-$vxe-table-checkbox-range-background-color: lighten($theme-bg-color, 8%);
+  /*toolbar*/
+  --vxe-toolbar-background-color: #{lighten($theme-bg-color, 4%)};
+  --vxe-toolbar-custom-active-background-color: #{lighten($theme-bg-color, 16%)};
+  --vxe-toolbar-panel-background-color: #{lighten($theme-bg-color, 4%)};
 
-/** toolbar */
-$vxe-toolbar-background-color: lighten($theme-bg-color, 4%);
-$vxe-toolbar-custom-active-background-color: lighten($theme-bg-color, 16%);
-$vxe-toolbar-panel-background-color: lighten($theme-bg-color, 4%);
+  /*pager*/
+  --vxe-pager-background-color: #{lighten($theme-bg-color, 4%)};
 
-/** pager */
-$vxe-pager-background-color: lighten($theme-bg-color, 4%);
+  /*modal*/
+  --vxe-modal-header-background-color: #{lighten($theme-bg-color, 4%)};
+  --vxe-modal-body-background-color: #{lighten($theme-bg-color, 4%)};
+  --vxe-modal-border-color: #{$border-color};
 
-/** modal */
-$vxe-modal-header-background-color: lighten($theme-bg-color, 4%);
-$vxe-modal-body-background-color: lighten($theme-bg-color, 4%);
-$vxe-modal-border-color: $border-color;
+  /*button*/
+  --vxe-button-default-background-color: #{lighten($theme-bg-color, 8%)};
 
-/** button */
-$vxe-button-default-background-color: lighten($theme-bg-color, 8%);
+  /*input*/
+  --vxe-input-background-color: #{lighten($theme-bg-color, 4%)};
+  --vxe-input-panel-background-color: #{lighten($theme-bg-color, 4%)};
 
-/** input */
-$vxe-input-background-color: lighten($theme-bg-color, 4%);
-$vxe-input-panel-background-color: $vxe-input-background-color;
+  /*form*/
+  --vxe-form-background-color: #{lighten($theme-bg-color, 4%)};
 
-/** form */
-$vxe-form-background-color: lighten($theme-bg-color, 4%);
-
-/** select */
-$vxe-select-option-hover-background-color: lighten($theme-bg-color, 8%);
-$vxe-select-panel-background-color: lighten($theme-bg-color, 4%);
-
-@import "vxe-table/styles/index.scss";
+  /*select*/
+  --vxe-select-option-hover-background-color: #{lighten($theme-bg-color, 8%)};
+  --vxe-select-panel-background-color: #{lighten($theme-bg-color, 4%)};
+}

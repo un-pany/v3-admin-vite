@@ -40,9 +40,9 @@
     "screenfull": "6.0.2",
     "vue": "3.4.21",
     "vue-router": "4.3.0",
-    "vxe-table": "4.4.1",
-    "vxe-table-plugin-element": "3.0.7",
-    "xe-utils": "3.5.11"
+    "vxe-table": "4.5.21",
+    "vxe-table-plugin-element": "4.0.1",
+    "xe-utils": "3.5.22"
   },
   "devDependencies": {
     "@types/js-cookie": "3.0.6",
