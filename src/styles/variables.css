@@ -42,3 +42,16 @@ body.content-large {
   --v3-sidebar-width: 0px;
   --v3-sidebar-hide-width: 0px;
 }
+
+/** 内容区全屏时，将不需要的组件隐藏 */
+body.content-full {
+  /** Header 区域 */
+  --v3-header-height: 0px;
+  /** NavigationBar 组件 */
+  --v3-navigationbar-height: 0px;
+  /** Sidebar 组件 */
+  --v3-sidebar-width: 0px;
+  --v3-sidebar-hide-width: 0px;
+  /** TagsView 组件 */
+  --v3-tagsview-height: 0px;
+}

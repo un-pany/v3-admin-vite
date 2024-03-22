@@ -114,7 +114,7 @@ listenerRouteChange(() => {
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>
-    <Screenfull v-if="settingsStore.showScreenfull" element=".app-main" :content="true" class="screenfull" />
+    <Screenfull v-if="settingsStore.showScreenfull" :content="true" class="screenfull" />
   </div>
 </template>
 

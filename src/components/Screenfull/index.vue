@@ -35,6 +35,8 @@ const handleFullscreenClick = () => {
 }
 const handleFullscreenChange = () => {
   isFullscreen.value = screenfull.isFullscreen
+  // 退出全屏时清除所有的 class
+  isFullscreen.value || (document.body.className = "")
 }
 watchEffect((onCleanup) => {
   // 挂载组件时自动执行
@@ -55,8 +57,17 @@ const contentLargeSvgName = computed(() => {
   return isContentLarge.value ? "fullscreen-exit" : "fullscreen"
 })
 const handleContentLargeClick = () => {
-  document.body.className = !isContentLarge.value ? "content-large" : ""
   isContentLarge.value = !isContentLarge.value
+  // 内容区放大时，将不需要的组件隐藏
+  document.body.className = isContentLarge.value ? "content-large" : ""
+}
+const handleContentFullClick = () => {
+  // 取消内容区放大
+  isContentLarge.value && handleContentLargeClick()
+  // 内容区全屏时，将不需要的组件隐藏
+  document.body.className = "content-full"
+  // 开启全屏
+  handleFullscreenClick()
 }
 //#endregion
 </script>
@@ -68,14 +79,14 @@ const handleContentLargeClick = () => {
       <SvgIcon :name="fullscreenSvgName" @click="handleFullscreenClick" />
     </el-tooltip>
     <!-- 内容区 -->
-    <el-dropdown v-else>
+    <el-dropdown v-else :disabled="isFullscreen">
       <SvgIcon :name="contentLargeSvgName" />
       <template #dropdown>
         <el-dropdown-menu>
           <!-- 内容区放大 -->
           <el-dropdown-item @click="handleContentLargeClick">{{ contentLargeTips }}</el-dropdown-item>
           <!-- 内容区全屏 -->
-          <el-dropdown-item @click="handleFullscreenClick" :disabled="isFullscreen">内容区全屏</el-dropdown-item>
+          <el-dropdown-item @click="handleContentFullClick">内容区全屏</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>

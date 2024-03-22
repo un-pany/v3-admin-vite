@@ -196,6 +196,7 @@ onMounted(() => {
   width: 100%;
   background-color: var(--v3-header-bg-color);
   box-shadow: 0 0 3px 0 #00000010;
+  overflow: hidden;
   .tags-view-wrapper {
     .tags-view-item {
       display: inline-block;
