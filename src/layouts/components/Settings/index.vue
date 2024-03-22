@@ -44,7 +44,7 @@ const switchSettings = {
 
 /** 非左侧模式时，Header 都是 fixed 布局 */
 watchEffect(() => {
-  isLeft.value && (fixedHeader.value = true)
+  !isLeft.value && (fixedHeader.value = true)
 })
 </script>
 
