@@ -67,7 +67,7 @@
     "sass": "1.72.0",
     "typescript": "5.4.3",
     "unocss": "0.58.6",
-    "vite": "5.2.3",
+    "vite": "5.2.6",
     "vite-plugin-svg-icons": "2.0.1",
     "vite-svg-loader": "5.1.0",
     "vitest": "1.4.0",
