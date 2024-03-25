@@ -1,5 +1,9 @@
 /** Layout 相关 */
 
+body {
+  background-color: $theme-bg-color;
+}
+
 #app {
   color: $font-color;
   // 右侧设置面板
