@@ -19,7 +19,7 @@ const itemStyle = (item: RouteRecordRaw) => {
   const flag = item.name === modelValue.value
   return {
     background: flag ? "var(--el-color-primary)" : "",
-    color: flag ? "#fff" : ""
+    color: flag ? "#ffffff" : ""
   }
 }
 

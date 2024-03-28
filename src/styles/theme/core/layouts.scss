@@ -1,17 +1,5 @@
 /** Layout 相关 */
 
-body {
-  background-color: $theme-bg-color;
-}
-
-#app {
-  color: $font-color;
-  // 右侧设置面板
-  .handle-button {
-    background-color: lighten($theme-bg-color, 20%) !important;
-  }
-}
-
 .app-wrapper {
   // 侧边栏
   .sidebar-container {
@@ -38,44 +26,9 @@ body {
       }
     }
   }
+}
 
-  // Header
-  .layout-header {
-    background-color: $theme-bg-color;
-    border-bottom: 1px solid lighten($theme-bg-color, 10%) !important;
-  }
-
-  // 顶部导航栏
-  .navigation-bar {
-    background-color: $theme-bg-color;
-    .right-menu {
-      .svg-icon {
-        color: $font-color;
-      }
-    }
-  }
-
-  // TagsView
-  .tags-view-container {
-    background-color: $theme-bg-color !important;
-    .tags-view-item {
-      background-color: $theme-bg-color !important;
-      color: $font-color !important;
-      border: 1px solid $border-color !important;
-      &.active {
-        background-color: $theme-color !important;
-        color: $active-font-color !important;
-        border-color: $border-color !important;
-      }
-    }
-    // 右键菜单
-    .contextmenu {
-      background-color: lighten($theme-bg-color, 8%);
-      color: $font-color;
-      li:hover {
-        background-color: lighten($theme-bg-color, 16%);
-        color: $active-font-color;
-      }
-    }
-  }
+// 右侧设置面板
+.handle-button {
+  background-color: lighten($theme-bg-color, 20%) !important;
 }

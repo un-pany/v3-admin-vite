@@ -37,7 +37,7 @@ const show = ref(false)
   z-index: 10;
   cursor: pointer;
   pointer-events: auto;
-  color: #fff;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -49,6 +49,7 @@ import SwitchRoles from "./components/SwitchRoles.vue"
 .margin-top-15 {
   margin-top: 15px;
 }
+
 .margin-top-30 {
   margin-top: 30px;
 }

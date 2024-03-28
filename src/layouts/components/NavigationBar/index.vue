@@ -77,7 +77,7 @@ const logout = () => {
 .navigation-bar {
   height: var(--v3-navigationbar-height);
   overflow: hidden;
-  background: var(--v3-header-bg-color);
+  color: var(--v3-navigationbar-text-color);
   display: flex;
   justify-content: space-between;
   .hamburger {
@@ -114,7 +114,6 @@ const logout = () => {
     height: 100%;
     display: flex;
     align-items: center;
-    color: #606266;
     .right-menu-item {
       padding: 0 10px;
       cursor: pointer;

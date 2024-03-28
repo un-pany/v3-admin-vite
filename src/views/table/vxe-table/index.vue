@@ -317,7 +317,7 @@ const crudStore = reactive({
   },
   /** 删除 */
   onDelete: (row: RowMeta) => {
-    const tip = `确定 <strong style="color: red"> 删除 </strong> 用户 <strong style="color: #409eff"> ${row.username} </strong> ？`
+    const tip = `确定 <strong style="color: var(--el-color-danger);"> 删除 </strong> 用户 <strong style="color: var(--el-color-primary);"> ${row.username} </strong> ？`
     const config: ElMessageBoxOptions = {
       type: "warning",
       showClose: true,

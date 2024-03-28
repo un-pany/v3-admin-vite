@@ -57,8 +57,7 @@ $transition-time: 0.35s;
 }
 
 .drawer-bg {
-  background-color: #000;
-  opacity: 0.3;
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   top: 0;
   height: 100%;
@@ -98,7 +97,9 @@ $transition-time: 0.35s;
 .layout-header {
   position: relative;
   z-index: 9;
-  box-shadow: var(--el-box-shadow-lighter);
+  background-color: var(--v3-header-bg-color);
+  box-shadow: var(--v3-header-box-shadow);
+  border-bottom: var(--v3-header-border-bottom);
 }
 
 .app-main {

@@ -1,15 +1,8 @@
 /** 自定义 Element Plus 样式 */
 
-// 表格
-.el-table {
-  // 表头
-  th.el-table__cell {
-    background-color: var(--el-fill-color-light) !important;
-  }
-  // 行元素
-  tr {
-    background-color: var(--el-bg-color-overlay);
-  }
+// 卡片
+.el-card {
+  background-color: var(--el-bg-color);
 }
 
 // 分页

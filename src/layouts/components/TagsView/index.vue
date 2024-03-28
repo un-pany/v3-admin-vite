@@ -194,8 +194,7 @@ onMounted(() => {
 .tags-view-container {
   height: var(--v3-tagsview-height);
   width: 100%;
-  background-color: var(--v3-header-bg-color);
-  box-shadow: 0 0 3px 0 #00000010;
+  color: var(--v3-tagsview-text-color);
   overflow: hidden;
   .tags-view-wrapper {
     .tags-view-item {
@@ -206,7 +205,6 @@ onMounted(() => {
       line-height: 26px;
       border: 1px solid var(--v3-tagsview-tag-border-color);
       border-radius: var(--v3-tagsview-tag-border-radius);
-      color: var(--v3-tagsview-tag-text-color);
       background-color: var(--v3-tagsview-tag-bg-color);
       padding: 0 8px;
       font-size: 12px;
@@ -222,16 +220,6 @@ onMounted(() => {
         background-color: var(--v3-tagsview-tag-active-bg-color);
         color: var(--v3-tagsview-tag-active-text-color);
         border-color: var(--v3-tagsview-tag-active-border-color);
-        &::before {
-          content: "";
-          background-color: var(--v3-tagsview-tag-active-before-color);
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          position: relative;
-          margin-right: 2px;
-        }
       }
       .el-icon {
         margin: 0 2px;
@@ -246,22 +234,22 @@ onMounted(() => {
   }
   .contextmenu {
     margin: 0;
-    background-color: #fff;
     z-index: 3000;
     position: absolute;
     list-style-type: none;
     padding: 5px 0;
     border-radius: 4px;
     font-size: 12px;
-    font-weight: 400;
-    color: #333;
-    box-shadow: 2px 2px 3px 0 #00000030;
+    color: var(--v3-tagsview-contextmenu-text-color);
+    background-color: var(--v3-tagsview-contextmenu-bg-color);
+    box-shadow: var(--v3-tagsview-contextmenu-box-shadow);
     li {
       margin: 0;
       padding: 7px 16px;
       cursor: pointer;
       &:hover {
-        background-color: #eee;
+        color: var(--v3-tagsview-contextmenu-hover-text-color);
+        background-color: var(--v3-tagsview-contextmenu-hover-bg-color);
       }
     }
   }

@@ -85,8 +85,8 @@ const handleHistory = () => {
 <style lang="scss" scoped>
 .notify {
   margin-right: 10px;
-  color: var(--el-text-color-regular);
 }
+
 .notify-history {
   text-align: center;
   padding-top: 12px;

@@ -44,7 +44,7 @@ const props = defineProps<Props>()
     }
     .card-time {
       font-size: 12px;
-      color: grey;
+      color: var(--el-text-color-secondary);
     }
     .card-avatar {
       display: flex;

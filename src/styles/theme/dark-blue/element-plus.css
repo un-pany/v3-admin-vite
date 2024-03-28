@@ -6,33 +6,40 @@
 
 html.dark-blue {
   /** color */
-  --el-color-primary: #01efb7bb;
-  --el-color-primary-light-3: rgba(1, 147, 127, 0.8133333333);
-  --el-color-primary-light-5: rgba(2, 102, 99, 0.8666666667);
-  --el-color-primary-light-7: rgba(2, 65, 77, 0.92);
-  --el-color-primary-light-8: rgba(2, 49, 68, 0.9466666667);
-  --el-color-primary-light-9: rgba(2, 35, 59, 0.9733333333);
-  --el-color-primary-dark-2: rgba(1, 167, 128, 0.7866666667);
-  --el-color-success: #01efb7bb;
+  --el-color-primary: #00bb99;
+  --el-color-primary-light-3: #00bb99a2;
+  --el-color-primary-light-7: #00bb9948;
+  --el-color-primary-light-8: #00bb9932;
+  --el-color-primary-light-9: #00bb9916;
+  --el-color-primary-dark-2: #00bb99;
   /** text-color */
-  --el-text-color-primary: rgba(255, 255, 255, 0.8);
-  --el-text-color-regular: rgba(255, 255, 255, 0.8);
-  --el-text-color-secondary: rgba(255, 255, 255, 0.8);
-  --el-text-color-placeholder: rgba(255, 255, 255, 0.8);
-  --el-text-color-disabled: rgba(255, 255, 255, 0.3);
+  --el-text-color-primary: #e5eaf3;
+  --el-text-color-regular: #cfd3dc;
+  --el-text-color-secondary: #a3a6ad;
+  --el-text-color-placeholder: #8d9095;
+  --el-text-color-disabled: #6c6e72;
   /** border-color */
-  --el-border-color: #01efb755;
-  --el-border-color-light: #01efb755;
-  --el-border-color-lighter: #01efb755;
+  --el-border-color-darker: #003380;
+  --el-border-color-dark: #003380;
+  --el-border-color: #003380;
+  --el-border-color-light: #003380;
+  --el-border-color-lighter: #003380;
+  --el-border-color-extra-light: #003380;
   /** fill-color */
-  --el-fill-color: #032659;
+  --el-fill-color-darker: #042d6b;
+  --el-fill-color-dark: #042d6b;
+  --el-fill-color: #042d6b;
   --el-fill-color-light: #032659;
+  --el-fill-color-lighter: #032659;
   --el-fill-color-blank: #031e47;
+  --el-fill-color-extra-light: #031e47;
   /** bg-color */
-  --el-bg-color: #021633;
-  --el-bg-color-overlay: #031e47;
+  --el-bg-color-page: #001535;
+  --el-bg-color: #031e47;
+  --el-bg-color-overlay: #032659;
   /** mask */
   --el-mask-color: rgba(0, 0, 0, 0.5);
+  --el-mask-color-extra-light: rgba(0, 0, 0, 0.3);
 }
 
 /** button */

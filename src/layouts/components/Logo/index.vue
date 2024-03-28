@@ -34,7 +34,6 @@ const { isLeft, isTop } = useLayoutMode()
   width: 100%;
   height: var(--v3-header-height);
   line-height: var(--v3-header-height);
-  background-color: transparent;
   text-align: center;
   overflow: hidden;
   .layout-logo {

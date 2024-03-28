@@ -50,7 +50,7 @@ const { isLeft, isTop, isLeftTop, setLayoutMode } = useLayoutMode()
   overflow: hidden;
   cursor: pointer;
   border-radius: 6px;
-  border: 2px solid #00000000;
+  border: 2px solid transparent;
   &:hover {
     border: 2px solid var(--el-color-primary);
   }
@@ -70,13 +70,13 @@ const { isLeft, isTop, isLeftTop, setLayoutMode } = useLayoutMode()
 
 .left {
   .el-header {
-    background-color: var(--el-border-color);
+    background-color: var(--el-fill-color-darker);
   }
   .el-aside {
     background-color: var(--el-color-primary);
   }
   .el-main {
-    background-color: var(--el-fill-color);
+    background-color: var(--el-fill-color-lighter);
   }
 }
 
@@ -85,19 +85,19 @@ const { isLeft, isTop, isLeftTop, setLayoutMode } = useLayoutMode()
     background-color: var(--el-color-primary);
   }
   .el-main {
-    background-color: var(--el-fill-color);
+    background-color: var(--el-fill-color-lighter);
   }
 }
 
 .left-top {
   .el-header {
-    background-color: var(--el-border-color);
+    background-color: var(--el-fill-color-darker);
   }
   .el-aside {
     background-color: var(--el-color-primary);
   }
   .el-main {
-    background-color: var(--el-fill-color);
+    background-color: var(--el-fill-color-lighter);
   }
 }
 </style>

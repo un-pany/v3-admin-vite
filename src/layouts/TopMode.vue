@@ -46,14 +46,14 @@ $transition-time: 0.35s;
     display: flex;
     .navigation-bar {
       flex: 1;
-      background: transparent;
     }
   }
 }
 
 .layout-header {
   background-color: var(--v3-header-bg-color);
-  box-shadow: var(--el-box-shadow-lighter);
+  box-shadow: var(--v3-header-box-shadow);
+  border-bottom: var(--v3-header-border-bottom);
 }
 
 .main-container {

@@ -157,7 +157,7 @@ createCode()
     max-width: 90%;
     border-radius: 20px;
     box-shadow: 0 0 10px #dcdfe6;
-    background-color: var(--el-bg-color-overlay);
+    background-color: var(--el-bg-color);
     overflow: hidden;
     .title {
       display: flex;

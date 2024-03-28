@@ -127,12 +127,13 @@ listenerRouteChange(() => {
   .arrow {
     width: 40px;
     height: 100%;
+    font-size: 18px;
     cursor: pointer;
     &.left {
-      box-shadow: 5px 0 5px -6px #ccc;
+      box-shadow: 5px 0 5px -6px var(--el-border-color-darker);
     }
     &.right {
-      box-shadow: -5px 0 5px -6px #ccc;
+      box-shadow: -5px 0 5px -6px var(--el-border-color-darker);
     }
   }
   .el-scrollbar {

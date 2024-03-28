@@ -1,12 +1,16 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 :root {
-  /** 全局背景色 */
-  --v3-body-bg-color: #f2f3f5;
+  /** Body */
+  --v3-body-text-color: var(--el-text-color-primary);
+  --v3-body-bg-color: var(--el-bg-color-page);
   /** Header 区域 = NavigationBar 组件 + TagsView 组件 */
   --v3-header-height: calc(var(--v3-navigationbar-height) + var(--v3-tagsview-height));
-  --v3-header-bg-color: #ffffff;
+  --v3-header-bg-color: var(--el-bg-color);
+  --v3-header-box-shadow: var(--el-box-shadow-lighter);
+  --v3-header-border-bottom: 1px solid var(--el-fill-color);
   /** NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
+  --v3-navigationbar-text-color: var(--el-text-color-regular);
   /** Sidebar 组件（左侧模式全部生效、顶部模式全部不生效、混合模式非颜色部分生效） */
   --v3-sidebar-width: 220px;
   --v3-sidebar-hide-width: 58px;
@@ -14,20 +18,26 @@
   --v3-sidebar-menu-tip-line-bg-color: var(--el-color-primary);
   --v3-sidebar-menu-bg-color: #001428;
   --v3-sidebar-menu-hover-bg-color: #409eff10;
-  --v3-sidebar-menu-text-color: #c0c4cc;
+  --v3-sidebar-menu-text-color: #cfd3dc;
   --v3-sidebar-menu-active-text-color: #ffffff;
   /** TagsView 组件 */
   --v3-tagsview-height: 34px;
-  --v3-tagsview-tag-text-color: #495060;
+  --v3-tagsview-text-color: var(--el-text-color-regular);
   --v3-tagsview-tag-active-text-color: #ffffff;
-  --v3-tagsview-tag-bg-color: #ffffff;
+  --v3-tagsview-tag-bg-color: var(--el-bg-color);
   --v3-tagsview-tag-active-bg-color: var(--el-color-primary);
   --v3-tagsview-tag-border-radius: 2px;
-  --v3-tagsview-tag-border-color: #d8dce5;
+  --v3-tagsview-tag-border-color: var(--el-border-color-lighter);
   --v3-tagsview-tag-active-border-color: var(--el-color-primary);
-  --v3-tagsview-tag-active-before-color: #ffffff;
   --v3-tagsview-tag-icon-hover-bg-color: #00000030;
   --v3-tagsview-tag-icon-hover-color: #ffffff;
+  --v3-tagsview-contextmenu-text-color: var(--el-text-color-regular);
+  --v3-tagsview-contextmenu-hover-text-color: var(--el-text-color-primary);
+  --v3-tagsview-contextmenu-bg-color: var(--el-bg-color-overlay);
+  --v3-tagsview-contextmenu-hover-bg-color: var(--el-fill-color);
+  --v3-tagsview-contextmenu-box-shadow: var(--el-box-shadow);
+  /** Hamburger 组件 */
+  --v3-hamburger-text-color: var(--el-text-color-primary);
   /** RightPanel 组件  */
   --v3-rightpanel-button-bg-color: #001428;
 }
