@@ -3,12 +3,14 @@
 // Transition
 @import "./transition.scss";
 // Element Plus
+@import "./element-plus.css";
 @import "./element-plus.scss";
 // Vxe Table
+@import "./vxe-table.css";
 @import "./vxe-table.scss";
 // 注册多主题
 @import "./theme/register.scss";
-// mixin
+// Mixins
 @import "./mixins.scss";
 // View Transition
 @import "./view-transition.scss";

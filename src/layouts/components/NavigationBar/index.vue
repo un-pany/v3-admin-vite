@@ -104,7 +104,7 @@ const logout = () => {
     :deep(.el-sub-menu) {
       &.is-active {
         .el-sub-menu__title {
-          color: var(--el-menu-active-color) !important;
+          color: var(--el-color-primary) !important;
         }
       }
     }

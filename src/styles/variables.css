@@ -1,4 +1,5 @@
 /** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
+
 :root {
   /** Body */
   --v3-body-text-color: var(--el-text-color-primary);
