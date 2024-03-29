@@ -148,7 +148,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-table-column prop="username" label="用户名" align="center" />
           <el-table-column prop="roles" label="角色" align="center">
             <template #default="scope">
-              <el-tag v-if="scope.row.roles === 'admin'" effect="plain">admin</el-tag>
+              <el-tag v-if="scope.row.roles === 'admin'" type="primary" effect="plain">admin</el-tag>
               <el-tag v-else type="warning" effect="plain">{{ scope.row.roles }}</el-tag>
             </template>
           </el-table-column>

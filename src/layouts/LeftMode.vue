@@ -76,6 +76,7 @@ $transition-time: 0.35s;
   left: 0;
   z-index: 1001;
   overflow: hidden;
+  border-right: var(--v3-sidebar-border-right);
 }
 
 .main-container {

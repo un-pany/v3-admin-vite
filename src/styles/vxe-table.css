@@ -46,7 +46,7 @@
   /*table*/
   --vxe-table-header-font-color: var(--el-text-color-regular);
   --vxe-table-footer-font-color: var(--el-text-color-regular);
-  --vxe-table-border-color: var(--el-border-color);
+  --vxe-table-border-color: var(--el-border-color-lighter);
   --vxe-table-header-background-color: var(--el-bg-color);
   --vxe-table-body-background-color: var(--el-bg-color);
   --vxe-table-footer-background-color: var(--el-bg-color);
@@ -70,7 +70,7 @@
   /*toolbar*/
   --vxe-toolbar-background-color: var(--el-bg-color);
   --vxe-toolbar-custom-active-background-color: var(--el-bg-color-overlay);
-  --vxe-toolbar-panel-background-color: var(--el-bg-color);
+  --vxe-toolbar-panel-background-color: var(--el-bg-color-overlay);
 
   /*pager*/
   --vxe-pager-background-color: var(--el-bg-color);

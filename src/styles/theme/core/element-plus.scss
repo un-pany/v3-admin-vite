@@ -2,24 +2,23 @@
 
 // 侧边栏的 item 的 popper
 .el-popper {
-  border: none !important;
   .el-menu {
-    background-color: lighten($theme-bg-color, 2%) !important;
+    background-color: var(--el-bg-color);
     .el-menu-item {
-      background-color: lighten($theme-bg-color, 2%) !important;
+      background-color: var(--el-bg-color);
       &.is-active,
       &:hover {
-        background-color: lighten($theme-bg-color, 6%) !important;
-        color: $active-font-color !important;
+        background-color: var(--el-bg-color-overlay);
+        color: #ffffff;
       }
     }
     .el-sub-menu__title {
-      background-color: lighten($theme-bg-color, 2%) !important;
+      background-color: var(--el-bg-color);
     }
     .el-sub-menu {
       &.is-active {
         > .el-sub-menu__title {
-          color: $active-font-color !important;
+          color: #ffffff;
         }
       }
     }
