@@ -40,7 +40,7 @@ const handleFullscreenChange = () => {
 }
 watchEffect((onCleanup) => {
   // 挂载组件时自动执行
-  screenfull.on("change", handleFullscreenChange)
+  screenfull.isEnabled && screenfull.on("change", handleFullscreenChange)
   // 卸载组件时自动执行
   onCleanup(() => {
     screenfull.isEnabled && screenfull.off("change", handleFullscreenChange)
