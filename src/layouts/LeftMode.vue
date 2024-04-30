@@ -67,6 +67,10 @@ $transition-time: 0.35s;
 
 .sidebar-container {
   background-color: var(--v3-sidebar-menu-bg-color);
+  --el-menu-bg-color: var(--v3-sidebar-menu-bg-color);
+  --el-menu-hover-bg-color: var(--v3-sidebar-menu-hover-bg-color);
+  --el-menu-text-color: var(--v3-sidebar-menu-text-color);
+  --el-menu-active-color: var(--v3-sidebar-menu-active-text-color);
   transition: width $transition-time;
   width: var(--v3-sidebar-width) !important;
   height: 100%;
