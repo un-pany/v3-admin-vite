@@ -5,10 +5,13 @@
   --v3-body-text-color: var(--el-text-color-primary);
   --v3-body-bg-color: var(--el-bg-color-page);
   /** Header 区域 = NavigationBar 组件 + TagsView 组件 */
-  --v3-header-height: calc(var(--v3-navigationbar-height) + var(--v3-tagsview-height));
+  --v3-header-height: calc(
+    var(--v3-navigationbar-height) + var(--v3-tagsview-height) + var(--v3-header-border-bottom-width)
+  );
   --v3-header-bg-color: var(--el-bg-color);
   --v3-header-box-shadow: var(--el-box-shadow-lighter);
-  --v3-header-border-bottom: 1px solid var(--el-fill-color);
+  --v3-header-border-bottom-width: 1px;
+  --v3-header-border-bottom: var(--v3-header-border-bottom-width) solid var(--el-fill-color);
   /** NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
   --v3-navigationbar-text-color: var(--el-text-color-regular);
