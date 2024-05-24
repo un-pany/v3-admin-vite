@@ -151,10 +151,7 @@ Small projects are not easy to get a star, if you like this project, welcome to 
 
 ## Group
 
-QQ group：1014374415 (left) && add me on WeChat，Invite you to join WeChat group (right)
-
-![qq.png](./src/assets/docs/qq.png)
-![wechat.png](./src/assets/docs/wechat.png)
+[See how to join a group chat](https://github.com/un-pany/v3-admin-vite/issues/191)
 
 ## 📄 License
 
