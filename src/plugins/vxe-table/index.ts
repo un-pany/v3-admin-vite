@@ -7,7 +7,7 @@ import VXETablePluginElement from "vxe-table-plugin-element"
 VXETable.use(VXETablePluginElement)
 
 /** 全局默认参数 */
-VXETable.config({
+VXETable.setConfig({
   /** 全局尺寸 */
   size: "medium",
   /** 全局 zIndex 起始值，如果项目的的 z-index 样式值过大时就需要跟随设置更大，避免被遮挡 */
@@ -27,15 +27,15 @@ VXETable.config({
     emptyText: "暂无数据",
     rowConfig: {
       isHover: true,
-      isCurrent: true
+      isCurrent: true,
+      // 行数据的唯一主键字段名
+      keyField: "_VXE_ID"
     },
     columnConfig: {
       resizable: false
     },
     align: "center",
-    headerAlign: "center",
-    /** 行数据的唯一主键字段名 */
-    rowId: "_VXE_ID"
+    headerAlign: "center"
   },
   pager: {
     // size: "medium",
