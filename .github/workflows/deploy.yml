@@ -14,15 +14,15 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Node.js 20.10.0
+      - name: Setup Node.js 20.15.1
         uses: actions/setup-node@master
         with:
-          node-version: 20.10.0
+          node-version: 20.15.1
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8.11.0
+          version: 9.5.0
 
       - name: Build
         run: pnpm install && pnpm build:prod
