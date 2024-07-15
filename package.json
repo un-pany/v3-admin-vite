@@ -21,7 +21,7 @@
     "lint:eslint": "eslint --cache --max-warnings 0 \"{src,tests,types}/**/*.{vue,js,jsx,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write \"{src,tests,types}/**/*.{vue,js,jsx,ts,tsx,json,css,less,scss,html,md}\"",
     "lint": "pnpm lint:eslint && pnpm lint:prettier",
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "vitest"
   },
   "dependencies": {
