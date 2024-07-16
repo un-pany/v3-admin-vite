@@ -151,10 +151,7 @@ pnpm test
 
 ## 可有可无的群
 
-QQ 群：1014374415（左）&& 加我微信，拉你进微信群（右）
-
-![qq.png](./src/assets/docs/qq.png)
-![wechat.png](./src/assets/docs/wechat.png)
+[查看进群方式](https://github.com/un-pany/v3-admin-vite/issues/191)
 
 ## 📄 License
 

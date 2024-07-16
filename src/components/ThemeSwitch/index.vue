@@ -37,7 +37,7 @@ const handleChangeTheme = ({ clientX, clientY }: MouseEvent, themeName: ThemeNam
           :key="index"
           :disabled="activeThemeName === theme.name"
           @click="
-            (e) => {
+            (e: MouseEvent) => {
               handleChangeTheme(e, theme.name)
             }
           "
