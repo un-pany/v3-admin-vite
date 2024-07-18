@@ -4,7 +4,7 @@ export interface CreateOrUpdateTableRequestData {
   password?: string
 }
 
-export interface GetTableRequestData {
+export interface TableRequestData {
   /** 当前页码 */
   currentPage: number
   /** 查询条数 */
@@ -15,7 +15,7 @@ export interface GetTableRequestData {
   phone?: string
 }
 
-export interface GetTableData {
+export interface TableData {
   createTime: string
   email: string
   id: string
@@ -25,7 +25,7 @@ export interface GetTableData {
   username: string
 }
 
-export type GetTableResponseData = ApiResponseData<{
-  list: GetTableData[]
+export type TableResponseData = ApiResponseData<{
+  list: TableData[]
   total: number
 }>
