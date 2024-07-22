@@ -28,8 +28,8 @@ export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
 }
 
 /** 查 */
-export function getTableDataApi(params: Table.GetTableRequestData) {
-  return request<Table.GetTableResponseData>({
+export function getTableDataApi(params: Table.TableRequestData) {
+  return request<Table.TableResponseData>({
     url: "table",
     method: "get",
     params
