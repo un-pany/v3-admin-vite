@@ -90,7 +90,7 @@ const resolvePath = (routePath: string) => {
 }
 
 .el-icon {
-  width: 1em;
+  width: 1em !important;
   margin-right: 12px;
   font-size: 18px;
 }
