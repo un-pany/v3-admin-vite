@@ -7,6 +7,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import svgLoader from "vite-svg-loader"
 import UnoCSS from "unocss/vite"
+import { vitePluginVersionMark } from "vite-plugin-version-mark"
 
 /** 配置项文档：https://cn.vitejs.dev/config */
 export default ({ mode }: ConfigEnv): UserConfigExport => {
@@ -92,7 +93,16 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         symbolId: "icon-[dir]-[name]"
       }),
       /** UnoCSS */
-      UnoCSS()
+      UnoCSS(),
+      /** version mark */
+      vitePluginVersionMark({
+        // command: 'git describe --tags',
+        // ifGitSHA: true,
+        // ifShortSHA: true,
+        ifMeta: true,
+        ifLog: true,
+        ifGlobal: true
+      })
     ],
     /** Vitest 单元测试配置：https://cn.vitest.dev/config */
     test: {
