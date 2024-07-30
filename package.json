@@ -69,6 +69,7 @@
     "unocss": "0.61.3",
     "vite": "5.3.3",
     "vite-plugin-svg-icons": "2.0.1",
+    "vite-plugin-version-mark": "^0.1.0",
     "vite-svg-loader": "5.1.0",
     "vitest": "2.0.3",
     "vue-eslint-parser": "9.4.3",
