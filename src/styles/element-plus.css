@@ -1,7 +1,8 @@
 /**
- * dark-blue 主题模式下的 Element Plus CSS 变量
+ * 自定义 Element Plus CSS 变量
  * 在此查阅所有可自定义的变量：https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/src/common/var.scss
  * 也可以打开浏览器控制台选择元素，查看要覆盖的变量名
+ * 由于 Element Plus 自带默认主题模式和 dark 主题模式，所以这里只新增 dark-blue 主题模式下的变量，但你也可以根据需求自行在这里定义每个模式的变量~
  */
 
 /** 基础颜色 */
