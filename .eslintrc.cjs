@@ -25,6 +25,7 @@ module.exports = {
   },
   rules: {
     // TS
+    "@typescript-eslint/no-unused-expressions": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-debugger": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
