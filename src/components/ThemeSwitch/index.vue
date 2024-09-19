@@ -16,7 +16,6 @@ const handleChangeTheme = ({ clientX, clientY }: MouseEvent, themeName: ThemeNam
   const handler = () => {
     setTheme(themeName)
   }
-  // @ts-expect-error
   document.startViewTransition ? document.startViewTransition(handler) : handler()
 }
 </script>
