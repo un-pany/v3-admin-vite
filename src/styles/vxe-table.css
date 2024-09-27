@@ -1,6 +1,6 @@
 /**
- * 所有主题模式下的 Vxe Table CSS 变量
- * 用 Element Plus 的 CSS 变量来覆写 Vxe Table 的 CSS 变量，目的是使 Vxe Table 支持多主题模式且样式统一
+ * 自定义 Vxe Table CSS 变量
+ * 用 Element Plus CSS 变量来覆写 Vxe Table CSS 变量，目的是让 Vxe Table 在不同主题模式下都跟随 Element Plus 的颜色
  * 在此查阅所有可自定义的变量：https://github.com/x-extends/vxe-table/blob/master/styles/css-variable.scss
  */
 
