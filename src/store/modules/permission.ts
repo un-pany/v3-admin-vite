@@ -28,16 +28,16 @@ const filterDynamicRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
   return res
 }
 
-function transformMenuToRoute(menuItem: MenuItem, rootItem: boolean, parentPath: string = ""): RouteRecordRaw {
+function transformMenuToRoute(menuItem: MenuItem): RouteRecordRaw {
   const childrenRoute: RouteRecordRaw[] = []
-  const vuePath = "/src/views" + parentPath + "/" + menuItem.path + ".vue"
-  const vuePage = rootItem ? Layouts : modules[vuePath]
+  const vuePath = "/src" + (menuItem.component ?? "")
+  const vuePage = menuItem.type == MenuType.Menu ? Layouts : modules[vuePath]
 
   // 如果有 children，则需要递归添加 children 到 route
   if (menuItem.children && menuItem.children.length > 0) {
     for (let i = 0; i < menuItem.children.length; i++) {
       if (menuItem.children[i].type == MenuType.Page) {
-        childrenRoute.push(transformMenuToRoute(menuItem.children[i], false, menuItem.path))
+        childrenRoute.push(transformMenuToRoute(menuItem.children[i]))
       }
     }
   }
@@ -47,11 +47,14 @@ function transformMenuToRoute(menuItem: MenuItem, rootItem: boolean, parentPath:
     name: menuItem.name,
     component: vuePage,
     meta: {
-      title: menuItem.meta.title,
       svgIcon: menuItem.meta?.icon,
-      roles: menuItem.meta?.roles
+      ...menuItem.meta
     },
     children: childrenRoute.length > 0 ? childrenRoute : undefined
+  }
+
+  if (menuItem.redirect) {
+    routeItem.redirect = menuItem.redirect
   }
 
   return routeItem
@@ -67,7 +70,7 @@ export const usePermissionStore = defineStore("permission", () => {
   const setRoutes = (roles: string[], menus: MenuItem[]) => {
     const menuRoute: RouteRecordRaw[] = []
     for (let i = 0; i < menus.length; i++) {
-      menuRoute.push(transformMenuToRoute(menus[i], true))
+      menuRoute.push(transformMenuToRoute(menus[i]))
     }
 
     const accessedRoutes = filterDynamicRoutes(menuRoute, roles)

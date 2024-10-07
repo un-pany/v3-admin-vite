@@ -12,10 +12,14 @@ export interface MenuMeta {
   title: string
   /** 菜单图标 */
   icon?: string
+  /** 隐藏菜单 */
+  hidden?: boolean
   /** 菜单总是可见 */
   alwaysShow?: boolean
   /** 菜单是否可用 */
   roles?: string[]
+  /** 其它参数 */
+  [key: string]: any
 }
 
 /** 菜单详情 */
@@ -26,6 +30,10 @@ export interface MenuItem {
   type: MenuType
   /** 菜单路径 */
   path: string
+  /** 重定向页面 */
+  redirect?: string
+  /** 组件页面 */
+  component?: string
   /** 菜单元数据 */
   meta: MenuMeta
   /** 子菜单 */
@@ -40,6 +48,7 @@ export interface MenuItem {
 const dynamicRoutes: MenuItem[] = [
   {
     path: "/permission",
+    redirect: "/permission/page",
     name: "Permission",
     type: MenuType.Menu,
     meta: {
@@ -51,6 +60,7 @@ const dynamicRoutes: MenuItem[] = [
     children: [
       {
         path: "page",
+        component: "/views/permission/page.vue",
         name: "PagePermission",
         type: MenuType.Page,
         meta: {
@@ -60,6 +70,7 @@ const dynamicRoutes: MenuItem[] = [
       },
       {
         path: "directive",
+        component: "/views/permission/directive.vue",
         name: "DirectivePermission",
         type: MenuType.Page,
         meta: {
