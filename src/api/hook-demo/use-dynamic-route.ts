@@ -75,7 +75,17 @@ const dynamicRoutes: MenuItem[] = [
         type: MenuType.Page,
         meta: {
           title: "按钮级" // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
-        }
+        },
+        children: [
+          {
+            path: "button",
+            name: "ButtonPermission",
+            type: MenuType.Button,
+            meta: {
+              title: "按钮权限"
+            }
+          }
+        ]
       }
     ]
   }
@@ -87,7 +97,7 @@ export function getMenuDataApi() {
     // 模拟接口响应时间 1s
     setTimeout(() => {
       // 模拟接口调用成功
-      if (Math.random() < 0.8) {
+      if (Math.random() < 1) {
         resolve(dynamicRoutes)
       } else {
         // 模拟接口调用出错

@@ -10,10 +10,50 @@ import { type LoginRequestData } from "@/api/login/types/login"
 import { MenuItem, getMenuDataApi } from "@/api/hook-demo/use-dynamic-route"
 import routeSettings from "@/config/route"
 
+/**
+ * 从菜单生成权限资源
+ *
+ * @param menus 授予用户的菜单列表
+ * @returns Map<string, string[]> 权限资源
+ */
+function buildMenuPermission(menus: MenuItem[]) {
+  const ret = new Map<string, string[]>()
+
+  menus.forEach((item) => {
+    if (item.type === "menu" && item.children && item.children.length > 0) {
+      const tmp = buildMenuPermission(item.children)
+      if (tmp.size > 0) {
+        tmp.forEach((value, key) => {
+          if (ret.has(key)) {
+            ret.set(key, [...new Set([...(ret.get(key) as string[]), ...value])])
+          } else {
+            ret.set(key, value)
+          }
+        })
+      }
+    } else if (item.type === "page" && item.children && item.children.length > 0) {
+      const res: string[] = []
+
+      item.children?.forEach((child) => {
+        if (child.name != "") {
+          res.push(child.name)
+        }
+      })
+
+      if (res.length > 0) {
+        ret.set(item.name, res)
+      }
+    }
+  })
+
+  return ret
+}
+
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
   const menus = reactive<MenuItem[]>([])
+  const permission = reactive<Map<string, string[]>>(new Map())
   const username = ref<string>("")
 
   const tagsViewStore = useTagsViewStore()
@@ -37,6 +77,11 @@ export const useUserStore = defineStore("user", () => {
     const data = await getMenuDataApi()
     if (data && data.length > 0) {
       menus.push(...data)
+
+      const permissionMap = buildMenuPermission(data)
+      permissionMap.forEach((value, key) => {
+        permission.set(key, value)
+      })
     }
   }
   /** 模拟角色变化 */
@@ -69,7 +114,7 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  return { token, roles, menus, username, login, getInfo, getMenu, changeRoles, logout, resetToken }
+  return { token, roles, menus, permission, username, login, getInfo, getMenu, changeRoles, logout, resetToken }
 })
 
 /** 在 setup 外使用 */
