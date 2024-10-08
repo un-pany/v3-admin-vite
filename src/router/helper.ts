@@ -67,3 +67,26 @@ const addToChildren = (routes: RouteRecordNormalized[], children: RouteRecordRaw
     }
   })
 }
+
+/* 过滤需要keepalive的标签 */
+export const filterKeepAlive = (router: Router): string[] => {
+  const keepAliveList: string[] = []
+  const routes = router.getRoutes() || []
+  const filter = (route: RouteRecordRaw[] | RouteRecordRaw) => {
+    // 确保 route 是数组
+    const routes = Array.isArray(route) ? route : [route]
+
+    routes.forEach((item: RouteRecordRaw) => {
+      if (item.meta?.keepAlive === true) {
+        keepAliveList.push(item.name as string)
+      }
+      if (item.children?.length) {
+        filter(item.children) // 递归处理子路由
+      }
+    })
+  }
+
+  filter(routes) // 初始调用
+
+  return keepAliveList
+}
