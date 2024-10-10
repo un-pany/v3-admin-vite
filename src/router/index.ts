@@ -2,7 +2,7 @@ import { type RouteRecordRaw, createRouter } from "vue-router"
 import { history, flatMultiLevelRoutes } from "./helper"
 import routeSettings from "@/config/route"
 
-const Layouts = () => import("@/layouts/index.vue")
+export const Layouts = () => import("@/layouts/index.vue")
 
 /**
  * 常驻路由
