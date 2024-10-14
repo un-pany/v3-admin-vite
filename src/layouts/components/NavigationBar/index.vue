@@ -98,16 +98,6 @@ const logout = () => {
     flex: 1;
     // 设置 min-width 是为了让 Sidebar 里的 el-menu 宽度自适应
     min-width: 0px;
-    :deep(.el-menu) {
-      background-color: transparent;
-    }
-    :deep(.el-sub-menu) {
-      &.is-active {
-        .el-sub-menu__title {
-          color: var(--el-color-primary) !important;
-        }
-      }
-    }
   }
   .right-menu {
     margin-right: 10px;
