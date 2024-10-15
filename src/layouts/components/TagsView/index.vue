@@ -217,12 +217,11 @@ onMounted(() => {
         margin-right: 5px;
       }
       &.active {
-        background-color: var(--v3-tagsview-tag-active-bg-color);
-        color: var(--v3-tagsview-tag-active-text-color);
+        color: var(--v3-tagsview-tag-active-bg-color);
         border-color: var(--v3-tagsview-tag-active-border-color);
       }
       .el-icon {
-        margin: 0 2px;
+        margin-bottom: 1.5px;
         vertical-align: middle;
         border-radius: 50%;
         &:hover {
