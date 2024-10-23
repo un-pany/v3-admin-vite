@@ -28,7 +28,6 @@
   /** TagsView 组件 */
   --v3-tagsview-height: 34px;
   --v3-tagsview-text-color: var(--el-text-color-regular);
-  --v3-tagsview-tag-active-text-color: #ffffff;
   --v3-tagsview-tag-bg-color: var(--el-bg-color);
   --v3-tagsview-tag-active-bg-color: var(--el-color-primary);
   --v3-tagsview-tag-border-radius: 2px;

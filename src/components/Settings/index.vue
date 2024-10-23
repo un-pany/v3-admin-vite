@@ -1,11 +1,36 @@
+<template>
+  <div>
+    <el-tooltip effect="dark" content="设置" placement="bottom">
+      <el-button :icon="Setting" circle @click="show = true" />
+    </el-tooltip>
+
+    <el-drawer v-model="show" size="300px" :with-header="false">
+      <div class="setting-container">
+        <h4>布局配置</h4>
+        <SelectLayoutMode />
+        <el-divider />
+        <h4>功能配置</h4>
+        <div class="setting-item" v-for="(settingValue, settingName, index) in switchSettings" :key="index">
+          <span class="setting-name">{{ settingName }}</span>
+          <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
+        </div>
+        <el-button type="danger" :icon="Refresh" @click="resetConfigLayout">重 置</el-button>
+      </div>
+    </el-drawer>
+  </div>
+</template>
+
 <script lang="ts" setup>
+import { ref } from "vue"
 import { watchEffect } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import { useLayoutMode } from "@/hooks/useLayoutMode"
 import { resetConfigLayout } from "@/utils"
+import { Setting, Refresh } from "@element-plus/icons-vue"
 import SelectLayoutMode from "./SelectLayoutMode.vue"
-import { Refresh } from "@element-plus/icons-vue"
+
+const show = ref(false)
 
 const { isLeft } = useLayoutMode()
 const settingsStore = useSettingsStore()
@@ -48,25 +73,11 @@ watchEffect(() => {
 })
 </script>
 
-<template>
-  <div class="setting-container">
-    <h4>布局配置</h4>
-    <SelectLayoutMode />
-    <el-divider />
-    <h4>功能配置</h4>
-    <div class="setting-item" v-for="(settingValue, settingName, index) in switchSettings" :key="index">
-      <span class="setting-name">{{ settingName }}</span>
-      <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
-    </div>
-    <el-button type="danger" :icon="Refresh" @click="resetConfigLayout">重 置</el-button>
-  </div>
-</template>
-
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
 
 .setting-container {
-  padding: 20px;
+  // padding: 20px;
   .setting-item {
     font-size: 14px;
     color: var(--el-text-color-regular);
