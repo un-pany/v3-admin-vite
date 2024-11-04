@@ -6,18 +6,12 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/app-loading.css" />
     <title>%VITE_APP_TITLE%</title>
+    <script src="/detect-ie.js" defer></script>
   </head>
   <body>
     <div id="app">
       <div id="app-loading"></div>
     </div>
-    <script>
-      // Tip: Simple judgments may not fully cover
-      if (/MSIE\s|Trident\//.test(window.navigator.userAgent)) {
-        document.body.innerHTML =
-          "<strong>Sorry, this browser is currently not supported. We recommend using the latest version of a modern browser. For example, Chrome/Firefox/Edge.</strong>"
-      }
-    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
