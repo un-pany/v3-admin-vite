@@ -13,11 +13,7 @@
     </div>
     <script type="text/javascript">
       // 检测是否为 IE 浏览器
-      function isIE() {
-          return /MSIE|Trident/.test(window.navigator.userAgent);
-      }
-
-      if (isIE()) {
+      if (/MSIE|Trident/.test(window.navigator.userAgent)) {
           document.body.innerHTML = '<h1>抱歉，您的浏览器不支持此应用。请使用现代浏览器，例如 <a href="https://www.google.com/chrome/">Chrome</a>、<a href="https://www.mozilla.org/firefox/">Firefox</a> 或 <a href="https://www.microsoft.com/edge">Edge</a>。</h1>';
       }
     </script>
