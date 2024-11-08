@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import { useTagsViewStore } from "@/store/modules/tags-view"
 import { useSettingsStore } from "@/store/modules/settings"
 import Footer from "./Footer/index.vue"
-import router from "@/router/index"
-import { filterKeepAlive } from "@/router/helper"
-const keepAliveInclude = filterKeepAlive(router)
+
+const tagsViewStore = useTagsViewStore()
 const settingsStore = useSettingsStore()
 </script>
 
@@ -13,7 +13,7 @@ const settingsStore = useSettingsStore()
       <!-- key 采用 route.path 和 route.fullPath 有着不同的效果，大多数时候 path 更通用 -->
       <router-view v-slot="{ Component, route }">
         <transition name="el-fade-in" mode="out-in">
-          <keep-alive :include="keepAliveInclude">
+          <keep-alive :include="tagsViewStore.cachedViews">
             <component :is="Component" :key="route.path" class="app-container-grow" />
           </keep-alive>
         </transition>
