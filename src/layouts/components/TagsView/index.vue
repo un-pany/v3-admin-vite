@@ -65,7 +65,7 @@ const initTags = () => {
   affixTags = filterAffixTags(permissionStore.routes)
   for (const tag of affixTags) {
     // 必须含有 name 属性
-    tag.name && tagsViewStore.addVisitedView(tag)
+    tag.name && tagsViewStore.addVisitedView(tag, true)
   }
 }
 
@@ -153,12 +153,13 @@ watch(visible, (value) => {
   value ? document.body.addEventListener("click", closeMenu) : document.body.removeEventListener("click", closeMenu)
 })
 
+/** 监听路由变化 */
+listenerRouteChange((route) => {
+  addTags(route)
+}, true)
+
 onMounted(() => {
   initTags()
-  /** 监听路由变化 */
-  listenerRouteChange(async (route) => {
-    addTags(route)
-  }, true)
 })
 </script>
 
