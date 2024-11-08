@@ -18,7 +18,7 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   })
 
   //#region add
-  const addVisitedView = (view: TagView) => {
+  const addVisitedView = (view: TagView, isUnshift: boolean = false) => {
     // 检查是否已经存在相同的 visitedView
     const index = visitedViews.value.findIndex((v) => v.path === view.path)
     if (index !== -1) {
@@ -26,7 +26,7 @@ export const useTagsViewStore = defineStore("tags-view", () => {
       visitedViews.value[index].fullPath !== view.fullPath && (visitedViews.value[index] = { ...view })
     } else {
       // 添加新的 visitedView
-      visitedViews.value.push({ ...view })
+      isUnshift ? visitedViews.value.unshift({ ...view }) : visitedViews.value.push({ ...view })
     }
   }
 
