@@ -1,4 +1,4 @@
-/** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
+/** 项目 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
   /** Body */
@@ -45,6 +45,22 @@
   --v3-hamburger-text-color: var(--el-text-color-primary);
   /** RightPanel 组件  */
   --v3-rightpanel-button-bg-color: #001428;
+}
+
+/** dark 主题模式 */
+html.dark {
+  --v3-sidebar-menu-bg-color: var(--el-bg-color);
+  --v3-sidebar-menu-hover-bg-color: var(--el-bg-color-overlay);
+  --v3-sidebar-menu-text-color: #cfd3dc;
+  --v3-sidebar-menu-active-text-color: #ffffff;
+}
+
+/** dark-blue 主题模式 */
+html.dark-blue {
+  --v3-sidebar-menu-bg-color: var(--el-bg-color);
+  --v3-sidebar-menu-hover-bg-color: var(--el-bg-color-overlay);
+  --v3-sidebar-menu-text-color: #cfd3dc;
+  --v3-sidebar-menu-active-text-color: #ffffff;
 }
 
 /** 内容区放大时，将不需要的组件隐藏 */
