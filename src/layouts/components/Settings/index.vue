@@ -3,7 +3,7 @@ import { watchEffect } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import { useLayoutMode } from "@/hooks/useLayoutMode"
-import { resetConfigLayout } from "@/utils"
+import { removeConfigLayout } from "@/utils/cache/local-storage"
 import SelectLayoutMode from "./SelectLayoutMode.vue"
 import { Refresh } from "@element-plus/icons-vue"
 
@@ -46,6 +46,12 @@ const switchSettings = {
 watchEffect(() => {
   !isLeft.value && (fixedHeader.value = true)
 })
+
+/** 重置项目配置 */
+const resetConfigLayout = () => {
+  removeConfigLayout()
+  location.reload()
+}
 </script>
 
 <template>
