@@ -10,7 +10,7 @@ import LeftMode from "./LeftMode.vue"
 import TopMode from "./TopMode.vue"
 import LeftTopMode from "./LeftTopMode.vue"
 import { Settings, RightPanel } from "./components"
-import { getCssVariableValue, setCssVariableValue } from "@/utils"
+import { getCssVar, setCssVar } from "@/utils/css"
 
 /** Layout 布局响应式 */
 useResize()
@@ -29,12 +29,10 @@ const classes = computed(() => {
 })
 
 //#region 隐藏标签栏时删除其高度，是为了让 Logo 组件高度和 Header 区域高度始终一致
-const cssVariableName = "--v3-tagsview-height"
-const v3TagsviewHeight = getCssVariableValue(cssVariableName)
+const cssVarName = "--v3-tagsview-height"
+const v3TagsviewHeight = getCssVar(cssVarName)
 watchEffect(() => {
-  showTagsView.value
-    ? setCssVariableValue(cssVariableName, v3TagsviewHeight)
-    : setCssVariableValue(cssVariableName, "0px")
+  showTagsView.value ? setCssVar(cssVarName, v3TagsviewHeight) : setCssVar(cssVarName, "0px")
 })
 //#endregion
 
