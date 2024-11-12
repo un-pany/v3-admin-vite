@@ -32,8 +32,8 @@ const querySuccess = async () => {
 const queryError = async () => {
   try {
     await useFullscreenLoading(getErrorApi, options)()
-  } catch (err: any) {
-    ElMessage.error(err.message)
+  } catch (error) {
+    ElMessage.error((error as Error).message)
   }
 }
 </script>

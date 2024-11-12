@@ -1,10 +1,10 @@
 /** 判断是否为数组 */
-export const isArray = (arg: unknown) => {
+export const isArray = <T>(arg: T) => {
   return Array.isArray ? Array.isArray(arg) : Object.prototype.toString.call(arg) === "[object Array]"
 }
 
 /** 判断是否为字符串 */
-export const isString = (str: unknown) => {
+export const isString = <T>(str: T) => {
   return typeof str === "string" || str instanceof String
 }
 

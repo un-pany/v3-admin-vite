@@ -44,13 +44,12 @@ router.beforeEach(async (to, _from, next) => {
     routeSettings.dynamic ? permissionStore.setRoutes(roles) : permissionStore.setAllRoutes()
     // 将 "有访问权限的动态路由" 添加到 Router 中
     permissionStore.addRoutes.forEach((route) => router.addRoute(route))
-    // 确保添加路由已完成
     // 设置 replace: true, 因此导航将不会留下历史记录
     next({ ...to, replace: true })
-  } catch (err: any) {
+  } catch (error) {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
-    ElMessage.error(err.message || "路由守卫过程发生错误")
+    ElMessage.error((error as Error).message || "路由守卫过程发生错误")
     next("/login")
   }
 })
