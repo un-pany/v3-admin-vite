@@ -53,11 +53,13 @@ $transition-time: 0.35s;
   width: 100%;
   display: flex;
   .logo {
+    flex: none;
     width: var(--v3-sidebar-width);
   }
   .content {
     flex: 1;
     position: relative;
+    overflow: hidden;
   }
 }
 
