@@ -85,12 +85,14 @@ defineExpose({ getScrollTop })
 </template>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins.scss";
+
 .result-item {
   display: flex;
   align-items: center;
   height: 56px;
   padding: 0 15px;
-  margin-top: 8px;
+  margin-bottom: 8px;
   border: 1px solid var(--el-border-color);
   border-radius: 4px;
   cursor: pointer;
@@ -105,6 +107,7 @@ defineExpose({ getScrollTop })
   &-title {
     flex: 1;
     margin-left: 12px;
+    @extend %ellipsis;
   }
 }
 </style>

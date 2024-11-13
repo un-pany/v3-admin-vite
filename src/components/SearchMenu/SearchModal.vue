@@ -196,7 +196,7 @@ const handleReleaseUpOrDown = () => {
   }
   .el-dialog__footer {
     border-top: 1px solid var(--el-border-color);
-    padding: var(--el-dialog-padding-primary);
+    padding-top: var(--el-dialog-padding-primary);
   }
 }
 </style>
