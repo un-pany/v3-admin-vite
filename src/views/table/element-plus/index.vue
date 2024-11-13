@@ -148,16 +148,18 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-table-column prop="username" label="用户名" align="center" />
           <el-table-column prop="roles" label="角色" align="center">
             <template #default="scope">
-              <el-tag v-if="scope.row.roles === 'admin'" type="primary" effect="plain">admin</el-tag>
-              <el-tag v-else type="warning" effect="plain">{{ scope.row.roles }}</el-tag>
+              <el-tag v-if="scope.row.roles === 'admin'" type="primary" effect="plain" disable-transitions>
+                admin
+              </el-tag>
+              <el-tag v-else type="warning" effect="plain" disable-transitions>{{ scope.row.roles }}</el-tag>
             </template>
           </el-table-column>
           <el-table-column prop="phone" label="手机号" align="center" />
           <el-table-column prop="email" label="邮箱" align="center" />
           <el-table-column prop="status" label="状态" align="center">
             <template #default="scope">
-              <el-tag v-if="scope.row.status" type="success" effect="plain">启用</el-tag>
-              <el-tag v-else type="danger" effect="plain">禁用</el-tag>
+              <el-tag v-if="scope.row.status" type="success" effect="plain" disable-transitions>启用</el-tag>
+              <el-tag v-else type="danger" effect="plain" disable-transitions>禁用</el-tag>
             </template>
           </el-table-column>
           <el-table-column prop="createTime" label="创建时间" align="center" />
