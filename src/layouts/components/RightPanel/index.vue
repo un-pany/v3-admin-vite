@@ -34,7 +34,7 @@ const show = ref(false)
   top: v-bind(buttonTopCss);
   right: 0;
   border-radius: 6px 0 0 6px;
-  z-index: 10;
+  z-index: 2000;
   cursor: pointer;
   pointer-events: auto;
   color: #ffffff;
