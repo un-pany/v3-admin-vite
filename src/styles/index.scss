@@ -22,6 +22,14 @@
 
 html {
   height: 100%;
+  // 灰色模式
+  &.grey-mode {
+    filter: grayscale(1);
+  }
+  // 色弱模式
+  &.color-weakness {
+    filter: invert(0.8);
+  }
 }
 
 body {

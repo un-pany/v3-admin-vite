@@ -37,8 +37,14 @@ const setTheme = (value: ThemeName) => {
 }
 
 /** 在 html 根元素上挂载 class */
-const setHtmlRootClassName = (value: ThemeName) => {
-  document.documentElement.className = value
+const addHtmlClass = (value: ThemeName) => {
+  document.documentElement.classList.add(value)
+}
+
+/** 在 html 根元素上移除其他主题 class */
+const removeHtmlClass = (value: ThemeName) => {
+  const otherThemeNameList = themeList.map((item) => item.name).filter((name) => name !== value)
+  document.documentElement.classList.remove(...otherThemeNameList)
 }
 
 /** 初始化 */
@@ -46,7 +52,8 @@ const initTheme = () => {
   // watchEffect 来收集副作用
   watchEffect(() => {
     const value = activeThemeName.value
-    setHtmlRootClassName(value)
+    removeHtmlClass(value)
+    addHtmlClass(value)
     setActiveThemeName(value)
   })
 }

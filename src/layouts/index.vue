@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, watchEffect } from "vue"
+import { watchEffect } from "vue"
 import { storeToRefs } from "pinia"
 import { useSettingsStore } from "@/store/modules/settings"
 import useResize from "./hooks/useResize"
@@ -19,14 +19,7 @@ const { setWatermark, clearWatermark } = useWatermark()
 const { isMobile } = useDevice()
 const { isLeft, isTop, isLeftTop } = useLayoutMode()
 const settingsStore = useSettingsStore()
-const { showSettings, showTagsView, showWatermark, showGreyMode, showColorWeakness } = storeToRefs(settingsStore)
-
-const classes = computed(() => {
-  return {
-    showGreyMode: showGreyMode.value,
-    showColorWeakness: showColorWeakness.value
-  }
-})
+const { showSettings, showTagsView, showWatermark } = storeToRefs(settingsStore)
 
 //#region 隐藏标签栏时删除其高度，是为了让 Logo 组件高度和 Header 区域高度始终一致
 const cssVarName = "--v3-tagsview-height"
@@ -43,7 +36,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div :class="classes">
+  <div>
     <!-- 左侧模式 -->
     <LeftMode v-if="isLeft || isMobile" />
     <!-- 顶部模式 -->
@@ -56,13 +49,3 @@ watchEffect(() => {
     </RightPanel>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.showGreyMode {
-  filter: grayscale(1);
-}
-
-.showColorWeakness {
-  filter: invert(0.8);
-}
-</style>
