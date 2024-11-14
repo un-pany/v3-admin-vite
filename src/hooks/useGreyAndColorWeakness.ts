@@ -9,8 +9,8 @@ const classList = document.documentElement.classList
 const initGreyAndColorWeakness = () => {
   const settingsStore = useSettingsStore()
   watchEffect(() => {
-    settingsStore.showGreyMode ? classList.add(GREY_MODE) : classList.remove(GREY_MODE)
-    settingsStore.showColorWeakness ? classList.add(COLOR_WEAKNESS) : classList.remove(COLOR_WEAKNESS)
+    classList.toggle(GREY_MODE, settingsStore.showGreyMode)
+    classList.toggle(COLOR_WEAKNESS, settingsStore.showColorWeakness)
   })
 }
 
