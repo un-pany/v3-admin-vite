@@ -1,4 +1,5 @@
 import { reactive, ref, watch } from "vue"
+import { pinia } from "@/store"
 import { defineStore } from "pinia"
 import { getSidebarStatus, setSidebarStatus } from "@/utils/cache/local-storage"
 import { DeviceEnum, SIDEBAR_OPENED, SIDEBAR_CLOSED } from "@/constants/app-key"
@@ -45,3 +46,11 @@ export const useAppStore = defineStore("app", () => {
 
   return { device, sidebar, toggleSidebar, closeSidebar, toggleDevice }
 })
+
+/**
+ * 在 SPA 应用中可用于在 pinia 实例被激活前使用 store
+ * 在 SSR 应用中可用于在 setup 外使用 store
+ */
+export function useAppStoreHook() {
+  return useAppStore(pinia)
+}

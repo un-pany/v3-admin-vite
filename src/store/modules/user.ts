@@ -1,5 +1,5 @@
 import { ref } from "vue"
-import store from "@/store"
+import { pinia } from "@/store"
 import { defineStore } from "pinia"
 import { useTagsViewStore } from "./tags-view"
 import { useSettingsStore } from "./settings"
@@ -63,7 +63,10 @@ export const useUserStore = defineStore("user", () => {
   return { token, roles, username, login, getInfo, changeRoles, logout, resetToken }
 })
 
-/** 在 setup 外使用 */
+/**
+ * 在 SPA 应用中可用于在 pinia 实例被激活前使用 store
+ * 在 SSR 应用中可用于在 setup 外使用 store
+ */
 export function useUserStoreHook() {
-  return useUserStore(store)
+  return useUserStore(pinia)
 }

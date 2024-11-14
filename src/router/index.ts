@@ -289,7 +289,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
   }
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history,
   routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes
 })
@@ -309,5 +309,3 @@ export function resetRouter() {
     window.location.reload()
   }
 }
-
-export default router

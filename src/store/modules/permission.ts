@@ -1,5 +1,5 @@
 import { ref } from "vue"
-import store from "@/store"
+import { pinia } from "@/store"
 import { defineStore } from "pinia"
 import { type RouteRecordRaw } from "vue-router"
 import { constantRoutes, dynamicRoutes } from "@/router"
@@ -50,7 +50,10 @@ export const usePermissionStore = defineStore("permission", () => {
   return { routes, addRoutes, setRoutes, setAllRoutes }
 })
 
-/** 在 setup 外使用 */
+/**
+ * 在 SPA 应用中可用于在 pinia 实例被激活前使用 store
+ * 在 SSR 应用中可用于在 setup 外使用 store
+ */
 export function usePermissionStoreHook() {
-  return usePermissionStore(store)
+  return usePermissionStore(pinia)
 }
