@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { getCurrentInstance, ref, watch } from "vue"
+import { ref, watch } from "vue"
 import { type RouteLocationNormalizedLoaded, type RouteRecordRaw, RouterLink, useRoute, useRouter } from "vue-router"
 import { type TagView, useTagsViewStore } from "@/store/modules/tags-view"
 import { usePermissionStore } from "@/store/modules/permission"
@@ -8,7 +8,6 @@ import path from "path-browserify"
 import ScrollPane from "./ScrollPane.vue"
 import { Close } from "@element-plus/icons-vue"
 
-const instance = getCurrentInstance()
 const router = useRouter()
 const route = useRoute()
 const tagsViewStore = useTagsViewStore()
@@ -127,15 +126,13 @@ const toLastView = (visitedViews: TagView[], view: TagView) => {
 
 /** 打开右键菜单面板 */
 const openMenu = (tag: TagView, e: MouseEvent) => {
-  const menuMinWidth = 105
-  // 当前组件距离浏览器左端的距离
-  const offsetLeft = instance!.proxy!.$el.getBoundingClientRect().left
-  // 当前组件宽度
-  const offsetWidth = instance!.proxy!.$el.offsetWidth
+  const menuMinWidth = 100
+  // 当前页面宽度
+  const offsetWidth = document.body.offsetWidth
   // 面板的最大左边距
   const maxLeft = offsetWidth - menuMinWidth
   // 面板距离鼠标指针的距离
-  const left15 = e.clientX - offsetLeft + 15
+  const left15 = e.clientX + 10
   left.value = left15 > maxLeft ? maxLeft : left15
   top.value = e.clientY
   // 显示面板
@@ -234,7 +231,7 @@ listenerRouteChange((route) => {
   .contextmenu {
     margin: 0;
     z-index: 3000;
-    position: absolute;
+    position: fixed;
     list-style-type: none;
     padding: 5px 0;
     border-radius: 4px;
