@@ -1,4 +1,4 @@
-import { type App } from "vue"
+import type { App } from "vue"
 import { loadElementPlus } from "./element-plus"
 import { loadElementPlusIcon } from "./element-plus-icon"
 import { loadVxeTable } from "./vxe-table"

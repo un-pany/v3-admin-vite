@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { computed, ref, watchEffect } from "vue"
 import { ElMessage } from "element-plus"
 import screenfull from "screenfull"
+import { computed, ref, watchEffect } from "vue"
 
 interface Props {
   /** 全屏的元素，默认是 html */
@@ -25,17 +25,17 @@ const CONTENT_LARGE = "content-large"
 const CONTENT_FULL = "content-full"
 const classList = document.body.classList
 
-//#region 全屏
+// #region 全屏
 const isEnabled = screenfull.isEnabled
 const isFullscreen = ref<boolean>(false)
 const fullscreenTips = computed(() => (isFullscreen.value ? props.exitTips : props.openTips))
 const fullscreenSvgName = computed(() => (isFullscreen.value ? "fullscreen-exit" : "fullscreen"))
 
-const handleFullscreenClick = () => {
+function handleFullscreenClick() {
   const dom = document.querySelector(props.element) || undefined
   isEnabled ? screenfull.toggle(dom) : ElMessage.warning("您的浏览器无法工作")
 }
-const handleFullscreenChange = () => {
+function handleFullscreenChange() {
   isFullscreen.value = screenfull.isFullscreen
   // 退出全屏时清除相关的 class
   isFullscreen.value || classList.remove(CONTENT_LARGE, CONTENT_FULL)
@@ -48,18 +48,18 @@ watchEffect((onCleanup) => {
     onCleanup(() => screenfull.off("change", handleFullscreenChange))
   }
 })
-//#endregion
+// #endregion
 
-//#region 内容区
+// #region 内容区
 const isContentLarge = ref<boolean>(false)
 const contentLargeTips = computed(() => (isContentLarge.value ? "内容区复原" : "内容区放大"))
 const contentLargeSvgName = computed(() => (isContentLarge.value ? "fullscreen-exit" : "fullscreen"))
-const handleContentLargeClick = () => {
+function handleContentLargeClick() {
   isContentLarge.value = !isContentLarge.value
   // 内容区放大时，将不需要的组件隐藏
   classList.toggle(CONTENT_LARGE, isContentLarge.value)
 }
-const handleContentFullClick = () => {
+function handleContentFullClick() {
   // 取消内容区放大
   isContentLarge.value && handleContentLargeClick()
   // 内容区全屏时，将不需要的组件隐藏
@@ -67,7 +67,7 @@ const handleContentFullClick = () => {
   // 开启全屏
   handleFullscreenClick()
 }
-//#endregion
+// #endregion
 </script>
 
 <template>
@@ -82,9 +82,13 @@ const handleContentFullClick = () => {
       <template #dropdown>
         <el-dropdown-menu>
           <!-- 内容区放大 -->
-          <el-dropdown-item @click="handleContentLargeClick">{{ contentLargeTips }}</el-dropdown-item>
+          <el-dropdown-item @click="handleContentLargeClick">
+            {{ contentLargeTips }}
+          </el-dropdown-item>
           <!-- 内容区全屏 -->
-          <el-dropdown-item @click="handleContentFullClick">内容区全屏</el-dropdown-item>
+          <el-dropdown-item @click="handleContentFullClick">
+            内容区全屏
+          </el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>

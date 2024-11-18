@@ -5,7 +5,7 @@ import SearchModal from "./SearchModal.vue"
 /** 控制 modal 显隐 */
 const modalVisible = ref<boolean>(false)
 /** 打开 modal */
-const handleOpen = () => {
+function handleOpen() {
   modalVisible.value = true
 }
 </script>

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { computed } from "vue"
-import { useRoute } from "vue-router"
+import { useDevice } from "@/hooks/useDevice"
+import { useLayoutMode } from "@/hooks/useLayoutMode"
 import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"
-import SidebarItem from "./SidebarItem.vue"
-import Logo from "../Logo/index.vue"
-import { useDevice } from "@/hooks/useDevice"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
 import { getCssVar } from "@/utils/css"
+import { computed } from "vue"
+import { useRoute } from "vue-router"
+import Logo from "../Logo/index.vue"
+import SidebarItem from "./SidebarItem.vue"
 
 const v3SidebarMenuBgColor = getCssVar("--v3-sidebar-menu-bg-color")
 const v3SidebarMenuTextColor = getCssVar("--v3-sidebar-menu-text-color")
@@ -26,9 +26,9 @@ const activeMenu = computed(() => {
     meta: { activeMenu },
     path
   } = route
-  return activeMenu ? activeMenu : path
+  return activeMenu || path
 })
-const noHiddenRoutes = computed(() => permissionStore.routes.filter((item) => !item.meta?.hidden))
+const noHiddenRoutes = computed(() => permissionStore.routes.filter(item => !item.meta?.hidden))
 const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
 const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
@@ -63,7 +63,12 @@ const hiddenScrollbarVerticalBar = computed(() => {
         :collapse-transition="false"
         :mode="isTop && !isMobile ? 'horizontal' : 'vertical'"
       >
-        <SidebarItem v-for="route in noHiddenRoutes" :key="route.path" :item="route" :base-path="route.path" />
+        <SidebarItem
+          v-for="noHiddenRoute in noHiddenRoutes"
+          :key="noHiddenRoute.path"
+          :item="noHiddenRoute"
+          :base-path="noHiddenRoute.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>

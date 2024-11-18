@@ -1,5 +1,5 @@
-import { ref, watchEffect } from "vue"
 import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/local-storage"
+import { ref, watchEffect } from "vue"
 
 const DEFAULT_THEME_NAME = "normal"
 type DefaultThemeName = typeof DEFAULT_THEME_NAME
@@ -32,23 +32,23 @@ const themeList: ThemeList[] = [
 const activeThemeName = ref<ThemeName>(getActiveThemeName() || DEFAULT_THEME_NAME)
 
 /** 设置主题 */
-const setTheme = (value: ThemeName) => {
+function setTheme(value: ThemeName) {
   activeThemeName.value = value
 }
 
 /** 在 html 根元素上挂载 class */
-const addHtmlClass = (value: ThemeName) => {
+function addHtmlClass(value: ThemeName) {
   document.documentElement.classList.add(value)
 }
 
 /** 在 html 根元素上移除其他主题 class */
-const removeHtmlClass = (value: ThemeName) => {
-  const otherThemeNameList = themeList.map((item) => item.name).filter((name) => name !== value)
+function removeHtmlClass(value: ThemeName) {
+  const otherThemeNameList = themeList.map(item => item.name).filter(name => name !== value)
   document.documentElement.classList.remove(...otherThemeNameList)
 }
 
 /** 初始化 */
-const initTheme = () => {
+function initTheme() {
   // watchEffect 来收集副作用
   watchEffect(() => {
     const value = activeThemeName.value

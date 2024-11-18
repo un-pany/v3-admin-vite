@@ -1,4 +1,4 @@
-import { type App } from "vue"
+import type { App } from "vue"
 // https://vxetable.cn/#/table/start/install
 import VXETable from "vxe-table"
 // https://github.com/x-extends/vxe-table-plugin-element

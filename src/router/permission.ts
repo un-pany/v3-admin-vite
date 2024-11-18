@@ -1,12 +1,12 @@
-import { router } from "@/router"
-import { useUserStoreHook } from "@/store/modules/user"
-import { usePermissionStoreHook } from "@/store/modules/permission"
-import { ElMessage } from "element-plus"
-import { setRouteChange } from "@/hooks/useRouteListener"
-import { useTitle } from "@/hooks/useTitle"
-import { getToken } from "@/utils/cache/cookies"
 import routeSettings from "@/config/route"
 import isWhiteList from "@/config/white-list"
+import { setRouteChange } from "@/hooks/useRouteListener"
+import { useTitle } from "@/hooks/useTitle"
+import { router } from "@/router"
+import { usePermissionStoreHook } from "@/store/modules/permission"
+import { useUserStoreHook } from "@/store/modules/user"
+import { getToken } from "@/utils/cache/cookies"
+import { ElMessage } from "element-plus"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 
@@ -41,10 +41,11 @@ router.beforeEach(async (to, _from, next) => {
     // 生成可访问的 Routes
     routeSettings.dynamic ? permissionStore.setRoutes(roles) : permissionStore.setAllRoutes()
     // 将 "有访问权限的动态路由" 添加到 Router 中
-    permissionStore.addRoutes.forEach((route) => router.addRoute(route))
+    permissionStore.addRoutes.forEach(route => router.addRoute(route))
     // 设置 replace: true, 因此导航将不会留下历史记录
     next({ ...to, replace: true })
-  } catch (error) {
+  }
+  catch (error) {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
     ElMessage.error((error as Error).message || "路由守卫过程发生错误")

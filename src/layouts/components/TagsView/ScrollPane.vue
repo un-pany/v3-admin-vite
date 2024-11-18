@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { ref, nextTick } from "vue"
-import { RouterLink, useRoute } from "vue-router"
-import { useSettingsStore } from "@/store/modules/settings"
-import { useRouteListener } from "@/hooks/useRouteListener"
+import type { RouterLink } from "vue-router"
 import Screenfull from "@/components/Screenfull/index.vue"
-import { ElScrollbar } from "element-plus"
+import { useRouteListener } from "@/hooks/useRouteListener"
+import { useSettingsStore } from "@/store/modules/settings"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+import { ElScrollbar } from "element-plus"
+import { nextTick, ref } from "vue"
+import { useRoute } from "vue-router"
 
 interface Props {
   tagRefs: InstanceType<typeof RouterLink>[]
@@ -28,13 +29,13 @@ let currentScrollLeft = 0
 const translateDistance = 200
 
 /** 滚动时触发 */
-const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
+function scroll({ scrollLeft }: { scrollLeft: number }) {
   currentScrollLeft = scrollLeft
 }
 
 /** 鼠标滚轮滚动时触发 */
-const wheelScroll = ({ deltaY }: WheelEvent) => {
-  if (/^-/.test(deltaY.toString())) {
+function wheelScroll({ deltaY }: WheelEvent) {
+  if (deltaY.toString().startsWith("-")) {
     scrollTo("left")
   } else {
     scrollTo("right")
@@ -42,7 +43,7 @@ const wheelScroll = ({ deltaY }: WheelEvent) => {
 }
 
 /** 获取可能需要的宽度 */
-const getWidth = () => {
+function getWidth() {
   /** 可滚动内容的长度 */
   const scrollbarContentRefWidth = scrollbarContentRef.value!.clientWidth
   /** 滚动可视区宽度 */
@@ -54,7 +55,7 @@ const getWidth = () => {
 }
 
 /** 左右滚动 */
-const scrollTo = (direction: "left" | "right", distance: number = translateDistance) => {
+function scrollTo(direction: "left" | "right", distance: number = translateDistance) {
   let scrollLeft = 0
   const { scrollbarContentRefWidth, scrollbarRefWidth, lastDistance } = getWidth()
   // 没有横向滚动条，直接结束
@@ -68,12 +69,12 @@ const scrollTo = (direction: "left" | "right", distance: number = translateDista
 }
 
 /** 移动到目标位置 */
-const moveTo = () => {
+function moveTo() {
   const tagRefs = props.tagRefs
   for (let i = 0; i < tagRefs.length; i++) {
-    // @ts-ignore
+    // @ts-expect-error ignore
     if (route.path === tagRefs[i].$props.to.path) {
-      // @ts-ignore
+      // @ts-expect-error ignore
       const el: HTMLElement = tagRefs[i].$el
       const offsetWidth = el.offsetWidth
       const offsetLeft = el.offsetLeft
@@ -106,11 +107,11 @@ listenerRouteChange(() => {
     <el-icon class="arrow left" @click="scrollTo('left')">
       <ArrowLeft />
     </el-icon>
-    <el-scrollbar ref="scrollbarRef" @wheel.passive="wheelScroll" @scroll="scroll">
+    <ElScrollbar ref="scrollbarRef" @wheel.passive="wheelScroll" @scroll="scroll">
       <div ref="scrollbarContentRef" class="scrollbar-content">
         <slot />
       </div>
-    </el-scrollbar>
+    </ElScrollbar>
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+import type { LoginRequestData } from "@/api/login/types/login"
+import type { FormInstance, FormRules } from "element-plus"
+import { getLoginCodeApi } from "@/api/login"
+import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+import { useUserStore } from "@/store/modules/user"
+import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
-import { useUserStore } from "@/store/modules/user"
-import { type FormInstance, type FormRules } from "element-plus"
-import { User, Lock, Key, Picture, Loading } from "@element-plus/icons-vue"
-import { getLoginCodeApi } from "@/api/login"
-import { type LoginRequestData } from "@/api/login/types/login"
-import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./hooks/useFocus"
 
@@ -36,7 +36,7 @@ const loginFormRules: FormRules = {
   code: [{ required: true, message: "请输入验证码", trigger: "blur" }]
 }
 /** 登录逻辑 */
-const handleLogin = () => {
+function handleLogin() {
   loginFormRef.value?.validate((valid: boolean, fields) => {
     if (valid) {
       loading.value = true
@@ -58,7 +58,7 @@ const handleLogin = () => {
   })
 }
 /** 创建验证码 */
-const createCode = () => {
+function createCode() {
   // 先清空验证码的输入
   loginFormData.code = ""
   // 获取验证码
@@ -78,7 +78,7 @@ createCode()
     <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
-        <img src="@/assets/layouts/logo-text-2.png" />
+        <img src="@/assets/layouts/logo-text-2.png">
       </div>
       <div class="content">
         <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
@@ -116,7 +116,7 @@ createCode()
               size="large"
             >
               <template #append>
-                <el-image :src="codeUrl" @click="createCode" draggable="false">
+                <el-image :src="codeUrl" draggable="false" @click="createCode">
                   <template #placeholder>
                     <el-icon>
                       <Picture />
@@ -131,7 +131,9 @@ createCode()
               </template>
             </el-input>
           </el-form-item>
-          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">登 录</el-button>
+          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">
+            登 录
+          </el-button>
         </el-form>
       </div>
     </div>

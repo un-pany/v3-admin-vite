@@ -1,6 +1,6 @@
-import { type RouteRecordRaw, createRouter } from "vue-router"
-import { history, flatMultiLevelRoutes } from "./helper"
 import routeSettings from "@/config/route"
+import { createRouter, type RouteRecordRaw } from "vue-router"
+import { flatMultiLevelRoutes, history } from "./helper"
 
 const Layouts = () => import("@/layouts/index.vue")
 
@@ -304,7 +304,8 @@ export function resetRouter() {
         router.hasRoute(name) && router.removeRoute(name)
       }
     })
-  } catch {
+  }
+  catch {
     // 强制刷新浏览器也行，只是交互体验不是很好
     window.location.reload()
   }

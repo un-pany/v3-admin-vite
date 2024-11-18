@@ -1,13 +1,13 @@
-import { ref } from "vue"
-import { pinia } from "@/store"
-import { defineStore } from "pinia"
-import { useTagsViewStore } from "./tags-view"
-import { useSettingsStore } from "./settings"
-import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
-import { resetRouter } from "@/router"
-import { loginApi, getUserInfoApi } from "@/api/login"
-import { type LoginRequestData } from "@/api/login/types/login"
+import type { LoginRequestData } from "@/api/login/types/login"
+import { getUserInfoApi, loginApi } from "@/api/login"
 import routeSettings from "@/config/route"
+import { resetRouter } from "@/router"
+import { pinia } from "@/store"
+import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
+import { defineStore } from "pinia"
+import { ref } from "vue"
+import { useSettingsStore } from "./settings"
+import { useTagsViewStore } from "./tags-view"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
@@ -32,7 +32,7 @@ export const useUserStore = defineStore("user", () => {
   }
   /** 模拟角色变化 */
   const changeRoles = async (role: string) => {
-    const newToken = "token-" + role
+    const newToken = `token-${role}`
     token.value = newToken
     setToken(newToken)
     // 用刷新页面代替重新登录

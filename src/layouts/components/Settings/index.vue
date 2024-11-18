@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { watchEffect } from "vue"
-import { storeToRefs } from "pinia"
-import { useSettingsStore } from "@/store/modules/settings"
 import { useLayoutMode } from "@/hooks/useLayoutMode"
+import { useSettingsStore } from "@/store/modules/settings"
 import { removeConfigLayout } from "@/utils/cache/local-storage"
-import SelectLayoutMode from "./SelectLayoutMode.vue"
 import { Refresh } from "@element-plus/icons-vue"
+import { storeToRefs } from "pinia"
+import { watchEffect } from "vue"
+import SelectLayoutMode from "./SelectLayoutMode.vue"
 
 const { isLeft } = useLayoutMode()
 const settingsStore = useSettingsStore()
@@ -28,18 +28,18 @@ const {
 
 /** 定义 switch 设置项 */
 const switchSettings = {
-  显示标签栏: showTagsView,
+  "显示标签栏": showTagsView,
   "显示 Logo": showLogo,
   "固定 Header": fixedHeader,
   "显示页脚 Footer": showFooter,
-  显示消息通知: showNotify,
-  显示切换主题按钮: showThemeSwitch,
-  显示全屏按钮: showScreenfull,
-  显示搜索按钮: showSearchMenu,
-  是否缓存标签栏: cacheTagsView,
-  开启系统水印: showWatermark,
-  显示灰色模式: showGreyMode,
-  显示色弱模式: showColorWeakness
+  "显示消息通知": showNotify,
+  "显示切换主题按钮": showThemeSwitch,
+  "显示全屏按钮": showScreenfull,
+  "显示搜索按钮": showSearchMenu,
+  "是否缓存标签栏": cacheTagsView,
+  "开启系统水印": showWatermark,
+  "显示灰色模式": showGreyMode,
+  "显示色弱模式": showColorWeakness
 }
 
 /** 非左侧模式时，Header 都是 fixed 布局 */
@@ -48,7 +48,7 @@ watchEffect(() => {
 })
 
 /** 重置项目配置 */
-const resetConfigLayout = () => {
+function resetConfigLayout() {
   removeConfigLayout()
   location.reload()
 }
@@ -60,11 +60,13 @@ const resetConfigLayout = () => {
     <SelectLayoutMode />
     <el-divider />
     <h4>功能配置</h4>
-    <div class="setting-item" v-for="(settingValue, settingName, index) in switchSettings" :key="index">
+    <div v-for="(settingValue, settingName, index) in switchSettings" :key="index" class="setting-item">
       <span class="setting-name">{{ settingName }}</span>
       <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
     </div>
-    <el-button type="danger" :icon="Refresh" @click="resetConfigLayout">重 置</el-button>
+    <el-button type="danger" :icon="Refresh" @click="resetConfigLayout">
+      重 置
+    </el-button>
   </div>
 </template>
 

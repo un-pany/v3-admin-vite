@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { ref } from "vue"
-import { type RouteLocationMatched, useRoute, useRouter } from "vue-router"
+import type { RouteLocationMatched } from "vue-router"
 import { useRouteListener } from "@/hooks/useRouteListener"
 import { compile } from "path-to-regexp"
+import { ref } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
 const route = useRoute()
 const router = useRouter()
@@ -12,18 +13,18 @@ const { listenerRouteChange } = useRouteListener()
 const breadcrumbs = ref<RouteLocationMatched[]>([])
 
 /** 获取面包屑导航信息 */
-const getBreadcrumb = () => {
-  breadcrumbs.value = route.matched.filter((item) => item.meta?.title && item.meta?.breadcrumb !== false)
+function getBreadcrumb() {
+  breadcrumbs.value = route.matched.filter(item => item.meta?.title && item.meta?.breadcrumb !== false)
 }
 
 /** 编译路由路径 */
-const pathCompile = (path: string) => {
+function pathCompile(path: string) {
   const toPath = compile(path)
   return toPath(route.params)
 }
 
 /** 处理面包屑导航点击事件 */
-const handleLink = (item: RouteLocationMatched) => {
+function handleLink(item: RouteLocationMatched) {
   const { redirect, path } = item
   if (redirect) {
     router.push(redirect as string)

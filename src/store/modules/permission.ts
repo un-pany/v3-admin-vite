@@ -1,17 +1,17 @@
-import { ref } from "vue"
-import { pinia } from "@/store"
-import { defineStore } from "pinia"
-import { type RouteRecordRaw } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
+import routeSettings from "@/config/route"
 import { constantRoutes, dynamicRoutes } from "@/router"
 import { flatMultiLevelRoutes } from "@/router/helper"
-import routeSettings from "@/config/route"
+import { pinia } from "@/store"
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-const hasPermission = (roles: string[], route: RouteRecordRaw) => {
+function hasPermission(roles: string[], route: RouteRecordRaw) {
   const routeRoles = route.meta?.roles
-  return routeRoles ? roles.some((role) => routeRoles.includes(role)) : true
+  return routeRoles ? roles.some(role => routeRoles.includes(role)) : true
 }
 
-const filterDynamicRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
+function filterDynamicRoutes(routes: RouteRecordRaw[], roles: string[]) {
   const res: RouteRecordRaw[] = []
   routes.forEach((route) => {
     const tempRoute = { ...route }

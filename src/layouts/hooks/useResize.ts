@@ -1,7 +1,7 @@
-import { onBeforeMount, onMounted, onBeforeUnmount } from "vue"
-import { useAppStore } from "@/store/modules/app"
-import { useRouteListener } from "@/hooks/useRouteListener"
 import { DeviceEnum } from "@/constants/app-key"
+import { useRouteListener } from "@/hooks/useRouteListener"
+import { useAppStore } from "@/store/modules/app"
+import { onBeforeMount, onBeforeUnmount, onMounted } from "vue"
 
 /** 参考 Bootstrap 的响应式设计将最大移动端宽度设置为 992 */
 const MAX_MOBILE_WIDTH = 992

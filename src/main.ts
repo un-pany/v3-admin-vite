@@ -1,13 +1,13 @@
 // core
 import App from "@/App.vue"
-import { createApp } from "vue"
-import { pinia } from "@/store"
+import { loadDirectives } from "@/directives"
 import { router } from "@/router"
+import { pinia } from "@/store"
+import { createApp } from "vue"
 import "@/router/permission"
 // load
 import { loadSvg } from "@/icons"
 import { loadPlugins } from "@/plugins"
-import { loadDirectives } from "@/directives"
 // css
 import "uno.css"
 import "normalize.css"

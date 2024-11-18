@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue"
-import { ElMessage } from "element-plus"
+import type { ListItem } from "./data"
 import { Bell } from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
+import { computed, ref } from "vue"
+import { messageData, notifyData, todoData } from "./data"
 import NotifyList from "./NotifyList.vue"
-import { type ListItem, notifyData, messageData, todoData } from "./data"
 
 type TabName = "通知" | "消息" | "待办"
 
@@ -45,7 +46,7 @@ const data = ref<DataItem[]>([
   }
 ])
 
-const handleHistory = () => {
+function handleHistory() {
   ElMessage.success(`跳转到${activeName.value}历史页面`)
 }
 </script>
@@ -64,7 +65,7 @@ const handleHistory = () => {
       </template>
       <template #default>
         <el-tabs v-model="activeName" class="demo-tabs" stretch>
-          <el-tab-pane v-for="(item, index) in data" :name="item.name" :key="index">
+          <el-tab-pane v-for="(item, index) in data" :key="index" :name="item.name">
             <template #label>
               {{ item.name }}
               <el-badge :value="item.list.length" :max="badgeMax" :type="item.type" />
@@ -75,7 +76,9 @@ const handleHistory = () => {
           </el-tab-pane>
         </el-tabs>
         <div class="notify-history">
-          <el-button link @click="handleHistory">查看{{ activeName }}历史</el-button>
+          <el-button link @click="handleHistory">
+            查看{{ activeName }}历史
+          </el-button>
         </div>
       </template>
     </el-popover>

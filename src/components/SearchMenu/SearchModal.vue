@@ -1,13 +1,14 @@
 <script lang="ts" setup>
-import { computed, ref, shallowRef } from "vue"
-import { type RouteRecordName, type RouteRecordRaw, useRouter } from "vue-router"
+import type { RouteRecordName, RouteRecordRaw } from "vue-router"
+import { useDevice } from "@/hooks/useDevice"
 import { usePermissionStore } from "@/store/modules/permission"
-import SearchResult from "./SearchResult.vue"
-import SearchFooter from "./SearchFooter.vue"
+import { isExternal } from "@/utils/validate"
 import { ElMessage, ElScrollbar } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
-import { useDevice } from "@/hooks/useDevice"
-import { isExternal } from "@/utils/validate"
+import { computed, ref, shallowRef } from "vue"
+import { useRouter } from "vue-router"
+import SearchFooter from "./SearchFooter.vue"
+import SearchResult from "./SearchResult.vue"
 
 /** 控制 modal 显隐 */
 const modelValue = defineModel<boolean>({ required: true })
@@ -33,7 +34,7 @@ const menusData = computed(() => cloneDeep(usePermissionStore().routes))
 /** 搜索（防抖） */
 const handleSearch = debounce(() => {
   const flatMenusData = flatTree(menusData.value)
-  resultList.value = flatMenusData.filter((menu) =>
+  resultList.value = flatMenusData.filter(menu =>
     keyword.value ? menu.meta?.title?.toLocaleLowerCase().includes(keyword.value.toLocaleLowerCase().trim()) : false
   )
   // 默认选中搜索结果的第一项
@@ -42,7 +43,7 @@ const handleSearch = debounce(() => {
 }, 500)
 
 /** 将树形菜单扁平化为一维数组，用于菜单搜索 */
-const flatTree = (arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) => {
+function flatTree(arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) {
   arr.forEach((item) => {
     result.push(item)
     item.children && flatTree(item.children, result)
@@ -51,7 +52,7 @@ const flatTree = (arr: RouteRecordRaw[], result: RouteRecordRaw[] = []) => {
 }
 
 /** 关闭搜索对话框 */
-const handleClose = () => {
+function handleClose() {
   modelValue.value = false
   // 延时处理防止用户看到重置数据的操作
   setTimeout(() => {
@@ -61,7 +62,7 @@ const handleClose = () => {
 }
 
 /** 根据下标位置进行滚动 */
-const scrollTo = (index: number) => {
+function scrollTo(index: number) {
   if (!searchResultRef.value) return
   const scrollTop = searchResultRef.value.getScrollTop(index)
   // 手动控制 el-scrollbar 滚动条滚动，设置滚动条到顶部的距离
@@ -69,12 +70,12 @@ const scrollTo = (index: number) => {
 }
 
 /** 键盘上键 */
-const handleUp = () => {
+function handleUp() {
   isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
   // 获取该 name 在菜单中第一次出现的位置
-  const index = resultList.value.findIndex((item) => item.name === activeRouteName.value)
+  const index = resultList.value.findIndex(item => item.name === activeRouteName.value)
   // 如果已处在顶部
   if (index === 0) {
     const bottomName = resultList.value[length - 1].name
@@ -94,12 +95,12 @@ const handleUp = () => {
 }
 
 /** 键盘下键 */
-const handleDown = () => {
+function handleDown() {
   isPressUpOrDown.value = true
   const { length } = resultList.value
   if (length === 0) return
   // 获取该 name 在菜单中最后一次出现的位置（可解决遇到连续两个相同 name 导致的下键不能生效的问题）
-  const index = resultList.value.map((item) => item.name).lastIndexOf(activeRouteName.value)
+  const index = resultList.value.map(item => item.name).lastIndexOf(activeRouteName.value)
   // 如果已处在底部
   if (index === length - 1) {
     const topName = resultList.value[0].name
@@ -119,11 +120,11 @@ const handleDown = () => {
 }
 
 /** 键盘回车键 */
-const handleEnter = () => {
+function handleEnter() {
   const { length } = resultList.value
   if (length === 0) return
   const name = activeRouteName.value
-  const path = resultList.value.find((item) => item.name === name)?.path
+  const path = resultList.value.find(item => item.name === name)?.path
   if (path && isExternal(path)) {
     window.open(path, "_blank", "noopener, noreferrer")
     return
@@ -134,7 +135,8 @@ const handleEnter = () => {
   }
   try {
     router.push({ name })
-  } catch {
+  }
+  catch {
     ElMessage.error("该菜单有必填的动态参数，无法通过搜索进入")
     return
   }
@@ -142,7 +144,7 @@ const handleEnter = () => {
 }
 
 /** 释放上键或下键 */
-const handleReleaseUpOrDown = () => {
+function handleReleaseUpOrDown() {
   isPressUpOrDown.value = false
 }
 </script>
@@ -150,19 +152,19 @@ const handleReleaseUpOrDown = () => {
 <template>
   <el-dialog
     v-model="modelValue"
+    :before-close="handleClose"
+    :width="modalWidth"
+    top="5vh"
+    class="search-modal__private"
+    append-to-body
     @opened="inputRef?.focus()"
     @closed="inputRef?.blur()"
     @keydown.up="handleUp"
     @keydown.down="handleDown"
     @keydown.enter="handleEnter"
     @keyup.up.down="handleReleaseUpOrDown"
-    :before-close="handleClose"
-    :width="modalWidth"
-    top="5vh"
-    class="search-modal__private"
-    append-to-body
   >
-    <el-input ref="inputRef" v-model="keyword" @input="handleSearch" placeholder="搜索菜单" size="large" clearable>
+    <el-input ref="inputRef" v-model="keyword" placeholder="搜索菜单" size="large" clearable @input="handleSearch">
       <template #prefix>
         <SvgIcon name="search" />
       </template>
@@ -170,15 +172,15 @@ const handleReleaseUpOrDown = () => {
     <el-empty v-if="resultList.length === 0" description="暂无搜索结果" :image-size="100" />
     <template v-else>
       <p>搜索结果</p>
-      <el-scrollbar ref="scrollbarRef" max-height="40vh" always>
+      <ElScrollbar ref="scrollbarRef" max-height="40vh" always>
         <SearchResult
           ref="searchResultRef"
           v-model="activeRouteName"
           :list="resultList"
-          :isPressUpOrDown="isPressUpOrDown"
+          :is-press-up-or-down="isPressUpOrDown"
           @click="handleEnter"
         />
-      </el-scrollbar>
+      </ElScrollbar>
     </template>
     <template #footer>
       <SearchFooter :total="resultList.length" />

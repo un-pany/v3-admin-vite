@@ -1,9 +1,9 @@
-import { ref, watchEffect } from "vue"
+import type { RouteLocationNormalized } from "vue-router"
 import { pinia } from "@/store"
+import { getCachedViews, getVisitedViews, setCachedViews, setVisitedViews } from "@/utils/cache/local-storage"
 import { defineStore } from "pinia"
+import { ref, watchEffect } from "vue"
 import { useSettingsStore } from "./settings"
-import { type RouteLocationNormalized } from "vue-router"
-import { getVisitedViews, setVisitedViews, getCachedViews, setCachedViews } from "@/utils/cache/local-storage"
 
 export type TagView = Partial<RouteLocationNormalized>
 
@@ -18,10 +18,10 @@ export const useTagsViewStore = defineStore("tags-view", () => {
     setCachedViews(cachedViews.value)
   })
 
-  //#region add
+  // #region add
   const addVisitedView = (view: TagView) => {
     // 检查是否已经存在相同的 visitedView
-    const index = visitedViews.value.findIndex((v) => v.path === view.path)
+    const index = visitedViews.value.findIndex(v => v.path === view.path)
     if (index !== -1) {
       // 防止 query 参数丢失
       visitedViews.value[index].fullPath !== view.fullPath && (visitedViews.value[index] = { ...view })
@@ -34,24 +34,27 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   const addCachedView = (view: TagView) => {
     if (typeof view.name !== "string") return
     if (cachedViews.value.includes(view.name)) return
-    if (view.meta?.keepAlive) cachedViews.value.push(view.name)
+    if (view.meta?.keepAlive)
+      cachedViews.value.push(view.name)
   }
-  //#endregion
+  // #endregion
 
-  //#region del
+  // #region del
   const delVisitedView = (view: TagView) => {
-    const index = visitedViews.value.findIndex((v) => v.path === view.path)
-    if (index !== -1) visitedViews.value.splice(index, 1)
+    const index = visitedViews.value.findIndex(v => v.path === view.path)
+    if (index !== -1)
+      visitedViews.value.splice(index, 1)
   }
 
   const delCachedView = (view: TagView) => {
     if (typeof view.name !== "string") return
     const index = cachedViews.value.indexOf(view.name)
-    if (index !== -1) cachedViews.value.splice(index, 1)
+    if (index !== -1)
+      cachedViews.value.splice(index, 1)
   }
-  //#endregion
+  // #endregion
 
-  //#region delOthers
+  // #region delOthers
   const delOthersVisitedViews = (view: TagView) => {
     visitedViews.value = visitedViews.value.filter((v) => {
       return v.meta?.affix || v.path === view.path
@@ -68,18 +71,18 @@ export const useTagsViewStore = defineStore("tags-view", () => {
       cachedViews.value = []
     }
   }
-  //#endregion
+  // #endregion
 
-  //#region delAll
+  // #region delAll
   const delAllVisitedViews = () => {
     // 保留固定的 tags
-    visitedViews.value = visitedViews.value.filter((tag) => tag.meta?.affix)
+    visitedViews.value = visitedViews.value.filter(tag => tag.meta?.affix)
   }
 
   const delAllCachedViews = () => {
     cachedViews.value = []
   }
-  //#endregion
+  // #endregion
 
   return {
     visitedViews,

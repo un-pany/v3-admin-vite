@@ -1,6 +1,6 @@
-import { onBeforeUnmount } from "vue"
+import type { RouteLocationNormalized } from "vue-router"
 import mitt, { type Handler } from "mitt"
-import { type RouteLocationNormalized } from "vue-router"
+import { onBeforeUnmount } from "vue"
 
 /** 回调函数的类型 */
 type Callback = (route: RouteLocationNormalized) => void
@@ -10,7 +10,7 @@ const key = Symbol("ROUTE_CHANGE")
 let latestRoute: RouteLocationNormalized
 
 /** 设置最新的路由信息，触发路由变化事件 */
-export const setRouteChange = (to: RouteLocationNormalized) => {
+export function setRouteChange(to: RouteLocationNormalized) {
   // 触发事件
   emitter.emit(key, to)
   // 缓存最新的路由信息

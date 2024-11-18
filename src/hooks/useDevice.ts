@@ -1,6 +1,6 @@
-import { computed } from "vue"
-import { useAppStore } from "@/store/modules/app"
 import { DeviceEnum } from "@/constants/app-key"
+import { useAppStore } from "@/store/modules/app"
+import { computed } from "vue"
 
 const appStore = useAppStore()
 const isMobile = computed(() => appStore.device === DeviceEnum.Mobile)

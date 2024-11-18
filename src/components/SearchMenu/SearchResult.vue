@@ -1,21 +1,20 @@
 <script lang="ts" setup>
+import type { RouteRecordName, RouteRecordRaw } from "vue-router"
 import { getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue"
-import { type RouteRecordName, type RouteRecordRaw } from "vue-router"
 
 interface Props {
   list: RouteRecordRaw[]
   isPressUpOrDown: boolean
 }
 
+const props = defineProps<Props>()
 /** 选中的菜单 */
 const modelValue = defineModel<RouteRecordName | undefined>({ required: true })
-const props = defineProps<Props>()
-
 const instance = getCurrentInstance()
 const scrollbarHeight = ref<number>(0)
 
 /** 菜单的样式 */
-const itemStyle = (item: RouteRecordRaw) => {
+function itemStyle(item: RouteRecordRaw) {
   const flag = item.name === modelValue.value
   return {
     background: flag ? "var(--el-color-primary)" : "",
@@ -24,20 +23,20 @@ const itemStyle = (item: RouteRecordRaw) => {
 }
 
 /** 鼠标移入 */
-const handleMouseenter = (item: RouteRecordRaw) => {
+function handleMouseenter(item: RouteRecordRaw) {
   // 如果上键或下键与 mouseenter 事件同时生效，则以上下键为准，不执行该函数的赋值逻辑
   if (props.isPressUpOrDown) return
   modelValue.value = item.name
 }
 
 /** 计算滚动可视区高度 */
-const getScrollbarHeight = () => {
+function getScrollbarHeight() {
   // el-scrollbar max-height="40vh"
   scrollbarHeight.value = Number((window.innerHeight * 0.4).toFixed(1))
 }
 
 /** 根据下标计算到顶部的距离 */
-const getScrollTop = (index: number) => {
+function getScrollTop(index: number) {
   const currentInstance = instance?.proxy?.$refs[`resultItemRef${index}`] as HTMLDivElement[]
   if (!currentInstance) return 0
   const currentRef = currentInstance[0]
@@ -75,7 +74,7 @@ defineExpose({ getScrollTop })
       @mouseenter="handleMouseenter(item)"
     >
       <SvgIcon v-if="item.meta?.svgIcon" :name="item.meta.svgIcon" />
-      <component v-else-if="item.meta?.elIcon" :is="item.meta.elIcon" class="el-icon" />
+      <component :is="item.meta.elIcon" v-else-if="item.meta?.elIcon" class="el-icon" />
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>

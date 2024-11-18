@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { computed } from "vue"
-import { storeToRefs } from "pinia"
 import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
-import { AppMain, NavigationBar, Sidebar, TagsView, Logo } from "./components"
+import { storeToRefs } from "pinia"
+import { computed } from "vue"
+import { AppMain, Logo, NavigationBar, Sidebar, TagsView } from "./components"
 
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()

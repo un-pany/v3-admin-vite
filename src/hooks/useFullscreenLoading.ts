@@ -1,4 +1,4 @@
-import { type LoadingOptions, ElLoading } from "element-plus"
+import { ElLoading, type LoadingOptions } from "element-plus"
 
 const defaultOptions = {
   lock: true,
@@ -28,7 +28,8 @@ export const useFullscreenLoading: UseFullscreenLoading = (fn, options = {}) => 
     try {
       loadingInstance = ElLoading.service({ ...defaultOptions, ...options })
       return await fn(...args)
-    } finally {
+    }
+    finally {
       loadingInstance?.close()
     }
   }

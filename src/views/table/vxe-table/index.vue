@@ -1,25 +1,19 @@
 <script lang="ts" setup>
-import { nextTick, reactive, ref } from "vue"
-import { type ElMessageBoxOptions, ElMessageBox, ElMessage } from "element-plus"
+import type { TableResponseData } from "@/api/table/types/table"
+import type { ElMessageBoxOptions } from "element-plus"
+import type { VxeFormInstance, VxeFormProps, VxeGridInstance, VxeGridProps, VxeModalInstance, VxeModalProps } from "vxe-table"
 import { deleteTableDataApi, getTableDataApi } from "@/api/table"
-import { type TableResponseData } from "@/api/table/types/table"
+import { ElMessage, ElMessageBox } from "element-plus"
+import { nextTick, reactive, ref } from "vue"
 import RoleColumnSolts from "./tsx/RoleColumnSolts"
 import StatusColumnSolts from "./tsx/StatusColumnSolts"
-import {
-  type VxeGridInstance,
-  type VxeGridProps,
-  type VxeModalInstance,
-  type VxeModalProps,
-  type VxeFormInstance,
-  type VxeFormProps
-} from "vxe-table"
 
 defineOptions({
   // 命名当前组件
   name: "VxeTable"
 })
 
-//#region vxe-grid
+// #region vxe-grid
 interface RowMeta {
   id: string
   username: string
@@ -168,9 +162,9 @@ const xGridOpt: VxeGridProps = reactive({
     }
   }
 })
-//#endregion
+// #endregion
 
-//#region vxe-modal
+// #region vxe-modal
 const xModalDom = ref<VxeModalInstance>()
 const xModalOpt: VxeModalProps = reactive({
   title: "",
@@ -182,9 +176,9 @@ const xModalOpt: VxeModalProps = reactive({
     return Promise.resolve()
   }
 })
-//#endregion
+// #endregion
 
-//#region vxe-form
+// #region vxe-form
 const xFormDom = ref<VxeFormInstance>()
 const xFormOpt: VxeFormProps = reactive({
   span: 24,
@@ -253,9 +247,9 @@ const xFormOpt: VxeFormProps = reactive({
     ]
   }
 })
-//#endregion
+// #endregion
 
-//#region 增删改查
+// #region 增删改查
 const crudStore = reactive({
   /** 表单类型，true 表示修改，false 表示新增 */
   isUpdate: true,
@@ -346,7 +340,7 @@ const crudStore = reactive({
   /** 更多自定义方法 */
   moreFn: () => {}
 })
-//#endregion
+// #endregion
 </script>
 
 <template>
@@ -355,13 +349,21 @@ const crudStore = reactive({
     <vxe-grid ref="xGridDom" v-bind="xGridOpt">
       <!-- 左侧按钮列表 -->
       <template #toolbar-btns>
-        <vxe-button status="primary" icon="vxe-icon-add" @click="crudStore.onShowModal()">新增用户</vxe-button>
-        <vxe-button status="danger" icon="vxe-icon-delete">批量删除</vxe-button>
+        <vxe-button status="primary" icon="vxe-icon-add" @click="crudStore.onShowModal()">
+          新增用户
+        </vxe-button>
+        <vxe-button status="danger" icon="vxe-icon-delete">
+          批量删除
+        </vxe-button>
       </template>
       <!-- 操作 -->
       <template #row-operate="{ row }">
-        <el-button link type="primary" @click="crudStore.onShowModal(row)">修改</el-button>
-        <el-button link type="danger" @click="crudStore.onDelete(row)">删除</el-button>
+        <el-button link type="primary" @click="crudStore.onShowModal(row)">
+          修改
+        </el-button>
+        <el-button link type="danger" @click="crudStore.onDelete(row)">
+          删除
+        </el-button>
       </template>
     </vxe-grid>
     <!-- 弹窗 -->

@@ -1,5 +1,5 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
 import { useUserStore } from "@/store/modules/user"
+import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
 import { ElMessage } from "element-plus"
 import { get, merge } from "lodash-es"
 import { getToken } from "./cache/cookies"
@@ -16,9 +16,9 @@ function createService() {
   const service = axios.create()
   // 请求拦截
   service.interceptors.request.use(
-    (config) => config,
+    config => config,
     // 发送失败
-    (error) => Promise.reject(error)
+    error => Promise.reject(error)
   )
   // 响应拦截（可根据具体业务作出相应的调整）
   service.interceptors.response.use(
@@ -27,7 +27,8 @@ function createService() {
       const apiData = response.data
       // 二进制数据则直接返回
       const responseType = response.request?.responseType
-      if (responseType === "blob" || responseType === "arraybuffer") return apiData
+      if (responseType === "blob" || responseType === "arraybuffer")
+        return apiData
       // 这个 code 是和后端约定的业务 code
       const code = apiData.code
       // 如果没有 code, 代表这不是项目后端开发的 api
@@ -103,7 +104,7 @@ function createRequest(service: AxiosInstance) {
     const defaultConfig = {
       headers: {
         // 携带 Token
-        Authorization: token ? `Bearer ${token}` : undefined,
+        "Authorization": token ? `Bearer ${token}` : undefined,
         "Content-Type": "application/json"
       },
       timeout: 5000,

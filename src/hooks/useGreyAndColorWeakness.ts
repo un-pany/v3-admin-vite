@@ -1,12 +1,12 @@
-import { watchEffect } from "vue"
 import { useSettingsStore } from "@/store/modules/settings"
+import { watchEffect } from "vue"
 
 const GREY_MODE = "grey-mode"
 const COLOR_WEAKNESS = "color-weakness"
 const classList = document.documentElement.classList
 
 /** 初始化 */
-const initGreyAndColorWeakness = () => {
+function initGreyAndColorWeakness() {
   const settingsStore = useSettingsStore()
   watchEffect(() => {
     classList.toggle(GREY_MODE, settingsStore.showGreyMode)
