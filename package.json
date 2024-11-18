@@ -1,5 +1,6 @@
 {
   "name": "v3-admin-vite",
+  "type": "module",
   "version": "4.5.4",
   "description": "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术",
   "author": {
@@ -7,20 +8,31 @@
     "email": "939630029@qq.com",
     "url": "https://github.com/pany-ang"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/un-pany/v3-admin-vite.git"
   },
-  "type": "module",
+  "keywords": [
+    "vue",
+    "vue3",
+    "admin",
+    "vue-admin",
+    "vue3-admin",
+    "vite",
+    "vite-admin",
+    "element-plus",
+    "element-plus-admin",
+    "ts",
+    "typescript"
+  ],
   "scripts": {
     "dev": "vite",
     "build:stage": "vue-tsc --noEmit && vite build --mode staging",
     "build:prod": "vue-tsc --noEmit && vite build",
     "preview:stage": "pnpm build:stage && vite preview",
     "preview:prod": "pnpm build:prod && vite preview",
-    "lint:eslint": "eslint --cache --max-warnings 0 \"{src,tests,types}/**/*.{vue,js,jsx,ts,tsx}\" --fix",
-    "lint:prettier": "prettier --write \"{src,tests,types}/**/*.{vue,js,jsx,ts,tsx,json,css,less,scss,html,md}\"",
-    "lint": "pnpm lint:eslint && pnpm lint:prettier",
+    "lint": "eslint . --fix",
     "prepare": "husky",
     "test": "vitest"
   },
@@ -45,21 +57,16 @@
     "xe-utils": "3.5.31"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "3.9.1",
     "@types/js-cookie": "3.0.6",
     "@types/lodash-es": "4.17.12",
     "@types/node": "22.9.0",
     "@types/nprogress": "0.2.3",
     "@types/path-browserify": "1.0.3",
-    "@typescript-eslint/eslint-plugin": "8.14.0",
-    "@typescript-eslint/parser": "8.14.0",
     "@vitejs/plugin-vue": "5.2.0",
     "@vitejs/plugin-vue-jsx": "4.1.0",
-    "@vue/eslint-config-prettier": "9.0.0",
-    "@vue/eslint-config-typescript": "13.0.0",
     "@vue/test-utils": "2.4.6",
-    "eslint": "8.57.1",
-    "eslint-plugin-prettier": "5.2.1",
-    "eslint-plugin-vue": "9.31.0",
+    "eslint": "9.15.0",
     "husky": "9.1.6",
     "jsdom": "25.0.1",
     "lint-staged": "15.2.10",
@@ -71,33 +78,9 @@
     "vite-plugin-svg-icons": "2.0.1",
     "vite-svg-loader": "5.1.0",
     "vitest": "2.1.5",
-    "vue-eslint-parser": "9.4.3",
     "vue-tsc": "2.1.10"
   },
   "lint-staged": {
-    "*.{vue,js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{css,less,scss,html,md}": [
-      "prettier --write"
-    ],
-    "package.json": [
-      "prettier --write"
-    ]
-  },
-  "keywords": [
-    "vue",
-    "vue3",
-    "admin",
-    "vue-admin",
-    "vue3-admin",
-    "vite",
-    "vite-admin",
-    "element-plus",
-    "element-plus-admin",
-    "ts",
-    "typescript"
-  ],
-  "license": "MIT"
+    "*": "eslint --fix"
+  }
 }
