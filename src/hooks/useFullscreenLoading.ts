@@ -28,8 +28,7 @@ export const useFullscreenLoading: UseFullscreenLoading = (fn, options = {}) => 
     try {
       loadingInstance = ElLoading.service({ ...defaultOptions, ...options })
       return await fn(...args)
-    }
-    finally {
+    } finally {
       loadingInstance?.close()
     }
   }

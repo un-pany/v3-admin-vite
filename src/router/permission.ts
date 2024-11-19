@@ -44,8 +44,7 @@ router.beforeEach(async (to, _from, next) => {
     permissionStore.addRoutes.forEach(route => router.addRoute(route))
     // 设置 replace: true, 因此导航将不会留下历史记录
     next({ ...to, replace: true })
-  }
-  catch (error) {
+  } catch (error) {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
     ElMessage.error((error as Error).message || "路由守卫过程发生错误")

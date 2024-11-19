@@ -28,7 +28,7 @@ export default antfu(
       "node/prefer-global/process": "off",
       // style
       "style/comma-dangle": ["error", "never"],
-      "style/brace-style": "off",
+      "style/brace-style": ["error", "1tbs"],
       // regexp
       "regexp/no-unused-capturing-group": "off",
       // other

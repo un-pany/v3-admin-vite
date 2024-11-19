@@ -124,12 +124,10 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     // 移除水印元素
     try {
       parentEl.value.removeChild(watermarkEl)
-    }
-    catch {
+    } catch {
       // 比如在无防御情况下，用户打开控制台删除了这个元素
       console.warn("水印元素已不存在，请重新创建")
-    }
-    finally {
+    } finally {
       watermarkEl = null
     }
   }

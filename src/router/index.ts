@@ -304,8 +304,7 @@ export function resetRouter() {
         router.hasRoute(name) && router.removeRoute(name)
       }
     })
-  }
-  catch {
+  } catch {
     // 强制刷新浏览器也行，只是交互体验不是很好
     window.location.reload()
   }
