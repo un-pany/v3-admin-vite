@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import type { CreateOrUpdateTableRequestData, TableData } from "@/api/table/types/table"
+import type { FormInstance, FormRules } from "element-plus"
 import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@/api/table"
 import { usePagination } from "@/hooks/usePagination"
 import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
-import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from "element-plus"
+import { ElMessage, ElMessageBox } from "element-plus"
 import { cloneDeep } from "lodash-es"
 import { reactive, ref, watch } from "vue"
 

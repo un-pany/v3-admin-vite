@@ -34,23 +34,20 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   const addCachedView = (view: TagView) => {
     if (typeof view.name !== "string") return
     if (cachedViews.value.includes(view.name)) return
-    if (view.meta?.keepAlive)
-      cachedViews.value.push(view.name)
+    if (view.meta?.keepAlive) cachedViews.value.push(view.name)
   }
   // #endregion
 
   // #region del
   const delVisitedView = (view: TagView) => {
     const index = visitedViews.value.findIndex(v => v.path === view.path)
-    if (index !== -1)
-      visitedViews.value.splice(index, 1)
+    if (index !== -1) visitedViews.value.splice(index, 1)
   }
 
   const delCachedView = (view: TagView) => {
     if (typeof view.name !== "string") return
     const index = cachedViews.value.indexOf(view.name)
-    if (index !== -1)
-      cachedViews.value.splice(index, 1)
+    if (index !== -1) cachedViews.value.splice(index, 1)
   }
   // #endregion
 

@@ -64,21 +64,18 @@ export function isEmail(email: string) {
 
 /** 判断是否为 MAC 地址 */
 export function isMAC(mac: string) {
-  const reg
-    = /^(([a-f0-9][0,2468ace]:([a-f0-9]{2}:){4})|([a-f0-9][0,2468ace]-([a-f0-9]{2}-){4}))[a-f0-9]{2}$/i
+  const reg = /^(([a-f0-9][0,2468ace]:([a-f0-9]{2}:){4})|([a-f0-9][0,2468ace]-([a-f0-9]{2}-){4}))[a-f0-9]{2}$/i
   return reg.test(mac)
 }
 
 /** 判断是否为 IPv4 地址 */
 export function isIPv4(ip: string) {
-  const reg
-    = /^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(?::(?:\d|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5]))?$/
+  const reg = /^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(?::(?:\d|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5]))?$/
   return reg.test(ip)
 }
 
 /** 判断是否为车牌（兼容新能源车牌） */
 export function isLicensePlate(str: string) {
-  const reg
-    = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9挂学警港澳]$/
+  const reg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9挂学警港澳]$/
   return reg.test(str)
 }

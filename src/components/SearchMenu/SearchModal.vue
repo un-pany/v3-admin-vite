@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import type { ElScrollbar } from "element-plus"
 import type { RouteRecordName, RouteRecordRaw } from "vue-router"
 import { useDevice } from "@/hooks/useDevice"
 import { usePermissionStore } from "@/store/modules/permission"
 import { isExternal } from "@/utils/validate"
-import { ElMessage, ElScrollbar } from "element-plus"
+import { ElMessage } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
 import { computed, ref, shallowRef } from "vue"
 import { useRouter } from "vue-router"
@@ -171,7 +172,7 @@ function handleReleaseUpOrDown() {
     <el-empty v-if="resultList.length === 0" description="暂无搜索结果" :image-size="100" />
     <template v-else>
       <p>搜索结果</p>
-      <ElScrollbar ref="scrollbarRef" max-height="40vh" always>
+      <el-scrollbar ref="scrollbarRef" max-height="40vh" always>
         <SearchResult
           ref="searchResultRef"
           v-model="activeRouteName"
@@ -179,7 +180,7 @@ function handleReleaseUpOrDown() {
           :is-press-up-or-down="isPressUpOrDown"
           @click="handleEnter"
         />
-      </ElScrollbar>
+      </el-scrollbar>
     </template>
     <template #footer>
       <SearchFooter :total="resultList.length" />

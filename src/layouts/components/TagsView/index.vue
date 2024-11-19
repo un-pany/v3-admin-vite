@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { TagView } from "@/store/modules/tags-view"
-import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from "vue-router"
+import type { RouteLocationNormalizedLoaded, RouteRecordRaw, RouterLink } from "vue-router"
 import { useRouteListener } from "@/hooks/useRouteListener"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useTagsViewStore } from "@/store/modules/tags-view"
 import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
 import { ref, watch } from "vue"
-import { RouterLink, useRoute, useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import ScrollPane from "./ScrollPane.vue"
 
 const router = useRouter()
@@ -163,10 +163,10 @@ listenerRouteChange((route) => {
 <template>
   <div class="tags-view-container">
     <ScrollPane class="tags-view-wrapper" :tag-refs="tagRefs">
-      <RouterLink
+      <router-link
         v-for="tag in tagsViewStore.visitedViews"
-        ref="tagRefs"
         :key="tag.path"
+        ref="tagRefs"
         :class="{ active: isActive(tag) }"
         class="tags-view-item"
         :to="{ path: tag.path, query: tag.query }"
@@ -177,7 +177,7 @@ listenerRouteChange((route) => {
         <el-icon v-if="!isAffix(tag)" :size="12" @click.prevent.stop="closeSelectedTag(tag)">
           <Close />
         </el-icon>
-      </RouterLink>
+      </router-link>
     </ScrollPane>
     <ul v-show="visible" class="contextmenu" :style="{ left: `${left}px`, top: `${top}px` }">
       <li @click="refreshSelectedTag(selectedTag)">

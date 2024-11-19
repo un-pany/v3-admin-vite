@@ -74,7 +74,7 @@ defineExpose({ getScrollTop })
       @mouseenter="handleMouseenter(item)"
     >
       <SvgIcon v-if="item.meta?.svgIcon" :name="item.meta.svgIcon" />
-      <component :is="item.meta.elIcon" v-else-if="item.meta?.elIcon" class="el-icon" />
+      <component v-else-if="item.meta?.elIcon" :is="item.meta.elIcon" class="el-icon" />
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>
