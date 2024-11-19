@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 
 import type { ConfigEnv, UserConfigExport } from "vite"
 import path, { resolve } from "node:path"
