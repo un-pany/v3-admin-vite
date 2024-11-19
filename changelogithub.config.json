@@ -3,14 +3,12 @@
     "feat": { "title": "Feat" },
     "fix": { "title": "Fix" },
     "perf": { "title": "Perf" },
-    "style": { "title": "Style" },
     "refactor": { "title": "Refactor" },
-    "revert": { "title": "Revert" },
-    "test": { "title": "Test" },
     "docs": { "title": "Docs" },
-    "chore": { "title": "Chore" },
-    "workflow": { "title": "Workflow" },
+    "types": { "title": "Types" },
+    "test": { "title": "Test" },
     "ci": { "title": "CI" },
-    "types": { "title": "Types" }
+    "revert": { "title": "Revert" },
+    "chore": { "title": "Chore" }
   }
 }
