@@ -8,9 +8,9 @@ root = true
 [*]
 ## 设置字符集
 charset = utf-8
-## 缩进风格 space | tab，建议 space（会自动继承给 Prettier）
+## 缩进风格 space | tab，建议 space
 indent_style = space
-## 缩进的空格数（会自动继承给 Prettier）
+## 缩进的空格数
 indent_size = 2
 ## 换行符类型 lf | cr | crlf，一般都是设置为 lf
 end_of_line = lf
