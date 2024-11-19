@@ -12,7 +12,7 @@ export const useTagsViewStore = defineStore("tags-view", () => {
   const visitedViews = ref<TagView[]>(cacheTagsView ? getVisitedViews() : [])
   const cachedViews = ref<string[]>(cacheTagsView ? getCachedViews() : [])
 
-  /** 缓存标签栏数据 */
+  // 缓存标签栏数据
   watchEffect(() => {
     setVisitedViews(visitedViews.value)
     setCachedViews(cachedViews.value)

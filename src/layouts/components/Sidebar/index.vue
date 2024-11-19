@@ -43,10 +43,8 @@ const sidebarMenuHoverBgColor = computed(() => {
 const tipLineWidth = computed(() => {
   return !isTop.value ? "2px" : "0px"
 })
-// 当为顶部模式时隐藏垂直滚动条
-const hiddenScrollbarVerticalBar = computed(() => {
-  return isTop.value ? "none" : "block"
-})
+/** 当为顶部模式时隐藏垂直滚动条 */
+const hiddenScrollbarVerticalBar = computed(() => isTop.value ? "none" : "block")
 </script>
 
 <template>

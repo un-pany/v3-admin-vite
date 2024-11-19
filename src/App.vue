@@ -7,12 +7,12 @@ import zhCn from "element-plus/es/locale/lang/zh-cn" // Element Plus 中文包
 const { initTheme } = useTheme()
 const { initGreyAndColorWeakness } = useGreyAndColorWeakness()
 
-/** 初始化主题 */
+// 初始化主题
 initTheme()
-/** 初始化灰色模式和色弱模式 */
+// 初始化灰色模式和色弱模式
 initGreyAndColorWeakness()
 
-/** 作者小心思 */
+// 作者小心思
 ElNotification({
   title: "Hello",
   type: "success",

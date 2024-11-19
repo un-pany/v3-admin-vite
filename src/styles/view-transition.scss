@@ -1,4 +1,4 @@
-/** 控制切换主题时的动画效果（只在较新的浏览器上生效，例如 Chrome 111+） */
+// 控制切换主题时的动画效果（只在较新的浏览器上生效，例如 Chrome 111+）
 
 ::view-transition-old(root) {
   animation: none;

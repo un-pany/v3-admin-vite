@@ -40,7 +40,7 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 - **Vite**：Really fast
 - **Vue Router**：router
 - **TypeScript**：JavaScript With Syntax For Types
-- **PNPM**：Faster, disk space saving package management tool
+- **pnpm**：Faster, disk space saving package management tool
 - **Scss**：Consistent with Element Plus
 - **CSS variable**：Mainly controls the layout and color of the item
 - **ESlint**：Code verification, Code formatting

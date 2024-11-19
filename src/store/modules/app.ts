@@ -23,7 +23,7 @@ export const useAppStore = defineStore("app", () => {
   /** 设备类型 */
   const device = ref<DeviceEnum>(DeviceEnum.Desktop)
 
-  /** 监听侧边栏 opened 状态 */
+  // 监听侧边栏 opened 状态
   watch(
     () => sidebar.opened,
     opened => handleSidebarStatus(opened)

@@ -154,7 +154,7 @@ watch(visible, (value) => {
 
 initTags()
 
-/** 监听路由变化 */
+// 监听路由变化
 listenerRouteChange((route) => {
   addTags(route)
 }, true)

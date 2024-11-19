@@ -15,9 +15,7 @@ interface DataItem {
 }
 
 /** 角标当前值 */
-const badgeValue = computed(() => {
-  return data.value.reduce((sum, item) => sum + item.list.length, 0)
-})
+const badgeValue = computed(() => data.value.reduce((sum, item) => sum + item.list.length, 0))
 /** 角标最大值 */
 const badgeMax = 99
 /** 面板宽度 */

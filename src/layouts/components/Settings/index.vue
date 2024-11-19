@@ -10,7 +10,7 @@ import SelectLayoutMode from "./SelectLayoutMode.vue"
 const { isLeft } = useLayoutMode()
 const settingsStore = useSettingsStore()
 
-/** 使用 storeToRefs 将提取的属性保持其响应性 */
+// 使用 storeToRefs 将提取的属性保持其响应性
 const {
   showTagsView,
   showLogo,
@@ -42,7 +42,7 @@ const switchSettings = {
   "显示色弱模式": showColorWeakness
 }
 
-/** 非左侧模式时，Header 都是 fixed 布局 */
+// 非左侧模式时，Header 都是 fixed 布局
 watchEffect(() => {
   !isLeft.value && (fixedHeader.value = true)
 })

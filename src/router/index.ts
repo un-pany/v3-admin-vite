@@ -266,7 +266,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       title: "权限",
       svgIcon: "lock",
       roles: ["admin", "editor"], // 可以在根路由中设置角色
-      alwaysShow: true // 将始终显示根菜单
+      alwaysShow: true
     },
     children: [
       {

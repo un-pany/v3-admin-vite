@@ -1,8 +1,8 @@
 {
   "recommendations": [
+    "vue.volar",
     "editorconfig.editorconfig",
     "dbaeumer.vscode-eslint",
-    "vue.volar",
     "antfu.unocss",
     "vitest.explorer",
     "wiensss.region-highlighter"

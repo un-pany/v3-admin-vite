@@ -124,7 +124,7 @@ const xGridOpt: VxeGridProps = reactive({
     /** 是否代理表单 */
     form: true,
     /** 是否自动加载，默认为 true */
-    // autoLoad: false,
+    autoLoad: true,
     props: {
       total: "total"
     },
@@ -155,7 +155,7 @@ const xGridOpt: VxeGridProps = reactive({
             size: page.pageSize,
             currentPage: page.currentPage
           }
-          /** 调用接口 */
+          // 调用接口
           getTableDataApi(params).then(callback).catch(callback)
         })
       }

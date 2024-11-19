@@ -12,7 +12,7 @@ import LeftMode from "./LeftMode.vue"
 import LeftTopMode from "./LeftTopMode.vue"
 import TopMode from "./TopMode.vue"
 
-/** Layout 布局响应式 */
+// Layout 布局响应式
 useResize()
 
 const { setWatermark, clearWatermark } = useWatermark()
@@ -29,7 +29,7 @@ watchEffect(() => {
 })
 // #endregion
 
-/** 开启或关闭系统水印 */
+// 开启或关闭系统水印
 watchEffect(() => {
   showWatermark.value ? setWatermark(import.meta.env.VITE_APP_TITLE) : clearWatermark()
 })

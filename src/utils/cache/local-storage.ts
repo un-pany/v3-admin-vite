@@ -1,4 +1,4 @@
-/** 统一处理 localStorage */
+// 统一处理 localStorage
 
 import type { LayoutSettings } from "@/config/layouts"
 import type { SidebarClosed, SidebarOpened } from "@/constants/app-key"

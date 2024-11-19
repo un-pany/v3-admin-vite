@@ -40,7 +40,7 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 - **Vite**：真的很快
 - **Vue Router**：路由路由
 - **TypeScript**：JavaScript 语言的超集
-- **PNPM**：更快速的，节省磁盘空间的包管理工具
+- **pnpm**：更快速的，节省磁盘空间的包管理工具
 - **Scss**：和 Element Plus 保持一致
 - **CSS 变量**：主要控制项目的布局和颜色
 - **ESlint**：代码校验与格式化

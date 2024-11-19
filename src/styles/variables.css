@@ -1,10 +1,10 @@
-/** 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
+/* 全局 CSS 变量，这种变量不仅可以在 CSS 和 SCSS 中使用，还可以导入到 JS 中使用 */
 
 :root {
-  /** Body */
+  /* Body */
   --v3-body-text-color: var(--el-text-color-primary);
   --v3-body-bg-color: var(--el-bg-color-page);
-  /** Header 区域 = NavigationBar 组件 + TagsView 组件 */
+  /* Header 区域 = NavigationBar 组件 + TagsView 组件 */
   --v3-header-height: calc(
     var(--v3-navigationbar-height) + var(--v3-tagsview-height) + var(--v3-header-border-bottom-width)
   );
@@ -12,10 +12,10 @@
   --v3-header-box-shadow: var(--el-box-shadow-lighter);
   --v3-header-border-bottom-width: 1px;
   --v3-header-border-bottom: var(--v3-header-border-bottom-width) solid var(--el-fill-color);
-  /** NavigationBar 组件 */
+  /* NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
   --v3-navigationbar-text-color: var(--el-text-color-regular);
-  /** Sidebar 组件（左侧模式全部生效、顶部模式全部不生效、混合模式非颜色部分生效） */
+  /* Sidebar 组件（左侧模式全部生效、顶部模式全部不生效、混合模式非颜色部分生效） */
   --v3-sidebar-width: 220px;
   --v3-sidebar-hide-width: 58px;
   --v3-sidebar-border-right: 1px solid var(--el-fill-color);
@@ -25,7 +25,7 @@
   --v3-sidebar-menu-hover-bg-color: #409eff10;
   --v3-sidebar-menu-text-color: #cfd3dc;
   --v3-sidebar-menu-active-text-color: #ffffff;
-  /** TagsView 组件 */
+  /* TagsView 组件 */
   --v3-tagsview-height: 34px;
   --v3-tagsview-text-color: var(--el-text-color-regular);
   --v3-tagsview-tag-active-text-color: #ffffff;
@@ -41,32 +41,32 @@
   --v3-tagsview-contextmenu-bg-color: var(--el-bg-color-overlay);
   --v3-tagsview-contextmenu-hover-bg-color: var(--el-fill-color);
   --v3-tagsview-contextmenu-box-shadow: var(--el-box-shadow);
-  /** Hamburger 组件 */
+  /* Hamburger 组件 */
   --v3-hamburger-text-color: var(--el-text-color-primary);
-  /** RightPanel 组件  */
+  /* RightPanel 组件  */
   --v3-rightpanel-button-bg-color: #001428;
 }
 
-/** 内容区放大时，将不需要的组件隐藏 */
+/* 内容区放大时，将不需要的组件隐藏 */
 body.content-large {
-  /** Header 区域 = TagsView 组件 */
+  /* Header 区域 = TagsView 组件 */
   --v3-header-height: var(--v3-tagsview-height);
-  /** NavigationBar 组件 */
+  /* NavigationBar 组件 */
   --v3-navigationbar-height: 0px;
-  /** Sidebar 组件 */
+  /* Sidebar 组件 */
   --v3-sidebar-width: 0px;
   --v3-sidebar-hide-width: 0px;
 }
 
-/** 内容区全屏时，将不需要的组件隐藏 */
+/* 内容区全屏时，将不需要的组件隐藏 */
 body.content-full {
-  /** Header 区域 */
+  /* Header 区域 */
   --v3-header-height: 0px;
-  /** NavigationBar 组件 */
+  /* NavigationBar 组件 */
   --v3-navigationbar-height: 0px;
-  /** Sidebar 组件 */
+  /* Sidebar 组件 */
   --v3-sidebar-width: 0px;
   --v3-sidebar-hide-width: 0px;
-  /** TagsView 组件 */
+  /* TagsView 组件 */
   --v3-tagsview-height: 0px;
 }

@@ -68,7 +68,7 @@ function createCode() {
   })
 }
 
-/** 初始化验证码 */
+// 初始化验证码
 createCode()
 </script>
 

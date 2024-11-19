@@ -1,4 +1,5 @@
 {
+  // Use workspace TypeScript version
   "typescript.tsdk": "node_modules/typescript/lib",
 
   // Disable the default formatter, use eslint instead

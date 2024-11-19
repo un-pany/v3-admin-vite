@@ -1,4 +1,4 @@
-/** 清除浮动 */
+// 清除浮动
 %clearfix {
   &::after {
     content: "";
@@ -7,7 +7,7 @@
   }
 }
 
-/** 美化原生滚动条 */
+// 美化原生滚动条
 %scrollbar {
   // 整个滚动条
   &::-webkit-scrollbar {
@@ -31,7 +31,7 @@
   }
 }
 
-/** 文本溢出时显示省略号 */
+// 文本溢出时显示省略号
 %ellipsis {
   // 隐藏溢出的文本
   overflow: hidden;
