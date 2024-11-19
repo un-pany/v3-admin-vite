@@ -25,7 +25,7 @@ jobs:
           version: 9.11.0
 
       - name: Build
-        run: pnpm install && pnpm build:prod
+        run: pnpm install && pnpm build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3

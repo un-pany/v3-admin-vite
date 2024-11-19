@@ -83,21 +83,21 @@ pnpm dev
 ## ✔️ Preview
 
 ```bash
-# stage environment
-pnpm preview:stage
+# staging environment
+pnpm preview:staging
 
-# prod environment
-pnpm preview:prod
+# production environment
+pnpm preview
 ```
 
 ## 📦️ Multi-environment packaging
 
 ```bash
-# build the stage environment
-pnpm build:stage
+# build the staging environment
+pnpm build:staging
 
-# build the prod environment
-pnpm build:prod
+# build the production environment
+pnpm build
 ```
 
 ## 🔧 Code inspection

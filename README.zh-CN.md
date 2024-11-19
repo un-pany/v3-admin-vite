@@ -52,7 +52,7 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 
 - **用户管理**：登录、登出演示
 - **权限管理**：页面级权限（动态路由）、按钮级权限（指令权限、权限函数）、路由守卫
-- **多环境**：开发环境（development）、预发布环境（staging）、正式环境（production）
+- **多环境**：开发环境（development）、预发布环境（staging）、生产环境（production）
 - **多主题**：普通、黑暗、深蓝, 三种主题模式
 - **多布局**：左侧、顶部、混合, 三种布局模式
 - **错误页面**: 403、404
@@ -84,20 +84,20 @@ pnpm dev
 
 ```bash
 # 预览预发布环境
-pnpm preview:stage
+pnpm preview:staging
 
-# 预览正式环境
-pnpm preview:prod
+# 预览生产环境
+pnpm preview
 ```
 
 ## 📦️ 多环境打包
 
 ```bash
 # 构建预发布环境
-pnpm build:stage
+pnpm build:staging
 
-# 构建正式环境
-pnpm build:prod
+# 构建生产环境
+pnpm build
 ```
 
 ## 🔧 代码检查

@@ -2,36 +2,15 @@
   "name": "v3-admin-vite",
   "type": "module",
   "version": "4.5.4",
-  "description": "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术",
-  "author": {
-    "name": "pany",
-    "email": "939630029@qq.com",
-    "url": "https://github.com/pany-ang"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/un-pany/v3-admin-vite.git"
-  },
-  "keywords": [
-    "vue",
-    "vue3",
-    "admin",
-    "vue-admin",
-    "vue3-admin",
-    "vite",
-    "vite-admin",
-    "element-plus",
-    "element-plus-admin",
-    "ts",
-    "typescript"
-  ],
+  "description": "A friendly admin template, based on Vue3, Vite, TypeScript, etc",
+  "author": "pany <939630029@qq.com> (https://github.com/pany-ang)",
+  "repository": "https://github.com/un-pany/v3-admin-vite",
   "scripts": {
     "dev": "vite",
-    "build:stage": "vue-tsc --noEmit && vite build --mode staging",
-    "build:prod": "vue-tsc --noEmit && vite build",
-    "preview:stage": "pnpm build:stage && vite preview",
-    "preview:prod": "pnpm build:prod && vite preview",
+    "build:staging": "vue-tsc --noEmit && vite build --mode staging",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview:staging": "pnpm build:staging && vite preview",
+    "preview": "pnpm build && vite preview",
     "lint": "eslint . --fix",
     "prepare": "husky",
     "test": "vitest"
