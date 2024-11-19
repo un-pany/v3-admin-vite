@@ -71,7 +71,6 @@
     "husky": "9.1.6",
     "jsdom": "25.0.1",
     "lint-staged": "15.2.10",
-    "prettier": "3.3.3",
     "sass": "1.78.0",
     "typescript": "5.6.3",
     "unocss": "0.64.1",

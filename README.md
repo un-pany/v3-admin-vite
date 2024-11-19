@@ -43,8 +43,7 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 - **PNPM**：Faster, disk space saving package management tool
 - **Scss**：Consistent with Element Plus
 - **CSS variable**：Mainly controls the layout and color of the item
-- **ESlint**：Code verification
-- **Prettier**： Code formatting
+- **ESlint**：Code verification, Code formatting
 - **Axios**: Promise based HTTP client (encapsulated)
 - **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
 - **Mobile Compatible**: The layout is compatible with mobile page resolution
