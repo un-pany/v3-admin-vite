@@ -1,48 +1,30 @@
+// https://cn.vuejs.org/guide/typescript/overview.html#configuring-tsconfig-json
+// https://cn.vitejs.dev/guide/features.html#typescript-compiler-options
 {
   "compilerOptions": {
     "target": "esnext",
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "lib": ["esnext", "dom"],
-    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
-    /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
+    // baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项
     "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
-    /** 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算 */
-    "paths": {
-      "@/*": ["src/*"]
-    },
+    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算
+    "paths": { "@/*": ["src/*"] },
     "resolveJsonModule": true,
-    "types": [
-      "node",
-      "vite/client",
-      /** Element Plus 的 Volar 插件支持 */
-      "element-plus/global",
-      "vitest"
-    ],
-    /** TS 严格模式 */
+    "types": ["vite/client", "element-plus/global"],
+    // TS 严格模式
     "strict": true,
     "importHelpers": true,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "types/**/*.d.ts",
-    "vite.config.ts",
-    "vitest.config.ts"
-  ],
-  /** 编译器默认排除的编译文件 */
+  // 编译器默认排除的编译文件
   "exclude": ["node_modules", "dist"]
 }
