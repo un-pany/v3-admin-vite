@@ -1,5 +1,5 @@
 # 修改配置后重启编辑器
-# 配置项文档：https://editorconfig.org/
+# 配置项文档：https://editorconfig.org
 
 # 告知 EditorConfig 插件，当前即是根文件
 root = true

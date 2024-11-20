@@ -1,5 +1,5 @@
-// https://cn.vuejs.org/guide/typescript/overview.html#configuring-tsconfig-json
-// https://cn.vitejs.dev/guide/features.html#typescript-compiler-options
+// https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
+// https://cn.vite.dev/guide/features#typescript-compiler-options
 {
   "compilerOptions": {
     "target": "esnext",
