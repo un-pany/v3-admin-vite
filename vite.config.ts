@@ -1,39 +1,37 @@
 /// <reference types="vitest/config" />
 
-import type { ConfigEnv, UserConfigExport } from "vite"
-import path, { resolve } from "node:path"
+import { resolve } from "node:path"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import UnoCSS from "unocss/vite"
-import { loadEnv } from "vite"
+import { defineConfig, loadEnv } from "vite"
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import svgLoader from "vite-svg-loader"
 
-// 配置项文档：https://cn.vitejs.dev/config
-export default ({ mode }: ConfigEnv): UserConfigExport => {
-  const viteEnv = loadEnv(mode, process.cwd()) as ImportMetaEnv
-  const { VITE_PUBLIC_PATH } = viteEnv
+// Configuring Vite: https://cn.vite.dev/config
+export default defineConfig(({ mode }) => {
+  const root = process.cwd()
+  const { VITE_PUBLIC_PATH } = loadEnv(mode, root, "") as ImportMetaEnv
   return {
-    // 打包时根据实际情况修改 base
+    // 开发或打包构建时用到的公共基础路径
     base: VITE_PUBLIC_PATH,
     resolve: {
       alias: {
         // @ 符号指向 src 目录
-        "@": resolve(__dirname, "./src")
+        "@": resolve(__dirname, "src")
       }
     },
+    // 开发环境服务器配置
     server: {
-      // 设置 host: true 才可以使用 Network 的形式，以 IP 访问项目
-      host: true, // host: "0.0.0.0"
+      // 是否监听所有地址
+      host: true,
       // 端口号
       port: 3333,
-      // 是否自动打开浏览器
-      open: false,
-      // 跨域设置允许
-      cors: true,
       // 端口被占用时，是否直接退出
       strictPort: false,
-      // 接口代理
+      // 是否自动打开浏览器
+      open: false,
+      // 反向代理
       proxy: {
         "/api/v1": {
           target: "https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212",
@@ -42,18 +40,16 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           changeOrigin: true
         }
       },
+      // 是否允许跨域
+      cors: true,
       // 预热常用文件，提高初始页面加载速度
       warmup: {
         clientFiles: ["./src/layouts/**/*.vue"]
       }
     },
+    // 构建配置
     build: {
-      // 单个 chunk 文件的大小超过 2048KB 时发出警告
-      chunkSizeWarningLimit: 2048,
-      // 禁用 gzip 压缩大小报告
-      reportCompressedSize: false,
-      // 打包后静态资源目录
-      assetsDir: "static",
+      // 自定义底层的 Rollup 打包配置
       rollupOptions: {
         output: {
           /**
@@ -67,38 +63,43 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
             vxe: ["vxe-table", "vxe-table-plugin-element", "xe-utils"]
           }
         }
-      }
+      },
+      // 是否开启 gzip 压缩大小报告，禁用时能略微提高构建性能
+      reportCompressedSize: false,
+      // 单个 chunk 文件的大小超过 2048kB 时发出警告
+      chunkSizeWarningLimit: 2048
     },
     // 混淆器
     esbuild:
       mode === "development"
         ? undefined
         : {
-            // 打包时移除 console.log
+            // 打包构建时移除 console.log
             pure: ["console.log"],
-            // 打包时移除 debugger
+            // 打包构建时移除 debugger
             drop: ["debugger"],
-            // 打包时移除所有注释
+            // 打包构建时移除所有注释
             legalComments: "none"
           },
-    // Vite 插件
+    // 插件配置
     plugins: [
       vue(),
+      // 支持 JSX、TSX 语法
       vueJsx(),
-      // 将 SVG 静态图转化为 Vue 组件
+      // 将 SVG 文件转化为 Vue 组件
       svgLoader({ defaultImport: "url" }),
-      // SVG
+      // 生成 SVG 雪碧图
       createSvgIconsPlugin({
-        iconDirs: [path.resolve(process.cwd(), "src/icons/svg")],
+        iconDirs: [resolve(root, "src/icons/svg")],
         symbolId: "icon-[dir]-[name]"
       }),
-      // UnoCSS
+      // 原子化 CSS
       UnoCSS()
     ],
-    // Vitest 单元测试配置：https://cn.vitest.dev/config
+    // Configuring Vitest: https://cn.vitest.dev/config
     test: {
       include: ["tests/**/*.test.ts"],
       environment: "jsdom"
     }
   }
-}
+})
