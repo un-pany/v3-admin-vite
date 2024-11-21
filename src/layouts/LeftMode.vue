@@ -162,7 +162,7 @@ $transition-time: 0.35s;
       transform: translate3d(calc(0px - var(--v3-sidebar-width)), 0, 0);
     }
   }
-  // 即是 mobile 又是顶部或混合布局模式
+  // 既是 mobile 又是顶部或混合布局模式
   &.noLeft {
     .sidebar-container {
       background-color: var(--el-bg-color);
