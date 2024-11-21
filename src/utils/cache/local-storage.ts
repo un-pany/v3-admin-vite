@@ -1,8 +1,8 @@
 // 统一处理 localStorage
 
+import type { ThemeName } from "@/composables/useTheme"
 import type { LayoutSettings } from "@/config/layouts"
 import type { SidebarClosed, SidebarOpened } from "@/constants/app-key"
-import type { ThemeName } from "@/hooks/useTheme"
 import type { TagView } from "@/store/modules/tags-view"
 import CacheKey from "@/constants/cache-key"
 

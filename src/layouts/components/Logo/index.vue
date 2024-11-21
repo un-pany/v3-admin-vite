@@ -2,7 +2,7 @@
 import logo from "@/assets/layouts/logo.png?url"
 import logoText1 from "@/assets/layouts/logo-text-1.png?url"
 import logoText2 from "@/assets/layouts/logo-text-2.png?url"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
+import { useLayoutMode } from "@/composables/useLayoutMode"
 
 interface Props {
   collapse?: boolean

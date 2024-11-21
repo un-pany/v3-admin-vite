@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ElScrollbar } from "element-plus"
 import type { RouteRecordName, RouteRecordRaw } from "vue-router"
-import { useDevice } from "@/hooks/useDevice"
+import { useDevice } from "@/composables/useDevice"
 import { usePermissionStore } from "@/store/modules/permission"
 import { isExternal } from "@/utils/validate"
 import { ElMessage } from "element-plus"

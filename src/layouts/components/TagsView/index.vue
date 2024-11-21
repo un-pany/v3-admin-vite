@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TagView } from "@/store/modules/tags-view"
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw, RouterLink } from "vue-router"
-import { useRouteListener } from "@/hooks/useRouteListener"
+import { useRouteListener } from "@/composables/useRouteListener"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useTagsViewStore } from "@/store/modules/tags-view"
 import { Close } from "@element-plus/icons-vue"

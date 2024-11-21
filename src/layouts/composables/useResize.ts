@@ -1,5 +1,5 @@
+import { useRouteListener } from "@/composables/useRouteListener"
 import { DeviceEnum } from "@/constants/app-key"
-import { useRouteListener } from "@/hooks/useRouteListener"
 import { useAppStore } from "@/store/modules/app"
 import { onBeforeMount, onBeforeUnmount, onMounted } from "vue"
 

@@ -1,10 +1,10 @@
+import { setRouteChange } from "@/composables/useRouteListener"
+import { useTitle } from "@/composables/useTitle"
 import routeSettings from "@/config/route"
 import isWhiteList from "@/config/white-list"
-import { setRouteChange } from "@/hooks/useRouteListener"
-import { useTitle } from "@/hooks/useTitle"
 import { router } from "@/router"
-import { usePermissionStoreHook } from "@/store/modules/permission"
-import { useUserStoreHook } from "@/store/modules/user"
+import { usePermissionStoreOutside } from "@/store/modules/permission"
+import { useUserStoreOutside } from "@/store/modules/user"
 import { getToken } from "@/utils/cache/cookies"
 import { ElMessage } from "element-plus"
 import NProgress from "nprogress"
@@ -12,8 +12,8 @@ import "nprogress/nprogress.css"
 
 NProgress.configure({ showSpinner: false })
 const { setTitle } = useTitle()
-const userStore = useUserStoreHook()
-const permissionStore = usePermissionStoreHook()
+const userStore = useUserStoreOutside()
+const permissionStore = usePermissionStoreOutside()
 
 router.beforeEach(async (to, _from, next) => {
   NProgress.start()

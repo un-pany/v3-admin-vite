@@ -58,7 +58,7 @@ function initTheme() {
   })
 }
 
-/** 主题 hook */
+/** 主题 Composable */
 export function useTheme() {
   return { themeList, activeThemeName, initTheme, setTheme }
 }

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useDevice } from "@/hooks/useDevice"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
+import { useDevice } from "@/composables/useDevice"
+import { useLayoutMode } from "@/composables/useLayoutMode"
 import { useAppStore } from "@/store/modules/app"
 import { usePermissionStore } from "@/store/modules/permission"
 import { useSettingsStore } from "@/store/modules/settings"

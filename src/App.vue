@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useGreyAndColorWeakness } from "@/hooks/useGreyAndColorWeakness"
-import { useTheme } from "@/hooks/useTheme"
+import { useGreyAndColorWeakness } from "@/composables/useGreyAndColorWeakness"
+import { useTheme } from "@/composables/useTheme"
 import { ElNotification } from "element-plus"
 import zhCn from "element-plus/es/locale/lang/zh-cn" // Element Plus 中文包
 

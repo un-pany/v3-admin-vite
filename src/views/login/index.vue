@@ -8,7 +8,7 @@ import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import Owl from "./components/Owl.vue"
-import { useFocus } from "./hooks/useFocus"
+import { useFocus } from "./composables/useFocus"
 
 const router = useRouter()
 const { isFocus, handleBlur, handleFocus } = useFocus()

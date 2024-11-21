@@ -14,7 +14,7 @@ function initGreyAndColorWeakness() {
   })
 }
 
-/** 灰色模式和色弱模式 hook */
+/** 灰色模式和色弱模式 Composable */
 export function useGreyAndColorWeakness() {
   return { initGreyAndColorWeakness }
 }

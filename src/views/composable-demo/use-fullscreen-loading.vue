@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { getErrorApi, getSuccessApi } from "@/api/hook-demo/use-fullscreen-loading"
-import { useFullscreenLoading } from "@/hooks/useFullscreenLoading"
+import { getErrorApi, getSuccessApi } from "@/api/composable-demo/use-fullscreen-loading"
+import { useFullscreenLoading } from "@/composables/useFullscreenLoading"
 import { ElMessage } from "element-plus"
 
 const svg = `
@@ -40,7 +40,7 @@ async function queryError() {
 
 <template>
   <div class="app-container">
-    <h4>该示例是演示：通过将要执行的函数传递给 hook，让 hook 自动开启全屏 loading，函数执行结束后自动关闭 loading</h4>
+    <h4>该示例是演示：通过将要执行的函数传递给 composable，让 composable 自动开启全屏 loading，函数执行结束后自动关闭 loading</h4>
     <el-button type="primary" @click="querySuccess">
       查询成功
     </el-button>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { getSelectDataApi } from "@/api/hook-demo/use-fetch-select"
-import { useFetchSelect } from "@/hooks/useFetchSelect"
+import { getSelectDataApi } from "@/api/composable-demo/use-fetch-select"
+import { useFetchSelect } from "@/composables/useFetchSelect"
 
 const { loading, options, value } = useFetchSelect({
   api: getSelectDataApi
@@ -9,7 +9,7 @@ const { loading, options, value } = useFetchSelect({
 
 <template>
   <div class="app-container">
-    <h4>该示例是演示：通过 hook 自动调用 api 后拿到 Select 组件需要的数据并传递给 Select 组件</h4>
+    <h4>该示例是演示：通过 composable 自动调用 api 后拿到 Select 组件需要的数据并传递给 Select 组件</h4>
     <h5>Select 示例</h5>
     <el-select v-model="value" :loading="loading" filterable>
       <el-option v-for="(item, index) in options" v-bind="item" :key="index" placeholder="请选择" />

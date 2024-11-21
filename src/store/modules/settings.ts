@@ -46,6 +46,6 @@ export const useSettingsStore = defineStore("settings", () => {
  * 在 SPA 应用中可用于在 pinia 实例被激活前使用 store
  * 在 SSR 应用中可用于在 setup 外使用 store
  */
-export function useSettingsStoreHook() {
+export function useSettingsStoreOutside() {
   return useSettingsStore(pinia)
 }

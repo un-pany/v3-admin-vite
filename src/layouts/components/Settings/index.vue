@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useLayoutMode } from "@/hooks/useLayoutMode"
+import { useLayoutMode } from "@/composables/useLayoutMode"
 import { useSettingsStore } from "@/store/modules/settings"
 import { removeConfigLayout } from "@/utils/cache/local-storage"
 import { Refresh } from "@element-plus/icons-vue"
