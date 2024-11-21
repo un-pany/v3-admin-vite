@@ -16,6 +16,8 @@
     "paths": { "@/*": ["src/*"] },
     "resolveJsonModule": true,
     "types": ["vite/client", "element-plus/global"],
+    // 允许 JS
+    "allowJs": true,
     // TS 严格模式
     "strict": true,
     "importHelpers": true,
