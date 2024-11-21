@@ -35,7 +35,8 @@ export default defineConfig(({ mode }) => {
       proxy: {
         "/api/v1": {
           target: "https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212",
-          ws: true,
+          // 是否为 WebSocket
+          ws: false,
           // 是否允许跨域
           changeOrigin: true
         }
