@@ -5,8 +5,10 @@ import { useAppStore } from "@/store/modules/app"
 import { useSettingsStore } from "@/store/modules/settings"
 import { AppMain, NavigationBar, Sidebar, TagsView } from "./components"
 import { useDevice } from "@/hooks/useDevice"
+import { useLayoutMode } from "@/hooks/useLayoutMode"
 
 const { isMobile } = useDevice()
+const { isLeft } = useLayoutMode()
 const appStore = useAppStore()
 const settingsStore = useSettingsStore()
 const { showTagsView, fixedHeader } = storeToRefs(settingsStore)
@@ -17,7 +19,8 @@ const layoutClasses = computed(() => {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
-    mobile: isMobile.value
+    mobile: isMobile.value,
+    noLeft: !isLeft.value
   }
 })
 
@@ -157,6 +160,12 @@ $transition-time: 0.35s;
       pointer-events: none;
       transition-duration: 0.3s;
       transform: translate3d(calc(0px - var(--v3-sidebar-width)), 0, 0);
+    }
+  }
+  // 既是 mobile 又是顶部或混合布局模式
+  &.noLeft {
+    .sidebar-container {
+      background-color: var(--el-bg-color);
     }
   }
 }
