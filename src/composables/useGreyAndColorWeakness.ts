@@ -1,4 +1,4 @@
-import { useSettingsStore } from "@/store/modules/settings"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { watchEffect } from "vue"
 
 const GREY_MODE = "grey-mode"

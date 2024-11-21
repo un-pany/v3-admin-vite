@@ -1,4 +1,4 @@
-import { useUserStore } from "@/store/modules/user"
+import { useUserStore } from "@/pinia/stores/user"
 import { isArray } from "@/utils/validate"
 
 /** 全局权限判断函数，和权限指令 v-permission 功能类似 */

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useUserStore } from "@/store/modules/user"
+import { useUserStore } from "@/pinia/stores/user"
 import { ref, watch } from "vue"
 
 const userStore = useUserStore()

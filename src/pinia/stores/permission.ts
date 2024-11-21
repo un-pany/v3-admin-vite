@@ -1,8 +1,8 @@
 import type { RouteRecordRaw } from "vue-router"
 import routeSettings from "@/config/route"
+import { pinia } from "@/pinia"
 import { constantRoutes, dynamicRoutes } from "@/router"
 import { flatMultiLevelRoutes } from "@/router/helper"
-import { pinia } from "@/store"
 import { defineStore } from "pinia"
 import { ref } from "vue"
 

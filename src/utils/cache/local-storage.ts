@@ -3,7 +3,7 @@
 import type { ThemeName } from "@/composables/useTheme"
 import type { LayoutSettings } from "@/config/layouts"
 import type { SidebarClosed, SidebarOpened } from "@/constants/app-key"
-import type { TagView } from "@/store/modules/tags-view"
+import type { TagView } from "@/pinia/stores/tags-view"
 import CacheKey from "@/constants/cache-key"
 
 // #region 系统布局配置

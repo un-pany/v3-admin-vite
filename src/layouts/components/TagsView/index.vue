@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { TagView } from "@/store/modules/tags-view"
+import type { TagView } from "@/pinia/stores/tags-view"
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw, RouterLink } from "vue-router"
 import { useRouteListener } from "@/composables/useRouteListener"
-import { usePermissionStore } from "@/store/modules/permission"
-import { useTagsViewStore } from "@/store/modules/tags-view"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
 import { ref, watch } from "vue"

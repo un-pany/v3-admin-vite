@@ -1,8 +1,8 @@
 // core
 import App from "@/App.vue"
 import { loadDirectives } from "@/directives"
+import { pinia } from "@/pinia"
 import { router } from "@/router"
-import { pinia } from "@/store"
 import { createApp } from "vue"
 import "@/router/permission"
 // load

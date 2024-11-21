@@ -2,7 +2,7 @@
 import type { ElScrollbar } from "element-plus"
 import type { RouteRecordName, RouteRecordRaw } from "vue-router"
 import { useDevice } from "@/composables/useDevice"
-import { usePermissionStore } from "@/store/modules/permission"
+import { usePermissionStore } from "@/pinia/stores/permission"
 import { isExternal } from "@/utils/validate"
 import { ElMessage } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"

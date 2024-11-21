@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useDevice } from "@/composables/useDevice"
 import { useLayoutMode } from "@/composables/useLayoutMode"
-import { useAppStore } from "@/store/modules/app"
-import { useSettingsStore } from "@/store/modules/settings"
+import { useAppStore } from "@/pinia/stores/app"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { storeToRefs } from "pinia"
 import { computed } from "vue"
 import { AppMain, NavigationBar, Sidebar, TagsView } from "./components"

@@ -1,5 +1,5 @@
 import type { Directive } from "vue"
-import { useUserStore } from "@/store/modules/user"
+import { useUserStore } from "@/pinia/stores/user"
 import { isArray } from "@/utils/validate"
 
 /** 权限指令，和权限判断函数 checkPermission 功能类似 */

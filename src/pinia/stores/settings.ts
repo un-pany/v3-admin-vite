@@ -1,7 +1,7 @@
 import type { LayoutSettings } from "@/config/layouts"
 import type { Ref } from "vue"
 import { layoutSettings } from "@/config/layouts"
-import { pinia } from "@/store"
+import { pinia } from "@/pinia"
 import { setConfigLayout } from "@/utils/cache/local-storage"
 import { defineStore } from "pinia"
 import { ref, watch } from "vue"

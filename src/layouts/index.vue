@@ -2,7 +2,7 @@
 import { useDevice } from "@/composables/useDevice"
 import { useLayoutMode } from "@/composables/useLayoutMode"
 import { useWatermark } from "@/composables/useWatermark"
-import { useSettingsStore } from "@/store/modules/settings"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { getCssVar, setCssVar } from "@/utils/css"
 import { storeToRefs } from "pinia"
 import { watchEffect } from "vue"
