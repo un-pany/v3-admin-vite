@@ -60,7 +60,7 @@ function resolvePath(routePath: string) {
         <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
         <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
         <template v-if="theOnlyOneChild.meta.title" #title>
-          {{ theOnlyOneChild.meta.title }}
+          <span class="title">{{ theOnlyOneChild.meta.title }}</span>
         </template>
       </el-menu-item>
     </SidebarItemLink>
@@ -69,7 +69,7 @@ function resolvePath(routePath: string) {
     <template #title>
       <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" />
       <component v-else-if="props.item.meta?.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
-      <span v-if="props.item.meta?.title">{{ props.item.meta.title }}</span>
+      <span v-if="props.item.meta?.title" class="title">{{ props.item.meta.title }}</span>
     </template>
     <template v-if="props.item.children">
       <SidebarItem
@@ -83,6 +83,8 @@ function resolvePath(routePath: string) {
 </template>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins.scss";
+
 .svg-icon {
   min-width: 1em;
   margin-right: 12px;
@@ -93,5 +95,9 @@ function resolvePath(routePath: string) {
   width: 1em !important;
   margin-right: 12px !important;
   font-size: 18px;
+}
+
+.title {
+  @extend %ellipsis;
 }
 </style>
