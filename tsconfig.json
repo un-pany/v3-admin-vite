@@ -1,5 +1,7 @@
+// https://www.typescriptlang.org/tsconfig
 // https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
 // https://cn.vite.dev/guide/features#typescript-compiler-options
+
 {
   "compilerOptions": {
     "target": "esnext",
@@ -27,6 +29,13 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  // 编译器默认排除的编译文件
+  // 需要被编译的文件列表
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "**/*.d.ts"
+  ],
+  // 从编译中排除的文件列表
   "exclude": ["node_modules", "dist"]
 }
