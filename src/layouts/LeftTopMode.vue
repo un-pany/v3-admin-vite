@@ -75,7 +75,7 @@ $transition-time: 0.35s;
 .sidebar-container {
   background-color: var(--el-menu-bg-color);
   transition: width $transition-time;
-  width: var(--v3-sidebar-width) !important;
+  width: var(--v3-sidebar-width);
   height: 100%;
   position: fixed;
   left: 0;
@@ -95,7 +95,7 @@ $transition-time: 0.35s;
 
 .hideSidebar {
   .sidebar-container {
-    width: var(--v3-sidebar-hide-width) !important;
+    width: var(--v3-sidebar-hide-width);
   }
   .app-main {
     padding-left: var(--v3-sidebar-hide-width);

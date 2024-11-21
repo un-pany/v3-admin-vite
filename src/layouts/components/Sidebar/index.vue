@@ -93,7 +93,7 @@ const tipLineWidth = computed(() => {
   height: 100%;
   :deep(.scrollbar-wrapper) {
     // 限制水平宽度
-    overflow-x: hidden !important;
+    overflow-x: hidden;
   }
   // 滚动条
   :deep(.el-scrollbar__bar) {
@@ -106,7 +106,7 @@ const tipLineWidth = computed(() => {
 
 .el-menu {
   border: none;
-  width: 100% !important;
+  width: 100%;
 }
 
 .el-menu--horizontal {
@@ -128,7 +128,7 @@ const tipLineWidth = computed(() => {
 :deep(.el-sub-menu) {
   &.is-active {
     > .el-sub-menu__title {
-      color: v-bind(activeTextColor) !important;
+      color: v-bind(activeTextColor);
     }
   }
 }
