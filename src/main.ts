@@ -5,7 +5,6 @@ import { router } from "@/router"
 import { createApp } from "vue"
 import "@/router/permission"
 // load
-import { loadSvg } from "@/assets/icons"
 import { loadDirectives } from "@/directives"
 import { loadPlugins } from "@/plugins"
 // css
@@ -21,8 +20,6 @@ const app = createApp(App)
 
 // 加载插件
 loadPlugins(app)
-// 加载全局 SVG
-loadSvg(app)
 // 加载自定义指令
 loadDirectives(app)
 
