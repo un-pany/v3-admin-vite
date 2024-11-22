@@ -92,7 +92,19 @@ export default defineConfig(({ mode }) => {
       // 生成 SVG 雪碧图
       createSvgIconsPlugin({
         iconDirs: [resolve(root, "src/assets/icons")],
-        symbolId: "icon-[dir]-[name]"
+        symbolId: "icon-[dir]-[name]",
+        // 自定义 SVGO 配置
+        svgoOptions: {
+          plugins: [
+            // 移除 fill 属性
+            {
+              name: "removeAttrs",
+              params: {
+                attrs: "fill"
+              }
+            }
+          ]
+        }
       }),
       // 原子化 CSS
       UnoCSS()
