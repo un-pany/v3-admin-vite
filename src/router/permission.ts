@@ -2,8 +2,8 @@ import { setRouteChange } from "@/composables/useRouteListener"
 import { useTitle } from "@/composables/useTitle"
 import routeSettings from "@/config/route"
 import isWhiteList from "@/config/white-list"
-import { usePermissionStoreOutside } from "@/pinia/stores/permission"
-import { useUserStoreOutside } from "@/pinia/stores/user"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useUserStore } from "@/pinia/stores/user"
 import { router } from "@/router"
 import { getToken } from "@/utils/cache/cookies"
 import { ElMessage } from "element-plus"
@@ -12,11 +12,11 @@ import "nprogress/nprogress.css"
 
 NProgress.configure({ showSpinner: false })
 const { setTitle } = useTitle()
-const userStore = useUserStoreOutside()
-const permissionStore = usePermissionStoreOutside()
 
 router.beforeEach(async (to, _from, next) => {
   NProgress.start()
+  const userStore = useUserStore()
+  const permissionStore = usePermissionStore()
   // 如果没有登陆
   if (!getToken()) {
     // 如果在免登录的白名单中，则直接进入
