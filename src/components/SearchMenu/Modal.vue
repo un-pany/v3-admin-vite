@@ -8,8 +8,8 @@ import { ElMessage } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
 import { computed, ref, shallowRef } from "vue"
 import { useRouter } from "vue-router"
-import SearchFooter from "./SearchFooter.vue"
-import SearchResult from "./SearchResult.vue"
+import Footer from "./Footer.vue"
+import Result from "./Result.vue"
 
 /** 控制 modal 显隐 */
 const modelValue = defineModel<boolean>({ required: true })
@@ -19,7 +19,7 @@ const { isMobile } = useDevice()
 
 const inputRef = ref<HTMLInputElement | null>(null)
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar> | null>(null)
-const searchResultRef = ref<InstanceType<typeof SearchResult> | null>(null)
+const resultRef = ref<InstanceType<typeof Result> | null>(null)
 
 const keyword = ref<string>("")
 const resultList = shallowRef<RouteRecordRaw[]>([])
@@ -64,8 +64,8 @@ function handleClose() {
 
 /** 根据下标位置进行滚动 */
 function scrollTo(index: number) {
-  if (!searchResultRef.value) return
-  const scrollTop = searchResultRef.value.getScrollTop(index)
+  if (!resultRef.value) return
+  const scrollTop = resultRef.value.getScrollTop(index)
   // 手动控制 el-scrollbar 滚动条滚动，设置滚动条到顶部的距离
   scrollbarRef.value?.setScrollTop(scrollTop)
 }
@@ -173,17 +173,17 @@ function handleReleaseUpOrDown() {
     <template v-else>
       <p>搜索结果</p>
       <el-scrollbar ref="scrollbarRef" max-height="40vh" always>
-        <SearchResult
-          ref="searchResultRef"
+        <Result
+          ref="resultRef"
           v-model="activeRouteName"
-          :list="resultList"
+          :data="resultList"
           :is-press-up-or-down="isPressUpOrDown"
           @click="handleEnter"
         />
       </el-scrollbar>
     </template>
     <template #footer>
-      <SearchFooter :total="resultList.length" />
+      <Footer :total="resultList.length" />
     </template>
   </el-dialog>
 </template>

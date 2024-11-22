@@ -3,13 +3,14 @@ import type { RouteRecordName, RouteRecordRaw } from "vue-router"
 import { getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue"
 
 interface Props {
-  list: RouteRecordRaw[]
+  data: RouteRecordRaw[]
   isPressUpOrDown: boolean
 }
 
 const props = defineProps<Props>()
 /** 选中的菜单 */
 const modelValue = defineModel<RouteRecordName | undefined>({ required: true })
+
 const instance = getCurrentInstance()
 const scrollbarHeight = ref<number>(0)
 
@@ -45,17 +46,17 @@ function getScrollTop(index: number) {
   return scrollTop > scrollbarHeight.value ? scrollTop - scrollbarHeight.value : 0
 }
 
-/** 在组件挂载前添加窗口大小变化事件监听器 */
+// 在组件挂载前添加窗口大小变化事件监听器
 onBeforeMount(() => {
   window.addEventListener("resize", getScrollbarHeight)
 })
 
-/** 在组件挂载时立即计算滚动可视区高度 */
+// 在组件挂载时立即计算滚动可视区高度
 onMounted(() => {
   getScrollbarHeight()
 })
 
-/** 在组件卸载前移除窗口大小变化事件监听器 */
+// 在组件卸载前移除窗口大小变化事件监听器
 onBeforeUnmount(() => {
   window.removeEventListener("resize", getScrollbarHeight)
 })
@@ -67,7 +68,7 @@ defineExpose({ getScrollTop })
   <!-- 外层 div 不能删除，是用来接收父组件 click 事件的 -->
   <div>
     <div
-      v-for="(item, index) in list"
+      v-for="(item, index) in data"
       :key="index"
       :ref="`resultItemRef${index}`"
       class="result-item"
