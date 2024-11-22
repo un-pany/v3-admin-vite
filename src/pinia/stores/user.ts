@@ -1,6 +1,6 @@
-import type { LoginRequestData } from "@/api/login/types/login"
-import { getUserInfoApi, loginApi } from "@/api/login"
+import type { LoginRequestData } from "@/http/login/types/login"
 import routeSettings from "@/config/route"
+import { getUserInfoApi, loginApi } from "@/http/login"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"

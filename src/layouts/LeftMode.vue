@@ -50,7 +50,7 @@ function handleClickOutside() {
 </template>
 
 <style lang="scss" scoped>
-@import "@/styles/mixins.scss";
+@import "@/assets/styles/mixins.scss";
 $transition-time: 0.35s;
 
 .app-wrapper {

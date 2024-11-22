@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { LoginRequestData } from "@/api/login/types/login"
+import type { LoginRequestData } from "@/http/login/types/login"
 import type { FormInstance, FormRules } from "element-plus"
-import { getLoginCodeApi } from "@/api/login"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
+import { getLoginCodeApi } from "@/http/login"
 import { useUserStore } from "@/pinia/stores/user"
 import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { reactive, ref } from "vue"
@@ -78,7 +78,7 @@ createCode()
     <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
-        <img src="@/assets/layouts/logo-text-2.png">
+        <img src="@/assets/images/layouts/logo-text-2.png">
       </div>
       <div class="content">
         <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { TableResponseData } from "@/api/table/types/table"
+import type { TableResponseData } from "@/http/table/types/table"
 import type { ElMessageBoxOptions } from "element-plus"
 import type { VxeFormInstance, VxeFormProps, VxeGridInstance, VxeGridProps, VxeModalInstance, VxeModalProps } from "vxe-table"
-import { deleteTableDataApi, getTableDataApi } from "@/api/table"
+import { deleteTableDataApi, getTableDataApi } from "@/http/table"
 import { ElMessage, ElMessageBox } from "element-plus"
 import { nextTick, reactive, ref } from "vue"
 import RoleColumnSolts from "./tsx/RoleColumnSolts"

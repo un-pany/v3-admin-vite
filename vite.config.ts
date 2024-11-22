@@ -91,7 +91,7 @@ export default defineConfig(({ mode }) => {
       svgLoader({ defaultImport: "url" }),
       // 生成 SVG 雪碧图
       createSvgIconsPlugin({
-        iconDirs: [resolve(root, "src/icons/svg")],
+        iconDirs: [resolve(root, "src/assets/icons/svg")],
         symbolId: "icon-[dir]-[name]"
       }),
       // 原子化 CSS
@@ -99,7 +99,7 @@ export default defineConfig(({ mode }) => {
     ],
     // Configuring Vitest: https://cn.vitest.dev/config
     test: {
-      include: ["tests/**/*.test.ts"],
+      include: ["tests/**/*.test.{ts,js}"],
       environment: "jsdom"
     }
   }

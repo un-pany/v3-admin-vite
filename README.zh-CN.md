@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layouts/logo.png">
+  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
   <span><a href="./README.md">English</a> | 中文</span>
 </div>
@@ -125,9 +125,9 @@ pnpm test
 
 ## 项目预览图
 
-![preview1.png](./src/assets/docs/preview1.png)
-![preview2.png](./src/assets/docs/preview2.png)
-![preview3.png](./src/assets/docs/preview3.png)
+![preview1.png](./src/assets/images/docs/preview1.png)
+![preview2.png](./src/assets/images/docs/preview2.png)
+![preview3.png](./src/assets/images/docs/preview3.png)
 
 ## 💕 贡献者
 

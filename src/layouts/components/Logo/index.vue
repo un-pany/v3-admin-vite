@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import logo from "@/assets/layouts/logo.png?url"
-import logoText1 from "@/assets/layouts/logo-text-1.png?url"
-import logoText2 from "@/assets/layouts/logo-text-2.png?url"
+import logo from "@/assets/images/layouts/logo.png?url"
+import logoText1 from "@/assets/images/layouts/logo-text-1.png?url"
+import logoText2 from "@/assets/images/layouts/logo-text-2.png?url"
 import { useLayoutMode } from "@/composables/useLayoutMode"
 
 interface Props {
