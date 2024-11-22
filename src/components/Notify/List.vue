@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import type { ListItem } from "./data"
+import type { NotifyItem } from "./type"
 
 interface Props {
-  list: ListItem[]
+  data: NotifyItem[]
 }
 
 const props = defineProps<Props>()
 </script>
 
 <template>
-  <el-empty v-if="props.list.length === 0" />
-  <el-card v-else v-for="(item, index) in props.list" :key="index" shadow="never" class="card-container">
+  <el-empty v-if="props.data.length === 0" />
+  <el-card v-else v-for="(item, index) in props.data" :key="index" shadow="never" class="card-container">
     <template #header>
       <div class="card-header">
         <div>

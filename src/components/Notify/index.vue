@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import type { ListItem } from "./data"
+import type { NotifyItem } from "./type"
 import { Bell } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
 import { computed, ref } from "vue"
 import { messageData, notifyData, todoData } from "./data"
-import NotifyList from "./NotifyList.vue"
+import List from "./List.vue"
 
 type TabName = "通知" | "消息" | "待办"
 
 interface DataItem {
   name: TabName
   type: "primary" | "success" | "warning" | "danger" | "info"
-  list: ListItem[]
+  list: NotifyItem[]
 }
 
 /** 角标当前值 */
@@ -69,7 +69,7 @@ function handleHistory() {
               <el-badge :value="item.list.length" :max="badgeMax" :type="item.type" />
             </template>
             <el-scrollbar height="400px">
-              <NotifyList :list="item.list" />
+              <List :data="item.list" />
             </el-scrollbar>
           </el-tab-pane>
         </el-tabs>

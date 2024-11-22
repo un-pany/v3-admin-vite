@@ -1,28 +1,21 @@
-export interface ListItem {
-  avatar?: string
-  title: string
-  datetime?: string
-  description?: string
-  status?: "primary" | "success" | "info" | "warning" | "danger"
-  extra?: string
-}
+import type { NotifyItem } from "./type"
 
-export const notifyData: ListItem[] = [
+export const notifyData: NotifyItem[] = [
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
     title: "V3 Admin Vite 上线啦",
-    datetime: "一年前",
+    datetime: "两年前",
     description: "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术"
   },
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
     title: "V3 Admin 上线啦",
-    datetime: "两年前",
+    datetime: "三年前",
     description: "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus 和 Pinia"
   }
 ]
 
-export const messageData: ListItem[] = [
+export const messageData: NotifyItem[] = [
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png",
     title: "来自楚门的世界",
@@ -43,7 +36,7 @@ export const messageData: ListItem[] = [
   }
 ]
 
-export const todoData: ListItem[] = [
+export const todoData: NotifyItem[] = [
   {
     title: "任务名称",
     description: "这家伙很懒，什么都没留下",
