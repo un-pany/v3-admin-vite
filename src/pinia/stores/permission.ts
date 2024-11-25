@@ -35,15 +35,16 @@ export const usePermissionStore = defineStore("permission", () => {
   // 根据角色生成可访问的 Routes（可访问的路由 = 常驻路由 + 有访问权限的动态路由）
   const setRoutes = (roles: string[]) => {
     const accessedRoutes = filterDynamicRoutes(dynamicRoutes, roles)
-    _set(accessedRoutes)
+    set(accessedRoutes)
   }
 
   // 所有路由 = 所有常驻路由 + 所有动态路由
   const setAllRoutes = () => {
-    _set(dynamicRoutes)
+    set(dynamicRoutes)
   }
 
-  const _set = (accessedRoutes: RouteRecordRaw[]) => {
+  // 统一设置
+  const set = (accessedRoutes: RouteRecordRaw[]) => {
     routes.value = constantRoutes.concat(accessedRoutes)
     addRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
   }

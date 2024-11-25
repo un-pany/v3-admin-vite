@@ -25,12 +25,12 @@ export const useSettingsStore = defineStore("settings", () => {
     // 监听每个响应式变量
     watch(refValue, () => {
       // 缓存
-      const settings = _getCacheData()
+      const settings = getCacheData()
       setConfigLayout(settings)
     })
   }
   // 获取要缓存的数据：将 state 对象转化为 settings 对象
-  const _getCacheData = () => {
+  const getCacheData = () => {
     const settings = {} as LayoutSettings
     for (const [key, value] of Object.entries(state)) {
       // @ts-expect-error ignore

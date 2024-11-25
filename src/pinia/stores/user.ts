@@ -47,7 +47,7 @@ export const useUserStore = defineStore("user", () => {
     token.value = ""
     roles.value = []
     resetRouter()
-    _resetTagsView()
+    resetTagsView()
   }
 
   // 重置 Token
@@ -57,8 +57,8 @@ export const useUserStore = defineStore("user", () => {
     roles.value = []
   }
 
-  //  重置 Visited Views 和 Cached Views
-  const _resetTagsView = () => {
+  // 重置 Visited Views 和 Cached Views
+  const resetTagsView = () => {
     if (!settingsStore.cacheTagsView) {
       tagsViewStore.delAllVisitedViews()
       tagsViewStore.delAllCachedViews()

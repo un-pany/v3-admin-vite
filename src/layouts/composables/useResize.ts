@@ -14,18 +14,18 @@ export function useResize() {
   const appStore = useAppStore()
   const { listenerRouteChange } = useRouteListener()
 
-  //  用于判断当前设备是否为移动端
-  const _isMobile = () => {
+  // 用于判断当前设备是否为移动端
+  const isMobile = () => {
     const rect = document.body.getBoundingClientRect()
     return rect.width - 1 < MAX_MOBILE_WIDTH
   }
 
   // 用于处理窗口大小变化事件
-  const _resizeHandler = () => {
+  const resizeHandler = () => {
     if (!document.hidden) {
-      const isMobile = _isMobile()
-      appStore.toggleDevice(isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
-      isMobile && appStore.closeSidebar(true)
+      const _isMobile = isMobile()
+      appStore.toggleDevice(_isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
+      _isMobile && appStore.closeSidebar(true)
     }
   }
 
@@ -38,12 +38,12 @@ export function useResize() {
 
   // 在组件挂载前添加窗口大小变化事件监听器
   onBeforeMount(() => {
-    window.addEventListener("resize", _resizeHandler)
+    window.addEventListener("resize", resizeHandler)
   })
 
   // 在组件挂载后根据窗口大小判断设备类型并调整布局
   onMounted(() => {
-    if (_isMobile()) {
+    if (isMobile()) {
       appStore.toggleDevice(DeviceEnum.Mobile)
       appStore.closeSidebar(true)
     }
@@ -51,6 +51,6 @@ export function useResize() {
 
   // 在组件卸载前移除窗口大小变化事件监听器
   onBeforeUnmount(() => {
-    window.removeEventListener("resize", _resizeHandler)
+    window.removeEventListener("resize", resizeHandler)
   })
 }
