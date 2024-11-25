@@ -60,5 +60,19 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
+  },
+  "changelogithub": {
+    "types": {
+      "feat": { "title": "Feat" },
+      "fix": { "title": "Fix" },
+      "perf": { "title": "Perf" },
+      "refactor": { "title": "Refactor" },
+      "docs": { "title": "Docs" },
+      "types": { "title": "Types" },
+      "test": { "title": "Test" },
+      "ci": { "title": "CI" },
+      "revert": { "title": "Revert" },
+      "chore": { "title": "Chore" }
+    }
   }
 }
