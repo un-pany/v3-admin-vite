@@ -14,7 +14,7 @@ type SettingsStore = {
 type SettingsStoreKey = keyof SettingsStore
 
 export const useSettingsStore = defineStore("settings", () => {
-  /** 状态对象 */
+  // 状态对象
   const state = {} as SettingsStore
   // 遍历 layoutSettings 对象的键值对
   for (const [key, value] of Object.entries(layoutSettings)) {
@@ -29,7 +29,7 @@ export const useSettingsStore = defineStore("settings", () => {
       setConfigLayout(settings)
     })
   }
-  /** 获取要缓存的数据：将 state 对象转化为 settings 对象 */
+  // 获取要缓存的数据：将 state 对象转化为 settings 对象
   const _getCacheData = () => {
     const settings = {} as LayoutSettings
     for (const [key, value] of Object.entries(state)) {
@@ -43,8 +43,8 @@ export const useSettingsStore = defineStore("settings", () => {
 })
 
 /**
- * 在 SPA 应用中可用于在 pinia 实例被激活前使用 store
- * 在 SSR 应用中可用于在 setup 外使用 store
+ * @description 在 SPA 应用中可用于在 pinia 实例被激活前使用 store
+ * @description 在 SSR 应用中可用于在 setup 外使用 store
  */
 export function useSettingsStoreOutside() {
   return useSettingsStore(pinia)

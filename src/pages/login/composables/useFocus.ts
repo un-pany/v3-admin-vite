@@ -1,14 +1,16 @@
 import { ref } from "vue"
 
+/** 焦点 Composable */
 export function useFocus() {
-  /** 是否有焦点 */
+  // 是否有焦点
   const isFocus = ref<boolean>(false)
 
-  /** 失去焦点 */
+  // 失去焦点
   const handleBlur = () => {
     isFocus.value = false
   }
-  /** 获取焦点 */
+
+  // 获取焦点
   const handleFocus = () => {
     isFocus.value = true
   }

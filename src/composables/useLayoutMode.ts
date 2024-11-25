@@ -11,6 +11,7 @@ function setLayoutMode(mode: LayoutModeEnum) {
   settingsStore.layoutMode = mode
 }
 
+/** 布局模式 Composable */
 export function useLayoutMode() {
   return { isLeft, isTop, isLeftTop, setLayoutMode }
 }

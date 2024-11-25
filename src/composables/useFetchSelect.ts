@@ -17,6 +17,7 @@ interface FetchSelectProps {
   api: () => Promise<ApiData>
 }
 
+/** 下拉选择器 Composable */
 export function useFetchSelect(props: FetchSelectProps) {
   const { api } = props
 
@@ -24,7 +25,7 @@ export function useFetchSelect(props: FetchSelectProps) {
   const options = ref<SelectOption[]>([])
   const value = ref<OptionValue>("")
 
-  /** 调用接口获取数据 */
+  // 调用接口获取数据
   const loadData = () => {
     loading.value = true
     options.value = []

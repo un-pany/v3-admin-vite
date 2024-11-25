@@ -54,9 +54,9 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           /**
-           * 分块策略
-           * 1. 注意这些包名必须存在，否则打包会报错
-           * 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
+           * @name 分块策略
+           * @description 1. 注意这些包名必须存在，否则打包会报错
+           * @description 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
            */
           manualChunks: {
             vue: ["vue", "vue-router", "pinia"],

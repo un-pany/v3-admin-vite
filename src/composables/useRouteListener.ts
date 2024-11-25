@@ -17,12 +17,16 @@ export function setRouteChange(to: RouteLocationNormalized) {
   latestRoute = to
 }
 
-/** 单独监听路由会浪费渲染性能，使用发布订阅模式去进行分发管理 */
+/**
+ * 订阅路由变化 Composable
+ * 1. 单独用 watch 监听路由会浪费渲染性能
+ * 2. 可优先选择使用该发布订阅模式去进行分发管理
+ */
 export function useRouteListener() {
   // 回调函数集合
   const callbackList: Callback[] = []
 
-  /** 监听路由变化（可以选择立即执行） */
+  // 监听路由变化（可以选择立即执行）
   const listenerRouteChange = (callback: Callback, immediate = false) => {
     // 缓存回调函数
     callbackList.push(callback)
@@ -32,12 +36,12 @@ export function useRouteListener() {
     immediate && latestRoute && callback(latestRoute)
   }
 
-  /** 移除路由变化事件监听器 */
+  // 移除路由变化事件监听器
   const removeRouteListener = (callback: Callback) => {
     emitter.off(key, callback as Handler)
   }
 
-  /** 组件销毁前移除监听器 */
+  // 组件销毁前移除监听器
   onBeforeUnmount(() => {
     for (let i = 0; i < callbackList.length; i++) {
       removeRouteListener(callbackList[i])

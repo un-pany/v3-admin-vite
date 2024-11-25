@@ -18,7 +18,8 @@ const DEFAULT_OPTIONS = {
 }
 
 /**
- * 传入一个函数 fn，在它执行周期内，加上「全屏」Loading
+ * @name 全屏加载 Composable
+ * @description 传入一个函数 fn，在它执行周期内，加上「全屏」Loading
  * @param fn 要执行的函数
  * @param options LoadingOptions
  * @returns 返回一个新的函数，该函数返回一个 Promise

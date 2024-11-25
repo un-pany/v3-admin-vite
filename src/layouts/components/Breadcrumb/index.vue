@@ -33,7 +33,7 @@ function handleLink(item: RouteLocationMatched) {
   router.push(pathCompile(path))
 }
 
-/** 监听路由变化，更新面包屑导航信息 */
+// 监听路由变化，更新面包屑导航信息
 listenerRouteChange((route) => {
   if (route.path.startsWith("/redirect/")) return
   getBreadcrumb()

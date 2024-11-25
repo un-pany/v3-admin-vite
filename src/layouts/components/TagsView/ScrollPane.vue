@@ -44,11 +44,11 @@ function wheelScroll({ deltaY }: WheelEvent) {
 
 /** 获取可能需要的宽度 */
 function getWidth() {
-  /** 可滚动内容的长度 */
+  // 可滚动内容的长度
   const scrollbarContentRefWidth = scrollbarContentRef.value!.clientWidth
-  /** 滚动可视区宽度 */
+  // 滚动可视区宽度
   const scrollbarRefWidth = scrollbarRef.value!.wrapRef!.clientWidth
-  /** 最后剩余可滚动的宽度 */
+  // 最后剩余可滚动的宽度
   const lastDistance = scrollbarContentRefWidth - scrollbarRefWidth - currentScrollLeft
 
   return { scrollbarContentRefWidth, scrollbarRefWidth, lastDistance }
@@ -96,7 +96,7 @@ function moveTo() {
   }
 }
 
-/** 监听路由变化，移动到目标位置 */
+// 监听路由变化，移动到目标位置
 listenerRouteChange(() => {
   nextTick(moveTo)
 })

@@ -34,25 +34,25 @@ const DEFAULT_CONFIG = {
 const bodyEl = ref<HTMLElement>(document.body)
 
 /**
- * 创建水印
+ * 水印 Composable
  * 1. 可以选择传入挂载水印的容器元素，默认是 body
  * 2. 做了水印防御，能有效防御别人打开控制台删除或隐藏水印
  */
 export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
-  /** 备份文本 */
+  // 备份文本
   let backupText: string
-  /** 最终配置 */
+  // 最终配置
   let mergeConfig: DefaultConfig
-  /** 水印元素 */
+  // 水印元素
   let watermarkEl: HTMLElement | null = null
-  /** 观察器 */
+  // 观察器
   const observer: Observer = {
     watermarkElMutationObserver: undefined,
     parentElMutationObserver: undefined,
     parentElResizeObserver: undefined
   }
 
-  /** 设置水印 */
+  // 设置水印
   const setWatermark = (text: string, config: Partial<DefaultConfig> = {}) => {
     if (!parentEl.value) return console.warn("请在 DOM 挂载完成后再调用 setWatermark 方法设置水印")
     // 备份文本
@@ -65,7 +65,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     addElListener(parentEl.value)
   }
 
-  /** 创建水印元素 */
+  // 创建水印元素
   const createWatermarkEl = () => {
     const isBody = parentEl.value!.tagName.toLowerCase() === bodyEl.value.tagName.toLowerCase()
     const watermarkElPosition = isBody ? "fixed" : "absolute"
@@ -84,7 +84,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     parentEl.value!.appendChild(watermarkEl)
   }
 
-  /** 更新水印元素 */
+  // 更新水印元素
   const updateWatermarkEl = (
     options: Partial<{
       width: number
@@ -97,7 +97,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     options.height && (watermarkEl.style.height = `${options.height}px`)
   }
 
-  /** 创建 base64 图片 */
+  // 创建 base64 图片
   const createBase64 = () => {
     const { color, opacity, size, family, angle, width, height } = mergeConfig
     const canvasEl = document.createElement("canvas")
@@ -114,7 +114,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     return canvasEl.toDataURL()
   }
 
-  /** 清除水印 */
+  // 清除水印
   const clearWatermark = () => {
     if (!parentEl.value || !watermarkEl) return
     // 移除对水印元素和容器元素的监听
@@ -130,14 +130,14 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     }
   }
 
-  /** 刷新水印（防御时调用） */
+  // 刷新水印（防御时调用）
   const updateWatermark = debounce(() => {
     clearWatermark()
     createWatermarkEl()
     addElListener(parentEl.value!)
   }, 100)
 
-  /** 监听水印元素和容器元素的变化（DOM 变化 & DOM 大小变化） */
+  // 监听水印元素和容器元素的变化（DOM 变化 & DOM 大小变化）
   const addElListener = (targetNode: HTMLElement) => {
     // 判断是否开启防御
     if (mergeConfig.defense) {
@@ -157,7 +157,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     }
   }
 
-  /** 移除对水印元素和容器元素的监听，传参可指定要移除哪个监听，不传默认移除全部监听 */
+  // 移除对水印元素和容器元素的监听，传参可指定要移除哪个监听，不传默认移除全部监听
   const removeListener = (kind: "mutation" | "resize" | "all" = "all") => {
     // 移除 mutation 监听
     if (kind === "mutation" || kind === "all") {
@@ -173,7 +173,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     }
   }
 
-  /** 监听 DOM 变化 */
+  // 监听 DOM 变化
   const addMutationListener = (targetNode: HTMLElement) => {
     // 当观察到变动时执行的回调
     const mutationCallback = debounce((mutationList: MutationRecord[]) => {
@@ -212,7 +212,7 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     })
   }
 
-  /** 监听 DOM 大小变化 */
+  // 监听 DOM 大小变化
   const addResizeListener = (targetNode: HTMLElement) => {
     // 当 targetNode 元素大小变化时去更新整个水印的大小
     const resizeCallback = debounce(() => {

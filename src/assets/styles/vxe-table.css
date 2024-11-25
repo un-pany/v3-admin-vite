@@ -5,7 +5,7 @@
  */
 
 :root {
-  /*color*/
+  /* color */
   --vxe-font-color: var(--el-text-color-regular);
   --vxe-primary-color: var(--el-color-primary);
   --vxe-success-color: var(--el-color-success);
@@ -34,16 +34,16 @@
   --vxe-warning-disabled-color: var(--el-color-warning-light-5);
   --vxe-danger-disabled-color: var(--el-color-danger-light-5);
 
-  /*input/radio/checkbox*/
+  /* input/radio/checkbox */
   --vxe-input-border-color: var(--el-border-color);
   --vxe-input-disabled-color: var(--el-text-color-disabled);
   --vxe-input-disabled-background-color: var(--el-fill-color-light);
   --vxe-input-placeholder-color: var(--el-text-color-placeholder);
 
-  /*popup*/
+  /* popup */
   --vxe-table-popup-border-color: var(--el-border-color);
 
-  /*table*/
+  /* table */
   --vxe-table-header-font-color: var(--el-text-color-regular);
   --vxe-table-footer-font-color: var(--el-text-color-regular);
   --vxe-table-border-color: var(--el-border-color-lighter);
@@ -57,41 +57,41 @@
 
   --vxe-table-checkbox-range-background-color: var(--el-fill-color-light);
 
-  /*menu*/
+  /* menu */
   --vxe-table-menu-background-color: var(--el-bg-color-overlay);
 
-  /*loading*/
+  /* loading */
   --vxe-loading-color: var(--el-color-primary);
   --vxe-loading-background-color: var(--el-mask-color);
 
-  /*validate*/
+  /* validate */
   --vxe-table-validate-error-color: var(--el-color-danger);
 
-  /*toolbar*/
+  /* toolbar */
   --vxe-toolbar-background-color: var(--el-bg-color);
   --vxe-toolbar-custom-active-background-color: var(--el-bg-color-overlay);
   --vxe-toolbar-panel-background-color: var(--el-bg-color-overlay);
 
-  /*pager*/
+  /* pager */
   --vxe-pager-background-color: var(--el-bg-color);
 
-  /*modal*/
+  /* modal */
   --vxe-modal-header-background-color: var(--el-bg-color);
   --vxe-modal-body-background-color: var(--el-bg-color);
   --vxe-modal-border-color: var(--el-border-color);
 
-  /*button*/
+  /* button */
   --vxe-button-default-background-color: var(--el-bg-color-overlay);
 
-  /*input*/
+  /* input */
   --vxe-input-background-color: var(--el-fill-color-blank);
   --vxe-input-panel-background-color: var(--el-fill-color-blank);
 
-  /*form*/
+  /* form */
   --vxe-form-background-color: var(--el-bg-color);
   --vxe-form-validate-error-color: var(--el-color-danger);
 
-  /*select*/
+  /* select */
   --vxe-select-option-hover-background-color: var(--el-bg-color-overlay);
   --vxe-select-panel-background-color: var(--el-bg-color);
 }

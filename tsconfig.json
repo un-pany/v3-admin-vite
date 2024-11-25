@@ -1,6 +1,8 @@
-// https://www.typescriptlang.org/tsconfig
-// https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
-// https://cn.vite.dev/guide/features#typescript-compiler-options
+/**
+ * @link https://www.typescriptlang.org/tsconfig
+ * @link https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
+ * @link https://cn.vite.dev/guide/features#typescript-compiler-options
+ */
 
 {
   "compilerOptions": {

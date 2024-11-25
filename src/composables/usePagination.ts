@@ -17,14 +17,15 @@ const DEFAULT_PAGINATION_DATA = {
   layout: "total, sizes, prev, pager, next, jumper"
 }
 
+/** 分页 Composable */
 export function usePagination(initPaginationData: PaginationData = {}) {
-  /** 合并分页参数 */
+  // 合并分页参数
   const paginationData = reactive({ ...DEFAULT_PAGINATION_DATA, ...initPaginationData })
-  /** 改变当前页码 */
+  // 改变当前页码
   const handleCurrentChange = (value: number) => {
     paginationData.currentPage = value
   }
-  /** 改变页面大小 */
+  // 改变每页显示条数
   const handleSizeChange = (value: number) => {
     paginationData.pageSize = value
   }

@@ -18,6 +18,7 @@ watch(dynamicTitle, (value, oldValue) => {
   }
 })
 
+/** 标题 Composable */
 export function useTitle() {
   return { setTitle }
 }
