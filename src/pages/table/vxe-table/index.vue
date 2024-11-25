@@ -5,8 +5,8 @@ import type { VxeFormInstance, VxeFormProps, VxeGridInstance, VxeGridProps, VxeM
 import { deleteTableDataApi, getTableDataApi } from "@/http/table"
 import { ElMessage, ElMessageBox } from "element-plus"
 import { nextTick, reactive, ref } from "vue"
-import RoleColumnSolts from "./tsx/RoleColumnSolts"
-import StatusColumnSolts from "./tsx/StatusColumnSolts"
+import { RoleColumnSolts } from "./tsx/RoleColumnSolts"
+import { StatusColumnSolts } from "./tsx/StatusColumnSolts"
 
 defineOptions({
   // 命名当前组件

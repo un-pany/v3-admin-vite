@@ -1,5 +1,5 @@
 import type { LoginRequestData } from "@/http/login/types/login"
-import routeSettings from "@/config/route"
+import { routeSettings } from "@/config/route"
 import { getUserInfoApi, loginApi } from "@/http/login"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"

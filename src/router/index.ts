@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from "vue-router"
-import routeSettings from "@/config/route"
+import { routeSettings } from "@/config/route"
 import { createRouter } from "vue-router"
 import { flatMultiLevelRoutes, history } from "./helper"
 

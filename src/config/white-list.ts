@@ -7,9 +7,7 @@ const whiteListByPath: string[] = ["/login"]
 const whiteListByName: RouteRecordNameGeneric[] = []
 
 /** 判断是否在白名单 */
-function isWhiteList(to: RouteLocationNormalized) {
+export function isWhiteList(to: RouteLocationNormalized) {
   // path 和 name 任意一个匹配上即可
   return whiteListByPath.includes(to.path) || whiteListByName.includes(to.name)
 }
-
-export default isWhiteList
