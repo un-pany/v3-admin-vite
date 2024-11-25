@@ -1,13 +1,5 @@
 import { reactive } from "vue"
 
-interface DefaultPaginationData {
-  total: number
-  currentPage: number
-  pageSizes: number[]
-  pageSize: number
-  layout: string
-}
-
 interface PaginationData {
   total?: number
   currentPage?: number
@@ -17,7 +9,7 @@ interface PaginationData {
 }
 
 /** 默认的分页参数 */
-const defaultPaginationData: DefaultPaginationData = {
+const DEFAULT_PAGINATION_DATA = {
   total: 0,
   currentPage: 1,
   pageSizes: [10, 20, 50],
@@ -25,9 +17,9 @@ const defaultPaginationData: DefaultPaginationData = {
   layout: "total, sizes, prev, pager, next, jumper"
 }
 
-export function usePagination(initialPaginationData: PaginationData = {}) {
+export function usePagination(initPaginationData: PaginationData = {}) {
   /** 合并分页参数 */
-  const paginationData = reactive({ ...defaultPaginationData, ...initialPaginationData })
+  const paginationData = reactive({ ...DEFAULT_PAGINATION_DATA, ...initPaginationData })
   /** 改变当前页码 */
   const handleCurrentChange = (value: number) => {
     paginationData.currentPage = value
