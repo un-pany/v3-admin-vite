@@ -11,7 +11,7 @@ function setTitle(title?: string) {
   dynamicTitle.value = title ? `${VITE_APP_TITLE} | ${title}` : VITE_APP_TITLE
 }
 
-/** 监听标题变化 */
+// 监听标题变化
 watch(dynamicTitle, (value, oldValue) => {
   if (document && value !== oldValue) {
     document.title = value

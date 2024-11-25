@@ -8,10 +8,10 @@ interface Observer {
   parentElResizeObserver?: ResizeObserver
 }
 
-type DefaultConfig = typeof defaultConfig
+type DefaultConfig = typeof DEFAULT_CONFIG
 
 /** 默认配置 */
-const defaultConfig = {
+const DEFAULT_CONFIG = {
   /** 防御（默认开启，能防御水印被删除或隐藏，但可能会有性能损耗） */
   defense: true,
   /** 文本颜色 */
@@ -54,14 +54,11 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
 
   /** 设置水印 */
   const setWatermark = (text: string, config: Partial<DefaultConfig> = {}) => {
-    if (!parentEl.value) {
-      console.warn("请在 DOM 挂载完成后再调用 setWatermark 方法设置水印")
-      return
-    }
+    if (!parentEl.value) return console.warn("请在 DOM 挂载完成后再调用 setWatermark 方法设置水印")
     // 备份文本
     backupText = text
     // 合并配置
-    mergeConfig = { ...defaultConfig, ...config }
+    mergeConfig = { ...DEFAULT_CONFIG, ...config }
     // 创建或更新水印元素
     watermarkEl ? updateWatermarkEl() : createWatermarkEl()
     // 监听水印元素和容器元素的变化
@@ -228,10 +225,8 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
     observer.parentElResizeObserver.observe(targetNode)
   }
 
-  /** 在组件卸载前移除水印以及各种监听 */
-  onBeforeUnmount(() => {
-    clearWatermark()
-  })
+  // 在组件卸载前移除水印以及各种监听
+  onBeforeUnmount(() => clearWatermark())
 
   return { setWatermark, clearWatermark }
 }
