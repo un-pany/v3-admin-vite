@@ -14,7 +14,9 @@ function handleChangeTheme({ clientX, clientY }: MouseEvent, themeName: ThemeNam
   style.setProperty("--v3-theme-x", `${clientX}px`)
   style.setProperty("--v3-theme-y", `${clientY}px`)
   style.setProperty("--v3-theme-r", `${maxRadius}px`)
-  const handler = () => setTheme(themeName)
+  const handler = () => {
+    setTheme(themeName)
+  }
   document.startViewTransition ? document.startViewTransition(handler) : handler()
 }
 </script>

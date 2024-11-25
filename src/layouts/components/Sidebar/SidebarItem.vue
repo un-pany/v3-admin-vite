@@ -18,14 +18,10 @@ const props = withDefaults(defineProps<Props>(), {
 const alwaysShowRootMenu = computed(() => props.item.meta?.alwaysShow)
 
 /** 显示的子菜单 */
-const showingChildren = computed(() => {
-  return props.item.children?.filter(child => !child.meta?.hidden) ?? []
-})
+const showingChildren = computed(() => props.item.children?.filter(child => !child.meta?.hidden) ?? [])
 
 /** 显示的子菜单数量 */
-const showingChildNumber = computed(() => {
-  return showingChildren.value.length
-})
+const showingChildNumber = computed(() => showingChildren.value.length)
 
 /** 唯一的子菜单项 */
 const theOnlyOneChild = computed(() => {

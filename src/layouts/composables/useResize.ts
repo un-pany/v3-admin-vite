@@ -10,7 +10,7 @@ const MAX_MOBILE_WIDTH = 992
  * @name 浏览器宽度变化 Composable
  * @description 根据浏览器宽度变化，变换 Layout 布局
  */
-export default () => {
+export function useResize() {
   const appStore = useAppStore()
   const { listenerRouteChange } = useRouteListener()
 

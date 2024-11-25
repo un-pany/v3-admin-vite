@@ -26,9 +26,7 @@ router.beforeEach(async (to, _from, next) => {
   }
 
   // 如果已经登录，并准备进入 Login 页面，则重定向到主页
-  if (to.path === "/login") {
-    return next({ path: "/" })
-  }
+  if (to.path === "/login") return next({ path: "/" })
 
   // 如果用户已经获得其权限角色
   if (userStore.roles.length !== 0) return next()
@@ -47,7 +45,7 @@ router.beforeEach(async (to, _from, next) => {
   } catch (error) {
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
-    ElMessage.error((error as Error).message || "路由守卫过程发生错误")
+    ElMessage.error((error as Error).message || "路由守卫发生错误")
     next("/login")
   }
 })

@@ -21,28 +21,16 @@ const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
 
-const activeMenu = computed(() => {
-  const {
-    meta: { activeMenu },
-    path
-  } = route
-  return activeMenu || path
-})
+const activeMenu = computed(() => route.meta.activeMenu || route.path)
 const noHiddenRoutes = computed(() => permissionStore.routes.filter(item => !item.meta?.hidden))
 const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
 const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
 const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
 const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
-const sidebarMenuItemHeight = computed(() => {
-  return !isTop.value ? "var(--v3-sidebar-menu-item-height)" : "var(--v3-navigationbar-height)"
-})
-const sidebarMenuHoverBgColor = computed(() => {
-  return !isTop.value ? "var(--v3-sidebar-menu-hover-bg-color)" : "transparent"
-})
-const tipLineWidth = computed(() => {
-  return !isTop.value ? "2px" : "0px"
-})
+const sidebarMenuItemHeight = computed(() => !isTop.value ? "var(--v3-sidebar-menu-item-height)" : "var(--v3-navigationbar-height)")
+const sidebarMenuHoverBgColor = computed(() => !isTop.value ? "var(--v3-sidebar-menu-hover-bg-color)" : "transparent")
+const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
 </script>
 
 <template>

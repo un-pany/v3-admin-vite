@@ -11,9 +11,13 @@ import { useRoute, useRouter } from "vue-router"
 import ScrollPane from "./ScrollPane.vue"
 
 const router = useRouter()
+
 const route = useRoute()
+
 const tagsViewStore = useTagsViewStore()
+
 const permissionStore = usePermissionStore()
+
 const { listenerRouteChange } = useRouteListener()
 
 /** 标签页组件元素的引用数组 */
@@ -21,12 +25,16 @@ const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
 
 /** 右键菜单的状态 */
 const visible = ref(false)
+
 /** 右键菜单的 top 位置 */
 const top = ref(0)
+
 /** 右键菜单的 left 位置 */
 const left = ref(0)
+
 /** 当前正在右键操作的标签页 */
 const selectedTag = ref<TagView>({})
+
 /** 固定的标签页 */
 let affixTags: TagView[] = []
 

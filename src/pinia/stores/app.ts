@@ -20,13 +20,16 @@ export const useAppStore = defineStore("app", () => {
     opened: getSidebarStatus() !== SIDEBAR_CLOSED,
     withoutAnimation: false
   })
+
   // 设备类型
   const device = ref<DeviceEnum>(DeviceEnum.Desktop)
 
   // 监听侧边栏 opened 状态
   watch(
     () => sidebar.opened,
-    opened => handleSidebarStatus(opened)
+    (opened) => {
+      handleSidebarStatus(opened)
+    }
   )
 
   // 切换侧边栏
@@ -34,11 +37,13 @@ export const useAppStore = defineStore("app", () => {
     sidebar.opened = !sidebar.opened
     sidebar.withoutAnimation = withoutAnimation
   }
+
   // 关闭侧边栏
   const closeSidebar = (withoutAnimation: boolean) => {
     sidebar.opened = false
     sidebar.withoutAnimation = withoutAnimation
   }
+
   // 切换设备类型
   const toggleDevice = (value: DeviceEnum) => {
     device.value = value

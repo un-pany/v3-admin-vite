@@ -20,6 +20,7 @@ const app = createApp(App)
 
 // 加载插件
 loadPlugins(app)
+
 // 加载自定义指令
 loadDirectives(app)
 

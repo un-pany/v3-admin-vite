@@ -6,7 +6,9 @@ import { ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 
 const route = useRoute()
+
 const router = useRouter()
+
 const { listenerRouteChange } = useRouteListener()
 
 /** 定义响应式数据 breadcrumbs，用于存储面包屑导航信息 */
@@ -26,10 +28,7 @@ function pathCompile(path: string) {
 /** 处理面包屑导航点击事件 */
 function handleLink(item: RouteLocationMatched) {
   const { redirect, path } = item
-  if (redirect) {
-    router.push(redirect as string)
-    return
-  }
+  if (redirect) return router.push(redirect as string)
   router.push(pathCompile(path))
 }
 

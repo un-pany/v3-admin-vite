@@ -22,7 +22,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const CONTENT_LARGE = "content-large"
+
 const CONTENT_FULL = "content-full"
+
 const classList = document.body.classList
 
 // #region 全屏
@@ -35,17 +37,21 @@ function handleFullscreenClick() {
   const dom = document.querySelector(props.element) || undefined
   isEnabled ? screenfull.toggle(dom) : ElMessage.warning("您的浏览器无法工作")
 }
+
 function handleFullscreenChange() {
   isFullscreen.value = screenfull.isFullscreen
   // 退出全屏时清除相关的 class
   isFullscreen.value || classList.remove(CONTENT_LARGE, CONTENT_FULL)
 }
+
 watchEffect((onCleanup) => {
   if (isEnabled) {
     // 挂载组件时自动执行
     screenfull.on("change", handleFullscreenChange)
     // 卸载组件时自动执行
-    onCleanup(() => screenfull.off("change", handleFullscreenChange))
+    onCleanup(() => {
+      screenfull.off("change", handleFullscreenChange)
+    })
   }
 })
 // #endregion
@@ -54,11 +60,13 @@ watchEffect((onCleanup) => {
 const isContentLarge = ref<boolean>(false)
 const contentLargeTips = computed(() => (isContentLarge.value ? "内容区复原" : "内容区放大"))
 const contentLargeSvgName = computed(() => (isContentLarge.value ? "fullscreen-exit" : "fullscreen"))
+
 function handleContentLargeClick() {
   isContentLarge.value = !isContentLarge.value
   // 内容区放大时，将不需要的组件隐藏
   classList.toggle(CONTENT_LARGE, isContentLarge.value)
 }
+
 function handleContentFullClick() {
   // 取消内容区放大
   isContentLarge.value && handleContentLargeClick()

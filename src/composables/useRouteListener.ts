@@ -6,7 +6,9 @@ import { onBeforeUnmount } from "vue"
 type Callback = (route: RouteLocationNormalized) => void
 
 const emitter = mitt()
+
 const key = Symbol("ROUTE_CHANGE")
+
 let latestRoute: RouteLocationNormalized
 
 /** 设置最新的路由信息，触发路由变化事件 */
@@ -18,9 +20,9 @@ export function setRouteChange(to: RouteLocationNormalized) {
 }
 
 /**
- * 订阅路由变化 Composable
- * 1. 单独用 watch 监听路由会浪费渲染性能
- * 2. 可优先选择使用该发布订阅模式去进行分发管理
+ * @name 订阅路由变化 Composable
+ * @description 1. 单独用 watch 监听路由会浪费渲染性能
+ * @description 2. 可优先选择使用该发布订阅模式去进行分发管理
  */
 export function useRouteListener() {
   // 回调函数集合
@@ -43,9 +45,7 @@ export function useRouteListener() {
 
   // 组件销毁前移除监听器
   onBeforeUnmount(() => {
-    for (let i = 0; i < callbackList.length; i++) {
-      removeRouteListener(callbackList[i])
-    }
+    callbackList.forEach(removeRouteListener)
   })
 
   return { listenerRouteChange, removeRouteListener }

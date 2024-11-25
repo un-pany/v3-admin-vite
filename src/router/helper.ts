@@ -20,10 +20,8 @@ export function flatMultiLevelRoutes(routes: RouteRecordRaw[]) {
 /** 判断路由层级是否大于 2 */
 function isMultipleRoute(route: RouteRecordRaw) {
   const children = route.children
-  if (children?.length) {
-    // 只要有一个子路由的 children 长度大于 0，就说明是三级及其以上路由
-    return children.some(child => child.children?.length)
-  }
+  // 只要有一个子路由的 children 长度大于 0，就说明是三级及其以上路由
+  if (children?.length) return children.some(child => child.children?.length)
   return false
 }
 

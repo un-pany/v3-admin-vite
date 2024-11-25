@@ -2,14 +2,6 @@ import type { Ref } from "vue"
 import { debounce } from "lodash-es"
 import { onBeforeUnmount, ref } from "vue"
 
-interface Observer {
-  watermarkElMutationObserver?: MutationObserver
-  parentElMutationObserver?: MutationObserver
-  parentElResizeObserver?: ResizeObserver
-}
-
-type DefaultConfig = typeof DEFAULT_CONFIG
-
 /** 默认配置 */
 const DEFAULT_CONFIG = {
   /** 防御（默认开启，能防御水印被删除或隐藏，但可能会有性能损耗） */
@@ -30,13 +22,21 @@ const DEFAULT_CONFIG = {
   height: 200
 }
 
+type DefaultConfig = typeof DEFAULT_CONFIG
+
+interface Observer {
+  watermarkElMutationObserver?: MutationObserver
+  parentElMutationObserver?: MutationObserver
+  parentElResizeObserver?: ResizeObserver
+}
+
 /** body 元素 */
 const bodyEl = ref<HTMLElement>(document.body)
 
 /**
- * 水印 Composable
- * 1. 可以选择传入挂载水印的容器元素，默认是 body
- * 2. 做了水印防御，能有效防御别人打开控制台删除或隐藏水印
+ * @name 水印 Composable
+ * @description 1. 可以选择传入挂载水印的容器元素，默认是 body
+ * @description 2. 做了水印防御，能有效防御别人打开控制台删除或隐藏水印
  */
 export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   // 备份文本
@@ -226,7 +226,9 @@ export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   }
 
   // 在组件卸载前移除水印以及各种监听
-  onBeforeUnmount(() => clearWatermark())
+  onBeforeUnmount(() => {
+    clearWatermark()
+  })
 
   return { setWatermark, clearWatermark }
 }

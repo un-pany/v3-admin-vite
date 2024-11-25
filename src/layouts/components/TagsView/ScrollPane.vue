@@ -15,16 +15,20 @@ interface Props {
 const props = defineProps<Props>()
 
 const route = useRoute()
+
 const settingsStore = useSettingsStore()
+
 const { listenerRouteChange } = useRouteListener()
 
 /** 滚动条组件元素的引用 */
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+
 /** 滚动条内容元素的引用 */
 const scrollbarContentRef = ref<HTMLDivElement>()
 
 /** 当前滚动条距离左边的距离 */
 let currentScrollLeft = 0
+
 /** 每次滚动距离 */
 const translateDistance = 200
 

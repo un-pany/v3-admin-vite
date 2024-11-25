@@ -130,7 +130,7 @@ function handleEnter() {
   try {
     router.push({ name })
   } catch {
-    return ElMessage.error("该菜单有必填的动态参数，无法通过搜索进入")
+    return ElMessage.warning("该菜单有必填的动态参数，无法通过搜索进入")
   }
   handleClose()
 }

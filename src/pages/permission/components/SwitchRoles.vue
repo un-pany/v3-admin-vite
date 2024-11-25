@@ -3,7 +3,9 @@ import { useUserStore } from "@/pinia/stores/user"
 import { ref, watch } from "vue"
 
 const userStore = useUserStore()
+
 const switchRoles = ref(userStore.roles[0])
+
 watch(switchRoles, (value) => {
   userStore.changeRoles(value)
 })

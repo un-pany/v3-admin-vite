@@ -30,19 +30,20 @@ const formRules: FormRules<CreateOrUpdateTableRequestData> = {
   password: [{ required: true, trigger: "blur", message: "请输入密码" }]
 }
 function handleCreateOrUpdate() {
-  formRef.value?.validate((valid: boolean, fields) => {
-    if (!valid) return console.error("表单校验不通过", fields)
+  formRef.value?.validate((valid) => {
+    if (!valid) {
+      ElMessage.error("表单校验不通过")
+      return
+    }
     loading.value = true
     const api = formData.value.id === undefined ? createTableDataApi : updateTableDataApi
-    api(formData.value)
-      .then(() => {
-        ElMessage.success("操作成功")
-        dialogVisible.value = false
-        getTableData()
-      })
-      .finally(() => {
-        loading.value = false
-      })
+    api(formData.value).then(() => {
+      ElMessage.success("操作成功")
+      dialogVisible.value = false
+      getTableData()
+    }).finally(() => {
+      loading.value = false
+    })
   })
 }
 function resetForm() {
@@ -87,17 +88,14 @@ function getTableData() {
     size: paginationData.pageSize,
     username: searchData.username || undefined,
     phone: searchData.phone || undefined
+  }).then(({ data }) => {
+    paginationData.total = data.total
+    tableData.value = data.list
+  }).catch(() => {
+    tableData.value = []
+  }).finally(() => {
+    loading.value = false
   })
-    .then(({ data }) => {
-      paginationData.total = data.total
-      tableData.value = data.list
-    })
-    .catch(() => {
-      tableData.value = []
-    })
-    .finally(() => {
-      loading.value = false
-    })
 }
 function handleSearch() {
   paginationData.currentPage === 1 ? getTableData() : (paginationData.currentPage = 1)

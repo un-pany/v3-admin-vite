@@ -28,6 +28,7 @@ function filterDynamicRoutes(routes: RouteRecordRaw[], roles: string[]) {
 export const usePermissionStore = defineStore("permission", () => {
   // 可访问的路由
   const routes = ref<RouteRecordRaw[]>([])
+
   // 有访问权限的动态路由
   const addRoutes = ref<RouteRecordRaw[]>([])
 

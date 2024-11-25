@@ -3,6 +3,7 @@ import { watchEffect } from "vue"
 
 const GREY_MODE = "grey-mode"
 const COLOR_WEAKNESS = "color-weakness"
+
 const classList = document.documentElement.classList
 
 /** 初始化 */

@@ -8,10 +8,12 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
 /** 选中的菜单 */
 const modelValue = defineModel<RouteRecordName | undefined>({ required: true })
 
 const instance = getCurrentInstance()
+
 const scrollbarHeight = ref<number>(0)
 
 /** 菜单的样式 */
@@ -47,13 +49,19 @@ function getScrollTop(index: number) {
 }
 
 // 在组件挂载前添加窗口大小变化事件监听器
-onBeforeMount(() => window.addEventListener("resize", getScrollbarHeight))
+onBeforeMount(() => {
+  window.addEventListener("resize", getScrollbarHeight)
+})
 
 // 在组件挂载时立即计算滚动可视区高度
-onMounted(() => getScrollbarHeight())
+onMounted(() => {
+  getScrollbarHeight()
+})
 
 // 在组件卸载前移除窗口大小变化事件监听器
-onBeforeUnmount(() => window.removeEventListener("resize", getScrollbarHeight))
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", getScrollbarHeight)
+})
 
 defineExpose({ getScrollTop })
 </script>

@@ -88,8 +88,6 @@ function createInstance() {
         case 505:
           error.message = "HTTP 版本不受支持"
           break
-        default:
-          break
       }
       ElMessage.error(error.message)
       return Promise.reject(error)
