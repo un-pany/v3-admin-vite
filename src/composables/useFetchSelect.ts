@@ -37,13 +37,7 @@ export function useFetchSelect(props: FetchSelectProps) {
       })
   }
 
-  onMounted(() => {
-    loadData()
-  })
+  onMounted(() => loadData())
 
-  return {
-    loading,
-    options,
-    value
-  }
+  return { loading, options, value }
 }
