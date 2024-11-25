@@ -9,8 +9,7 @@
     "dev": "vite",
     "build:staging": "vue-tsc --noEmit && vite build --mode staging",
     "build": "vue-tsc --noEmit && vite build",
-    "preview:staging": "pnpm build:staging && vite preview",
-    "preview": "pnpm build && vite preview",
+    "preview": "vite preview",
     "lint": "eslint . --fix",
     "prepare": "husky",
     "test": "vitest"
