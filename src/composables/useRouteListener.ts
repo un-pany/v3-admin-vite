@@ -19,7 +19,7 @@ export function setRouteChange(to: RouteLocationNormalized) {
 
 /** 单独监听路由会浪费渲染性能，使用发布订阅模式去进行分发管理 */
 export function useRouteListener() {
-  /** 回调函数集合 */
+  // 回调函数集合
   const callbackList: Callback[] = []
 
   /** 监听路由变化（可以选择立即执行） */
