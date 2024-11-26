@@ -174,8 +174,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     name: "ComposableDemo",
     meta: {
       title: "组合式函数",
-      elIcon: "Menu",
-      alwaysShow: true
+      elIcon: "Menu"
     },
     children: [
       {
