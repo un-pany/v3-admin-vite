@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { LoginRequestData } from "@/http/login/types/login"
+import type { LoginRequestData } from "@/http/apis/login/type"
 import type { FormInstance, FormRules } from "element-plus"
 import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
-import { getLoginCodeApi } from "@/http/login"
+import { getLoginCodeApi } from "@/http/apis/login"
 import { useUserStore } from "@/pinia/stores/user"
 import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
