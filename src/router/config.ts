@@ -1,5 +1,13 @@
+import type { RouterHistory } from "vue-router"
+import { createWebHashHistory, createWebHistory } from "vue-router"
+
 /** 路由配置 */
-interface RouteSettings {
+interface RouterConfig {
+  /**
+   * @name 路由模式
+   * @description hash 模式和 html5 模式
+   */
+  history: RouterHistory
   /**
    * @name 是否开启动态路由功能
    * @description 1. 开启后需要后端配合，在查询用户详情接口返回当前用户可以用来判断并加载动态路由的字段（该项目用的是角色 roles 字段）
@@ -21,7 +29,12 @@ interface RouteSettings {
   thirdLevelRouteCache: boolean
 }
 
-export const routeSettings: RouteSettings = {
+const VITE_ROUTER_HISTORY = import.meta.env.VITE_ROUTER_HISTORY
+
+const VITE_PUBLIC_PATH = import.meta.env.VITE_PUBLIC_PATH
+
+export const routerConfig: RouterConfig = {
+  history: VITE_ROUTER_HISTORY === "hash" ? createWebHashHistory(VITE_PUBLIC_PATH) : createWebHistory(VITE_PUBLIC_PATH),
   dynamic: true,
   defaultRoles: ["DEFAULT_ROLE"],
   thirdLevelRouteCache: false

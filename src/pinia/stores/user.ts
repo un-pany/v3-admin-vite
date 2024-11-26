@@ -1,8 +1,8 @@
 import type { LoginRequestData } from "@/http/apis/login/type"
-import { routeSettings } from "@/config/route"
 import { getUserInfoApi, loginApi } from "@/http/apis/login"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
+import { routerConfig } from "@/router/config"
 import { getToken, removeToken, setToken } from "@/utils/cache/cookies"
 import { defineStore } from "pinia"
 import { ref } from "vue"
@@ -29,7 +29,7 @@ export const useUserStore = defineStore("user", () => {
     const { data } = await getUserInfoApi()
     username.value = data.username
     // 验证返回的 roles 是否为一个非空数组，否则塞入一个没有任何作用的默认角色，防止路由守卫逻辑进入无限循环
-    roles.value = data.roles?.length > 0 ? data.roles : routeSettings.defaultRoles
+    roles.value = data.roles?.length > 0 ? data.roles : routerConfig.defaultRoles
   }
 
   // 模拟角色变化

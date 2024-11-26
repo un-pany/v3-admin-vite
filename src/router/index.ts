@@ -1,7 +1,8 @@
 import type { RouteRecordRaw } from "vue-router"
-import { routeSettings } from "@/config/route"
+import { routerConfig } from "@/router/config"
+import { registerNavigationGuard } from "@/router/guard"
 import { createRouter } from "vue-router"
-import { flatMultiLevelRoutes, history } from "./helper"
+import { flatMultiLevelRoutes } from "./helper"
 
 const Layouts = () => import("@/layouts/index.vue")
 
@@ -290,9 +291,10 @@ export const dynamicRoutes: RouteRecordRaw[] = [
   }
 ]
 
+/** 路由实例 */
 export const router = createRouter({
-  history,
-  routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes
+  history: routerConfig.history,
+  routes: routerConfig.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes
 })
 
 /** 重置路由 */
@@ -310,3 +312,6 @@ export function resetRouter() {
     window.location.reload()
   }
 }
+
+// 注册路由导航守卫
+registerNavigationGuard(router)

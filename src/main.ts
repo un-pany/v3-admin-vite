@@ -3,7 +3,6 @@ import App from "@/App.vue"
 import { pinia } from "@/pinia"
 import { router } from "@/router"
 import { createApp } from "vue"
-import "@/router/permission"
 // load
 import { loadDirectives } from "@/directives"
 import { loadPlugins } from "@/plugins"
