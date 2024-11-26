@@ -1,9 +1,9 @@
 import { LayoutModeEnum } from "@/constants/app-key"
-import { getConfigLayout } from "@/utils/cache/local-storage"
+import { getLayoutsConfig } from "@/utils/cache/local-storage"
 
 /** 项目配置类型 */
-export interface LayoutSettings {
-  /** 是否显示 Settings Panel */
+export interface LayoutsConfig {
+  /** 是否显示设置按钮和面板 */
   showSettings: boolean
   /** 布局模式 */
   layoutMode: LayoutModeEnum
@@ -13,7 +13,7 @@ export interface LayoutSettings {
   showLogo: boolean
   /** 是否固定 Header */
   fixedHeader: boolean
-  /** 是否显示页脚 Footer */
+  /** 是否显示页脚 */
   showFooter: boolean
   /** 是否显示消息通知 */
   showNotify: boolean
@@ -34,7 +34,7 @@ export interface LayoutSettings {
 }
 
 /** 默认配置 */
-const defaultSettings: LayoutSettings = {
+const DEFAULT_CONFIG: LayoutsConfig = {
   layoutMode: LayoutModeEnum.Left,
   showSettings: true,
   showTagsView: true,
@@ -52,4 +52,4 @@ const defaultSettings: LayoutSettings = {
 }
 
 /** 项目配置 */
-export const layoutSettings: LayoutSettings = { ...defaultSettings, ...getConfigLayout() }
+export const layoutsConfig: LayoutsConfig = { ...DEFAULT_CONFIG, ...getLayoutsConfig() }

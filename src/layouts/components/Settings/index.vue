@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useLayoutMode } from "@/composables/useLayoutMode"
 import { useSettingsStore } from "@/pinia/stores/settings"
-import { removeConfigLayout } from "@/utils/cache/local-storage"
+import { removeLayoutsConfig } from "@/utils/cache/local-storage"
 import { Refresh } from "@element-plus/icons-vue"
 import { storeToRefs } from "pinia"
 import { watchEffect } from "vue"
@@ -49,8 +49,8 @@ watchEffect(() => {
 })
 
 /** 重置项目配置 */
-function resetConfigLayout() {
-  removeConfigLayout()
+function resetLayoutsConfig() {
+  removeLayoutsConfig()
   location.reload()
 }
 </script>
@@ -65,7 +65,7 @@ function resetConfigLayout() {
       <span class="setting-name">{{ settingName }}</span>
       <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
     </div>
-    <el-button type="danger" :icon="Refresh" @click="resetConfigLayout">
+    <el-button type="danger" :icon="Refresh" @click="resetLayoutsConfig">
       重 置
     </el-button>
   </div>

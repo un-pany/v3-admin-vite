@@ -1,20 +1,20 @@
 // 统一处理 localStorage
 
 import type { ThemeName } from "@/composables/useTheme"
-import type { LayoutSettings } from "@/config/layouts"
 import type { SidebarClosed, SidebarOpened } from "@/constants/app-key"
+import type { LayoutsConfig } from "@/layouts/config"
 import type { TagView } from "@/pinia/stores/tags-view"
 import { CacheKey } from "@/constants/cache-key"
 
 // #region 系统布局配置
-export function getConfigLayout() {
+export function getLayoutsConfig() {
   const json = localStorage.getItem(CacheKey.CONFIG_LAYOUT)
-  return json ? (JSON.parse(json) as LayoutSettings) : null
+  return json ? (JSON.parse(json) as LayoutsConfig) : null
 }
-export function setConfigLayout(settings: LayoutSettings) {
+export function setLayoutsConfig(settings: LayoutsConfig) {
   localStorage.setItem(CacheKey.CONFIG_LAYOUT, JSON.stringify(settings))
 }
-export function removeConfigLayout() {
+export function removeLayoutsConfig() {
   localStorage.removeItem(CacheKey.CONFIG_LAYOUT)
 }
 // #endregion
