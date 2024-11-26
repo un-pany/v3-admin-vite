@@ -8,7 +8,7 @@ import { getCssVar } from "@/utils/css"
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { Logo } from "../index"
-import SidebarItem from "./SidebarItem.vue"
+import Item from "./Item.vue"
 
 const v3SidebarMenuBgColor = getCssVar("--v3-sidebar-menu-bg-color")
 const v3SidebarMenuTextColor = getCssVar("--v3-sidebar-menu-text-color")
@@ -46,7 +46,7 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
         :collapse-transition="false"
         :mode="isTop && !isMobile ? 'horizontal' : 'vertical'"
       >
-        <SidebarItem
+        <Item
           v-for="noHiddenRoute in noHiddenRoutes"
           :key="noHiddenRoute.path"
           :item="noHiddenRoute"
