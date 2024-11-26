@@ -33,15 +33,14 @@ declare module "vue-router" {
      */
     affix?: boolean
     /**
-     * @description 当一个路由下面的 children 声明的路由大于 1 个时，自动会变成嵌套的模式，
-     * @description 只有一个时，会将那个子路由当做根路由显示在侧边栏，
-     * @description 若想不管路由下面的 children 声明的个数都显示你的根路由，
-     * @description 可以设置 alwaysShow: true，这样就会忽略之前定义的规则，一直显示根路由
+     * @description 当一个路由的 children 属性中声明的非隐藏子路由只有 1 个且该子路由为叶子节点时，会将这个子路由当做父路由显示在侧边栏
+     * @description 当大于 1 个时，会恢复成嵌套模式
+     * @description 如果想不管个数总是显示父路由，可以在父路由上设置 alwaysShow: true
      */
     alwaysShow?: boolean
     /**
      * @description 示例: activeMenu: "/xxx/xxx"，
-     * @description 当设置了该属性进入路由时，则会高亮 activeMenu 属性对应的侧边栏。
+     * @description 当设置了该属性进入路由时，则会高亮 activeMenu 属性对应的侧边栏
      * @description 该属性适合使用在有 hidden: true 属性的路由上
      */
     activeMenu?: string

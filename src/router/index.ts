@@ -229,7 +229,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: "PagePermission",
         meta: {
           title: "页面级",
-          roles: ["admin"] // 或者在子导航中设置角色
+          roles: ["admin"] // 或者在子路由中设置角色
         }
       },
       {
