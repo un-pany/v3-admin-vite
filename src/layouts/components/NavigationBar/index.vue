@@ -11,9 +11,7 @@ import { useUserStore } from "@/pinia/stores/user"
 import { UserFilled } from "@element-plus/icons-vue"
 import { storeToRefs } from "pinia"
 import { useRouter } from "vue-router"
-import Breadcrumb from "../Breadcrumb/index.vue"
-import Hamburger from "../Hamburger/index.vue"
-import Sidebar from "../Sidebar/index.vue"
+import { Breadcrumb, Hamburger, Sidebar } from "../index"
 
 const { isMobile } = useDevice()
 const { isTop } = useLayoutMode()

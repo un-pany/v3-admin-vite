@@ -7,7 +7,7 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { getCssVar } from "@/utils/css"
 import { computed } from "vue"
 import { useRoute } from "vue-router"
-import Logo from "../Logo/index.vue"
+import { Logo } from "../index"
 import SidebarItem from "./SidebarItem.vue"
 
 const v3SidebarMenuBgColor = getCssVar("--v3-sidebar-menu-bg-color")
