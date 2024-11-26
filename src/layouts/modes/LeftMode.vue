@@ -5,7 +5,7 @@ import { useAppStore } from "@/pinia/stores/app"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import { storeToRefs } from "pinia"
 import { computed } from "vue"
-import { AppMain, NavigationBar, Sidebar, TagsView } from "./components"
+import { AppMain, NavigationBar, Sidebar, TagsView } from "../components"
 
 const { isMobile } = useDevice()
 const { isLeft } = useLayoutMode()

@@ -8,9 +8,9 @@ import { storeToRefs } from "pinia"
 import { watchEffect } from "vue"
 import { RightPanel, Settings } from "./components"
 import { useResize } from "./composables/useResize"
-import LeftMode from "./LeftMode.vue"
-import LeftTopMode from "./LeftTopMode.vue"
-import TopMode from "./TopMode.vue"
+import LeftMode from "./modes/LeftMode.vue"
+import LeftTopMode from "./modes/LeftTopMode.vue"
+import TopMode from "./modes/TopMode.vue"
 
 // Layout 布局响应式
 useResize()

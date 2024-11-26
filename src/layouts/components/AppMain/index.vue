@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useSettingsStore } from "@/pinia/stores/settings"
 import { useTagsViewStore } from "@/pinia/stores/tags-view"
-import Footer from "./Footer/index.vue"
+import { Footer } from "../index"
 
 const tagsViewStore = useTagsViewStore()
 const settingsStore = useSettingsStore()
