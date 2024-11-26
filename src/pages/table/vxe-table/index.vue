@@ -40,14 +40,20 @@ const xGridOpt: VxeGridProps = reactive({
         field: "username",
         itemRender: {
           name: "$input",
-          props: { placeholder: "用户名", clearable: true }
+          props: {
+            placeholder: "用户名",
+            clearable: true
+          }
         }
       },
       {
         field: "phone",
         itemRender: {
           name: "$input",
-          props: { placeholder: "手机号", clearable: true }
+          props: {
+            placeholder: "手机号",
+            clearable: true
+          }
         }
       },
       {
@@ -55,10 +61,17 @@ const xGridOpt: VxeGridProps = reactive({
           name: "$buttons",
           children: [
             {
-              props: { type: "submit", content: "查询", status: "primary" }
+              props: {
+                type: "submit",
+                content: "查询",
+                status: "primary"
+              }
             },
             {
-              props: { type: "reset", content: "重置" }
+              props: {
+                type: "reset",
+                content: "重置"
+              }
             }
           ]
         }
@@ -69,7 +82,9 @@ const xGridOpt: VxeGridProps = reactive({
   toolbarConfig: {
     refresh: true,
     custom: true,
-    slots: { buttons: "toolbar-btns" }
+    slots: {
+      buttons: "toolbar-btns"
+    }
   },
   /** 自定义列配置项 */
   customConfig: {
@@ -114,7 +129,9 @@ const xGridOpt: VxeGridProps = reactive({
       width: "150px",
       fixed: "right",
       showOverflow: false,
-      slots: { default: "row-operate" }
+      slots: {
+        default: "row-operate"
+      }
     }
   ],
   /** 数据代理配置项（基于 Promise API） */
@@ -135,7 +152,7 @@ const xGridOpt: VxeGridProps = reactive({
         return new Promise((resolve) => {
           let total = 0
           let result: RowMeta[] = []
-          /** 加载数据 */
+          // 加载数据
           const callback = (res: TableResponseData) => {
             if (res?.data) {
               // 总数
@@ -147,8 +164,7 @@ const xGridOpt: VxeGridProps = reactive({
             // 返回值有格式要求，详情见 vxe-table 官方文档
             resolve({ total, result })
           }
-
-          /** 接口需要的参数 */
+          // 接口需要的参数
           const params = {
             username: form.username || undefined,
             phone: form.phone || undefined,
@@ -196,22 +212,45 @@ const xFormOpt: VxeFormProps = reactive({
     {
       field: "username",
       title: "用户名",
-      itemRender: { name: "$input", props: { placeholder: "请输入" } }
+      itemRender: {
+        name: "$input",
+        props: {
+          placeholder: "请输入"
+        }
+      }
     },
     {
       field: "password",
       title: "密码",
-      itemRender: { name: "$input", props: { placeholder: "请输入" } }
+      itemRender: {
+        name: "$input",
+        props: {
+          placeholder: "请输入"
+        }
+      }
     },
     {
       align: "right",
       itemRender: {
         name: "$buttons",
         children: [
-          { props: { content: "取消" }, events: { click: () => xModalDom.value?.close() } },
           {
-            props: { type: "submit", content: "确定", status: "primary" },
-            events: { click: () => crudStore.onSubmitForm() }
+            props: {
+              content: "取消"
+            },
+            events: {
+              click: () => xModalDom.value?.close()
+            }
+          },
+          {
+            props: {
+              type: "submit",
+              content: "确定",
+              status: "primary"
+            },
+            events: {
+              click: () => crudStore.onSubmitForm()
+            }
           }
         ]
       }
