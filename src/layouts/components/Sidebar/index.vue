@@ -43,7 +43,6 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
         :background-color="backgroundColor"
         :text-color="textColor"
         :active-text-color="activeTextColor"
-        :unique-opened="true"
         :collapse-transition="false"
         :mode="isTop && !isMobile ? 'horizontal' : 'vertical'"
       >
