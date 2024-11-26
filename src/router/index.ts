@@ -135,81 +135,35 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: "/menu",
+    path: "/level1",
     component: Layouts,
-    redirect: "/menu/menu1",
-    name: "Menu",
+    redirect: "/level1/level2",
+    name: "Level1",
     meta: {
-      title: "多级路由",
-      svgIcon: "menu"
+      title: "一级路由",
+      svgIcon: "level"
     },
     children: [
       {
-        path: "menu1",
-        component: () => import("@/pages/menu/menu1/index.vue"),
-        redirect: "/menu/menu1/menu1-1",
-        name: "Menu1",
+        path: "level2",
+        component: () => import("@/pages/level1/level2/index.vue"),
+        redirect: "/level1/level2/level3",
+        name: "Level2",
         meta: {
-          title: "menu1"
+          title: "二级路由",
+          alwaysShow: true
         },
         children: [
           {
-            path: "menu1-1",
-            component: () => import("@/pages/menu/menu1/menu1-1/index.vue"),
-            name: "Menu1-1",
+            path: "level3",
+            component: () => import("@/pages/level1/level2/level3/index.vue"),
+            name: "Level3",
             meta: {
-              title: "menu1-1",
-              keepAlive: true
-            }
-          },
-          {
-            path: "menu1-2",
-            component: () => import("@/pages/menu/menu1/menu1-2/index.vue"),
-            redirect: "/menu/menu1/menu1-2/menu1-2-1",
-            name: "Menu1-2",
-            meta: {
-              title: "menu1-2"
-            },
-            children: [
-              {
-                path: "menu1-2-1",
-                component: () => import("@/pages/menu/menu1/menu1-2/menu1-2-1/index.vue"),
-                name: "Menu1-2-1",
-                meta: {
-                  title: "menu1-2-1",
-                  keepAlive: true
-                }
-              },
-              {
-                path: "menu1-2-2",
-                component: () => import("@/pages/menu/menu1/menu1-2/menu1-2-2/index.vue"),
-                name: "Menu1-2-2",
-                meta: {
-                  title: "menu1-2-2",
-                  keepAlive: true
-                }
-              }
-            ]
-          },
-          {
-            path: "menu1-3",
-            component: () => import("@/pages/menu/menu1/menu1-3/index.vue"),
-            name: "Menu1-3",
-            meta: {
-              title: "menu1-3",
+              title: "三级路由",
               keepAlive: true
             }
           }
         ]
-      },
-      {
-        path: "menu2",
-        component: () => import("@/pages/menu/menu2/index.vue"),
-        name: "Menu2",
-        meta: {
-          title: "menu2",
-          keepAlive: true
-        }
       }
     ]
   },

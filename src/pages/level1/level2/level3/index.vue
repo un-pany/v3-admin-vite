@@ -2,7 +2,7 @@
 import { ref } from "vue"
 
 defineOptions({
-  name: "Menu11"
+  name: "Level3"
 })
 
 const text = ref("")
@@ -10,8 +10,8 @@ const text = ref("")
 
 <template>
   <div class="app-container">
-    <el-card header="三级路由缓存 - menu1-1">
-      <el-input v-model="text" />
+    <el-card header="三级路由">
+      <el-input v-model="text" placeholder="输入任意字符测试缓存" />
     </el-card>
   </div>
 </template>
