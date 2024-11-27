@@ -1,9 +1,8 @@
-import type { LoginRequestData } from "@/http/apis/login/type"
-import { getUserInfoApi, loginApi } from "@/http/apis/login"
+import { getUserInfoApi } from "@/http/apis/user"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
 import { routerConfig } from "@/router/config"
-import { getToken, removeToken, setToken } from "@@/utils/cache/cookies"
+import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { defineStore } from "pinia"
 import { ref } from "vue"
 import { useSettingsStore } from "./settings"
@@ -17,11 +16,10 @@ export const useUserStore = defineStore("user", () => {
   const tagsViewStore = useTagsViewStore()
   const settingsStore = useSettingsStore()
 
-  // 登录
-  const login = async ({ username, password, code }: LoginRequestData) => {
-    const { data } = await loginApi({ username, password, code })
-    setToken(data.token)
-    token.value = data.token
+  // 设置 Token
+  const setToken = async (value: string) => {
+    _setToken(value)
+    token.value = value
   }
 
   // 获取用户详情
@@ -36,7 +34,7 @@ export const useUserStore = defineStore("user", () => {
   const changeRoles = async (role: string) => {
     const newToken = `token-${role}`
     token.value = newToken
-    setToken(newToken)
+    _setToken(newToken)
     // 用刷新页面代替重新登录
     window.location.reload()
   }
@@ -65,7 +63,7 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  return { token, roles, username, login, getInfo, changeRoles, logout, resetToken }
+  return { token, roles, username, setToken, getInfo, changeRoles, logout, resetToken }
 })
 
 /**

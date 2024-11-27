@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-import type { LoginRequestData } from "@/http/apis/login/type"
 import type { FormInstance, FormRules } from "element-plus"
-import { getLoginCodeApi } from "@/http/apis/login"
+import type { LoginRequestData } from "./apis/type"
 import { useUserStore } from "@/pinia/stores/user"
 import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
+import { getLoginCodeApi, loginApi } from "./apis"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
 
 const router = useRouter()
+
+const userStore = useUserStore()
 
 const { isFocus, handleBlur, handleFocus } = useFocus()
 
@@ -53,7 +55,8 @@ function handleLogin() {
       return
     }
     loading.value = true
-    useUserStore().login(loginFormData).then(() => {
+    loginApi(loginFormData).then(({ data }) => {
+      userStore.setToken(data.token)
       router.push({ path: "/" })
     }).catch(() => {
       createCode()

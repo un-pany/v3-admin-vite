@@ -17,11 +17,3 @@ export function loginApi(data: Login.LoginRequestData) {
     data
   })
 }
-
-/** 获取用户详情 */
-export function getUserInfoApi() {
-  return request<Login.UserInfoResponseData>({
-    url: "users/info",
-    method: "get"
-  })
-}
