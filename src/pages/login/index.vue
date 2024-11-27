@@ -125,6 +125,8 @@ createCode()
               :prefix-icon="Key"
               maxlength="7"
               size="large"
+              @blur="handleBlur"
+              @focus="handleFocus"
             >
               <template #append>
                 <el-image :src="codeUrl" draggable="false" @click="createCode">
