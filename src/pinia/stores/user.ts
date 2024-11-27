@@ -1,7 +1,7 @@
-import { getUserInfoApi } from "@/http/apis/user"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
 import { routerConfig } from "@/router/config"
+import { getUserInfoApi } from "@@/apis/user"
 import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { defineStore } from "pinia"
 import { ref } from "vue"

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { CreateOrUpdateTableRequestData, TableData } from "@/http/apis/table/type"
+import type { CreateOrUpdateTableRequestData, TableData } from "@@/apis/table/type"
 import type { FormInstance, FormRules } from "element-plus"
-import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@/http/apis/table"
+import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@@/apis/table"
 import { usePagination } from "@@/composables/usePagination"
 import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
 import { ElMessage, ElMessageBox } from "element-plus"
