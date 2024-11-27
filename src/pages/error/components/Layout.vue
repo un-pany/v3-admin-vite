@@ -1,6 +1,6 @@
 <template>
-  <div class="error-page">
-    <div class="error-page-svg">
+  <div class="error">
+    <div class="error-svg">
       <slot />
     </div>
     <router-link to="/">
@@ -12,7 +12,7 @@
 </template>
 
 <style lang="scss" scoped>
-.error-page {
+.error {
   height: 100%;
   display: flex;
   flex-direction: column;
