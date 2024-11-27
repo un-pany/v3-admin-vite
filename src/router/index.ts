@@ -69,7 +69,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     redirect: "/demo/unocss",
     name: "Demo",
     meta: {
-      title: "示例",
+      title: "示例集合",
       elIcon: "DataBoard"
     },
     children: [
@@ -159,7 +159,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/link",
     meta: {
-      title: "外链",
+      title: "文档链接",
       elIcon: "link"
     },
     children: [
@@ -195,7 +195,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     redirect: "/permission/page",
     name: "Permission",
     meta: {
-      title: "权限",
+      title: "权限演示",
       elIcon: "lock",
       roles: ["admin", "editor"], // 可以在根路由中设置角色
       alwaysShow: true
