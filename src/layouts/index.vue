@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { useSettingsStore } from "@/pinia/stores/settings"
-import { getCssVar, setCssVar } from "@/utils/css"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { useWatermark } from "@@/composables/useWatermark"
+import { getCssVar, setCssVar } from "@@/utils/css"
 import { storeToRefs } from "pinia"
 import { watchEffect } from "vue"
 import { RightPanel, Settings } from "./components"

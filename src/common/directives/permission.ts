@@ -1,6 +1,6 @@
 import type { Directive } from "vue"
 import { useUserStore } from "@/pinia/stores/user"
-import { isArray } from "@/utils/validate"
+import { isArray } from "@@/utils/validate"
 
 /**
  * @name 权限指令

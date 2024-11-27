@@ -1,6 +1,6 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios"
 import { useUserStore } from "@/pinia/stores/user"
-import { getToken } from "@/utils/cache/cookies"
+import { getToken } from "@@/utils/cache/cookies"
 import axios from "axios"
 import { ElMessage } from "element-plus"
 import { get, merge } from "lodash-es"
