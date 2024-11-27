@@ -8,7 +8,7 @@ const Layouts = () => import("@/layouts/index.vue")
 
 /**
  * @name 常驻路由
- * @description 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置 Name 属性
+ * @description 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置唯一的 Name 属性
  */
 export const constantRoutes: RouteRecordRaw[] = [
   {
@@ -64,18 +64,95 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: "/unocss",
+    path: "/demo",
     component: Layouts,
-    redirect: "/unocss/index",
+    redirect: "/demo/unocss",
+    name: "Demo",
+    meta: {
+      title: "示例",
+      elIcon: "DataBoard"
+    },
     children: [
       {
-        path: "index",
+        path: "unocss",
         component: () => import("@/pages/demo/unocss/index.vue"),
         name: "UnoCSS",
         meta: {
-          title: "UnoCSS",
-          svgIcon: "unocss"
+          title: "UnoCSS"
         }
+      },
+      {
+        path: "element-plus",
+        component: () => import("@/pages/demo/element-plus/index.vue"),
+        name: "ElementPlus",
+        meta: {
+          title: "Element Plus",
+          keepAlive: true
+        }
+      },
+      {
+        path: "vxe-table",
+        component: () => import("@/pages/demo/vxe-table/index.vue"),
+        name: "VxeTable",
+        meta: {
+          title: "Vxe Table",
+          keepAlive: true
+        }
+      },
+      {
+        path: "level2",
+        component: () => import("@/pages/demo/level2/index.vue"),
+        redirect: "/demo/level2/level3",
+        name: "Level2",
+        meta: {
+          title: "二级路由",
+          alwaysShow: true
+        },
+        children: [
+          {
+            path: "level3",
+            component: () => import("@/pages/demo/level2/level3/index.vue"),
+            name: "Level3",
+            meta: {
+              title: "三级路由",
+              keepAlive: true
+            }
+          }
+        ]
+      },
+      {
+        path: "composable-demo",
+        redirect: "/demo/composable-demo/use-fetch-select",
+        name: "ComposableDemo",
+        meta: {
+          title: "组合式函数"
+        },
+        children: [
+          {
+            path: "use-fetch-select",
+            component: () => import("@/pages/demo/composable-demo/use-fetch-select.vue"),
+            name: "UseFetchSelect",
+            meta: {
+              title: "useFetchSelect"
+            }
+          },
+          {
+            path: "use-fullscreen-loading",
+            component: () => import("@/pages/demo/composable-demo/use-fullscreen-loading.vue"),
+            name: "UseFullscreenLoading",
+            meta: {
+              title: "useFullscreenLoading"
+            }
+          },
+          {
+            path: "use-watermark",
+            component: () => import("@/pages/demo/composable-demo/use-watermark.vue"),
+            name: "UseWatermark",
+            meta: {
+              title: "useWatermark"
+            }
+          }
+        ]
       }
     ]
   },
@@ -83,7 +160,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/link",
     meta: {
       title: "外链",
-      svgIcon: "link"
+      elIcon: "link"
     },
     children: [
       {
@@ -103,112 +180,13 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       }
     ]
-  },
-  {
-    path: "/table",
-    component: Layouts,
-    redirect: "/table/element-plus",
-    name: "Table",
-    meta: {
-      title: "表格",
-      elIcon: "Grid"
-    },
-    children: [
-      {
-        path: "element-plus",
-        component: () => import("@/pages/demo/table/element-plus/index.vue"),
-        name: "ElementPlus",
-        meta: {
-          title: "Element Plus",
-          keepAlive: true
-        }
-      },
-      {
-        path: "vxe-table",
-        component: () => import("@/pages/demo/table/vxe-table/index.vue"),
-        name: "VxeTable",
-        meta: {
-          title: "Vxe Table",
-          keepAlive: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/level1",
-    component: Layouts,
-    redirect: "/level1/level2",
-    name: "Level1",
-    meta: {
-      title: "一级路由",
-      svgIcon: "level"
-    },
-    children: [
-      {
-        path: "level2",
-        component: () => import("@/pages/demo/level1/level2/index.vue"),
-        redirect: "/level1/level2/level3",
-        name: "Level2",
-        meta: {
-          title: "二级路由",
-          alwaysShow: true
-        },
-        children: [
-          {
-            path: "level3",
-            component: () => import("@/pages/demo/level1/level2/level3/index.vue"),
-            name: "Level3",
-            meta: {
-              title: "三级路由",
-              keepAlive: true
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    path: "/composable-demo",
-    component: Layouts,
-    redirect: "/composable-demo/use-fetch-select",
-    name: "ComposableDemo",
-    meta: {
-      title: "组合式函数",
-      elIcon: "Menu"
-    },
-    children: [
-      {
-        path: "use-fetch-select",
-        component: () => import("@/pages/demo/composable-demo/use-fetch-select.vue"),
-        name: "UseFetchSelect",
-        meta: {
-          title: "useFetchSelect"
-        }
-      },
-      {
-        path: "use-fullscreen-loading",
-        component: () => import("@/pages/demo/composable-demo/use-fullscreen-loading.vue"),
-        name: "UseFullscreenLoading",
-        meta: {
-          title: "useFullscreenLoading"
-        }
-      },
-      {
-        path: "use-watermark",
-        component: () => import("@/pages/demo/composable-demo/use-watermark.vue"),
-        name: "UseWatermark",
-        meta: {
-          title: "useWatermark"
-        }
-      }
-    ]
   }
 ]
 
 /**
  * @name 动态路由
  * @description 用来放置有权限 (Roles 属性) 的路由
- * @description 必须带有 Name 属性
+ * @description 必须带有唯一的 Name 属性
  */
 export const dynamicRoutes: RouteRecordRaw[] = [
   {
@@ -218,7 +196,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     name: "Permission",
     meta: {
       title: "权限",
-      svgIcon: "lock",
+      elIcon: "lock",
       roles: ["admin", "editor"], // 可以在根路由中设置角色
       alwaysShow: true
     },
