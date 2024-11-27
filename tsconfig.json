@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
-    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算
+    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算，与 vite.config 中 alias 配置同步
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/common/*"]
