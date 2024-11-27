@@ -1,5 +1,5 @@
-import { LayoutModeEnum } from "@/constants/app-key"
 import { getLayoutsConfig } from "@/utils/cache/local-storage"
+import { LayoutModeEnum } from "@@/constants/app-key"
 
 /** 项目配置类型 */
 export interface LayoutsConfig {
