@@ -128,6 +128,7 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
   :deep(.el-sub-menu.is-active) {
     .el-sub-menu__title {
       @extend %tip-line;
+      background-color: v-bind(sidebarMenuHoverBgColor);
     }
   }
 }
