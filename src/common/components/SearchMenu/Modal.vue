@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { ElScrollbar } from "element-plus"
 import type { RouteRecordName, RouteRecordRaw } from "vue-router"
-import { useDevice } from "@/composables/useDevice"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { isExternal } from "@/utils/validate"
+import { useDevice } from "@@/composables/useDevice"
 import { ElMessage } from "element-plus"
 import { cloneDeep, debounce } from "lodash-es"
 import { computed, ref, shallowRef } from "vue"

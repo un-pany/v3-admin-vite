@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useDevice } from "@/composables/useDevice"
-import { useLayoutMode } from "@/composables/useLayoutMode"
 import { useAppStore } from "@/pinia/stores/app"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import { getCssVar } from "@/utils/css"
+import { useDevice } from "@@/composables/useDevice"
+import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { Logo } from "../index"

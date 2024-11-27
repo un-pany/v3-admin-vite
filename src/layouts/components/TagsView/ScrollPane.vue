@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { ElScrollbar } from "element-plus"
 import type { RouterLink } from "vue-router"
-import { useRouteListener } from "@/composables/useRouteListener"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import Screenfull from "@@/components/Screenfull/index.vue"
+import { useRouteListener } from "@@/composables/useRouteListener"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
 import { nextTick, ref } from "vue"
 import { useRoute } from "vue-router"

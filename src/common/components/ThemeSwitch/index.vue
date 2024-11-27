@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { ThemeName } from "@/composables/useTheme"
-import { useTheme } from "@/composables/useTheme"
+import type { ThemeName } from "@@/composables/useTheme"
+import { useTheme } from "@@/composables/useTheme"
 import { MagicStick } from "@element-plus/icons-vue"
 
 const { themeList, activeThemeName, setTheme } = useTheme()

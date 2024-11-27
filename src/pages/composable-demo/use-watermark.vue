@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useWatermark } from "@/composables/useWatermark"
+import { useWatermark } from "@@/composables/useWatermark"
 import { ref } from "vue"
 
 const localRef = ref<HTMLElement | null>(null)

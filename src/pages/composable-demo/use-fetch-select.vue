@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useFetchSelect } from "@/composables/useFetchSelect"
 import { getSelectDataApi } from "@/http/apis/composable-demo/use-fetch-select"
+import { useFetchSelect } from "@@/composables/useFetchSelect"
 
 const { loading, options, value } = useFetchSelect({
   api: getSelectDataApi

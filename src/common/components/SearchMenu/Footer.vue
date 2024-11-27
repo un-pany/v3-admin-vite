@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useDevice } from "@/composables/useDevice"
+import { useDevice } from "@@/composables/useDevice"
 
 interface Props {
   total: number
