@@ -1,11 +1,11 @@
 // core
 import App from "@/App.vue"
 import { pinia } from "@/pinia"
-import { loadPlugins } from "@/plugins"
 import { router } from "@/router"
 import { createApp } from "vue"
 // load
 import { loadDirectives } from "@@/directives"
+import { loadPlugins } from "@@/plugins"
 // css
 import "uno.css"
 import "normalize.css"
