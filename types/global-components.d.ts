@@ -1,4 +1,4 @@
-import type SvgIcon from "@/components/SvgIcon/index.vue"
+import type SvgIcon from "@@/components/SvgIcon/index.vue"
 
 export {}
 
