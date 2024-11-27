@@ -18,7 +18,9 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         // @ 符号指向 src 目录
-        "@": resolve(__dirname, "src")
+        "@": resolve(__dirname, "src"),
+        // @@ 符号指向 src/common 目录
+        "@@": resolve(__dirname, "src/common")
       }
     },
     // 开发环境服务器配置
@@ -91,7 +93,7 @@ export default defineConfig(({ mode }) => {
       svgLoader({ defaultImport: "url" }),
       // 生成 SVG 雪碧图
       createSvgIconsPlugin({
-        iconDirs: [resolve(root, "src/assets/icons")],
+        iconDirs: [resolve(root, "src/common/assets/icons")],
         symbolId: "icon-[dir]-[name]",
         // 自定义 SVGO 配置
         svgoOptions: {

@@ -17,7 +17,10 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算
-    "paths": { "@/*": ["src/*"] },
+    "paths": {
+      "@/*": ["src/*"],
+      "@@/*": ["src/common/*"]
+    },
     "resolveJsonModule": true,
     "types": ["vite/client", "element-plus/global"],
     // 允许 JS
@@ -32,12 +35,7 @@
     "skipLibCheck": true
   },
   // 需要被编译的文件列表
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.vue",
-    "**/*.d.ts"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "**/*.d.ts"],
   // 从编译中排除的文件列表
   "exclude": ["node_modules", "dist"]
 }

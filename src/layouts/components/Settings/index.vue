@@ -72,7 +72,7 @@ function resetLayoutsConfig() {
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/mixins.scss";
+@import "@@/assets/styles/mixins.scss";
 
 .setting-container {
   padding: 20px;
