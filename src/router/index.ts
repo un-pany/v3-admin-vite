@@ -70,7 +70,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "index",
-        component: () => import("@/pages/unocss/index.vue"),
+        component: () => import("@/pages/demo/unocss/index.vue"),
         name: "UnoCSS",
         meta: {
           title: "UnoCSS",
@@ -116,7 +116,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "element-plus",
-        component: () => import("@/pages/table/element-plus/index.vue"),
+        component: () => import("@/pages/demo/table/element-plus/index.vue"),
         name: "ElementPlus",
         meta: {
           title: "Element Plus",
@@ -125,7 +125,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "vxe-table",
-        component: () => import("@/pages/table/vxe-table/index.vue"),
+        component: () => import("@/pages/demo/table/vxe-table/index.vue"),
         name: "VxeTable",
         meta: {
           title: "Vxe Table",
@@ -146,7 +146,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "level2",
-        component: () => import("@/pages/level1/level2/index.vue"),
+        component: () => import("@/pages/demo/level1/level2/index.vue"),
         redirect: "/level1/level2/level3",
         name: "Level2",
         meta: {
@@ -156,7 +156,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         children: [
           {
             path: "level3",
-            component: () => import("@/pages/level1/level2/level3/index.vue"),
+            component: () => import("@/pages/demo/level1/level2/level3/index.vue"),
             name: "Level3",
             meta: {
               title: "三级路由",
@@ -179,7 +179,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "use-fetch-select",
-        component: () => import("@/pages/composable-demo/use-fetch-select.vue"),
+        component: () => import("@/pages/demo/composable-demo/use-fetch-select.vue"),
         name: "UseFetchSelect",
         meta: {
           title: "useFetchSelect"
@@ -187,7 +187,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "use-fullscreen-loading",
-        component: () => import("@/pages/composable-demo/use-fullscreen-loading.vue"),
+        component: () => import("@/pages/demo/composable-demo/use-fullscreen-loading.vue"),
         name: "UseFullscreenLoading",
         meta: {
           title: "useFullscreenLoading"
@@ -195,7 +195,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       },
       {
         path: "use-watermark",
-        component: () => import("@/pages/composable-demo/use-watermark.vue"),
+        component: () => import("@/pages/demo/composable-demo/use-watermark.vue"),
         name: "UseWatermark",
         meta: {
           title: "useWatermark"
@@ -225,7 +225,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: "page",
-        component: () => import("@/pages/permission/page.vue"),
+        component: () => import("@/pages/demo/permission/page.vue"),
         name: "PagePermission",
         meta: {
           title: "页面级",
@@ -234,7 +234,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
       },
       {
         path: "directive",
-        component: () => import("@/pages/permission/directive.vue"),
+        component: () => import("@/pages/demo/permission/directive.vue"),
         name: "DirectivePermission",
         meta: {
           title: "按钮级" // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
