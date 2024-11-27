@@ -20,6 +20,6 @@ const permission: Directive = {
   }
 }
 
-export function loadPermissionDirective(app: App) {
+export function installPermissionDirective(app: App) {
   app.directive("permission", permission)
 }

@@ -1,14 +1,14 @@
 import type { App } from "vue"
-import { loadElementPlus } from "./element-plus"
-import { loadElementPlusIcons } from "./element-plus-icons"
-import { loadPermissionDirective } from "./permission-directive"
-import { loadSvgIcons } from "./svg-icons"
-import { loadVxeTable } from "./vxe-table"
+import { installElementPlus } from "./element-plus"
+import { installElementPlusIcons } from "./element-plus-icons"
+import { installPermissionDirective } from "./permission-directive"
+import { installSvgIcons } from "./svg-icons"
+import { installVxeTable } from "./vxe-table"
 
-export function loadPlugins(app: App) {
-  loadElementPlus(app)
-  loadElementPlusIcons(app)
-  loadPermissionDirective(app)
-  loadSvgIcons(app)
-  loadVxeTable(app)
+export function installPlugins(app: App) {
+  installElementPlus(app)
+  installElementPlusIcons(app)
+  installPermissionDirective(app)
+  installSvgIcons(app)
+  installVxeTable(app)
 }
