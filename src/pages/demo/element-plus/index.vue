@@ -4,7 +4,6 @@ import type { FormInstance, FormRules } from "element-plus"
 import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@@/apis/table"
 import { usePagination } from "@@/composables/usePagination"
 import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
-import { ElMessage, ElMessageBox } from "element-plus"
 import { cloneDeep } from "lodash-es"
 import { reactive, ref, watch } from "vue"
 

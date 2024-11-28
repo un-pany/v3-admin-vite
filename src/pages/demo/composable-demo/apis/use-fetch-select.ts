@@ -1,5 +1,3 @@
-import { ElMessage } from "element-plus"
-
 /** 模拟接口响应数据 */
 const SELECT_RESPONSE_DATA = {
   code: 0,

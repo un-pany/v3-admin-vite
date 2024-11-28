@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useFullscreenLoading } from "@@/composables/useFullscreenLoading"
-import { ElMessage } from "element-plus"
 import { getErrorApi, getSuccessApi } from "./apis/use-fullscreen-loading"
 
 const svg = `

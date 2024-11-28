@@ -1,9 +1,11 @@
+/* eslint-disable perfectionist/sort-imports */
+
 // core
-import App from "@/App.vue"
-import { pinia } from "@/pinia"
-import { installPlugins } from "@/plugins"
-import { router } from "@/router"
 import { createApp } from "vue"
+import { pinia } from "@/pinia"
+import { router } from "@/router"
+import { installPlugins } from "@/plugins"
+import App from "@/App.vue"
 // css
 import "uno.css"
 import "normalize.css"

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { NotifyItem } from "./type"
 import { Bell } from "@element-plus/icons-vue"
-import { ElMessage } from "element-plus"
 import { computed, ref } from "vue"
 import { messageData, notifyData, todoData } from "./data"
 import List from "./List.vue"

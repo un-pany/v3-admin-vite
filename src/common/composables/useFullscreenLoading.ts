@@ -1,5 +1,4 @@
 import type { LoadingOptions } from "element-plus"
-import { ElLoading } from "element-plus"
 
 interface UseFullscreenLoading {
   <T extends (...args: Parameters<T>) => ReturnType<T>>(
