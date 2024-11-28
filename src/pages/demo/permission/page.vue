@@ -5,14 +5,14 @@ import SwitchRoles from "./components/SwitchRoles.vue"
 <template>
   <div class="app-container">
     <SwitchRoles />
-    <el-tag type="warning" size="large">
-      当前页面只有 admin 角色可见，切换角色后将不能进入该页面
-    </el-tag>
+    <el-card shadow="never" class="content">
+      当前页面只有「Admin」角色可见，切换角色后将不能进入该页面
+    </el-card>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.el-tag {
-  margin-top: 15px;
+.content {
+  margin-top: 20px;
 }
 </style>

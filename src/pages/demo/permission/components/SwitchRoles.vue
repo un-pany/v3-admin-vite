@@ -12,16 +12,21 @@ watch(switchRoles, (value) => {
 </script>
 
 <template>
-  <div>
-    <div>你的角色：{{ userStore.roles }}</div>
+  <el-card shadow="never">
+    <div>
+      <span>你的角色：</span>
+      <el-tag v-for="(role, index) in userStore.roles" :key="index" effect="plain" size="large">
+        {{ role }}
+      </el-tag>
+    </div>
     <div class="switch-roles">
-      <span>切换用户（模拟重新登录）：</span>
+      <span>切换用户：</span>
       <el-radio-group v-model="switchRoles">
         <el-radio-button label="editor" value="editor" />
         <el-radio-button label="admin" value="admin" />
       </el-radio-group>
     </div>
-  </div>
+  </el-card>
 </template>
 
 <style lang="scss" scoped>
