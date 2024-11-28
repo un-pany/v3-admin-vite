@@ -36,7 +36,7 @@ export const useUserStore = defineStore("user", () => {
     token.value = newToken
     _setToken(newToken)
     // 用刷新页面代替重新登录
-    window.location.reload()
+    location.reload()
   }
 
   // 登出

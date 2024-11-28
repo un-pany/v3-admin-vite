@@ -197,7 +197,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     meta: {
       title: "权限演示",
       elIcon: "lock",
-      roles: ["admin", "editor"], // 可以在根路由中设置角色
+      // 可以在根路由中设置角色
+      roles: ["admin", "editor"],
       alwaysShow: true
     },
     children: [
@@ -207,7 +208,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: "PagePermission",
         meta: {
           title: "页面级",
-          roles: ["admin"] // 或者在子路由中设置角色
+          // 或者在子路由中设置角色
+          roles: ["admin"]
         }
       },
       {
@@ -215,7 +217,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/demo/permission/directive.vue"),
         name: "DirectivePermission",
         meta: {
-          title: "按钮级" // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+          title: "按钮级",
+          // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+          roles: undefined
         }
       }
     ]
@@ -230,8 +234,8 @@ export const router = createRouter({
 
 /** 重置路由 */
 export function resetRouter() {
-  // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
   try {
+    // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
     router.getRoutes().forEach((route) => {
       const { name, meta } = route
       if (name && meta.roles?.length) {
@@ -240,7 +244,7 @@ export function resetRouter() {
     })
   } catch {
     // 强制刷新浏览器也行，只是交互体验不是很好
-    window.location.reload()
+    location.reload()
   }
 }
 
