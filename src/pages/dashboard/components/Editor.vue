@@ -5,7 +5,7 @@ import SvgEditor from "../images/editor.svg?component" // vite-svg-loader 插件
 <template>
   <div class="app-container center">
     <SvgEditor class="svg" />
-    <p>欢迎来到 Editor 角色专属首页</p>
+    <p>欢迎来到「Editor」角色专属首页</p>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ import SvgEditor from "../images/editor.svg?component" // vite-svg-loader 插件
   align-items: center;
   .svg {
     width: 600px;
+    max-width: 100%;
   }
 }
 </style>
