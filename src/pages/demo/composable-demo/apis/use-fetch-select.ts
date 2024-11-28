@@ -1,3 +1,5 @@
+import { ElMessage } from "element-plus"
+
 /** 模拟接口响应数据 */
 const SELECT_RESPONSE_DATA = {
   code: 0,
@@ -19,17 +21,20 @@ const SELECT_RESPONSE_DATA = {
   message: "获取 Select 数据成功"
 }
 
+const ERROR_MESSAGE = "接口发生错误"
+
 /** 模拟接口 */
 export function getSelectDataApi() {
   return new Promise<typeof SELECT_RESPONSE_DATA>((resolve, reject) => {
     // 模拟接口响应时间 2s
     setTimeout(() => {
-      // 模拟接口调用成功
       if (Math.random() < 0.8) {
+        // 模拟接口调用成功
         resolve(SELECT_RESPONSE_DATA)
       } else {
         // 模拟接口调用出错
-        reject(new Error("接口发生错误"))
+        reject(new Error(ERROR_MESSAGE))
+        ElMessage.error(ERROR_MESSAGE)
       }
     }, 2000)
   })
