@@ -32,7 +32,7 @@ const switchSettings = {
   "显示标签栏": showTagsView,
   "显示 Logo": showLogo,
   "固定 Header": fixedHeader,
-  "显示页脚 Footer": showFooter,
+  "显示页脚": showFooter,
   "显示消息通知": showNotify,
   "显示切换主题按钮": showThemeSwitch,
   "显示全屏按钮": showScreenfull,
