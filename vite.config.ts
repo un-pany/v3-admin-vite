@@ -4,8 +4,8 @@ import { resolve } from "node:path"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import UnoCSS from "unocss/vite"
+import UnpluginSvgComponent from "unplugin-svg-component/vite"
 import { defineConfig, loadEnv } from "vite"
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import svgLoader from "vite-svg-loader"
 
 // Configuring Vite: https://cn.vite.dev/config
@@ -92,9 +92,26 @@ export default defineConfig(({ mode }) => {
       // 将 SVG 文件转化为 Vue 组件
       svgLoader({ defaultImport: "url" }),
       // 生成 SVG 雪碧图
-      createSvgIconsPlugin({
-        iconDirs: [resolve(root, "src/common/assets/icons")],
-        symbolId: "icon-[dir]-[name]"
+      // github repo: https://github.com/Jevon617/unplugin-svg-component
+      UnpluginSvgComponent({
+        /** 图标所在的目录 */
+        iconDir: [
+          resolve(root, "src/common/assets/icons"),
+          resolve(root, "src/common/assets/icons/preserve-color")
+        ],
+        /** 是否生成 d.ts 文件，开启 dev server 或更改 iconDir 目录中文件时自动生成对应文件 */
+        dts: true,
+        /** 保留原有颜色 SVG 目录（适用于存放多色图标） */
+        preserveColor: resolve(root, "src/common/assets/icons/preserve-color"),
+        /** 输出 d.ts 文件的目录 */
+        dtsDir: resolve(root, "types"),
+        /** 给每个 svg name 加上前缀 */
+        prefix: "icon",
+        /** 自定义生成的组件名，默认值为 "SvgIcon" */
+        componentName: "SvgSpritesIcon",
+        /** 控制注入 SVG 元素的方法 */
+        domInsertionStrategy: "dynamic",
+        treeShaking: false
       }),
       // 原子化 CSS
       UnoCSS()

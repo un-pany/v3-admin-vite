@@ -1,3 +1,4 @@
+import type { TSvgIconName } from "@@/components/SvgIcon/index.vue"
 import "vue-router"
 
 export {}
@@ -11,7 +12,7 @@ declare module "vue-router" {
     /**
      * @description 设置该路由的图标，记得将 svg 导入 src/common/assets/icons
      */
-    svgIcon?: string
+    svgIcon?: TSvgIconName
     /**
      * @description 设置该路由的图标，直接使用 Element Plus 的 Icon（与 svgIcon 同时设置时，svgIcon 将优先生效）
      */
