@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import SvgEditor from "../images/editor.svg?component" // vite-svg-loader 插件的功能
+import SvgDashboard from "../images/dashboard.svg?component" // vite-svg-loader 插件的功能
 </script>
 
 <template>
   <div class="app-container center">
-    <SvgEditor class="svg" />
+    <SvgDashboard class="svg" />
     <p>欢迎来到「Editor」角色专属首页</p>
   </div>
 </template>
