@@ -1,20 +1,22 @@
 <script lang="ts" setup>
+import SvgSpritesIcon, { type SvgName } from "~virtual/svg-component"
+import { computed } from "vue"
+
+type RemoveIconPrefix<T extends SvgName> = T extends `icon-${infer R}` ? R : T;
+
+export type TSvgIconName = RemoveIconPrefix<SvgName>
+
 interface Props {
-  prefix?: string
-  name: string
+  name: TSvgIconName
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  prefix: "icon"
-})
+const props = defineProps<Props>()
 
-const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+const iconName = computed(() => `icon-${props.name}` as SvgName)
 </script>
 
 <template>
-  <svg class="svg-icon">
-    <use :href="symbolId" />
-  </svg>
+  <SvgSpritesIcon :name="iconName" class="svg-icon" />
 </template>
 
 <style lang="scss" scoped>
