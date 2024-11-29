@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { computed } from "vue"
-
 interface Props {
   prefix?: string
   name: string

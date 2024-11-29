@@ -1,6 +1,5 @@
 import type { RouteLocationNormalized } from "vue-router"
 import mitt, { type Handler } from "mitt"
-import { onBeforeUnmount } from "vue"
 
 /** 回调函数的类型 */
 type Callback = (route: RouteLocationNormalized) => void

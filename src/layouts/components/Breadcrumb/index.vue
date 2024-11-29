@@ -2,8 +2,6 @@
 import type { RouteLocationMatched } from "vue-router"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { compile } from "path-to-regexp"
-import { ref } from "vue"
-import { useRoute, useRouter } from "vue-router"
 
 const route = useRoute()
 

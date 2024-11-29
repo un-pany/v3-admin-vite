@@ -2,7 +2,6 @@
 import type { RouteRecordRaw } from "vue-router"
 import { isExternal } from "@@/utils/validate"
 import path from "path-browserify"
-import { computed } from "vue"
 import Link from "./Link.vue"
 
 interface Props {

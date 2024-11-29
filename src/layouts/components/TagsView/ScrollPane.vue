@@ -5,8 +5,6 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
-import { nextTick, ref } from "vue"
-import { useRoute } from "vue-router"
 
 interface Props {
   tagRefs: InstanceType<typeof RouterLink>[]

@@ -6,8 +6,6 @@ import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
-import { ref, watch } from "vue"
-import { useRoute, useRouter } from "vue-router"
 import ScrollPane from "./ScrollPane.vue"
 
 const router = useRouter()

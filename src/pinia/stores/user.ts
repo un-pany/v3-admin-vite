@@ -4,7 +4,6 @@ import { routerConfig } from "@/router/config"
 import { getUserInfoApi } from "@@/apis/user"
 import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { defineStore } from "pinia"
-import { ref } from "vue"
 import { useSettingsStore } from "./settings"
 import { useTagsViewStore } from "./tags-view"
 

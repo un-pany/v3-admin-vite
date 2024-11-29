@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { Setting } from "@element-plus/icons-vue"
-import { ref } from "vue"
 
 interface Props {
   buttonTop?: number

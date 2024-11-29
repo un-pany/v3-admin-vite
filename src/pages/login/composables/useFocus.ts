@@ -1,5 +1,3 @@
-import { ref } from "vue"
-
 /** 焦点 Composable */
 export function useFocus() {
   // 是否有焦点

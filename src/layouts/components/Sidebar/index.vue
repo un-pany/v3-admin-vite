@@ -5,8 +5,6 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { getCssVar } from "@@/utils/css"
-import { computed } from "vue"
-import { useRoute } from "vue-router"
 import { Logo } from "../index"
 import Item from "./Item.vue"
 

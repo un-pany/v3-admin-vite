@@ -5,8 +5,6 @@ import { usePermissionStore } from "@/pinia/stores/permission"
 import { useDevice } from "@@/composables/useDevice"
 import { isExternal } from "@@/utils/validate"
 import { cloneDeep, debounce } from "lodash-es"
-import { computed, ref, shallowRef } from "vue"
-import { useRouter } from "vue-router"
 import Footer from "./Footer.vue"
 import Result from "./Result.vue"
 

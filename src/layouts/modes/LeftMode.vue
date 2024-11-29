@@ -4,7 +4,6 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { storeToRefs } from "pinia"
-import { computed } from "vue"
 import { AppMain, NavigationBar, Sidebar, TagsView } from "../components"
 
 const { isMobile } = useDevice()

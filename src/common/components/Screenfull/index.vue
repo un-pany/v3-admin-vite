@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import screenfull from "screenfull"
-import { computed, ref, watchEffect } from "vue"
 
 interface Props {
   /** 全屏的元素，默认是 html */

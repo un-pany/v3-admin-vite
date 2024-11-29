@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { RouteRecordName, RouteRecordRaw } from "vue-router"
-import { getCurrentInstance, onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue"
 
 interface Props {
   data: RouteRecordRaw[]

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from "vue"
 import Modal from "./Modal.vue"
 
 /** 控制 modal 显隐 */

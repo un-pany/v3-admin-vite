@@ -1,5 +1,3 @@
-import { onMounted, ref } from "vue"
-
 type OptionValue = string | number
 
 /** Select 需要的数据格式 */

@@ -101,11 +101,13 @@ export default defineConfig(({ mode }) => {
       }),
       // 原子化 CSS
       UnoCSS(),
-      // 自动按需导入
+      // 自动按需导入 API
       AutoImport({
+        imports: ["vue", "vue-router"],
         dts: "types/auto/auto-imports.d.ts",
         resolvers: [ElementPlusResolver()]
       }),
+      // 自动按需导入组件
       Components({
         dts: "types/auto/components.d.ts",
         resolvers: [ElementPlusResolver()]
