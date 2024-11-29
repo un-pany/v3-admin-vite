@@ -1,8 +1,5 @@
 import type { App } from "vue"
 import VXETable from "vxe-table" // https://vxetable.cn/#/start/install
-import VXETablePluginElement from "vxe-table-plugin-element" // https://github.com/x-extends/vxe-table-plugin-element
-
-VXETable.use(VXETablePluginElement)
 
 // 全局默认参数
 VXETable.setConfig({

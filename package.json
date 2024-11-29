@@ -31,7 +31,6 @@
     "vue": "3.5.13",
     "vue-router": "4.5.0",
     "vxe-table": "4.6.25",
-    "vxe-table-plugin-element": "4.0.4",
     "xe-utils": "3.5.32"
   },
   "devDependencies": {

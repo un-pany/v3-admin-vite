@@ -56,9 +56,6 @@ importers:
       vxe-table:
         specifier: 4.6.25
         version: 4.6.25(vue@3.5.13(typescript@5.6.3))
-      vxe-table-plugin-element:
-        specifier: 4.0.4
-        version: 4.0.4(vxe-table@4.6.25(vue@3.5.13(typescript@5.6.3)))
       xe-utils:
         specifier: 3.5.32
         version: 3.5.32
@@ -3960,11 +3957,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  vxe-table-plugin-element@4.0.4:
-    resolution: {integrity: sha512-TKhx4Bi45kdXRa9PyjdDtOjQuA9We+ASDdZez/d3DB7p2tFvBwVNnyvwYHT+kJntAeq0pOchmhsYhZeVADMAuw==}
-    peerDependencies:
-      vxe-table: ^4.5.0
 
   vxe-table@4.6.25:
     resolution: {integrity: sha512-rFhGh8w+420cdnIasQKisiKagz9F/iNieB/z6v0j4GcsMfGHEmSJ72YrHcXogQh4wNlCzKVfb7rl7nREL5eIOg==}
@@ -8447,10 +8439,6 @@ snapshots:
       '@vue/shared': 3.5.13
     optionalDependencies:
       typescript: 5.6.3
-
-  vxe-table-plugin-element@4.0.4(vxe-table@4.6.25(vue@3.5.13(typescript@5.6.3))):
-    dependencies:
-      vxe-table: 4.6.25(vue@3.5.13(typescript@5.6.3))
 
   vxe-table@4.6.25(vue@3.5.13(typescript@5.6.3)):
     dependencies:
