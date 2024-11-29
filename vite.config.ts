@@ -103,11 +103,11 @@ export default defineConfig(({ mode }) => {
       UnoCSS(),
       // 自动按需导入
       AutoImport({
-        dts: "types/auto-imports.d.ts",
+        dts: "types/auto/auto-imports.d.ts",
         resolvers: [ElementPlusResolver()]
       }),
       Components({
-        dts: "types/components.d.ts",
+        dts: "types/auto/components.d.ts",
         resolvers: [ElementPlusResolver()]
       })
     ],
