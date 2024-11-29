@@ -7,7 +7,6 @@ import { setRouteChange } from "@@/composables/useRouteListener"
 import { useTitle } from "@@/composables/useTitle"
 import { getToken } from "@@/utils/cache/cookies"
 import NProgress from "nprogress"
-import "nprogress/nprogress.css"
 
 NProgress.configure({ showSpinner: false })
 const { setTitle } = useTitle()
