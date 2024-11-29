@@ -2,7 +2,7 @@
   "name": "v3-admin-vite",
   "type": "module",
   "version": "4.5.4",
-  "description": "A friendly admin template, based on Vue3, Vite, TypeScript, etc",
+  "description": "A simple admin template, based on Vue3, Vite, TypeScript, Element Plus, etc",
   "author": "pany <939630029@qq.com> (https://github.com/pany-ang)",
   "repository": "https://github.com/un-pany/v3-admin-vite",
   "scripts": {
@@ -61,39 +61,5 @@
   },
   "lint-staged": {
     "*": "eslint --fix"
-  },
-  "changelogithub": {
-    "types": {
-      "feat": {
-        "title": "Feat"
-      },
-      "fix": {
-        "title": "Fix"
-      },
-      "perf": {
-        "title": "Perf"
-      },
-      "refactor": {
-        "title": "Refactor"
-      },
-      "docs": {
-        "title": "Docs"
-      },
-      "types": {
-        "title": "Types"
-      },
-      "test": {
-        "title": "Test"
-      },
-      "ci": {
-        "title": "CI"
-      },
-      "revert": {
-        "title": "Revert"
-      },
-      "chore": {
-        "title": "Chore"
-      }
-    }
   }
 }
