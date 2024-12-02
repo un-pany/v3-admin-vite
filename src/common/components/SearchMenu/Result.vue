@@ -76,12 +76,12 @@ defineExpose({ getScrollTop })
       :style="itemStyle(item)"
       @mouseenter="handleMouseenter(item)"
     >
-      <SvgIcon v-if="item.meta?.svgIcon" :name="item.meta.svgIcon" />
+      <SvgIcon v-if="item.meta?.svgIcon" :name="item.meta.svgIcon" class="svg-icon" />
       <component v-else-if="item.meta?.elIcon" :is="item.meta.elIcon" class="el-icon" />
       <span class="result-item-title">
         {{ item.meta?.title }}
       </span>
-      <SvgIcon v-if="modelValue && modelValue === item.name" name="keyboard-enter" />
+      <SvgIcon v-if="modelValue && modelValue === item.name" name="keyboard-enter" class="svg-icon" />
     </div>
   </div>
 </template>

@@ -14,16 +14,16 @@ const { isMobile } = useDevice()
   <div class="search-footer">
     <template v-if="!isMobile">
       <span class="search-footer-item">
-        <SvgIcon name="keyboard-enter" />
+        <SvgIcon name="keyboard-enter" class="svg-icon" />
         <span>确认</span>
       </span>
       <span class="search-footer-item">
-        <SvgIcon name="keyboard-up" />
-        <SvgIcon name="keyboard-down" />
+        <SvgIcon name="keyboard-up" class="svg-icon" />
+        <SvgIcon name="keyboard-down" class="svg-icon" />
         <span>切换</span>
       </span>
       <span class="search-footer-item">
-        <SvgIcon name="keyboard-esc" />
+        <SvgIcon name="keyboard-esc" class="svg-icon" />
         <span>关闭</span>
       </span>
     </template>

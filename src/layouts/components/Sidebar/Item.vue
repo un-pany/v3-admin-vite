@@ -52,7 +52,7 @@ function resolvePath(routePath: string) {
   <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
     <Link v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
       <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
-        <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />
+        <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" class="svg-icon" />
         <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
         <template v-if="theOnlyOneChild.meta.title" #title>
           <span class="title">{{ theOnlyOneChild.meta.title }}</span>
@@ -62,7 +62,7 @@ function resolvePath(routePath: string) {
   </template>
   <el-sub-menu v-else :index="resolvePath(props.item.path)" teleported>
     <template #title>
-      <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" />
+      <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" class="svg-icon" />
       <component v-else-if="props.item.meta?.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
       <span v-if="props.item.meta?.title" class="title">{{ props.item.meta.title }}</span>
     </template>

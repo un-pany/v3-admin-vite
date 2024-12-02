@@ -5,10 +5,10 @@ import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import UnoCSS from "unocss/vite"
 import AutoImport from "unplugin-auto-import/vite"
+import UnpluginSvgComponent from "unplugin-svg-component/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 import Components from "unplugin-vue-components/vite"
 import { defineConfig, loadEnv } from "vite"
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons"
 import svgLoader from "vite-svg-loader"
 
 // Configuring Vite: https://cn.vite.dev/config
@@ -94,10 +94,13 @@ export default defineConfig(({ mode }) => {
       vueJsx(),
       // 将 SVG 文件转化为 Vue 组件
       svgLoader({ defaultImport: "url" }),
-      // 生成 SVG 雪碧图
-      createSvgIconsPlugin({
-        iconDirs: [resolve(root, "src/common/assets/icons")],
-        symbolId: "icon-[dir]-[name]"
+      // 自动生成 SvgIcon 组件和 SVG 雪碧图
+      UnpluginSvgComponent({
+        iconDir: [resolve(__dirname, "src/common/assets/icons")],
+        preserveColor: resolve(__dirname, "src/common/assets/icons/preserve-color"),
+        dts: true,
+        dtsDir: resolve(__dirname, "types/auto"),
+        treeShaking: false
       }),
       // 原子化 CSS
       UnoCSS(),

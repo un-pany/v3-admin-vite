@@ -160,7 +160,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: "/link",
     meta: {
       title: "文档链接",
-      elIcon: "link"
+      elIcon: "Link"
     },
     children: [
       {
@@ -196,7 +196,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     name: "Permission",
     meta: {
       title: "权限演示",
-      elIcon: "lock",
+      elIcon: "Lock",
       // 可以在根路由中设置角色
       roles: ["admin", "editor"],
       alwaysShow: true

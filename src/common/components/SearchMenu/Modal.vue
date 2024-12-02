@@ -155,7 +155,7 @@ function handleReleaseUpOrDown() {
   >
     <el-input ref="inputRef" v-model="keyword" placeholder="搜索菜单" size="large" clearable @input="handleSearch">
       <template #prefix>
-        <SvgIcon name="search" />
+        <SvgIcon name="search" class="svg-icon" />
       </template>
     </el-input>
     <el-empty v-if="result.length === 0" description="暂无搜索结果" :image-size="100" />
