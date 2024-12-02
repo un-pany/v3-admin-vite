@@ -1,12 +1,12 @@
 import type { App } from "vue"
 import { installElementPlusIcons } from "./element-plus-icons"
 import { installPermissionDirective } from "./permission-directive"
-import { installSvgIcons } from "./svg-icons"
+import { installSvgIcon } from "./svg-icon"
 import { installVxeTable } from "./vxe-table"
 
 export function installPlugins(app: App) {
   installElementPlusIcons(app)
   installPermissionDirective(app)
-  installSvgIcons(app)
+  installSvgIcon(app)
   installVxeTable(app)
 }

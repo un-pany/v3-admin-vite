@@ -3,8 +3,6 @@ dist
 node_modules
 .eslintcache
 vite.config.*.timestamp*
-svg-component-global.d.ts
-svg-component.d.ts
 
 # MacOS
 .DS_Store

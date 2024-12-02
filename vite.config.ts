@@ -94,26 +94,12 @@ export default defineConfig(({ mode }) => {
       vueJsx(),
       // 将 SVG 文件转化为 Vue 组件
       svgLoader({ defaultImport: "url" }),
-      // 生成 SVG 雪碧图
-      // github repo: https://github.com/Jevon617/unplugin-svg-component
+      // 自动生成 SvgIcon 组件和 SVG 雪碧图
       UnpluginSvgComponent({
-        /** 图标所在的目录 */
-        iconDir: [
-          resolve(root, "src/common/assets/icons"),
-          resolve(root, "src/common/assets/icons/preserve-color")
-        ],
-        /** 是否生成 d.ts 文件，开启 dev server 或更改 iconDir 目录中文件时自动生成对应文件 */
+        iconDir: [resolve(__dirname, "src/common/assets/icons")],
+        preserveColor: resolve(__dirname, "src/common/assets/icons/preserve-color"),
         dts: true,
-        /** 保留原有颜色 SVG 目录（适用于存放多色图标） */
-        preserveColor: resolve(root, "src/common/assets/icons/preserve-color"),
-        /** 输出 d.ts 文件的目录 */
-        dtsDir: resolve(root, "types"),
-        /** 给每个 svg name 加上前缀 */
-        prefix: "icon",
-        /** 自定义生成的组件名，默认值为 "SvgIcon" */
-        componentName: "SvgSpritesIcon",
-        /** 控制注入 SVG 元素的方法 */
-        domInsertionStrategy: "dynamic",
+        dtsDir: resolve(__dirname, "types/auto"),
         treeShaking: false
       }),
       // 原子化 CSS
