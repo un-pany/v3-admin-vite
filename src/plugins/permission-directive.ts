@@ -12,10 +12,9 @@ const permission: Directive = {
     const { roles } = useUserStore()
     if (isArray(permissionRoles) && permissionRoles.length > 0) {
       const hasPermission = roles.some(role => permissionRoles.includes(role))
-      // hasPermission || (el.style.display = "none") // 隐藏
-      hasPermission || el.parentNode?.removeChild(el) // 销毁
+      hasPermission || el.parentNode?.removeChild(el)
     } else {
-      throw new Error(`need roles! Like v-permission="['admin','editor']"`)
+      throw new Error(`参数必须是一个数组且长度大于 0，参考：v-permission="['admin','editor']"`)
     }
   }
 }
