@@ -3,8 +3,8 @@ import { nextTick, reactive, ref } from "vue"
 import { type ElMessageBoxOptions, ElMessageBox, ElMessage } from "element-plus"
 import { deleteTableDataApi, getTableDataApi } from "@/api/table"
 import { type TableResponseData } from "@/api/table/types/table"
-import RoleColumnSolts from "./tsx/RoleColumnSolts"
-import StatusColumnSolts from "./tsx/StatusColumnSolts"
+import RoleColumnSlots from "./tsx/RoleColumnSlots"
+import StatusColumnSlots from "./tsx/StatusColumnSlots"
 import {
   type VxeGridInstance,
   type VxeGridProps,
@@ -31,6 +31,7 @@ interface RowMeta {
   /** vxe-table 自动添加上去的属性 */
   _VXE_ID?: string
 }
+
 const xGridDom = ref<VxeGridInstance>()
 const xGridOpt: VxeGridProps = reactive({
   loading: true,
@@ -96,7 +97,7 @@ const xGridOpt: VxeGridProps = reactive({
       field: "roles",
       title: "角色",
       /** 自定义列与 type: "html" 的列一起使用，会产生错误，所以采用 TSX 实现 */
-      slots: RoleColumnSolts
+      slots: RoleColumnSlots
     },
     {
       field: "phone",
@@ -109,7 +110,7 @@ const xGridOpt: VxeGridProps = reactive({
     {
       field: "status",
       title: "状态",
-      slots: StatusColumnSolts
+      slots: StatusColumnSlots
     },
     {
       field: "createTime",

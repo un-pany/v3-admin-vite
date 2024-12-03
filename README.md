@@ -6,7 +6,8 @@
 
 ## ⚡ Introduction
 
-V3 Admin Vite is a free and open source middle and background management system basic solution, based on mainstream framework such as Vue3, TypeScript, Element Plus, Pinia and Vite
+V3 Admin Vite is a free and open source middle and background management system basic solution, based on mainstream framework such as
+Vue3, TypeScript, Element Plus, Pinia and Vite.
 
 - Vue Cli 5.x: [v3-admin](https://github.com/un-pany/v3-admin)
 - Electron desktop: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
@@ -21,7 +22,7 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 ## 📺 Online preview
 
 | Location     | account             | Link                                            |
-| ------------ | ------------------- | ----------------------------------------------- |
+|--------------|---------------------|-------------------------------------------------|
 | github-pages | `admin` or `editor` | [link](https://un-pany.github.io/v3-admin-vite) |
 
 ## ❤️ Generate electricity with love
@@ -52,13 +53,15 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 ## Functions
 
 - **User management**: Log in and out of the demo
-- **Authority management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission functions), and route navigation guards
+- **Authority management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission
+  functions), and route navigation guards
 - **Multiple Environments**: Development, Staging, Production
 - **Multiple themes**: Normal, Dark, Dark Blue, three theme modes
 - **Multiple layouts**：Left, Top, Left Top, three layout modes
 - **Error page**: 403, 404
 - **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, Hook (Composables)
+- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar,
+  Hook (Composables)
 
 ## 🚀 Development
 
@@ -138,12 +141,13 @@ pnpm test
 Thanks to all the contributors!
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+  <img alt="contributors" src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
 </a>
 
 ## 💕 Thanks star
 
-Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the author to maintain it on an ongoing basis (whisper: it's free after all)
+Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the
+author to maintain it on an ongoing basis (whisper: it's free after all)
 
 ## ☕ Donate
 
