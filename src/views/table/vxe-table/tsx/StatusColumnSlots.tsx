@@ -1,6 +1,6 @@
 import { type VxeColumnPropTypes } from "vxe-table/types/column"
 
-const solts: VxeColumnPropTypes.Slots = {
+const slots: VxeColumnPropTypes.Slots = {
   default: ({ row, column }) => {
     const cellValue = row[column.field]
     const [type, value] = cellValue ? ["success", "启用"] : ["danger", "禁用"]
@@ -8,4 +8,4 @@ const solts: VxeColumnPropTypes.Slots = {
   }
 }
 
-export default solts
+export default slots
