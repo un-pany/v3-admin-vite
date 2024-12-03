@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
+  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
   <span>English | <a href="./README.zh-CN.md">中文</a></span>
 </div>
@@ -40,10 +40,11 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 - **Vite**：Really fast
 - **Vue Router**：router
 - **TypeScript**：JavaScript With Syntax For Types
-- **pnpm**：Faster, disk space saving package management tool
+- **PNPM**：Faster, disk space saving package management tool
 - **Scss**：Consistent with Element Plus
 - **CSS variable**：Mainly controls the layout and color of the item
-- **ESlint**：Code verification, Code formatting
+- **ESlint**：Code verification
+- **Prettier**： Code formatting
 - **Axios**: Promise based HTTP client (encapsulated)
 - **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
 - **Mobile Compatible**: The layout is compatible with mobile page resolution
@@ -57,7 +58,7 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 - **Multiple layouts**：Left, Top, Left Top, three layout modes
 - **Error page**: 403, 404
 - **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, Composable
+- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, Hook (Composables)
 
 ## 🚀 Development
 
@@ -83,21 +84,21 @@ pnpm dev
 ## ✔️ Preview
 
 ```bash
-# staging environment
-pnpm preview:staging
+# stage environment
+pnpm preview:stage
 
-# production environment
-pnpm preview
+# prod environment
+pnpm preview:prod
 ```
 
 ## 📦️ Multi-environment packaging
 
 ```bash
-# build the staging environment
-pnpm build:staging
+# build the stage environment
+pnpm build:stage
 
-# build the production environment
-pnpm build
+# build the prod environment
+pnpm build:prod
 ```
 
 ## 🔧 Code inspection
@@ -128,9 +129,9 @@ pnpm test
 
 ## Project preview
 
-![preview1.png](./src/common/assets/images/docs/preview1.png)
-![preview2.png](./src/common/assets/images/docs/preview2.png)
-![preview3.png](./src/common/assets/images/docs/preview3.png)
+![preview1.png](./src/assets/docs/preview1.png)
+![preview2.png](./src/assets/docs/preview2.png)
+![preview3.png](./src/assets/docs/preview3.png)
 
 ## 💕 Contributors
 
