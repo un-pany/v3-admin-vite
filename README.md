@@ -1,13 +1,12 @@
 <div align="center">
-  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layouts/logo.png">
+  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
   <span>English | <a href="./README.zh-CN.md">中文</a></span>
 </div>
 
 ## ⚡ Introduction
 
-V3 Admin Vite is a free and open source middle and background management system basic solution, based on mainstream framework such as
-Vue3, TypeScript, Element Plus, Pinia and Vite.
+V3 Admin Vite is a free and open source middle and background management system basic solution, based on mainstream framework such as Vue3, TypeScript, Element Plus, Pinia and Vite
 
 - Vue Cli 5.x: [v3-admin](https://github.com/un-pany/v3-admin)
 - Electron desktop: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
@@ -22,7 +21,7 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 ## 📺 Online preview
 
 | Location     | account             | Link                                            |
-|--------------|---------------------|-------------------------------------------------|
+| ------------ | ------------------- | ----------------------------------------------- |
 | github-pages | `admin` or `editor` | [link](https://un-pany.github.io/v3-admin-vite) |
 
 ## ❤️ Generate electricity with love
@@ -41,11 +40,10 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 - **Vite**：Really fast
 - **Vue Router**：router
 - **TypeScript**：JavaScript With Syntax For Types
-- **PNPM**：Faster, disk space saving package management tool
+- **pnpm**：Faster, disk space saving package management tool
 - **Scss**：Consistent with Element Plus
 - **CSS variable**：Mainly controls the layout and color of the item
-- **ESlint**：Code verification
-- **Prettier**： Code formatting
+- **ESlint**：Code verification, Code formatting
 - **Axios**: Promise based HTTP client (encapsulated)
 - **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
 - **Mobile Compatible**: The layout is compatible with mobile page resolution
@@ -53,15 +51,13 @@ China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
 ## Functions
 
 - **User management**: Log in and out of the demo
-- **Authority management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission
-  functions), and route navigation guards
+- **Authority management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission functions), and route navigation guards
 - **Multiple Environments**: Development, Staging, Production
 - **Multiple themes**: Normal, Dark, Dark Blue, three theme modes
 - **Multiple layouts**：Left, Top, Left Top, three layout modes
 - **Error page**: 403, 404
 - **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar,
-  Hook (Composables)
+- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, Composable
 
 ## 🚀 Development
 
@@ -87,21 +83,21 @@ pnpm dev
 ## ✔️ Preview
 
 ```bash
-# stage environment
-pnpm preview:stage
+# staging environment
+pnpm preview:staging
 
-# prod environment
-pnpm preview:prod
+# production environment
+pnpm preview
 ```
 
 ## 📦️ Multi-environment packaging
 
 ```bash
-# build the stage environment
-pnpm build:stage
+# build the staging environment
+pnpm build:staging
 
-# build the prod environment
-pnpm build:prod
+# build the production environment
+pnpm build
 ```
 
 ## 🔧 Code inspection
@@ -132,22 +128,21 @@ pnpm test
 
 ## Project preview
 
-![preview1.png](./src/assets/docs/preview1.png)
-![preview2.png](./src/assets/docs/preview2.png)
-![preview3.png](./src/assets/docs/preview3.png)
+![preview1.png](./src/common/assets/images/docs/preview1.png)
+![preview2.png](./src/common/assets/images/docs/preview2.png)
+![preview3.png](./src/common/assets/images/docs/preview3.png)
 
 ## 💕 Contributors
 
 Thanks to all the contributors!
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
-  <img alt="contributors" src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
 </a>
 
 ## 💕 Thanks star
 
-Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the
-author to maintain it on an ongoing basis (whisper: it's free after all)
+Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the author to maintain it on an ongoing basis (whisper: it's free after all)
 
 ## ☕ Donate
 
