@@ -17,7 +17,7 @@ describe("list", () => {
         data: []
       }
     })
-    expect(wrapper.find("el-empty").exists()).toBe(true)
+    expect(wrapper.find("el-empty-stub").exists()).toBe(true)
   })
   it("list 长度不为 0", () => {
     const wrapper = shallowMount(List, {
@@ -29,6 +29,6 @@ describe("list", () => {
         ]
       }
     })
-    expect(wrapper.find("el-empty").exists()).toBe(false)
+    expect(wrapper.find("el-empty-stub").exists()).toBe(false)
   })
 })
