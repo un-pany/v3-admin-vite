@@ -118,7 +118,12 @@ export default defineConfig(({ mode }) => {
     // Configuring Vitest: https://cn.vitest.dev/config
     test: {
       include: ["tests/**/*.test.{ts,js}"],
-      environment: "jsdom"
+      environment: "jsdom",
+      server: {
+        deps: {
+          inline: ["element-plus"]
+        }
+      }
     }
   }
 })

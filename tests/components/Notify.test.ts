@@ -1,5 +1,5 @@
 import Notify from "@@/components/Notify/index.vue"
-import NotifyList from "@@/components/Notify/List.vue"
+import List from "@@/components/Notify/List.vue"
 import { shallowMount } from "@vue/test-utils"
 import { describe, expect, it } from "vitest"
 
@@ -10,9 +10,9 @@ describe("notify", () => {
   })
 })
 
-describe("notifyList", () => {
+describe("list", () => {
   it("list 长度为 0", () => {
-    const wrapper = shallowMount(NotifyList, {
+    const wrapper = shallowMount(List, {
       props: {
         data: []
       }
@@ -20,7 +20,7 @@ describe("notifyList", () => {
     expect(wrapper.find("el-empty").exists()).toBe(true)
   })
   it("list 长度不为 0", () => {
-    const wrapper = shallowMount(NotifyList, {
+    const wrapper = shallowMount(List, {
       props: {
         data: [
           {
