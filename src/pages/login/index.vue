@@ -54,7 +54,7 @@ function handleLogin() {
     loading.value = true
     loginApi(loginFormData).then(({ data }) => {
       userStore.setToken(data.token)
-      router.push({ path: "/" })
+      router.push("/")
     }).catch(() => {
       createCode()
       loginFormData.password = ""
