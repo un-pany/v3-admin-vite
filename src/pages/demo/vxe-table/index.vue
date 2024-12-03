@@ -3,8 +3,8 @@ import type { TableResponseData } from "@@/apis/table/type"
 import type { ElMessageBoxOptions } from "element-plus"
 import type { VxeFormInstance, VxeFormProps, VxeGridInstance, VxeGridProps, VxeModalInstance, VxeModalProps } from "vxe-table"
 import { deleteTableDataApi, getTableDataApi } from "@@/apis/table"
-import { RoleColumnSolts } from "./tsx/RoleColumnSolts"
-import { StatusColumnSolts } from "./tsx/StatusColumnSolts"
+import { RoleColumnSlots } from "./tsx/RoleColumnSlots"
+import { StatusColumnSlots } from "./tsx/StatusColumnSlots"
 
 defineOptions({
   // 命名当前组件
@@ -103,7 +103,7 @@ const xGridOpt: VxeGridProps = reactive({
       field: "roles",
       title: "角色",
       /** 自定义列与 type: "html" 的列一起使用，会产生错误，所以采用 TSX 实现 */
-      slots: RoleColumnSolts
+      slots: RoleColumnSlots
     },
     {
       field: "phone",
@@ -116,7 +116,7 @@ const xGridOpt: VxeGridProps = reactive({
     {
       field: "status",
       title: "状态",
-      slots: StatusColumnSolts
+      slots: StatusColumnSlots
     },
     {
       field: "createTime",

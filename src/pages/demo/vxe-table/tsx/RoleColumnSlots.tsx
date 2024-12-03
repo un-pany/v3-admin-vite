@@ -1,6 +1,6 @@
 import type { VxeColumnPropTypes } from "vxe-table/types/column"
 
-export const RoleColumnSolts: VxeColumnPropTypes.Slots = {
+export const RoleColumnSlots: VxeColumnPropTypes.Slots = {
   default: ({ row, column }) => {
     const cellValue = row[column.field]
     const type = cellValue === "admin" ? "primary" : "warning"
