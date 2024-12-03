@@ -98,8 +98,7 @@ export default defineConfig(({ mode }) => {
         iconDir: [resolve(__dirname, "src/common/assets/icons")],
         preserveColor: resolve(__dirname, "src/common/assets/icons/preserve-color"),
         dts: true,
-        dtsDir: resolve(__dirname, "types/auto"),
-        treeShaking: false
+        dtsDir: resolve(__dirname, "types/auto")
       }),
       // 原子化 CSS
       UnoCSS(),
