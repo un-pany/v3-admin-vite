@@ -112,8 +112,8 @@ importers:
         specifier: 0.18.6
         version: 0.18.6(@vueuse/core@9.13.0(vue@3.5.13(typescript@5.6.3)))(rollup@4.28.0)
       unplugin-svg-component:
-        specifier: 0.12.0
-        version: 0.12.0
+        specifier: 0.12.1
+        version: 0.12.1
       unplugin-vue-components:
         specifier: 0.27.5
         version: 0.27.5(@babel/parser@7.26.2)(rollup@4.28.0)(vue@3.5.13(typescript@5.6.3))
@@ -3359,8 +3359,8 @@ packages:
       '@vueuse/core':
         optional: true
 
-  unplugin-svg-component@0.12.0:
-    resolution: {integrity: sha512-W9OiQi5LUkGsge8P4JaorNHh6/zO4iMvlKmOlk3Wj78HvuUX/9J2xpnMJDRRBttK+IOtDtHy73xS2MSyRb1y7Q==}
+  unplugin-svg-component@0.12.1:
+    resolution: {integrity: sha512-/K9I8+rsChiFOQgwL7FxiKqqUl8U/wozGC2sCdJL28EVo4dAu2IfZDlZg5dSKv65Gii4b8Gpj8K+ZkHTWnKyFg==}
 
   unplugin-vue-components@0.27.5:
     resolution: {integrity: sha512-m9j4goBeNwXyNN8oZHHxvIIYiG8FQ9UfmKWeNllpDvhU7btKNNELGPt+o3mckQKuPwrE7e0PvCsx+IWuDSD9Vg==}
@@ -7099,7 +7099,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  unplugin-svg-component@0.12.0:
+  unplugin-svg-component@0.12.1:
     dependencies:
       cors: 2.8.5
       etag: 1.8.1
