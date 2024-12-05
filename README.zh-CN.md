@@ -1,7 +1,11 @@
 <div align="center">
-  <img alt="Logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
+  <img alt="logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
 </div>
+
+[![release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite)](https://github.com/un-pany/v3-admin-vite/releases)
+[![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite)](https://github.com/un-pany/v3-admin-vite/stargazers)
+[![gitee stars](https://gitee.com/un-pany/v3-admin-vite/badge/star.svg)](https://gitee.com/un-pany/v3-admin-vite/stargazers)
 
 <b><a href="./README.md">English</a> | 中文</b>
 

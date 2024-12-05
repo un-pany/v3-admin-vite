@@ -1,7 +1,11 @@
 <div align="center">
-  <img alt="Logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
+  <img alt="logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
 </div>
+
+[![release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite)](https://github.com/un-pany/v3-admin-vite/releases)
+[![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite)](https://github.com/un-pany/v3-admin-vite/stargazers)
+[![gitee stars](https://gitee.com/un-pany/v3-admin-vite/badge/star.svg)](https://gitee.com/un-pany/v3-admin-vite/stargazers)
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
 
@@ -59,7 +63,7 @@ pnpm dev
 </details>
 
 <details>
-<summary>Build for Production</summary>
+<summary>Build</summary>
 
 <br>
 
@@ -137,7 +141,7 @@ pnpm test
 
 **Electron Desktop Version**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
-**Domestic Repository**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
+**Chinese Repository**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
 
 **Optional Group**：[check how to join](https://github.com/un-pany/v3-admin-vite/issues/191)
 
@@ -197,7 +201,7 @@ pnpm test
 
 **ESlint**: Code linting and formatting
 
-**Axios**: Sends network requests (pre-packaged)
+**Axios**: Sends network requests
 
 **UnoCSS**: A high-performance, flexible atomic CSS engine
 
