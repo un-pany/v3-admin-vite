@@ -30,15 +30,15 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 
 <br />
 
-- 新版 Visual Studio Code
-- 安装 .vscode/extensions.json 文件中推荐的插件
-- node 20.x 或 22+
-- pnpm 9+
+- 新版 `Visual Studio Code`
+- 安装 `.vscode/extensions.json` 文件中推荐的插件
+- `node` 20.x 或 22+
+- `pnpm` 9+
 
 </details>
 
 <details>
-<summary>开发</summary>
+<summary>本地开发</summary>
 
 <br />
 
@@ -88,6 +88,8 @@ pnpm preview
 <details>
 <summary>代码检查</summary>
 
+<br />
+
 ```bash
 # 代码校验与格式化
 pnpm lint
@@ -99,7 +101,7 @@ pnpm test
 </details>
 
 <details>
-<summary>Git 提交规范</summary>
+<summary>代码提交规范</summary>
 
 <br />
 
@@ -127,19 +129,19 @@ pnpm test
 
 ## 链接
 
-在线预览：[github-pages](https://un-pany.github.io/v3-admin-vite)
+**在线预览**：[github-pages](https://un-pany.github.io/v3-admin-vite)
 
-中文文档：[链接](https://juejin.cn/post/7089377403717287972)
+**中文文档**：[链接](https://juejin.cn/post/7089377403717287972)
 
-零基础教程：[链接](https://juejin.cn/column/7207659644487139387)
+**零基础教程**：[链接](https://juejin.cn/column/7207659644487139387)
 
-Electron 桌面版: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
+**Electron 桌面版**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
-国内仓库：[gitee](https://gitee.com/un-pany/v3-admin-vite)
+**国内仓库**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
 
-可有可无的群：[查看进群方式](https://github.com/un-pany/v3-admin-vite/issues/191)
+**可有可无的群**：[查看进群方式](https://github.com/un-pany/v3-admin-vite/issues/191)
 
-捐赠：[请作者喝咖啡](https://github.com/un-pany/v3-admin-vite/issues/69)
+**捐赠**：[请作者喝咖啡](https://github.com/un-pany/v3-admin-vite/issues/69)
 
 ## 特性
 
@@ -149,7 +151,7 @@ Electron 桌面版: [v3-electron-vite](https://github.com/un-pany/v3-electron-vi
 
 **最新的依赖**: 及时更新所有三方依赖至最新版
 
-**有一点规范**: 代码风格统一，命名风格统一，注释风格统一
+**有一点规范**: 代码风格统一、命名风格统一、注释风格统一
 
 ## 技术栈
 
