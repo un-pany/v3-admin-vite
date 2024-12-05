@@ -153,6 +153,26 @@ pnpm test
 
 **有一点规范**: 代码风格统一、命名风格统一、注释风格统一
 
+## 内置功能
+
+**用户管理**：登录、登出演示
+
+**权限管理**：页面级权限（动态路由）、按钮级权限（指令权限、权限函数）、路由守卫
+
+**多环境**：开发环境（development）、预发布环境（staging）、生产环境（production）
+
+**多主题**：普通、黑暗、深蓝, 三种主题模式
+
+**多布局**：左侧、顶部、混合, 三种布局模式
+
+**首页**：根据不同用户显示不同的 Dashboard 页面
+
+**错误页**: 403、404
+
+**兼容移动端**: 布局兼容移动端页面分辨率
+
+**其他**：SVG 雪碧图、动态侧边栏、动态面包屑、标签页快捷导航、内容区放大与全屏、组合式函数
+
 ## 技术栈
 
 **Vue3**：采用 Vue3 + script setup 最新的 Vue3 组合式 API
@@ -179,31 +199,9 @@ pnpm test
 
 **UnoCSS**：具有高性能且极具灵活性的即时原子化 CSS 引擎
 
-## 内置功能
-
-**用户管理**：登录、登出演示
-
-**权限管理**：页面级权限（动态路由）、按钮级权限（指令权限、权限函数）、路由守卫
-
-**多环境**：开发环境（development）、预发布环境（staging）、生产环境（production）
-
-**多主题**：普通、黑暗、深蓝, 三种主题模式
-
-**多布局**：左侧、顶部、混合, 三种布局模式
-
-**首页**：根据不同用户显示不同的 Dashboard 页面
-
-**错误页**: 403、404
-
-**兼容移动端**: 布局兼容移动端页面分辨率
-
-**其他**：SVG 雪碧图、动态侧边栏、动态面包屑、标签页快捷导航、内容区放大与全屏、组合式函数
-
 ## 项目预览图
 
-![preview1](./src/common/assets/images/docs/preview1.png)
-![preview2](./src/common/assets/images/docs/preview2.png)
-![preview3](./src/common/assets/images/docs/preview3.png)
+![preview](./src/common/assets/images/docs/preview.png)
 
 ## 贡献者
 
@@ -213,6 +211,6 @@ pnpm test
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
 </a>
 
-## Licens
+## License
 
 [MIT](./LICENSE) License © 2022-PRESENT [pany](https://github.com/pany-ang)
