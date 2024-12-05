@@ -3,8 +3,8 @@
   <h1>V3 Admin Vite</h1>
 </div>
 
-[![release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite)](https://github.com/un-pany/v3-admin-vite/releases)
-[![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite)](https://github.com/un-pany/v3-admin-vite/stargazers)
+[![github release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/releases)
+[![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/stargazers)
 [![gitee stars](https://gitee.com/un-pany/v3-admin-vite/badge/star.svg)](https://gitee.com/un-pany/v3-admin-vite/stargazers)
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
