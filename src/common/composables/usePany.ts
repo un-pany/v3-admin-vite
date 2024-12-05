@@ -27,7 +27,7 @@ function initStoreNotification() {
         null,
         [
           h("div", null, "不想自己动手，但想移除 TS 或其他模块？也有懒人套餐！"),
-          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite" }, "点击逛逛")
+          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, "点击查看")
         ]
       ),
       duration: 0,
