@@ -7,19 +7,21 @@
 
 ## 简介
 
-> [!NOTE] 为爱发电
->
-> 完全免费，但希望你点一个 Star 支持一下！
-
-> [!IMPORTANT] 全新 5.0 版本
->
-> 欢迎体验全新的 5.0 版本，目前正在 beta 阶段
-
-> [!WARNING] 4.x 版本
->
-> [4.x 版本](https://github.com/un-pany/v3-admin-vite/tree/4.x) 如果没有严重的 BUG 将不再维护
-
 V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术
+
+## 通知
+
+> [!NOTE]
+> 为爱发电！所有源码均免费开源，如果对你有帮助，欢迎点个 Star 支持一下！
+
+> [!IMPORTANT]
+> 欢迎体验全新的 5.0 版本，目前正在 beta 阶段，它将是一次匠心之作！
+
+> [!WARNING]
+> 4.x 版本如果没有严重的 BUG 将不再维护！[点击切换到 4.x 分支](https://github.com/un-pany/v3-admin-vite/tree/4.x)
+
+> [!TIP]
+> 正式推出付费服务，如果不想自己动手，但想移除 TS 或其他模块？试试懒人套餐！[点击看看](https://github.com/un-pany/v3-admin-vite/issues/225)
 
 ## 使用
 
