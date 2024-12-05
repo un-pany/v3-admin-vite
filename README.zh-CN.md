@@ -28,7 +28,7 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 <details>
 <summary>推荐环境</summary>
 
-<br />
+<br>
 
 - 新版 `Visual Studio Code`
 - 安装 `.vscode/extensions.json` 文件中推荐的插件
@@ -40,7 +40,7 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 <details>
 <summary>本地开发</summary>
 
-<br />
+<br>
 
 ```bash
 # 克隆项目
@@ -61,7 +61,7 @@ pnpm dev
 <details>
 <summary>打包构建</summary>
 
-<br />
+<br>
 
 ```bash
 # 打包构建预发布环境
@@ -76,7 +76,7 @@ pnpm build
 <details>
 <summary>本地预览</summary>
 
-<br />
+<br>
 
 ```bash
 # 先执行打包构建命令生成 dist 目录后再执行以下预览命令
@@ -88,7 +88,7 @@ pnpm preview
 <details>
 <summary>代码检查</summary>
 
-<br />
+<br>
 
 ```bash
 # 代码校验与格式化
@@ -103,7 +103,7 @@ pnpm test
 <details>
 <summary>代码提交规范</summary>
 
-<br />
+<br>
 
 `feat` 新功能
 
@@ -142,6 +142,8 @@ pnpm test
 **可有可无的群**：[查看进群方式](https://github.com/un-pany/v3-admin-vite/issues/191)
 
 **捐赠**：[请作者喝咖啡](https://github.com/un-pany/v3-admin-vite/issues/69)
+
+**发行版 & 更新日志**：[releases](https://github.com/un-pany/v3-admin-vite/releases)
 
 ## 特性
 
@@ -208,7 +210,7 @@ pnpm test
 在此感谢所有的贡献者！
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
 </a>
 
 ## License
