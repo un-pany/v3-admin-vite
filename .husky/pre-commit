@@ -1,2 +1,4 @@
+# 全局 ts 类型检查（此操作会增加 git commit 时长）
 npx vue-tsc --noEmit
+# 执行 lint-staged 中配置的任务
 npx lint-staged

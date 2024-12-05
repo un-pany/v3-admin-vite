@@ -1,21 +1,10 @@
-import {
-  type Router,
-  type RouteRecordNormalized,
-  type RouteRecordRaw,
-  createRouter,
-  createWebHashHistory,
-  createWebHistory
-} from "vue-router"
+import type { Router, RouteRecordNormalized, RouteRecordRaw } from "vue-router"
 import { cloneDeep, omit } from "lodash-es"
-
-/** 路由模式 */
-export const history =
-  import.meta.env.VITE_ROUTER_HISTORY === "hash"
-    ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
-    : createWebHistory(import.meta.env.VITE_PUBLIC_PATH)
+import { createRouter } from "vue-router"
+import { routerConfig } from "./config"
 
 /** 路由降级（把三级及其以上的路由转化为二级路由） */
-export const flatMultiLevelRoutes = (routes: RouteRecordRaw[]) => {
+export function flatMultiLevelRoutes(routes: RouteRecordRaw[]) {
   const routesMirror = cloneDeep(routes)
   routesMirror.forEach((route) => {
     // 如果路由是三级及其以上路由，对其进行降级处理
@@ -25,20 +14,18 @@ export const flatMultiLevelRoutes = (routes: RouteRecordRaw[]) => {
 }
 
 /** 判断路由层级是否大于 2 */
-const isMultipleRoute = (route: RouteRecordRaw) => {
+function isMultipleRoute(route: RouteRecordRaw) {
   const children = route.children
-  if (children?.length) {
-    // 只要有一个子路由的 children 长度大于 0，就说明是三级及其以上路由
-    return children.some((child) => child.children?.length)
-  }
+  // 只要有一个子路由的 children 长度大于 0，就说明是三级及其以上路由
+  if (children?.length) return children.some(child => child.children?.length)
   return false
 }
 
 /** 生成二级路由 */
-const promoteRouteLevel = (route: RouteRecordRaw) => {
+function promoteRouteLevel(route: RouteRecordRaw) {
   // 创建 router 实例是为了获取到当前传入的 route 的所有路由信息
   let router: Router | null = createRouter({
-    history,
+    history: routerConfig.history,
     routes: [route]
   })
   const routes = router.getRoutes()
@@ -46,13 +33,13 @@ const promoteRouteLevel = (route: RouteRecordRaw) => {
   addToChildren(routes, route.children || [], route)
   router = null
   // 转为二级路由后，去除所有子路由中的 children
-  route.children = route.children?.map((item) => omit(item, "children") as RouteRecordRaw)
+  route.children = route.children?.map(item => omit(item, "children") as RouteRecordRaw)
 }
 
 /** 将给定的子路由添加到指定的路由模块中 */
-const addToChildren = (routes: RouteRecordNormalized[], children: RouteRecordRaw[], routeModule: RouteRecordRaw) => {
+function addToChildren(routes: RouteRecordNormalized[], children: RouteRecordRaw[], routeModule: RouteRecordRaw) {
   children.forEach((child) => {
-    const route = routes.find((item) => item.name === child.name)
+    const route = routes.find(item => item.name === child.name)
     if (route) {
       // 初始化 routeModule 的 children
       routeModule.children = routeModule.children || []

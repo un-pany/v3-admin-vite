@@ -1,48 +1,41 @@
+/**
+ * @link https://www.typescriptlang.org/tsconfig
+ * @link https://cn.vuejs.org/guide/typescript/overview#configuring-tsconfig-json
+ * @link https://cn.vite.dev/guide/features#typescript-compiler-options
+ */
+
 {
   "compilerOptions": {
     "target": "esnext",
-    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    /** TS 严格模式 */
-    "strict": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
-    "importHelpers": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    /** https://cn.vitejs.dev/guide/features.html#typescript-compiler-options */
-    "isolatedModules": true,
-    "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "skipLibCheck": true,
-    "types": [
-      "node",
-      "vite/client",
-      /** Element Plus 的 Volar 插件支持 */
-      "element-plus/global",
-      "vitest"
-    ],
-    /** baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项 */
+    "useDefineForClassFields": true,
+    "experimentalDecorators": true,
+    // baseUrl 用来告诉编译器到哪里去查找模块，使用非相对模块时必须配置此项
     "baseUrl": ".",
-    /** 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算 */
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    // 非相对模块导入的路径映射配置，根据 baseUrl 配置进行路径计算，与 vite.config 中 alias 配置同步
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["src/*"],
+      "@@/*": ["src/common/*"]
+    },
+    "resolveJsonModule": true,
+    "types": ["vite/client", "element-plus/global"],
+    // 允许 JS
+    "allowJs": true,
+    // TS 严格模式
+    "strict": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "types/**/*.d.ts",
-    "vite.config.ts",
-    "vitest.config.ts"
-  ],
-  /** 编译器默认排除的编译文件 */
+  // 需要被编译的文件列表
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "**/*.d.ts"],
+  // 从编译中排除的文件列表
   "exclude": ["node_modules", "dist"]
 }

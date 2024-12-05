@@ -1,5 +1,3 @@
-import { describe, expect, it } from "vitest"
-
 /**
  * @description 该文件所有示例均是为了向你演示 Vitest 最基本的用法
  * @link https://cn.vitest.dev/api
@@ -9,6 +7,8 @@ import { describe, expect, it } from "vitest"
  * @api toBe: 可以用于断言原始类型是否相等，或者对象是否共享相同的引用
  * @api toEqual: 断言实际值是否等于接收到的值或具有相同的结构（如果是对象，则递归比较它们）
  */
+
+import { describe, expect, it } from "vitest"
 
 const author1 = {
   name: "pany",

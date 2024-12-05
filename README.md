@@ -1,160 +1,222 @@
 <div align="center">
-  <img alt="V3 Admin Vite Logo" width="120" height="120" src="./src/assets/layouts/logo.png">
+  <img alt="logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
-  <span>English | <a href="./README.zh-CN.md">中文</a></span>
 </div>
 
-## ⚡ Introduction
+[![github release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/releases)
+[![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/stargazers)
+[![gitee stars](https://gitee.com/un-pany/v3-admin-vite/badge/star.svg)](https://gitee.com/un-pany/v3-admin-vite/stargazers)
 
-V3 Admin Vite is a free and open source middle and background management system basic solution, based on mainstream framework such as Vue3, TypeScript, Element Plus, Pinia and Vite
+<b>English | <a href="./README.zh-CN.md">中文</a></b>
 
-- Vue Cli 5.x: [v3-admin](https://github.com/un-pany/v3-admin)
-- Electron desktop: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
+## Introduction
 
-China repository: [Gitee](https://gitee.com/un-pany/v3-admin-vite)
+V3 Admin Vite is a free and open-source foundational solution for backend management systems, based on popular technologies such as Vue3, Vite, TypeScript, Element Plus, and others
 
-## 📚 Document
+## Notifications
 
-- Chinese documentation: [link](https://juejin.cn/post/7089377403717287972)
-- Chinese getting started tutorial: [link](https://juejin.cn/column/7207659644487139387)
+> [!NOTE]
+> Powered by love! All source code is free and open-source. If you find it helpful, feel free to give a star to support!
 
-## 📺 Online preview
+> [!IMPORTANT]
+> Welcome to experience the brand-new version 5.0, currently in the beta stage. It will be a masterpiece!
 
-| Location     | account             | Link                                            |
-| ------------ | ------------------- | ----------------------------------------------- |
-| github-pages | `admin` or `editor` | [link](https://un-pany.github.io/v3-admin-vite) |
+> [!WARNING]
+> Version 4.x will no longer be maintained unless there are critical bugs! [Click to switch to the 4.x branch](https://github.com/un-pany/v3-admin-vite/tree/4.x)
 
-## ❤️ Generate electricity with love
+> [!TIP]
+> Paid services are officially launched! If you don’t want to do it yourself but want to remove TS or other modules, try the lazy package! [Click to check it out](https://github.com/un-pany/v3-admin-vite/issues/225)
 
-- **Completely free**：But hopefully you order a star !!!
-- **Very concise**：No complicated encapsulation, no complicated type gymnastics, out of the box
-- **Detailed annotations**：Each configuration item is written with as detailed comments as possible
-- **Latest dependencies**: Regularly update all third-party dependencies to the latest version
-- **Very specification**: The code style is unified, the naming style is unified, and the comment style is unified
+## Usage
 
-## Feature
+<details>
+<summary>Recommended Environment</summary>
 
-- **Vue3**：The latest Vue3 composition API using Vue3 + script setup
-- **Element Plus**：Vue3 version of Element UI
-- **Pinia**: An alternative to Vuex in Vue3
-- **Vite**：Really fast
-- **Vue Router**：router
-- **TypeScript**：JavaScript With Syntax For Types
-- **PNPM**：Faster, disk space saving package management tool
-- **Scss**：Consistent with Element Plus
-- **CSS variable**：Mainly controls the layout and color of the item
-- **ESlint**：Code verification
-- **Prettier**： Code formatting
-- **Axios**: Promise based HTTP client (encapsulated)
-- **UnoCSS**: Real-time atomized CSS engine with high performance and flexibility
-- **Mobile Compatible**: The layout is compatible with mobile page resolution
+<br>
 
-## Functions
+- Latest version of `Visual Studio Code`
+- Install the recommended plugins in the `.vscode/extensions.json` file
+- `node` 20.x or 22+
+- `pnpm` 9+
 
-- **User management**: Log in and out of the demo
-- **Authority management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission functions), and route navigation guards
-- **Multiple Environments**: Development, Staging, Production
-- **Multiple themes**: Normal, Dark, Dark Blue, three theme modes
-- **Multiple layouts**：Left, Top, Left Top, three layout modes
-- **Error page**: 403, 404
-- **Dashboard**: Display different Dashboard pages according to different users
-- **Other functions**：SVG, Dynamic Sidebar, Dynamic Breadcrumb Navigation, Tabbed Navigation, Screenfull, Adaptive Shrink Sidebar, Hook (Composables)
+</details>
 
-## 🚀 Development
+<details>
+<summary>Local Development</summary>
+
+<br>
 
 ```bash
-# configure
-1. installation of the recommended plugins in the .vscode directory
-2. node version 18.x or 20+
-3. pnpm version 8.x or latest
-
-# clone
+# Clone the project
 git clone https://github.com/un-pany/v3-admin-vite.git
 
-# enter the project directory
+# Enter the project directory
 cd v3-admin-vite
 
-# install dependencies
+# Install dependencies
 pnpm i
 
-# start the service
+# Start the development server
 pnpm dev
 ```
 
-## ✔️ Preview
+</details>
+
+<details>
+<summary>Build</summary>
+
+<br>
 
 ```bash
-# stage environment
-pnpm preview:stage
+# Build for the staging environment
+pnpm build:staging
 
-# prod environment
-pnpm preview:prod
+# Build for the production environment
+pnpm build
 ```
 
-## 📦️ Multi-environment packaging
+</details>
+
+<details>
+<summary>Local Preview</summary>
+
+<br>
 
 ```bash
-# build the stage environment
-pnpm build:stage
-
-# build the prod environment
-pnpm build:prod
+# Execute the build command first to generate the dist directory, then run the preview command
+pnpm preview
 ```
 
-## 🔧 Code inspection
+</details>
+
+<details>
+<summary>Code Check</summary>
+
+<br>
 
 ```bash
-# code formatting
+# Code linting and formatting
 pnpm lint
 
-# unit test
+# Unit tests
 pnpm test
 ```
 
-## Git commit specification reference
+</details>
 
-- `feat` add new functions
-- `fix` Fix issues/bugs
-- `perf` Optimize performance
-- `style` Change the code style without affecting the running result
-- `refactor` Re-factor code
-- `revert` Undo changes
-- `test` Test related, does not involve changes to business code
-- `docs` Documentation and Annotation
-- `chore` Updating dependencies/modifying scaffolding configuration, etc.
-- `workflow` Work flow Improvements
-- `ci` CICD
-- `types` Type definition
-- `wip` In development
+<details>
+<summary>Commit Guidelines</summary>
 
-## Project preview
+<br>
 
-![preview1.png](./src/assets/docs/preview1.png)
-![preview2.png](./src/assets/docs/preview2.png)
-![preview3.png](./src/assets/docs/preview3.png)
+`feat` New feature
 
-## 💕 Contributors
+`fix` Bug fix
 
-Thanks to all the contributors!
+`perf` Performance improvement
+
+`refactor` Code refactoring
+
+`docs` Documentation and comments
+
+`types` Type-related changes
+
+`test` Unit tests related
+
+`ci` Continuous integration, workflows
+
+`revert` Revert changes
+
+`chore` Chores (update dependencies, modify configurations, etc)
+
+</details>
+
+## Links
+
+**Online Preview**：[github-pages](https://un-pany.github.io/v3-admin-vite)
+
+**Chinese Documentation**：[link](https://juejin.cn/post/7089377403717287972)
+
+**Zero to Hero Tutorial**：[link](https://juejin.cn/column/7207659644487139387)
+
+**Electron Desktop Version**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
+
+**Chinese Repository**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
+
+**Optional Group**：[check how to join](https://github.com/un-pany/v3-admin-vite/issues/191)
+
+**Donations**：[buy a coffee for the author](https://github.com/un-pany/v3-admin-vite/issues/69)
+
+**Releases & Changelog**：[releases](https://github.com/un-pany/v3-admin-vite/releases)
+
+## Features
+
+**Simplified structure**: No complex encapsulation, no complicated type gymnastics, just enough to meet the needs
+
+**Detailed comments**: Every configuration item comes with as detailed comments as possible
+
+**Latest dependencies**: Keeps all third-party dependencies up to date
+
+**Consistency**: Unified code style, naming conventions, and comment style
+
+## Built-in Features
+
+**User Management**: Login, logout demonstration
+
+**Permission Management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission functions), route guards
+
+**Multiple Environments**: Development, staging, and production environments
+
+**Multiple Themes**: Normal, dark, and deep blue themes
+
+**Multiple Layouts**: Left-side, top, and hybrid layouts
+
+**Homepage**: Different dashboard pages for different users
+
+**Error Pages**: 403, 404
+
+**Mobile Compatibility**: Layouts compatible with mobile screen resolutions
+
+**Others**: SVG sprite sheet, dynamic sidebar, dynamic breadcrumbs, tab navigation, content zoom and fullscreen, composable functions
+
+## Tech Stack
+
+**Vue3**: Vue3 + script setup with the latest Vue3 Composition API
+
+**Element Plus**: The Vue3 version of Element UI
+
+**Pinia**: The legendary Vuex5
+
+**Vite**: Really fast
+
+**Vue Router**: The routing system
+
+**TypeScript**: A superset of JavaScript
+
+**pnpm**: A faster, disk-space-saving package manager
+
+**Scss**: Consistent with Element Plus
+
+**CSS Variables**: Primarily controls layout and color in the project
+
+**ESlint**: Code linting and formatting
+
+**Axios**: Sends network requests
+
+**UnoCSS**: A high-performance, flexible atomic CSS engine
+
+## Project Preview Image
+
+![preview](./src/common/assets/images/docs/preview.png)
+
+## Contributors
+
+A big thank you to all the contributors!
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" />
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
 </a>
 
-## 💕 Thanks star
+## License
 
-Small projects are not easy to get a star, if you like this project, welcome to support a star! This is the only motivation for the author to maintain it on an ongoing basis (whisper: it's free after all)
-
-## ☕ Donate
-
-[See how to donate](https://github.com/un-pany/v3-admin-vite/issues/69)
-
-## Group
-
-[See how to join a group chat](https://github.com/un-pany/v3-admin-vite/issues/191)
-
-## 📄 License
-
-[MIT](./LICENSE)
-
-Copyright (c) 2022-present [pany](https://github.com/pany-ang)
+[MIT](./LICENSE) License © 2022-PRESENT [pany](https://github.com/pany-ang)

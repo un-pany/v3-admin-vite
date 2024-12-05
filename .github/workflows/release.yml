@@ -16,9 +16,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - name: Set node
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.17.0
+          registry-url: https://registry.npmjs.org/
+          node-version: lts/*
 
       - run: npx changelogithub
         env:

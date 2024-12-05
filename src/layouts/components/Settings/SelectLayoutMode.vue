@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useLayoutMode } from "@/hooks/useLayoutMode"
-import { LayoutModeEnum } from "@/constants/app-key"
+import { useLayoutMode } from "@@/composables/useLayoutMode"
+import { LayoutModeEnum } from "@@/constants/app-key"
 
 const { isLeft, isTop, isLeftTop, setLayoutMode } = useLayoutMode()
 </script>

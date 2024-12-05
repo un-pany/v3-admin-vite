@@ -1,0 +1,66 @@
+// 全局 CSS 变量
+@import "./variables.css";
+// Transition
+@import "./transition.scss";
+// Element Plus
+@import "./element-plus.css";
+@import "./element-plus.scss";
+// Vxe Table
+@import "./vxe-table.css";
+@import "./vxe-table.scss";
+// 注册多主题
+@import "./theme/register.scss";
+// Mixins
+@import "./mixins.scss";
+// View Transition
+@import "./view-transition.scss";
+
+// 业务页面几乎都应该在根元素上挂载 class="app-container"，以保持页面美观
+.app-container {
+  padding: 20px;
+}
+
+html {
+  height: 100%;
+  // 灰色模式
+  &.grey-mode {
+    filter: grayscale(1);
+  }
+  // 色弱模式
+  &.color-weakness {
+    filter: invert(0.8);
+  }
+}
+
+body {
+  height: 100%;
+  color: var(--v3-body-text-color);
+  background-color: var(--v3-body-bg-color);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: Inter, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑",
+    Arial, sans-serif;
+  @extend %scrollbar;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a,
+a:focus,
+a:hover {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}

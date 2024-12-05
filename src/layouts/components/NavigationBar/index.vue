@@ -1,19 +1,15 @@
 <script lang="ts" setup>
-import { useRouter } from "vue-router"
-import { storeToRefs } from "pinia"
-import { useAppStore } from "@/store/modules/app"
-import { useSettingsStore } from "@/store/modules/settings"
-import { useUserStore } from "@/store/modules/user"
+import { useAppStore } from "@/pinia/stores/app"
+import { useSettingsStore } from "@/pinia/stores/settings"
+import { useUserStore } from "@/pinia/stores/user"
+import Notify from "@@/components/Notify/index.vue"
+import Screenfull from "@@/components/Screenfull/index.vue"
+import SearchMenu from "@@/components/SearchMenu/index.vue"
+import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
+import { useDevice } from "@@/composables/useDevice"
+import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { UserFilled } from "@element-plus/icons-vue"
-import Hamburger from "../Hamburger/index.vue"
-import Breadcrumb from "../Breadcrumb/index.vue"
-import Sidebar from "../Sidebar/index.vue"
-import Notify from "@/components/Notify/index.vue"
-import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
-import Screenfull from "@/components/Screenfull/index.vue"
-import SearchMenu from "@/components/SearchMenu/index.vue"
-import { useDevice } from "@/hooks/useDevice"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
+import { Breadcrumb, Hamburger, Sidebar } from "../index"
 
 const { isMobile } = useDevice()
 const { isTop } = useLayoutMode()
@@ -24,12 +20,12 @@ const settingsStore = useSettingsStore()
 const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
-const toggleSidebar = () => {
+function toggleSidebar() {
   appStore.toggleSidebar(false)
 }
 
 /** 登出 */
-const logout = () => {
+function logout() {
   userStore.logout()
   router.push("/login")
 }
@@ -104,7 +100,7 @@ const logout = () => {
     :deep(.el-sub-menu) {
       &.is-active {
         .el-sub-menu__title {
-          color: var(--el-color-primary) !important;
+          color: var(--el-color-primary);
         }
       }
     }

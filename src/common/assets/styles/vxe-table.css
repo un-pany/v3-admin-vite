@@ -1,0 +1,97 @@
+/**
+ * @description 所有主题模式下的 Vxe Table CSS 变量
+ * @description 用 Element Plus 的 CSS 变量来覆写 Vxe Table 的 CSS 变量，目的是使 Vxe Table 支持多主题模式且样式统一
+ * @description 在此查阅所有可自定义的变量：https://github.com/x-extends/vxe-table/blob/master/styles/css-variable.scss
+ */
+
+:root {
+  /* color */
+  --vxe-font-color: var(--el-text-color-regular);
+  --vxe-primary-color: var(--el-color-primary);
+  --vxe-success-color: var(--el-color-success);
+  --vxe-info-color: var(--el-color-info);
+  --vxe-warning-color: var(--el-color-warning);
+  --vxe-danger-color: var(--el-color-danger);
+
+  --vxe-font-lighten-color: var(--el-text-color-primary);
+  --vxe-primary-lighten-color: var(--el-color-primary-light-3);
+  --vxe-success-lighten-color: var(--el-color-success-light-3);
+  --vxe-info-lighten-color: var(--el-color-info-light-3);
+  --vxe-warning-lighten-color: var(--el-color-warning-light-3);
+  --vxe-danger-lighten-color: var(--el-color-danger-light-3);
+
+  --vxe-font-darken-color: var(--el-text-color-secondary);
+  --vxe-primary-darken-color: var(--el-color-primary-dark-2);
+  --vxe-success-darken-color: var(--el-color-success-dark-2);
+  --vxe-info-darken-color: var(--el-color-info-dark-2);
+  --vxe-warning-darken-color: var(--el-color-warning-dark-2);
+  --vxe-danger-darken-color: var(--el-color-danger-dark-2);
+
+  --vxe-font-disabled-color: var(--el-text-color-disabled);
+  --vxe-primary-disabled-color: var(--el-color-primary-light-5);
+  --vxe-success-disabled-color: var(--el-color-success-light-5);
+  --vxe-info-disabled-color: var(--el-color-info-light-5);
+  --vxe-warning-disabled-color: var(--el-color-warning-light-5);
+  --vxe-danger-disabled-color: var(--el-color-danger-light-5);
+
+  /* input/radio/checkbox */
+  --vxe-input-border-color: var(--el-border-color);
+  --vxe-input-disabled-color: var(--el-text-color-disabled);
+  --vxe-input-disabled-background-color: var(--el-fill-color-light);
+  --vxe-input-placeholder-color: var(--el-text-color-placeholder);
+
+  /* popup */
+  --vxe-table-popup-border-color: var(--el-border-color);
+
+  /* table */
+  --vxe-table-header-font-color: var(--el-text-color-regular);
+  --vxe-table-footer-font-color: var(--el-text-color-regular);
+  --vxe-table-border-color: var(--el-border-color-lighter);
+  --vxe-table-header-background-color: var(--el-bg-color);
+  --vxe-table-body-background-color: var(--el-bg-color);
+  --vxe-table-footer-background-color: var(--el-bg-color);
+
+  --vxe-table-row-hover-background-color: var(--el-fill-color-light);
+  --vxe-table-row-current-background-color: var(--el-fill-color-light);
+  --vxe-table-row-hover-current-background-color: var(--el-fill-color-light);
+
+  --vxe-table-checkbox-range-background-color: var(--el-fill-color-light);
+
+  /* menu */
+  --vxe-table-menu-background-color: var(--el-bg-color-overlay);
+
+  /* loading */
+  --vxe-loading-color: var(--el-color-primary);
+  --vxe-loading-background-color: var(--el-mask-color);
+
+  /* validate */
+  --vxe-table-validate-error-color: var(--el-color-danger);
+
+  /* toolbar */
+  --vxe-toolbar-background-color: var(--el-bg-color);
+  --vxe-toolbar-custom-active-background-color: var(--el-bg-color-overlay);
+  --vxe-toolbar-panel-background-color: var(--el-bg-color-overlay);
+
+  /* pager */
+  --vxe-pager-background-color: var(--el-bg-color);
+
+  /* modal */
+  --vxe-modal-header-background-color: var(--el-bg-color);
+  --vxe-modal-body-background-color: var(--el-bg-color);
+  --vxe-modal-border-color: var(--el-border-color);
+
+  /* button */
+  --vxe-button-default-background-color: var(--el-bg-color-overlay);
+
+  /* input */
+  --vxe-input-background-color: var(--el-fill-color-blank);
+  --vxe-input-panel-background-color: var(--el-fill-color-blank);
+
+  /* form */
+  --vxe-form-background-color: var(--el-bg-color);
+  --vxe-form-validate-error-color: var(--el-color-danger);
+
+  /* select */
+  --vxe-select-option-hover-background-color: var(--el-bg-color-overlay);
+  --vxe-select-panel-background-color: var(--el-bg-color);
+}

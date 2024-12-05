@@ -1,0 +1,20 @@
+// 自定义 Element Plus 样式
+
+// 卡片
+.el-card {
+  background-color: var(--el-bg-color) !important;
+}
+
+// 分页
+.el-pagination {
+  // 参考 Bootstrap 的响应式设计 WIDTH = 768
+  @media screen and (max-width: 768px) {
+    .el-pagination__total,
+    .el-pagination__sizes,
+    .el-pagination__jump,
+    .btn-prev,
+    .btn-next {
+      display: none;
+    }
+  }
+}

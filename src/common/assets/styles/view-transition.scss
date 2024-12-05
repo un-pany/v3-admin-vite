@@ -1,0 +1,20 @@
+// 控制切换主题时的动画效果（只在较新的浏览器上生效，例如 Chrome 111+）
+
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: 0.5s ease-in clip-animation;
+  mix-blend-mode: normal;
+}
+
+@keyframes clip-animation {
+  from {
+    clip-path: circle(0px at var(--v3-theme-x) var(--v3-theme-y));
+  }
+  to {
+    clip-path: circle(var(--v3-theme-r) at var(--v3-theme-x) var(--v3-theme-y));
+  }
+}

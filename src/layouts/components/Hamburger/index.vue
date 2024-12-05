@@ -9,12 +9,11 @@ const props = withDefaults(defineProps<Props>(), {
   isActive: false
 })
 
-/** Vue 3.3+ defineEmits 语法 */
 const emit = defineEmits<{
   toggleClick: []
 }>()
 
-const toggleClick = () => {
+function toggleClick() {
   emit("toggleClick")
 }
 </script>

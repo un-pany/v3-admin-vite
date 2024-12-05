@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { ref, nextTick } from "vue"
-import { RouterLink, useRoute } from "vue-router"
-import { useSettingsStore } from "@/store/modules/settings"
-import { useRouteListener } from "@/hooks/useRouteListener"
-import Screenfull from "@/components/Screenfull/index.vue"
-import { ElScrollbar } from "element-plus"
+import type { ElScrollbar } from "element-plus"
+import type { RouterLink } from "vue-router"
+import { useSettingsStore } from "@/pinia/stores/settings"
+import Screenfull from "@@/components/Screenfull/index.vue"
+import { useRouteListener } from "@@/composables/useRouteListener"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
 
 interface Props {
@@ -14,27 +13,31 @@ interface Props {
 const props = defineProps<Props>()
 
 const route = useRoute()
+
 const settingsStore = useSettingsStore()
+
 const { listenerRouteChange } = useRouteListener()
 
 /** 滚动条组件元素的引用 */
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+
 /** 滚动条内容元素的引用 */
 const scrollbarContentRef = ref<HTMLDivElement>()
 
 /** 当前滚动条距离左边的距离 */
 let currentScrollLeft = 0
+
 /** 每次滚动距离 */
 const translateDistance = 200
 
 /** 滚动时触发 */
-const scroll = ({ scrollLeft }: { scrollLeft: number }) => {
+function scroll({ scrollLeft }: { scrollLeft: number }) {
   currentScrollLeft = scrollLeft
 }
 
 /** 鼠标滚轮滚动时触发 */
-const wheelScroll = ({ deltaY }: WheelEvent) => {
-  if (/^-/.test(deltaY.toString())) {
+function wheelScroll({ deltaY }: WheelEvent) {
+  if (deltaY.toString().startsWith("-")) {
     scrollTo("left")
   } else {
     scrollTo("right")
@@ -42,19 +45,19 @@ const wheelScroll = ({ deltaY }: WheelEvent) => {
 }
 
 /** 获取可能需要的宽度 */
-const getWidth = () => {
-  /** 可滚动内容的长度 */
+function getWidth() {
+  // 可滚动内容的长度
   const scrollbarContentRefWidth = scrollbarContentRef.value!.clientWidth
-  /** 滚动可视区宽度 */
+  // 滚动可视区宽度
   const scrollbarRefWidth = scrollbarRef.value!.wrapRef!.clientWidth
-  /** 最后剩余可滚动的宽度 */
+  // 最后剩余可滚动的宽度
   const lastDistance = scrollbarContentRefWidth - scrollbarRefWidth - currentScrollLeft
 
   return { scrollbarContentRefWidth, scrollbarRefWidth, lastDistance }
 }
 
 /** 左右滚动 */
-const scrollTo = (direction: "left" | "right", distance: number = translateDistance) => {
+function scrollTo(direction: "left" | "right", distance: number = translateDistance) {
   let scrollLeft = 0
   const { scrollbarContentRefWidth, scrollbarRefWidth, lastDistance } = getWidth()
   // 没有横向滚动条，直接结束
@@ -68,12 +71,12 @@ const scrollTo = (direction: "left" | "right", distance: number = translateDista
 }
 
 /** 移动到目标位置 */
-const moveTo = () => {
+function moveTo() {
   const tagRefs = props.tagRefs
   for (let i = 0; i < tagRefs.length; i++) {
-    // @ts-ignore
+    // @ts-expect-error ignore
     if (route.path === tagRefs[i].$props.to.path) {
-      // @ts-ignore
+      // @ts-expect-error ignore
       const el: HTMLElement = tagRefs[i].$el
       const offsetWidth = el.offsetWidth
       const offsetLeft = el.offsetLeft
@@ -95,7 +98,7 @@ const moveTo = () => {
   }
 }
 
-/** 监听路由变化，移动到目标位置 */
+// 监听路由变化，移动到目标位置
 listenerRouteChange(() => {
   nextTick(moveTo)
 })
@@ -103,17 +106,21 @@ listenerRouteChange(() => {
 
 <template>
   <div class="scroll-container">
-    <el-icon class="arrow left" @click="scrollTo('left')">
-      <ArrowLeft />
-    </el-icon>
+    <el-tooltip content="向左滚动标签（超出最大宽度可点击）">
+      <el-icon class="arrow left" @click="scrollTo('left')">
+        <ArrowLeft />
+      </el-icon>
+    </el-tooltip>
     <el-scrollbar ref="scrollbarRef" @wheel.passive="wheelScroll" @scroll="scroll">
       <div ref="scrollbarContentRef" class="scrollbar-content">
         <slot />
       </div>
     </el-scrollbar>
-    <el-icon class="arrow right" @click="scrollTo('right')">
-      <ArrowRight />
-    </el-icon>
+    <el-tooltip content="向右滚动标签（超出最大宽度可点击）">
+      <el-icon class="arrow right" @click="scrollTo('right')">
+        <ArrowRight />
+      </el-icon>
+    </el-tooltip>
     <Screenfull v-if="settingsStore.showScreenfull" :content="true" class="screenfull" />
   </div>
 </template>
