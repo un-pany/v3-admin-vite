@@ -3,24 +3,21 @@
   <h1>V3 Admin Vite</h1>
 </div>
 
-<span><a href="./README.md">English</a> | 中文</span>
+<b><a href="./README.md">English</a> | 中文</b>
 
-> [!NOTE]
-> 为爱发电
+## 简介
+
+> [!NOTE] 为爱发电
 >
 > 完全免费，但希望你点一个 Star 支持一下！
 
-> [!IMPORTANT]
-> 全新 5.0 版本
+> [!IMPORTANT] 全新 5.0 版本
 >
 > 欢迎体验全新的 5.0 版本，目前正在 beta 阶段
 
-> [!WARNING]
-> 4.x 版本
+> [!WARNING] 4.x 版本
 >
-> [4.x 分支](https://github.com/un-pany/v3-admin-vite/tree/4.x)如果没有严重的 BUG 将不再维护
-
-## 简介
+> [4.x 版本](https://github.com/un-pany/v3-admin-vite/tree/4.x) 如果没有严重的 BUG 将不再维护
 
 V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术
 
@@ -28,6 +25,8 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 
 <details>
 <summary>推荐环境</summary>
+
+<br />
 
 - 新版 Visual Studio Code
 - 安装 .vscode/extensions.json 文件中推荐的插件
@@ -38,6 +37,8 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 
 <details>
 <summary>开发</summary>
+
+<br />
 
 ```bash
 # 克隆项目
@@ -58,6 +59,8 @@ pnpm dev
 <details>
 <summary>打包构建</summary>
 
+<br />
+
 ```bash
 # 打包构建预发布环境
 pnpm build:staging
@@ -70,6 +73,8 @@ pnpm build
 
 <details>
 <summary>本地预览</summary>
+
+<br />
 
 ```bash
 # 先执行打包构建命令生成 dist 目录后再执行以下预览命令
@@ -93,6 +98,8 @@ pnpm test
 
 <details>
 <summary>Git 提交规范</summary>
+
+<br />
 
 `feat` 新功能
 
