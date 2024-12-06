@@ -210,7 +210,9 @@ listenerRouteChange((route) => {
   overflow: hidden;
   .tags-view-wrapper {
     .tags-view-item {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
       cursor: pointer;
       height: 26px;
@@ -234,8 +236,8 @@ listenerRouteChange((route) => {
         border-color: var(--v3-tagsview-tag-active-border-color);
       }
       .el-icon {
-        margin: 0 2px;
-        vertical-align: middle;
+        margin-left: 5px;
+        margin-right: 1px;
         border-radius: 50%;
         &:hover {
           background-color: var(--v3-tagsview-tag-icon-hover-bg-color);
