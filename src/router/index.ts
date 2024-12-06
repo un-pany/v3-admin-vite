@@ -164,7 +164,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: "https://juejin.cn/post/7089377403717287972",
+        path: "https://juejin.cn/post/7445151895121543209",
         component: () => {},
         name: "Link1",
         meta: {

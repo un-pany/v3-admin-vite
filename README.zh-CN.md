@@ -135,7 +135,7 @@ pnpm test
 
 **在线预览**：[github-pages](https://un-pany.github.io/v3-admin-vite)
 
-**中文文档**：[链接](https://juejin.cn/post/7089377403717287972)
+**中文文档**：[链接](https://juejin.cn/post/7445151895121543209)
 
 **零基础教程**：[链接](https://juejin.cn/column/7207659644487139387)
 
