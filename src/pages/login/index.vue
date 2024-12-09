@@ -7,7 +7,7 @@ import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { getLoginCodeApi, loginApi } from "./apis"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
-  import {useSettingsStore} from "@/pinia/stores/settings"
+import {useSettingsStore} from "@/pinia/stores/settings"
 const settingsStore = useSettingsStore()
 const { showThemeSwitch } = storeToRefs(settingsStore)
 
