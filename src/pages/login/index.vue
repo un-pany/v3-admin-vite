@@ -7,6 +7,9 @@ import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
 import { getLoginCodeApi, loginApi } from "./apis"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
+  import {useSettingsStore} from "@/pinia/stores/settings"
+const settingsStore = useSettingsStore()
+const { showThemeSwitch } = storeToRefs(settingsStore)
 
 const router = useRouter()
 
@@ -82,7 +85,7 @@ createCode()
 
 <template>
   <div class="login-container">
-    <ThemeSwitch class="theme-switch" />
+    <ThemeSwitch class="theme-switch" v-if="showThemeSwitch" />
     <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
