@@ -6,12 +6,12 @@ import { router } from "@/router"
 import { installPlugins } from "@/plugins"
 import App from "@/App.vue"
 // css
-import "uno.css"
 import "normalize.css"
 import "nprogress/nprogress.css"
 import "element-plus/theme-chalk/dark/css-vars.css"
 import "vxe-table/lib/style.css"
 import "@@/assets/styles/index.scss"
+import "uno.css"
 
 // 创建应用实例
 const app = createApp(App)

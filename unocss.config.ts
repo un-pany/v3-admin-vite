@@ -6,7 +6,9 @@ export default defineConfig({
     // 属性化模式 & 无值的属性模式
     presetAttributify(),
     // 默认预设
-    presetUno()
+    presetUno({
+      important: true
+    })
   ],
   // 自定义规则
   rules: [["uno-padding-20", { padding: "20px" }]],
