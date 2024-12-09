@@ -7,7 +7,7 @@ export default defineConfig({
     presetAttributify(),
     // 默认预设
     presetUno({
-      important: true
+      important: "#app"
     })
   ],
   // 自定义规则
