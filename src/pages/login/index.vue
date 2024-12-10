@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from "element-plus"
 import type { LoginRequestData } from "./apis/type"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { useUserStore } from "@/pinia/stores/user"
 import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
@@ -11,6 +12,8 @@ import { useFocus } from "./composables/useFocus"
 const router = useRouter()
 
 const userStore = useUserStore()
+
+const settingsStore = useSettingsStore()
 
 const { isFocus, handleBlur, handleFocus } = useFocus()
 
@@ -82,7 +85,7 @@ createCode()
 
 <template>
   <div class="login-container">
-    <ThemeSwitch class="theme-switch" />
+    <ThemeSwitch v-if="settingsStore.showThemeSwitch" class="theme-switch" />
     <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
