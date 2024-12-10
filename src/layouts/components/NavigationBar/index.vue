@@ -46,8 +46,8 @@ function logout() {
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
       <Notify v-if="showNotify" class="right-menu-item" />
-      <el-dropdown class="right-menu-item">
-        <div class="right-menu-avatar">
+      <el-dropdown>
+        <div class="right-menu-item user">
           <el-avatar :icon="UserFilled" :size="30" />
           <span>{{ userStore.username }}</span>
         </div>
@@ -110,18 +110,21 @@ function logout() {
     height: 100%;
     display: flex;
     align-items: center;
-    .right-menu-item {
-      padding: 0 10px;
+    &-item {
+      margin: 0 10px;
       cursor: pointer;
-      .right-menu-avatar {
-        display: flex;
-        align-items: center;
-        .el-avatar {
-          margin-right: 10px;
-        }
-        span {
-          font-size: 16px;
-        }
+      &:last-child {
+        margin-left: 20px;
+      }
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      .el-avatar {
+        margin-right: 10px;
+      }
+      span {
+        font-size: 16px;
       }
     }
   }

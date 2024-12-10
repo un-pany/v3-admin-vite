@@ -86,10 +86,6 @@ function handleHistory() {
 </template>
 
 <style lang="scss" scoped>
-.notify {
-  margin-right: 10px;
-}
-
 .notify-history {
   text-align: center;
   padding-top: 12px;
