@@ -90,6 +90,7 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
 }
 
 .el-menu {
+  user-select: none;
   border: none;
   width: 100%;
 }
