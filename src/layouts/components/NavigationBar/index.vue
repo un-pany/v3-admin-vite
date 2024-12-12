@@ -60,7 +60,7 @@ function logout() {
               <el-dropdown-item>Gitee</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              <span style="display: block">退出登录</span>
+              退出登录
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
