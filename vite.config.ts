@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
       // 端口被占用时，是否直接退出
       strictPort: false,
       // 是否自动打开浏览器
-      open: false,
+      open: true,
       // 反向代理
       proxy: {
         "/api/v1": {
@@ -49,7 +49,11 @@ export default defineConfig(({ mode }) => {
       cors: true,
       // 预热常用文件，提高初始页面加载速度
       warmup: {
-        clientFiles: ["./src/layouts/**/*.vue"]
+        clientFiles: [
+          "./src/layouts/**/*.*",
+          "./src/pinia/**/*.*",
+          "./src/router/**/*.*"
+        ]
       }
     },
     // 构建配置
