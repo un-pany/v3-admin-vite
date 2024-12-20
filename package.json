@@ -1,7 +1,7 @@
 {
   "name": "v3-admin-vite",
   "type": "module",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "description": "A crafted admin template, built with Vue3, Vite, TypeScript, Element Plus, and more",
   "author": "pany <939630029@qq.com> (https://github.com/pany-ang)",
   "repository": "https://github.com/un-pany/v3-admin-vite",
