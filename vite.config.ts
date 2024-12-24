@@ -96,7 +96,22 @@ export default defineConfig(({ mode }) => {
       // 支持 JSX、TSX 语法
       vueJsx(),
       // 支持将 SVG 文件导入为 Vue 组件
-      svgLoader({ defaultImport: "url" }),
+      svgLoader({
+        defaultImport: "url",
+        svgoConfig: {
+          plugins: [
+            {
+              name: "preset-default",
+              params: {
+                overrides: {
+                  // @see https://github.com/svg/svgo/issues/1128
+                  removeViewBox: false
+                }
+              }
+            }
+          ]
+        }
+      }),
       // 自动生成 SvgIcon 组件和 SVG 雪碧图
       SvgComponent({
         iconDir: [resolve(__dirname, "src/common/assets/icons")],
