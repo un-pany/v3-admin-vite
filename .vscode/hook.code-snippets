@@ -2,7 +2,6 @@
   "Vue3 Composable 代码结构一键生成": {
     "prefix": "Vue3 Composable",
     "body": [
-      "import { ref } from \"vue\"\n",
       "const refName1 = ref<string>(\"这是一个响应式变量\")\n",
       "export function useName() {",
       "\tconst refName2 = ref<string>(\"这是一个响应式变量\")\n",
