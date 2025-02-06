@@ -37,7 +37,7 @@ V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，
 - 新版 `Visual Studio Code`
 - 安装 `.vscode/extensions.json` 文件中推荐的插件
 - `node` 20.x 或 22+
-- `pnpm` 9+
+- `pnpm` 9.x 或 10+
 
 </details>
 

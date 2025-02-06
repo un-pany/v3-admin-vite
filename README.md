@@ -37,7 +37,7 @@ V3 Admin Vite is a free and open-source foundational solution for backend manage
 - Latest version of `Visual Studio Code`
 - Install the recommended plugins in the `.vscode/extensions.json` file
 - `node` 20.x or 22+
-- `pnpm` 9+
+- `pnpm` 9.x or 10+
 
 </details>
 
