@@ -52,16 +52,18 @@ function createInstance() {
     (error) => {
       // status 是 HTTP 状态码
       const status = get(error, "response.status")
+      const message = get(error, "response.data.message")
       switch (status) {
         case 400:
           error.message = "请求错误"
           break
         case 401:
           // Token 过期时
+          error.message = message || "未授权"
           logout()
           break
         case 403:
-          error.message = "拒绝访问"
+          error.message = message || "拒绝访问"
           break
         case 404:
           error.message = "请求地址出错"
