@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
       // 反向代理
       proxy: {
         "/api/v1": {
-          target: "https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212",
+          target: "https://apifoxmock.com/m1/2930465-2145633-default",
           // 是否为 WebSocket
           ws: false,
           // 是否允许跨域

@@ -11,7 +11,7 @@ export function createTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
 }
 
 /** 删 */
-export function deleteTableDataApi(id: string) {
+export function deleteTableDataApi(id: number) {
   return request({
     url: `table/${id}`,
     method: "delete"

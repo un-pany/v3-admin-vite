@@ -13,7 +13,7 @@ defineOptions({
 
 // #region vxe-grid
 interface RowMeta {
-  id: string
+  id: number
   username: string
   roles: string
   phone: string
@@ -164,8 +164,8 @@ const xGridOpt: VxeGridProps = reactive({
           }
           // 接口需要的参数
           const params = {
-            username: form.username || undefined,
-            phone: form.phone || undefined,
+            username: form.username || "",
+            phone: form.phone || "",
             size: page.pageSize,
             currentPage: page.currentPage
           }
@@ -382,6 +382,12 @@ const crudStore = reactive({
 
 <template>
   <div class="app-container">
+    <el-alert
+      title="数据来源"
+      type="success"
+      description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示。"
+      show-icon
+    />
     <!-- 表格 -->
     <vxe-grid ref="xGridDom" v-bind="xGridOpt">
       <!-- 左侧按钮列表 -->
@@ -410,3 +416,9 @@ const crudStore = reactive({
     </vxe-modal>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.el-alert {
+  margin-bottom: 20px;
+}
+</style>

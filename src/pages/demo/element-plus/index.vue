@@ -84,8 +84,8 @@ function getTableData() {
   getTableDataApi({
     currentPage: paginationData.currentPage,
     size: paginationData.pageSize,
-    username: searchData.username || undefined,
-    phone: searchData.phone || undefined
+    username: searchData.username,
+    phone: searchData.phone
   }).then(({ data }) => {
     paginationData.total = data.total
     tableData.value = data.list
@@ -110,6 +110,12 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
 
 <template>
   <div class="app-container">
+    <el-alert
+      title="数据来源"
+      type="success"
+      description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示。"
+      show-icon
+    />
     <el-card v-loading="loading" shadow="never" class="search-wrapper">
       <el-form ref="searchFormRef" :inline="true" :model="searchData">
         <el-form-item prop="username" label="用户名">
@@ -227,6 +233,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
 </template>
 
 <style lang="scss" scoped>
+.el-alert {
+  margin-bottom: 20px;
+}
+
 .search-wrapper {
   margin-bottom: 20px;
   :deep(.el-card__body) {
