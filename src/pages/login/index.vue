@@ -5,7 +5,7 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { useUserStore } from "@/pinia/stores/user"
 import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { Key, Loading, Lock, Picture, User } from "@element-plus/icons-vue"
-import { getLoginCodeApi, loginApi } from "./apis"
+import { getCaptchaApi, loginApi } from "./apis"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
 
@@ -74,7 +74,7 @@ function createCode() {
   // 清空验证图片
   codeUrl.value = ""
   // 获取验证码图片
-  getLoginCodeApi().then((res) => {
+  getCaptchaApi().then((res) => {
     codeUrl.value = res.data
   })
 }
