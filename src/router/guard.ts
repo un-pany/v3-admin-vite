@@ -17,7 +17,7 @@ export function registerNavigationGuard(router: Router) {
     NProgress.start()
     const userStore = useUserStore()
     const permissionStore = usePermissionStore()
-    // 如果没有登陆
+    // 如果没有登录
     if (!getToken()) {
       // 如果在免登录的白名单中，则直接进入
       if (isWhiteList(to)) return true
