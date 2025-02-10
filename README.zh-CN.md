@@ -113,7 +113,7 @@ pnpm test
 
 `fix` 修复错误
 
-`perf` 优化
+`perf` 性能优化
 
 `refactor` 重构代码
 
