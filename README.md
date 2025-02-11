@@ -11,7 +11,7 @@
 
 ## Introduction
 
-V3 Admin Vite is a free and open-source foundational solution for backend management systems, based on popular technologies such as Vue3, Vite, TypeScript, Element Plus, and others
+V3 Admin Vite is a well-crafted backend management system template, built with popular technologies such as Vue3, Vite, TypeScript, and Element Plus
 
 ## Notifications
 

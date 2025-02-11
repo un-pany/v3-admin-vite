@@ -11,7 +11,7 @@
 
 ## 简介
 
-V3 Admin Vite 是一个免费开源的中后台管理系统基础解决方案，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术
+V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术
 
 ## 通知
 
