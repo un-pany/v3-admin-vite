@@ -4,7 +4,7 @@ export function isArray<T>(arg: T) {
 }
 
 /** 判断是否为字符串 */
-export function isString<T>(str: T) {
+export function isString(str: unknown) {
   return typeof str === "string" || str instanceof String
 }
 
