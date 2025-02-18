@@ -15,7 +15,7 @@ export const useUserStore = defineStore("user", () => {
   const settingsStore = useSettingsStore()
 
   // 设置 Token
-  const setToken = async (value: string) => {
+  const setToken = (value: string) => {
     _setToken(value)
     token.value = value
   }
@@ -29,7 +29,7 @@ export const useUserStore = defineStore("user", () => {
   }
 
   // 模拟角色变化
-  const changeRoles = async (role: string) => {
+  const changeRoles = (role: string) => {
     const newToken = `token-${role}`
     token.value = newToken
     _setToken(newToken)
