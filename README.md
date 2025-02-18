@@ -163,7 +163,7 @@ pnpm test
 
 **User Management**: Login, logout demonstration
 
-**Permission Management**: Page-level permissions (dynamic routing), button-level permissions (directive permissions, permission functions), route guards
+**Permission Management**: Page-level permissions (dynamic routing), button-level permissions (permission directives, permission functions), route guards
 
 **Multiple Environments**: Development, staging, and production environments
 
