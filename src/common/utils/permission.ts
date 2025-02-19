@@ -7,7 +7,7 @@ export function checkPermission(permissionRoles: string[]): boolean {
     const { roles } = useUserStore()
     return roles.some(role => permissionRoles.includes(role))
   } else {
-    console.error("参数必须是一个数组且长度大于 0，参考：checkPermission(['admin','editor'])")
+    console.error("参数必须是一个数组且长度大于 0，参考：checkPermission(['admin', 'editor'])")
     return false
   }
 }
