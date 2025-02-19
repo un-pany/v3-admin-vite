@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { TagView } from "@/pinia/stores/tags-view"
-import type { RouteLocationNormalizedLoaded, RouteRecordRaw, RouterLink } from "vue-router"
+import type { RouteLocationNormalizedGeneric, RouteRecordRaw, RouterLink } from "vue-router"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import { useRouteListener } from "@@/composables/useRouteListener"
@@ -77,7 +77,7 @@ function initTags() {
 }
 
 /** 添加标签页 */
-function addTags(route: RouteLocationNormalizedLoaded) {
+function addTags(route: RouteLocationNormalizedGeneric) {
   if (route.name) {
     tagsViewStore.addVisitedView(route)
     tagsViewStore.addCachedView(route)

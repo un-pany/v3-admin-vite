@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ElScrollbar } from "element-plus"
-import type { RouteRecordName, RouteRecordRaw } from "vue-router"
+import type { RouteRecordNameGeneric, RouteRecordRaw } from "vue-router"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { useDevice } from "@@/composables/useDevice"
 import { isExternal } from "@@/utils/validate"
@@ -20,7 +20,7 @@ const resultRef = ref<InstanceType<typeof Result> | null>(null)
 
 const keyword = ref<string>("")
 const result = shallowRef<RouteRecordRaw[]>([])
-const activeRouteName = ref<RouteRecordName | undefined>(undefined)
+const activeRouteName = ref<RouteRecordNameGeneric | undefined>(undefined)
 /** 是否按下了上键或下键（用于解决和 mouseenter 事件的冲突） */
 const isPressUpOrDown = ref<boolean>(false)
 

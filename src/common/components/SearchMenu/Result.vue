@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { RouteRecordName, RouteRecordRaw } from "vue-router"
+import type { RouteRecordNameGeneric, RouteRecordRaw } from "vue-router"
 
 interface Props {
   data: RouteRecordRaw[]
@@ -9,7 +9,7 @@ interface Props {
 const props = defineProps<Props>()
 
 /** 选中的菜单 */
-const modelValue = defineModel<RouteRecordName | undefined>({ required: true })
+const modelValue = defineModel<RouteRecordNameGeneric | undefined>({ required: true })
 
 const instance = getCurrentInstance()
 
