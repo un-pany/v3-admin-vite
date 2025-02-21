@@ -1,4 +1,4 @@
-import { defineConfig, presetAttributify, presetUno } from "unocss"
+import { defineConfig, presetAttributify, presetWind3 } from "unocss"
 
 export default defineConfig({
   // 预设
@@ -9,7 +9,7 @@ export default defineConfig({
       prefixedOnly: false
     }),
     // 默认预设
-    presetUno({
+    presetWind3({
       important: "#app"
     })
   ],
