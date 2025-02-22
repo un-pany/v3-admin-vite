@@ -1,4 +1,5 @@
 import { getActiveThemeName, setActiveThemeName } from "@@/utils/cache/local-storage"
+import { setCssVar } from "@@/utils/css"
 
 const DEFAULT_THEME_NAME = "normal"
 
@@ -32,8 +33,18 @@ const themeList: ThemeList[] = [
 const activeThemeName = ref<ThemeName>(getActiveThemeName() || DEFAULT_THEME_NAME)
 
 /** 设置主题 */
-function setTheme(value: ThemeName) {
-  activeThemeName.value = value
+function setTheme({ clientX, clientY }: MouseEvent, value: ThemeName) {
+  const maxRadius = Math.hypot(
+    Math.max(clientX, window.innerWidth - clientX),
+    Math.max(clientY, window.innerHeight - clientY)
+  )
+  setCssVar("--v3-theme-x", `${clientX}px`)
+  setCssVar("--v3-theme-y", `${clientY}px`)
+  setCssVar("--v3-theme-r", `${maxRadius}px`)
+  const handler = () => {
+    activeThemeName.value = value
+  }
+  document.startViewTransition ? document.startViewTransition(handler) : handler()
 }
 
 /** 在 html 根元素上挂载 class */
