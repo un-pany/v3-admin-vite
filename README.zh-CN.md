@@ -139,9 +139,9 @@ pnpm test
 
 **零基础教程**：[链接](https://juejin.cn/column/7207659644487139387)
 
-**移动端 H5**: [mobvue](https://github.com/un-pany/mobvue)
+**移动端 H5**：[mobvue](https://github.com/un-pany/mobvue)
 
-**Electron 桌面版**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
+**Electron 桌面版**：[v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
 **国内仓库**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
 
@@ -157,9 +157,9 @@ pnpm test
 
 **详细的注释**：各个配置项都写有尽可能详细的注释
 
-**最新的依赖**: 及时更新所有三方依赖至最新版
+**最新的依赖**：及时更新所有三方依赖至最新版
 
-**有一点规范**: 代码风格统一、命名风格统一、注释风格统一
+**有一点规范**：代码风格统一、命名风格统一、注释风格统一
 
 ## 内置功能
 
@@ -175,9 +175,9 @@ pnpm test
 
 **首页**：根据不同用户显示不同的 Dashboard 页面
 
-**错误页**: 403、404
+**错误页**：403、404
 
-**兼容移动端**: 布局兼容移动端页面分辨率
+**兼容移动端**：布局兼容移动端页面分辨率
 
 **其他**：SVG 雪碧图、动态侧边栏、动态面包屑、标签页快捷导航、内容区放大与全屏、组合式函数
 
@@ -187,7 +187,7 @@ pnpm test
 
 **Element Plus**：Element UI 的 Vue3 版本
 
-**Pinia**: 传说中的 Vuex5
+**Pinia**：传说中的 Vuex5
 
 **Vite**：真的很快
 

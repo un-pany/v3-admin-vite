@@ -133,23 +133,23 @@ pnpm test
 
 ## Links
 
-**Online Preview**：[github-pages](https://un-pany.github.io/v3-admin-vite)
+**Online Preview**: [github-pages](https://un-pany.github.io/v3-admin-vite)
 
-**Chinese Documentation**：[link](https://juejin.cn/post/7089377403717287972)
+**Chinese Documentation**: [link](https://juejin.cn/post/7089377403717287972)
 
-**Zero to Hero Tutorial**：[link](https://juejin.cn/column/7207659644487139387)
+**Zero to Hero Tutorial**: [link](https://juejin.cn/column/7207659644487139387)
 
 **Mobile Web App**: [mobvue](https://github.com/un-pany/mobvue)
 
 **Electron Desktop Version**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
-**Chinese Repository**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
+**Chinese Repository**: [gitee](https://gitee.com/un-pany/v3-admin-vite)
 
-**Optional Group**：[check how to join](https://github.com/un-pany/v3-admin-vite/issues/191)
+**Optional Group**: [check how to join](https://github.com/un-pany/v3-admin-vite/issues/191)
 
-**Donations**：[buy a coffee for the author](https://github.com/un-pany/v3-admin-vite/issues/69)
+**Donations**: [buy a coffee for the author](https://github.com/un-pany/v3-admin-vite/issues/69)
 
-**Releases & Changelog**：[releases](https://github.com/un-pany/v3-admin-vite/releases)
+**Releases & Changelog**: [releases](https://github.com/un-pany/v3-admin-vite/releases)
 
 ## Features
 
