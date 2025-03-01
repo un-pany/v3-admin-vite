@@ -139,6 +139,8 @@ pnpm test
 
 **零基础教程**：[链接](https://juejin.cn/column/7207659644487139387)
 
+**移动端 H5**: [mobvue](https://github.com/un-pany/mobvue)
+
 **Electron 桌面版**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
 **国内仓库**：[gitee](https://gitee.com/un-pany/v3-admin-vite)

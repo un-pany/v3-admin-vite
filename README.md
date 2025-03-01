@@ -139,6 +139,8 @@ pnpm test
 
 **Zero to Hero Tutorial**：[link](https://juejin.cn/column/7207659644487139387)
 
+**Mobile Web App**: [mobvue](https://github.com/un-pany/mobvue)
+
 **Electron Desktop Version**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
 **Chinese Repository**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
