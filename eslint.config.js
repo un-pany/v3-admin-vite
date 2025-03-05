@@ -36,7 +36,8 @@ export default antfu(
       "no-console": "off",
       "no-debugger": "off",
       "symbol-description": "off",
-      "antfu/if-newline": "off"
+      "antfu/if-newline": "off",
+      "unicorn/no-instanceof-builtins": "off"
     }
   }
 )
