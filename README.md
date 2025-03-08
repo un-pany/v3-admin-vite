@@ -201,7 +201,7 @@ pnpm test
 
 **CSS Variables**: Primarily controls layout and color in the project
 
-**ESlint**: Code linting and formatting
+**ESLint**: Code linting and formatting
 
 **Axios**: Sends network requests
 
