@@ -27,6 +27,9 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 > [!TIP]
 > Paid services are officially launched! If you don’t want to do it yourself but want to remove TS or other modules, try the lazy package! [Click to check it out](https://github.com/un-pany/v3-admin-vite/issues/225)
 
+> [!TIP]
+> If you have mobile web app needs, try the new open-source template. [MobVue](https://github.com/un-pany/mobvue)
+
 ## Usage
 
 <details>

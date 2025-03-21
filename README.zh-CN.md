@@ -27,6 +27,9 @@ V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、V
 > [!TIP]
 > 正式推出付费服务，如果不想自己动手，但想移除 TS 或其他模块？试试懒人套餐！[点击看看](https://github.com/un-pany/v3-admin-vite/issues/225)
 
+> [!TIP]
+> 如果你有移动端 H5 需求，试试新的开源模板。[MobVue](https://github.com/un-pany/mobvue)
+
 ## 使用
 
 <details>
