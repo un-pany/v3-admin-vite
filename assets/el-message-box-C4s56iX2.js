@@ -1,1 +1,0 @@
-import{j as e}from"./index-DVW30Bkn.js";function r(t){return e({url:"tables",method:"post",data:t})}function u(t){return e({url:`tables/${t}`,method:"delete"})}function l(t){return e({url:"tables",method:"put",data:t})}function n(t){return e({url:"tables",method:"get",params:t})}export{r as c,u as d,n as g,l as u};
