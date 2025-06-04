@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/pinia/stores/app"
-import { useSettingsStore } from "@/pinia/stores/settings"
-import { useUserStore } from "@/pinia/stores/user"
 import Notify from "@@/components/Notify/index.vue"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import SearchMenu from "@@/components/SearchMenu/index.vue"
@@ -9,6 +6,9 @@ import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { UserFilled } from "@element-plus/icons-vue"
+import { useAppStore } from "@/pinia/stores/app"
+import { useSettingsStore } from "@/pinia/stores/settings"
+import { useUserStore } from "@/pinia/stores/user"
 import { Breadcrumb, Hamburger, Sidebar } from "../index"
 
 const { isMobile } = useDevice()

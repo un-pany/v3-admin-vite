@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { ElScrollbar } from "element-plus"
 import type { RouteRecordNameGeneric, RouteRecordRaw } from "vue-router"
-import { usePermissionStore } from "@/pinia/stores/permission"
 import { useDevice } from "@@/composables/useDevice"
 import { isExternal } from "@@/utils/validate"
 import { cloneDeep, debounce } from "lodash-es"
+import { usePermissionStore } from "@/pinia/stores/permission"
 import Footer from "./Footer.vue"
 import Result from "./Result.vue"
 

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/pinia/stores/app"
-import { usePermissionStore } from "@/pinia/stores/permission"
-import { useSettingsStore } from "@/pinia/stores/settings"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { getCssVar } from "@@/utils/css"
+import { useAppStore } from "@/pinia/stores/app"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { Logo } from "../index"
 import Item from "./Item.vue"
 

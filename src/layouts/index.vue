@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useSettingsStore } from "@/pinia/stores/settings"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { useWatermark } from "@@/composables/useWatermark"
 import { getCssVar, setCssVar } from "@@/utils/css"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { RightPanel, Settings } from "./components"
 import { useResize } from "./composables/useResize"
 import LeftMode from "./modes/LeftMode.vue"

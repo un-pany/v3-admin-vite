@@ -1,8 +1,8 @@
-import type { LayoutsConfig } from "@/layouts/config"
 import type { Ref } from "vue"
+import type { LayoutsConfig } from "@/layouts/config"
+import { setLayoutsConfig } from "@@/utils/cache/local-storage"
 import { layoutsConfig } from "@/layouts/config"
 import { pinia } from "@/pinia"
-import { setLayoutsConfig } from "@@/utils/cache/local-storage"
 
 type SettingsStore = {
   // 使用映射类型来遍历 LayoutsConfig 对象的键

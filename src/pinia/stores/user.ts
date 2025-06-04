@@ -1,8 +1,8 @@
+import { getCurrentUserApi } from "@@/apis/users"
+import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
 import { routerConfig } from "@/router/config"
-import { getCurrentUserApi } from "@@/apis/users"
-import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { useSettingsStore } from "./settings"
 import { useTagsViewStore } from "./tags-view"
 

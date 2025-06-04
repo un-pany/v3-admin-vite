@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { ElScrollbar } from "element-plus"
 import type { RouterLink } from "vue-router"
-import { useSettingsStore } from "@/pinia/stores/settings"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+import { useSettingsStore } from "@/pinia/stores/settings"
 
 interface Props {
   tagRefs: InstanceType<typeof RouterLink>[]

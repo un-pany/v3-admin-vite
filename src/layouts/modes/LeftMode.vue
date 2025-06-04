@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/pinia/stores/app"
-import { useSettingsStore } from "@/pinia/stores/settings"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
+import { useAppStore } from "@/pinia/stores/app"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { AppMain, NavigationBar, Sidebar, TagsView } from "../components"
 
 const { isMobile } = useDevice()

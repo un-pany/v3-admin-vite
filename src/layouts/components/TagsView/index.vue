@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { TagView } from "@/pinia/stores/tags-view"
 import type { RouteLocationNormalizedGeneric, RouteRecordRaw, RouterLink } from "vue-router"
-import { usePermissionStore } from "@/pinia/stores/permission"
-import { useTagsViewStore } from "@/pinia/stores/tags-view"
+import type { TagView } from "@/pinia/stores/tags-view"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import ScrollPane from "./ScrollPane.vue"
 
 const router = useRouter()
