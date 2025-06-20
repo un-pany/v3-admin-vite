@@ -6,7 +6,7 @@ import zhCn from "element-plus/es/locale/lang/zh-cn" // Element Plus 中文包
 
 const { initTheme } = useTheme()
 const { initGreyAndColorWeakness } = useGreyAndColorWeakness()
-const { initStarNotification, initStoreNotification } = usePany()
+const { initStarNotification, initStoreNotification, initMobileNotification } = usePany()
 
 // 初始化主题
 initTheme()
@@ -15,6 +15,7 @@ initGreyAndColorWeakness()
 // 初始化通知
 initStarNotification()
 initStoreNotification()
+initMobileNotification()
 </script>
 
 <template>
