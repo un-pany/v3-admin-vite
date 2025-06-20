@@ -15,11 +15,8 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 
 ## Notifications
 
-> [!NOTE]
-> Powered by love! All source code is free and open-source. If you find it helpful, feel free to give a star to support!
-
 > [!IMPORTANT]
-> Welcome to experience the brand-new version 5.0, currently in the beta stage. It will be a masterpiece!
+> Welcome to experience the brand-new version 5.0, a masterpiece crafted with great care! If it helps you, feel free to give a Star to show your support.
 
 > [!WARNING]
 > Version 4.x will no longer be maintained unless there are critical bugs! [Click to switch to the 4.x branch](https://github.com/un-pany/v3-admin-vite/tree/4.x)
@@ -27,8 +24,8 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 > [!TIP]
 > Paid services are officially launched! If you don’t want to do it yourself but want to remove TS or other modules, try the lazy package! [Click to check it out](https://github.com/un-pany/v3-admin-vite/issues/225)
 
-> [!TIP]
-> If you have mobile web app needs, try the new open-source template. [MobVue](https://github.com/un-pany/mobvue)
+> [!NOTE]
+> If you have mobile web app requirements, give the new open-source template [MobVue](https://github.com/un-pany/mobvue) a try.
 
 ## Usage
 
