@@ -384,13 +384,13 @@ const crudStore = reactive({
     <el-alert
       title="数据来源"
       type="success"
-      description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示。"
+      description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示"
       show-icon
     />
     <el-alert
       title="注意"
       type="warning"
-      description="当前示例对应的 vxe-table 版本最高兼容到 4.6.25。"
+      description="当前示例对应的 Vxe Table 版本最高兼容到 4.6.25"
       show-icon
     />
     <!-- 表格 -->

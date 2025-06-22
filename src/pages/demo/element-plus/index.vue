@@ -113,7 +113,7 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
     <el-alert
       title="数据来源"
       type="success"
-      description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示。"
+      description="由 Apifox 提供在线 Mock，数据不具备真实性，仅供简单的 CRUD 操作演示"
       show-icon
     />
     <el-card v-loading="loading" shadow="never" class="search-wrapper">

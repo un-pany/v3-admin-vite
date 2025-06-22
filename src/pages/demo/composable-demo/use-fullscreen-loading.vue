@@ -39,9 +39,12 @@ async function queryError() {
 
 <template>
   <div class="app-container">
-    <el-card shadow="never">
-      该示例是演示：通过将要执行的函数传递给 composable，让 composable 自动开启全屏 loading，函数执行结束后自动关闭 loading
-    </el-card>
+    <el-alert
+      title="示例说明"
+      type="primary"
+      description="通过将要执行的函数传递给 composable，让 composable 自动开启全屏 loading，函数执行结束后自动关闭 loading"
+      show-icon
+    />
     <el-card header="示例" shadow="never">
       <el-button type="primary" @click="querySuccess">
         查询成功
@@ -54,6 +57,10 @@ async function queryError() {
 </template>
 
 <style lang="scss" scoped>
+.el-alert {
+  margin-bottom: 20px;
+}
+
 .el-card {
   margin-bottom: 20px;
 }
