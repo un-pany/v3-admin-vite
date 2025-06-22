@@ -2,7 +2,6 @@
 
 import { resolve } from "node:path"
 import vue from "@vitejs/plugin-vue"
-import vueJsx from "@vitejs/plugin-vue-jsx"
 import UnoCSS from "unocss/vite"
 import AutoImport from "unplugin-auto-import/vite"
 import SvgComponent from "unplugin-svg-component/vite"
@@ -97,8 +96,6 @@ export default defineConfig(({ mode }) => {
     // 插件配置
     plugins: [
       vue(),
-      // 支持 JSX、TSX 语法
-      vueJsx(),
       // 支持将 SVG 文件导入为 Vue 组件
       svgLoader({
         defaultImport: "url",

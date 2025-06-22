@@ -40,7 +40,6 @@
     "@types/nprogress": "0.2.3",
     "@types/path-browserify": "1.0.3",
     "@vitejs/plugin-vue": "5.2.4",
-    "@vitejs/plugin-vue-jsx": "4.2.0",
     "@vue/test-utils": "2.4.6",
     "eslint": "9.29.0",
     "eslint-plugin-format": "1.0.1",
