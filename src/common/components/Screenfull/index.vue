@@ -42,12 +42,12 @@ function handleFullscreenChange() {
   isFullscreen.value || classList.remove(CONTENT_LARGE, CONTENT_FULL)
 }
 
-watchEffect((onCleanup) => {
+watchEffect(() => {
   if (isEnabled) {
     // 挂载组件时自动执行
     screenfull.on("change", handleFullscreenChange)
     // 卸载组件时自动执行
-    onCleanup(() => {
+    onWatcherCleanup(() => {
       screenfull.off("change", handleFullscreenChange)
     })
   }
