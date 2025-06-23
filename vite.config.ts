@@ -93,6 +93,11 @@ export default defineConfig(({ mode }) => {
     optimizeDeps: {
       include: ["element-plus/es/components/*/style/css"]
     },
+    // CSS 相关配置
+    css: {
+      // 线程中运行 CSS 预处理器
+      preprocessorMaxWorkers: true
+    },
     // 插件配置
     plugins: [
       vue(),
