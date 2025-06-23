@@ -2,6 +2,9 @@
   // Use workspace TypeScript version
   "typescript.tsdk": "node_modules/typescript/lib",
 
+  // Show inlay hints for destructured props
+  "vue.inlayHints.destructuredProps": true,
+
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,

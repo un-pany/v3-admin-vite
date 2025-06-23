@@ -12,12 +12,7 @@ interface Props {
   content?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  element: "html",
-  openTips: "全屏",
-  exitTips: "退出全屏",
-  content: false
-})
+const { element = "html", openTips = "全屏", exitTips = "退出全屏", content = false } = defineProps<Props>()
 
 const CONTENT_LARGE = "content-large"
 
@@ -28,11 +23,11 @@ const classList = document.body.classList
 // #region 全屏
 const isEnabled = screenfull.isEnabled
 const isFullscreen = ref<boolean>(false)
-const fullscreenTips = computed(() => (isFullscreen.value ? props.exitTips : props.openTips))
+const fullscreenTips = computed(() => (isFullscreen.value ? exitTips : openTips))
 const fullscreenSvgName = computed(() => (isFullscreen.value ? "fullscreen-exit" : "fullscreen"))
 
 function handleFullscreenClick() {
-  const dom = document.querySelector(props.element) || undefined
+  const dom = document.querySelector(element) || undefined
   isEnabled ? screenfull.toggle(dom) : ElMessage.warning("您的浏览器无法工作")
 }
 
@@ -79,7 +74,7 @@ function handleContentFullClick() {
 <template>
   <div>
     <!-- 全屏 -->
-    <el-tooltip v-if="!props.content" effect="dark" :content="fullscreenTips" placement="bottom">
+    <el-tooltip v-if="!content" effect="dark" :content="fullscreenTips" placement="bottom">
       <SvgIcon :name="fullscreenSvgName" @click="handleFullscreenClick" class="svg-icon" />
     </el-tooltip>
     <!-- 内容区 -->

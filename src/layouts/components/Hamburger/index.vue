@@ -5,9 +5,7 @@ interface Props {
   isActive?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  isActive: false
-})
+const { isActive = false } = defineProps<Props>()
 
 const emit = defineEmits<{
   toggleClick: []
@@ -21,7 +19,7 @@ function toggleClick() {
 <template>
   <div @click="toggleClick">
     <el-icon :size="20" class="icon">
-      <Fold v-if="props.isActive" />
+      <Fold v-if="isActive" />
       <Expand v-else />
     </el-icon>
   </div>
