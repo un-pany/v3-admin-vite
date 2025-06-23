@@ -11,20 +11,27 @@ import Result from "./Result.vue"
 const modelValue = defineModel<boolean>({ required: true })
 
 const router = useRouter()
+
 const { isMobile } = useDevice()
 
 const inputRef = useTemplateRef("inputRef")
+
 const scrollbarRef = useTemplateRef("scrollbarRef")
+
 const resultRef = useTemplateRef("resultRef")
 
 const keyword = ref<string>("")
+
 const result = shallowRef<RouteRecordRaw[]>([])
+
 const activeRouteName = ref<RouteRecordNameGeneric | undefined>(undefined)
+
 /** 是否按下了上键或下键（用于解决和 mouseenter 事件的冲突） */
 const isPressUpOrDown = ref<boolean>(false)
 
 /** 控制搜索对话框宽度 */
 const modalWidth = computed(() => (isMobile.value ? "80vw" : "40vw"))
+
 /** 树形菜单 */
 const menus = computed(() => cloneDeep(usePermissionStore().routes))
 

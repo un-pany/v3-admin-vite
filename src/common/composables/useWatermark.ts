@@ -40,10 +40,13 @@ const bodyEl = ref<HTMLElement>(document.body)
 export function useWatermark(parentEl: Ref<HTMLElement | null> = bodyEl) {
   // 备份文本
   let backupText: string
+
   // 最终配置
   let mergeConfig: DefaultConfig
+
   // 水印元素
   let watermarkEl: HTMLElement | null = null
+
   // 观察器
   const observer: Observer = {
     watermarkElMutationObserver: undefined,

@@ -22,8 +22,11 @@ const classList = document.body.classList
 
 // #region 全屏
 const isEnabled = screenfull.isEnabled
+
 const isFullscreen = ref<boolean>(false)
+
 const fullscreenTips = computed(() => (isFullscreen.value ? exitTips : openTips))
+
 const fullscreenSvgName = computed(() => (isFullscreen.value ? "fullscreen-exit" : "fullscreen"))
 
 function handleFullscreenClick() {
@@ -51,7 +54,9 @@ watchEffect(() => {
 
 // #region 内容区
 const isContentLarge = ref<boolean>(false)
+
 const contentLargeTips = computed(() => (isContentLarge.value ? "内容区复原" : "内容区放大"))
+
 const contentLargeSvgName = computed(() => (isContentLarge.value ? "fullscreen-exit" : "fullscreen"))
 
 function handleContentLargeClick() {

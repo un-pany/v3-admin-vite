@@ -8,10 +8,13 @@ import { useTagsViewStore } from "./tags-view"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
+
   const roles = ref<string[]>([])
+
   const username = ref<string>("")
 
   const tagsViewStore = useTagsViewStore()
+
   const settingsStore = useSettingsStore()
 
   // 设置 Token

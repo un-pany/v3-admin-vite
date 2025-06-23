@@ -14,14 +14,20 @@ import TopMode from "./modes/TopMode.vue"
 useResize()
 
 const { setWatermark, clearWatermark } = useWatermark()
+
 const { isMobile } = useDevice()
+
 const { isLeft, isTop, isLeftTop } = useLayoutMode()
+
 const settingsStore = useSettingsStore()
+
 const { showSettings, showTagsView, showWatermark } = storeToRefs(settingsStore)
 
 // #region 隐藏标签栏时删除其高度，是为了让 Logo 组件高度和 Header 区域高度始终一致
 const cssVarName = "--v3-tagsview-height"
+
 const v3TagsviewHeight = getCssVar(cssVarName)
+
 watchEffect(() => {
   showTagsView.value ? setCssVar(cssVarName, v3TagsviewHeight) : setCssVar(cssVarName, "0px")
 })

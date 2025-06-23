@@ -3,6 +3,7 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { AppMain, Logo, NavigationBar, TagsView } from "../components"
 
 const settingsStore = useSettingsStore()
+
 const { showTagsView, showLogo } = storeToRefs(settingsStore)
 </script>
 

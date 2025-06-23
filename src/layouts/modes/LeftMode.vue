@@ -6,9 +6,13 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { AppMain, NavigationBar, Sidebar, TagsView } from "../components"
 
 const { isMobile } = useDevice()
+
 const { isLeft } = useLayoutMode()
+
 const appStore = useAppStore()
+
 const settingsStore = useSettingsStore()
+
 const { showTagsView, fixedHeader } = storeToRefs(settingsStore)
 
 /** 定义计算属性 layoutClasses，用于控制布局的类名 */

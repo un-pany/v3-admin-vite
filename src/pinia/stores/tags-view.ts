@@ -7,7 +7,9 @@ export type TagView = Partial<RouteLocationNormalizedGeneric>
 
 export const useTagsViewStore = defineStore("tags-view", () => {
   const { cacheTagsView } = useSettingsStore()
+
   const visitedViews = ref<TagView[]>(cacheTagsView ? getVisitedViews() : [])
+
   const cachedViews = ref<string[]>(cacheTagsView ? getCachedViews() : [])
 
   // 缓存标签栏数据

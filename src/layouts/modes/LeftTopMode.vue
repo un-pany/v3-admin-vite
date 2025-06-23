@@ -4,7 +4,9 @@ import { useSettingsStore } from "@/pinia/stores/settings"
 import { AppMain, Logo, NavigationBar, Sidebar, TagsView } from "../components"
 
 const appStore = useAppStore()
+
 const settingsStore = useSettingsStore()
+
 const { showTagsView, showLogo } = storeToRefs(settingsStore)
 
 /** 定义计算属性 layoutClasses，用于控制布局的类名 */

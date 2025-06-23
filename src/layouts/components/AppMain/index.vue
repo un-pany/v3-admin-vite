@@ -4,6 +4,7 @@ import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import { Footer } from "../index"
 
 const tagsViewStore = useTagsViewStore()
+
 const settingsStore = useSettingsStore()
 </script>
 

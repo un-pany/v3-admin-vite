@@ -11,6 +11,7 @@ const MAX_MOBILE_WIDTH = 992
  */
 export function useResize() {
   const appStore = useAppStore()
+
   const { listenerRouteChange } = useRouteListener()
 
   // 用于判断当前设备是否为移动端

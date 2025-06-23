@@ -2,7 +2,9 @@
 import { useWatermark } from "@@/composables/useWatermark"
 
 const localRef = useTemplateRef("localRef")
+
 const { setWatermark, clearWatermark } = useWatermark(localRef)
+
 const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark } = useWatermark()
 </script>
 
