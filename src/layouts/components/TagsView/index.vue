@@ -19,7 +19,7 @@ const permissionStore = usePermissionStore()
 const { listenerRouteChange } = useRouteListener()
 
 /** 标签页组件元素的引用数组 */
-const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
+const tagRefs = useTemplateRef<InstanceType<typeof RouterLink>[]>("tagRefs")
 
 /** 右键菜单的状态 */
 const visible = ref(false)

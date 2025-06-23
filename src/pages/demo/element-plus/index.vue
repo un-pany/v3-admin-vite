@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CreateOrUpdateTableRequestData, TableData } from "@@/apis/tables/type"
-import type { FormInstance, FormRules } from "element-plus"
+import type { FormRules } from "element-plus"
 import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@@/apis/tables"
 import { usePagination } from "@@/composables/usePagination"
 import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
@@ -21,7 +21,7 @@ const DEFAULT_FORM_DATA: CreateOrUpdateTableRequestData = {
   password: ""
 }
 const dialogVisible = ref<boolean>(false)
-const formRef = ref<FormInstance | null>(null)
+const formRef = useTemplateRef("formRef")
 const formData = ref<CreateOrUpdateTableRequestData>(cloneDeep(DEFAULT_FORM_DATA))
 const formRules: FormRules<CreateOrUpdateTableRequestData> = {
   username: [{ required: true, trigger: "blur", message: "请输入用户名" }],
@@ -74,7 +74,7 @@ function handleUpdate(row: TableData) {
 
 // #region 查
 const tableData = ref<TableData[]>([])
-const searchFormRef = ref<FormInstance | null>(null)
+const searchFormRef = useTemplateRef("searchFormRef")
 const searchData = reactive({
   username: "",
   phone: ""

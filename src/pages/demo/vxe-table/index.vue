@@ -21,7 +21,7 @@ interface RowMeta {
   /** vxe-table 自动添加上去的属性 */
   _VXE_ID?: string
 }
-const xGridDom = ref<VxeGridInstance>()
+const xGridDom = useTemplateRef<VxeGridInstance>("xGridDom")
 const xGridOpt: VxeGridProps = reactive({
   loading: true,
   autoResize: true,
@@ -178,7 +178,7 @@ const xGridOpt: VxeGridProps = reactive({
 // #endregion
 
 // #region vxe-modal
-const xModalDom = ref<VxeModalInstance>()
+const xModalDom = useTemplateRef<VxeModalInstance>("xModalDom")
 const xModalOpt: VxeModalProps = reactive({
   title: "",
   showClose: true,
@@ -192,7 +192,7 @@ const xModalOpt: VxeModalProps = reactive({
 // #endregion
 
 // #region vxe-form
-const xFormDom = ref<VxeFormInstance>()
+const xFormDom = useTemplateRef<VxeFormInstance>("xFormDom")
 const xFormOpt: VxeFormProps = reactive({
   span: 24,
   titleWidth: "100px",
