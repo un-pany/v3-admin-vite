@@ -36,8 +36,8 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 
 - Latest version of `Visual Studio Code`
 - Install the recommended plugins in the `.vscode/extensions.json` file
-- `node` 20.x or 22+
-- `pnpm` 9.x or 10+
+- `node` 20.19+ or 22.12+
+- `pnpm` 10+
 
 </details>
 

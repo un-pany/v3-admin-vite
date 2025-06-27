@@ -36,8 +36,8 @@ V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、V
 
 - 新版 `Visual Studio Code`
 - 安装 `.vscode/extensions.json` 文件中推荐的插件
-- `node` 20.x 或 22+
-- `pnpm` 9.x 或 10+
+- `node` 20.19+ 或 22.12+
+- `pnpm` 10+
 
 </details>
 
