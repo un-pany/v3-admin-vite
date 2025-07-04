@@ -219,6 +219,14 @@ A big thank you to all the contributors!
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
 </a>
 
+## ‌WeChat Official Account‌
+
+New attempts, welcome to follow.
+
+<a href="https://mp.weixin.qq.com/s/artNHKubYNRBlsrxD7eXXA">
+  <img src="https://github.com/user-attachments/assets/2bfdaf70-e7f5-4e1b-b43b-8e848925d7cb">
+</a>
+
 ## License
 
 [MIT](./LICENSE) License © 2022-PRESENT [pany](https://github.com/pany-ang)
