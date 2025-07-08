@@ -221,10 +221,10 @@ A big thank you to all the contributors!
 
 ## ‌WeChat Official Account‌
 
-New attempts, welcome to follow.
+New attempts, welcome to follow
 
 <a href="https://mp.weixin.qq.com/s/artNHKubYNRBlsrxD7eXXA">
-  <img src="https://github.com/user-attachments/assets/2bfdaf70-e7f5-4e1b-b43b-8e848925d7cb">
+  <img src="https://github.com/user-attachments/assets/529bac73-f9e3-4311-94d0-3db57216b771">
 </a>
 
 ## License

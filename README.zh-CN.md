@@ -221,10 +221,10 @@ pnpm test
 
 ## 公众号
 
-新的尝试，欢迎关注。
+新的尝试，欢迎关注
 
 <a href="https://mp.weixin.qq.com/s/artNHKubYNRBlsrxD7eXXA">
-  <img src="https://github.com/user-attachments/assets/2bfdaf70-e7f5-4e1b-b43b-8e848925d7cb">
+  <img src="https://github.com/user-attachments/assets/529bac73-f9e3-4311-94d0-3db57216b771">
 </a>
 
 ## License
