@@ -1,6 +1,7 @@
 <div align="center">
   <img alt="logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
+  <em>AI 友好</em>
 </div>
 
 [![github release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/releases)
