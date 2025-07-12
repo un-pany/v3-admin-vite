@@ -8,6 +8,7 @@ import SvgComponent from "unplugin-svg-component/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 import Components from "unplugin-vue-components/vite"
 import { defineConfig, loadEnv } from "vite"
+import { VueMcp } from "vite-plugin-vue-mcp"
 import svgLoader from "vite-svg-loader"
 
 // Configuring Vite: https://cn.vite.dev/config
@@ -137,7 +138,9 @@ export default defineConfig(({ mode }) => {
       Components({
         dts: "types/auto/components.d.ts",
         resolvers: [ElementPlusResolver()]
-      })
+      }),
+      // 为项目开启 MCP Server
+      VueMcp()
     ],
     // Configuring Vitest: https://cn.vitest.dev/config
     test: {
