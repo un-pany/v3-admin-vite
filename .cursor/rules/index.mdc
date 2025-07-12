@@ -13,5 +13,5 @@ alwaysApply: true
 
 - project.mdc: 项目开发规范
 - vue.mdc: Vue 开发规范
-- git.mdc: Git 提交规范
 - ts.mdc: TypeScript 开发规范
+- git.mdc: Git 提交规范

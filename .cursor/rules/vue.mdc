@@ -64,6 +64,6 @@ alwaysApply: false
 - 使用 `v-for` 时必须提供唯一的 `key` (不要轻易使用数组下标 `index` 当做 `key`)
 - 不要在同一元素上同时使用 `v-if` 和 `v-for`
 
-# 参考示例文件
+## 参考示例文件
 
 @/pages/demo/element-plus/index.vue
