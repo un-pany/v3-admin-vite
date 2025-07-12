@@ -9,9 +9,9 @@
 
 <b><a href="./README.md">English</a> | 中文</b>
 
-## 简介
+## 简介 <img src="https://img.shields.io/badge/AI-VibeCoding-black">
 
-V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术
+V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术，并且具备良好的 AI Vibe Coding 体验！
 
 ## 通知
 
@@ -34,7 +34,7 @@ V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、V
 
 <br>
 
-- 新版 `Visual Studio Code`
+- 新版 `Visual Studio Code` 或者 AI IDE `Cursor` 与 `Trae`
 - 安装 `.vscode/extensions.json` 文件中推荐的插件
 - `node` 20.19+ 或 22.12+
 - `pnpm` 10+

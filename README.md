@@ -9,9 +9,9 @@
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
 
-## Introduction
+## Introduction <img src="https://img.shields.io/badge/AI-VibeCoding-black">
 
-V3 Admin Vite is a well-crafted backend management system template, built with popular technologies such as Vue3, Vite, TypeScript, and Element Plus
+V3 Admin Vite is a well-crafted backend management system template, built with popular technologies such as Vue3, Vite, TypeScript, and Element Plus, and offers a great AI Vibe Coding experience!
 
 ## Notifications
 
@@ -34,7 +34,7 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 
 <br>
 
-- Latest version of `Visual Studio Code`
+- Latest version of `Visual Studio Code` or AI IDE `Cursor` and `Trae`
 - Install the recommended plugins in the `.vscode/extensions.json` file
 - `node` 20.19+ or 22.12+
 - `pnpm` 10+
