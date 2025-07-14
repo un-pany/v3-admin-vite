@@ -1,7 +1,6 @@
 <div align="center">
   <img alt="logo" width="120" height="120" src="./src/common/assets/images/layouts/logo.png">
   <h1>V3 Admin Vite</h1>
-  <em>AI friendly</em>
 </div>
 
 [![github release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/releases)
@@ -10,7 +9,7 @@
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
 
-## Introduction <img src="https://img.shields.io/badge/AI-VibeCoding-black">
+## Introduction <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black"></a>
 
 V3 Admin Vite is a well-crafted backend management system template, built with popular technologies such as Vue3, Vite, TypeScript, and Element Plus, and offers a great AI Vibe Coding experience!
 
