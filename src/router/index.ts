@@ -100,6 +100,15 @@ export const constantRoutes: RouteRecordRaw[] = [
         }
       },
       {
+        path: "editor",
+        component: () => import("@/pages/demo/editor-demo/index.vue"),
+        name: "Editor",
+        meta: {
+          title: "富文本编辑器",
+          keepAlive: true
+        }
+      },
+      {
         path: "level2",
         component: () => import("@/pages/demo/level2/index.vue"),
         redirect: "/demo/level2/level3",
