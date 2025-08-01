@@ -27,7 +27,7 @@ function createInstance() {
       // apiData 是 api 返回的数据
       const apiData = response.data
       // 二进制数据则直接返回
-      const responseType = response.request?.responseType
+      const responseType = response.config.responseType
       if (responseType === "blob" || responseType === "arraybuffer") return apiData
       // 这个 code 是和后端约定的业务 code
       const code = apiData.code
