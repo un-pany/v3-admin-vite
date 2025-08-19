@@ -1,17 +1,20 @@
+import { getCurrentUserApi } from "@@/apis/users"
+import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
 import { routerConfig } from "@/router/config"
-import { getCurrentUserApi } from "@@/apis/users"
-import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
 import { useSettingsStore } from "./settings"
 import { useTagsViewStore } from "./tags-view"
 
 export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
+
   const roles = ref<string[]>([])
+
   const username = ref<string>("")
 
   const tagsViewStore = useTagsViewStore()
+
   const settingsStore = useSettingsStore()
 
   // 设置 Token

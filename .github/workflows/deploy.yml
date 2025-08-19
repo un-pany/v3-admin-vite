@@ -17,12 +17,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@master
         with:
-          node-version: 22.12.0
+          node-version: 22.16.0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 10.2.0
+          version: 10.12.1
 
       - name: Build
         run: pnpm install && pnpm build

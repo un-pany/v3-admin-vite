@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { TagView } from "@/pinia/stores/tags-view"
 import type { RouteLocationNormalizedGeneric, RouteRecordRaw, RouterLink } from "vue-router"
-import { usePermissionStore } from "@/pinia/stores/permission"
-import { useTagsViewStore } from "@/pinia/stores/tags-view"
+import type { TagView } from "@/pinia/stores/tags-view"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useTagsViewStore } from "@/pinia/stores/tags-view"
 import ScrollPane from "./ScrollPane.vue"
 
 const router = useRouter()
@@ -19,7 +19,7 @@ const permissionStore = usePermissionStore()
 const { listenerRouteChange } = useRouteListener()
 
 /** 标签页组件元素的引用数组 */
-const tagRefs = ref<InstanceType<typeof RouterLink>[]>([])
+const tagRefs = useTemplateRef<InstanceType<typeof RouterLink>[]>("tagRefs")
 
 /** 右键菜单的状态 */
 const visible = ref(false)

@@ -1,17 +1,21 @@
 <script lang="ts" setup>
 import { useWatermark } from "@@/composables/useWatermark"
 
-const localRef = ref<HTMLElement | null>(null)
+const localRef = useTemplateRef("localRef")
+
 const { setWatermark, clearWatermark } = useWatermark(localRef)
+
 const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark } = useWatermark()
 </script>
 
 <template>
   <div class="app-container">
-    <el-card shadow="never">
-      该示例是演示：通过调用 composable 开启或关闭水印，
-      支持局部、全局、自定义样式（颜色、透明度、字体大小、字体、倾斜角度等），并自带防御（防删、防隐藏）和自适应功能
-    </el-card>
+    <el-alert
+      title="示例说明"
+      type="primary"
+      description="通过调用 composable 开启或关闭水印，支持局部、全局、自定义样式（颜色、透明度、字体大小、字体、倾斜角度等），并自带防御（防删、防隐藏）和自适应功能"
+      show-icon
+    />
     <el-card header="示例" shadow="never">
       <div ref="localRef" class="local" />
       <template #footer>
@@ -43,6 +47,10 @@ const { setWatermark: setGlobalWatermark, clearWatermark: clearGlobalWatermark }
 </template>
 
 <style lang="scss" scoped>
+.el-alert {
+  margin-bottom: 20px;
+}
+
 .el-card {
   margin-bottom: 20px;
 }

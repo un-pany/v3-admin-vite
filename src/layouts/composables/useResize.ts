@@ -1,6 +1,6 @@
-import { useAppStore } from "@/pinia/stores/app"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { DeviceEnum } from "@@/constants/app-key"
+import { useAppStore } from "@/pinia/stores/app"
 
 /** 参考 Bootstrap 的响应式设计将最大移动端宽度设置为 992 */
 const MAX_MOBILE_WIDTH = 992
@@ -11,6 +11,7 @@ const MAX_MOBILE_WIDTH = 992
  */
 export function useResize() {
   const appStore = useAppStore()
+
   const { listenerRouteChange } = useRouteListener()
 
   // 用于判断当前设备是否为移动端

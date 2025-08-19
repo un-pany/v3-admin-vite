@@ -2,13 +2,13 @@
 
 import { resolve } from "node:path"
 import vue from "@vitejs/plugin-vue"
-import vueJsx from "@vitejs/plugin-vue-jsx"
 import UnoCSS from "unocss/vite"
 import AutoImport from "unplugin-auto-import/vite"
 import SvgComponent from "unplugin-svg-component/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 import Components from "unplugin-vue-components/vite"
 import { defineConfig, loadEnv } from "vite"
+import { VueMcp } from "vite-plugin-vue-mcp"
 import svgLoader from "vite-svg-loader"
 
 // Configuring Vite: https://cn.vite.dev/config
@@ -90,11 +90,18 @@ export default defineConfig(({ mode }) => {
             // 打包构建时移除所有注释
             legalComments: "none"
           },
+    // 依赖预构建
+    optimizeDeps: {
+      include: ["element-plus/es/components/*/style/css"]
+    },
+    // CSS 相关配置
+    css: {
+      // 线程中运行 CSS 预处理器
+      preprocessorMaxWorkers: true
+    },
     // 插件配置
     plugins: [
       vue(),
-      // 支持 JSX、TSX 语法
-      vueJsx(),
       // 支持将 SVG 文件导入为 Vue 组件
       svgLoader({
         defaultImport: "url",
@@ -131,7 +138,9 @@ export default defineConfig(({ mode }) => {
       Components({
         dts: "types/auto/components.d.ts",
         resolvers: [ElementPlusResolver()]
-      })
+      }),
+      // 为项目开启 MCP Server
+      VueMcp()
     ],
     // Configuring Vitest: https://cn.vitest.dev/config
     test: {

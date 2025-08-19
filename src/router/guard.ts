@@ -1,12 +1,12 @@
 import type { Router } from "vue-router"
-import { usePermissionStore } from "@/pinia/stores/permission"
-import { useUserStore } from "@/pinia/stores/user"
-import { routerConfig } from "@/router/config"
-import { isWhiteList } from "@/router/whitelist"
 import { setRouteChange } from "@@/composables/useRouteListener"
 import { useTitle } from "@@/composables/useTitle"
 import { getToken } from "@@/utils/cache/cookies"
 import NProgress from "nprogress"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useUserStore } from "@/pinia/stores/user"
+import { routerConfig } from "@/router/config"
+import { isWhiteList } from "@/router/whitelist"
 
 NProgress.configure({ showSpinner: false })
 

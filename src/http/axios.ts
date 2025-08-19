@@ -1,8 +1,8 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios"
-import { useUserStore } from "@/pinia/stores/user"
 import { getToken } from "@@/utils/cache/cookies"
 import axios from "axios"
 import { get, merge } from "lodash-es"
+import { useUserStore } from "@/pinia/stores/user"
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */
 function logout() {
@@ -27,7 +27,7 @@ function createInstance() {
       // apiData 是 api 返回的数据
       const apiData = response.data
       // 二进制数据则直接返回
-      const responseType = response.request?.responseType
+      const responseType = response.config.responseType
       if (responseType === "blob" || responseType === "arraybuffer") return apiData
       // 这个 code 是和后端约定的业务 code
       const code = apiData.code

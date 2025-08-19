@@ -9,23 +9,23 @@
 
 <b><a href="./README.md">English</a> | 中文</b>
 
-## 简介
+## 简介 <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black"></a>
 
-V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术
+V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术，并且具备良好的 AI Vibe Coding 体验！
 
 ## 通知
 
-> [!NOTE]
-> 为爱发电！所有源码均免费开源，如果对你有帮助，欢迎点个 Star 支持一下！
-
 > [!IMPORTANT]
-> 欢迎体验全新的 5.0 版本，目前正在 beta 阶段，它将是一次匠心之作！
+> 欢迎体验全新的 5.0 版本，它是一次匠心之作！如果对你有帮助，欢迎点个 Star 支持一下。
 
 > [!WARNING]
 > 4.x 版本如果没有严重的 BUG 将不再维护！[点击切换到 4.x 分支](https://github.com/un-pany/v3-admin-vite/tree/4.x)
 
 > [!TIP]
 > 正式推出付费服务，如果不想自己动手，但想移除 TS 或其他模块？试试懒人套餐！[点击看看](https://github.com/un-pany/v3-admin-vite/issues/225)
+
+> [!NOTE]
+> 如果你有移动端 H5 需求，试试新的开源模板 [MobVue](https://github.com/un-pany/mobvue)。
 
 ## 使用
 
@@ -34,10 +34,10 @@ V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、V
 
 <br>
 
-- 新版 `Visual Studio Code`
+- 新版 `Visual Studio Code` 或者 AI IDE `Cursor` 与 `Trae`
 - 安装 `.vscode/extensions.json` 文件中推荐的插件
-- `node` 20.x 或 22+
-- `pnpm` 9.x 或 10+
+- `node` 20.19+ 或 22.12+
+- `pnpm` 10+
 
 </details>
 
@@ -201,7 +201,7 @@ pnpm test
 
 **CSS 变量**：主要控制项目的布局和颜色
 
-**ESlint**：代码校验与格式化
+**ESLint**：代码校验与格式化
 
 **Axios**：发送网络请求（已封装好）
 
@@ -217,6 +217,14 @@ pnpm test
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
+</a>
+
+## 公众号
+
+新的尝试，欢迎关注
+
+<a href="https://mp.weixin.qq.com/s/artNHKubYNRBlsrxD7eXXA">
+  <img src="https://github.com/user-attachments/assets/529bac73-f9e3-4311-94d0-3db57216b771">
 </a>
 
 ## License

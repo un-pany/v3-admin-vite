@@ -9,15 +9,13 @@ interface Props {
   basePath?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  basePath: ""
-})
+const { item, basePath = "" } = defineProps<Props>()
 
 /** 是否始终显示根菜单 */
-const alwaysShowRootMenu = computed(() => props.item.meta?.alwaysShow)
+const alwaysShowRootMenu = computed(() => item.meta?.alwaysShow)
 
 /** 显示的子菜单 */
-const showingChildren = computed(() => props.item.children?.filter(child => !child.meta?.hidden) ?? [])
+const showingChildren = computed(() => item.children?.filter(child => !child.meta?.hidden) ?? [])
 
 /** 显示的子菜单数量 */
 const showingChildNumber = computed(() => showingChildren.value.length)
@@ -31,7 +29,7 @@ const theOnlyOneChild = computed(() => {
     case number === 1:
       return showingChildren.value[0]
     default:
-      return { ...props.item, path: "" }
+      return { ...item, path: "" }
   }
 })
 
@@ -40,10 +38,10 @@ function resolvePath(routePath: string) {
   switch (true) {
     case isExternal(routePath):
       return routePath
-    case isExternal(props.basePath):
-      return props.basePath
+    case isExternal(basePath):
+      return basePath
     default:
-      return path.resolve(props.basePath, routePath)
+      return path.resolve(basePath, routePath)
   }
 }
 </script>
@@ -60,13 +58,13 @@ function resolvePath(routePath: string) {
       </el-menu-item>
     </Link>
   </template>
-  <el-sub-menu v-else :index="resolvePath(props.item.path)" teleported>
+  <el-sub-menu v-else :index="resolvePath(item.path)" teleported>
     <template #title>
-      <SvgIcon v-if="props.item.meta?.svgIcon" :name="props.item.meta.svgIcon" class="svg-icon" />
-      <component v-else-if="props.item.meta?.elIcon" :is="props.item.meta.elIcon" class="el-icon" />
-      <span v-if="props.item.meta?.title" class="title">{{ props.item.meta.title }}</span>
+      <SvgIcon v-if="item.meta?.svgIcon" :name="item.meta.svgIcon" class="svg-icon" />
+      <component v-else-if="item.meta?.elIcon" :is="item.meta.elIcon" class="el-icon" />
+      <span v-if="item.meta?.title" class="title">{{ item.meta.title }}</span>
     </template>
-    <template v-if="props.item.children">
+    <template v-if="item.children">
       <Item
         v-for="child in showingChildren"
         :key="child.path"

@@ -26,6 +26,7 @@ describe("这里填写作用域名称", () => {
   it("测试基础数据类型", () => {
     expect(1 + 1).toBe(2)
   })
+
   it("测试引用类型", () => {
     expect(author1).toEqual(author2)
   })

@@ -1,0 +1,69 @@
+---
+globs: *.vue
+alwaysApply: false
+---
+
+# Vue 开发规范
+
+- 你是一位前端开发专家，精通 Vue、Vue Router、Pinia、Element Plus 等前端框架
+
+## 代码风格
+
+- 组件: 使用单文件组件 (SFC)
+- API: 使用组合式 API (Composition API) 并搭配 `<script setup>` 语法糖
+- 语法: 没有特殊说明则使用 TS 进行开发 `<script setup lang="ts">`
+
+## 命名
+
+- 组件 (Component) 命名: 始终采用单词大写开头 (PascalCase) 的命名方式, 并且避免与 HTML 元素冲突
+- 组件 (Component) 命名示例: 以全局的 `SearchMenu` 组件 `@@/components/SearchMenu/index.vue` 和 `@@/components/SearchMenu/Modal.vue` 作为参考，注意 `index` 是不需要遵循大驼峰格式的
+- 页面 (Page) 命名: 始终采用短横线连接 (kebab-case) 的命名方式
+- 页面 (Page) 命名示例: 以增删改查示例页面作为参考 `@/pages/demo/element-plus/index.vue`
+- 组合式函数 (Composable) 命名: 始终采用小驼峰 (camelCase) 的命名方式
+- 组合式函数 (Composable) 命名示例: 以水印组合式函数作为参考 `@@/composables/useWatermark.ts`
+- Props 命名: 在声明 prop 的时候，其命名应该始终采用小驼峰 (camelCase)，而在模板和 JSX 中应该始终采用短横线连接 (kebab-case)
+- Props 命名示例: 声明时 `const { isActive = false } = defineProps<Props>()` 和传递时 `<Demo :is-active="true" />`
+- TS 或 JS 文件命名: 始终采用短横线连接 (kebab-case) 的命名方式
+- TS 或 JS 文件命名示例: `@@/constants/app-key.ts`
+
+## API
+
+- 定义响应式变量时优先使用 `ref` 而非 `reactive`
+- 复杂的模板表达式则应该重构为计算属性或方法
+- 尽量避免侦听器的循坏触发，防止进入死循环
+
+## Props
+
+- Prop 定义应该尽量详细，包括类型、必传、默认值
+- 如果是使用了 TS 那么应该使用「基于类型的声明」，默认值则使用「响应式 Props 解构」，示例: `const { isActive = false } = defineProps<Props>()`
+
+## 路由
+
+- 对应目录: `@/router`
+- 路由名称必须与组件名称保持一致
+- 路由守卫逻辑缜密，应当避免频繁更改
+
+## 状态管理
+
+- 对应目录: `@/pinia`
+- 使用 Pinia
+- Store 应该按模块划分
+- 优先使用 Setup store 语法，而不是 Option Store 语法
+- 避免无脑使用全局状态管理
+
+## 样式
+
+- 优先使用 Scoped CSS，示例: `<style scoped lang="scss">`
+- 尽可能避免使用 `!important`
+- 如果涉及到多主题，请考虑使用 CSS 变量，示例: `@@/assets/styles/variables.css`
+
+## 其他
+
+- 避免直接操作 DOM
+- 尽可能编写原子化组件
+- 使用 `v-for` 时必须提供唯一的 `key` (不要轻易使用数组下标 `index` 当做 `key`)
+- 不要在同一元素上同时使用 `v-if` 和 `v-for`
+
+## 参考示例文件
+
+@/pages/demo/element-plus/index.vue

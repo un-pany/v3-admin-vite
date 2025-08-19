@@ -27,7 +27,7 @@ function initStoreNotification() {
         null,
         [
           h("div", null, "不想自己动手，但想移除 TS 或其他模块？也有懒人套餐！"),
-          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, "点击查看")
+          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, "点击获取")
         ]
       ),
       duration: 0,
@@ -36,7 +36,26 @@ function initStoreNotification() {
   }, 500)
 }
 
+function initMobileNotification() {
+  setTimeout(() => {
+    ElNotification({
+      title: "移动端",
+      type: "primary",
+      message: h(
+        "div",
+        null,
+        [
+          h("div", null, "如果你有移动端 H5 需求，试试新的开源模板 MobVue！"),
+          h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/v3-admin-vite/issues/225" }, "点击查看")
+        ]
+      ),
+      duration: 0,
+      position: "bottom-right"
+    })
+  }, 1000)
+}
+
 /** 作者的小心思 */
 export function usePany() {
-  return { initStarNotification, initStoreNotification }
+  return { initStarNotification, initStoreNotification, initMobileNotification }
 }

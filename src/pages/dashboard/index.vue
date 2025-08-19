@@ -4,6 +4,7 @@ import Admin from "./components/Admin.vue"
 import Editor from "./components/Editor.vue"
 
 const userStore = useUserStore()
+
 const isAdmin = userStore.roles.includes("admin")
 </script>
 

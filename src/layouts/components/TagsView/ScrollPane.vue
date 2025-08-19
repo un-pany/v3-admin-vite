@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import type { ElScrollbar } from "element-plus"
 import type { RouterLink } from "vue-router"
-import { useSettingsStore } from "@/pinia/stores/settings"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue"
+import { useSettingsStore } from "@/pinia/stores/settings"
 
 interface Props {
-  tagRefs: InstanceType<typeof RouterLink>[]
+  tagRefs: InstanceType<typeof RouterLink>[] | null
 }
 
 const props = defineProps<Props>()
@@ -19,10 +18,10 @@ const settingsStore = useSettingsStore()
 const { listenerRouteChange } = useRouteListener()
 
 /** 滚动条组件元素的引用 */
-const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+const scrollbarRef = useTemplateRef("scrollbarRef")
 
 /** 滚动条内容元素的引用 */
-const scrollbarContentRef = ref<HTMLDivElement>()
+const scrollbarContentRef = useTemplateRef("scrollbarContentRef")
 
 /** 当前滚动条距离左边的距离 */
 let currentScrollLeft = 0
@@ -72,7 +71,7 @@ function scrollTo(direction: "left" | "right", distance: number = translateDista
 
 /** 移动到目标位置 */
 function moveTo() {
-  const tagRefs = props.tagRefs
+  const tagRefs = props.tagRefs!
   for (let i = 0; i < tagRefs.length; i++) {
     // @ts-expect-error ignore
     if (route.path === tagRefs[i].$props.to.path) {

@@ -1,33 +1,49 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/pinia/stores/app"
-import { usePermissionStore } from "@/pinia/stores/permission"
-import { useSettingsStore } from "@/pinia/stores/settings"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
 import { getCssVar } from "@@/utils/css"
+import { useAppStore } from "@/pinia/stores/app"
+import { usePermissionStore } from "@/pinia/stores/permission"
+import { useSettingsStore } from "@/pinia/stores/settings"
 import { Logo } from "../index"
 import Item from "./Item.vue"
 
 const v3SidebarMenuBgColor = getCssVar("--v3-sidebar-menu-bg-color")
+
 const v3SidebarMenuTextColor = getCssVar("--v3-sidebar-menu-text-color")
+
 const v3SidebarMenuActiveTextColor = getCssVar("--v3-sidebar-menu-active-text-color")
 
 const { isMobile } = useDevice()
+
 const { isLeft, isTop } = useLayoutMode()
+
 const route = useRoute()
+
 const appStore = useAppStore()
+
 const permissionStore = usePermissionStore()
+
 const settingsStore = useSettingsStore()
 
 const activeMenu = computed(() => route.meta.activeMenu || route.path)
+
 const noHiddenRoutes = computed(() => permissionStore.routes.filter(item => !item.meta?.hidden))
+
 const isCollapse = computed(() => !appStore.sidebar.opened)
+
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
+
 const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
+
 const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
+
 const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
+
 const sidebarMenuItemHeight = computed(() => !isTop.value ? "var(--v3-sidebar-menu-item-height)" : "var(--v3-navigationbar-height)")
+
 const sidebarMenuHoverBgColor = computed(() => !isTop.value ? "var(--v3-sidebar-menu-hover-bg-color)" : "transparent")
+
 const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
 </script>
 
