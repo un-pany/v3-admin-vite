@@ -9,6 +9,8 @@ import { getCaptchaApi, loginApi } from "./apis"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
 
+const route = useRoute()
+
 const router = useRouter()
 
 const userStore = useUserStore()
@@ -57,7 +59,7 @@ function handleLogin() {
     loading.value = true
     loginApi(loginFormData).then(({ data }) => {
       userStore.setToken(data.token)
-      router.push("/")
+      router.push(route.query.redirect ? decodeURIComponent(route.query.redirect as string) : "/")
     }).catch(() => {
       createCode()
       loginFormData.password = ""
