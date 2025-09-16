@@ -19,6 +19,7 @@
     "axios": "1.12.2",
     "dayjs": "1.11.18",
     "element-plus": "2.11.2",
+    "exceljs": "4.4.0",
     "js-cookie": "3.0.5",
     "lodash-es": "4.17.21",
     "mitt": "3.0.1",
@@ -30,7 +31,8 @@
     "screenfull": "6.0.2",
     "vue": "3.5.21",
     "vue-router": "4.5.1",
-    "vxe-table": "4.6.25"
+    "vxe-table": "4.6.25",
+    "vxe-table-plugin-export-xlsx": "4.0.7"
   },
   "devDependencies": {
     "@antfu/eslint-config": "5.3.0",

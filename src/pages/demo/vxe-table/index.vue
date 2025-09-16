@@ -76,10 +76,26 @@ const xGridOpt: VxeGridProps = reactive({
   },
   /** 工具栏配置 */
   toolbarConfig: {
+    export: true,
     refresh: true,
     custom: true,
     slots: {
       buttons: "toolbar-btns"
+    }
+  },
+  /** 导出配置项 */
+  exportConfig: {
+    type: "xlsx",
+    types: ["xlsx", "csv", "html", "xml", "txt"],
+    mode: "current",
+    modes: ["current", "selected"],
+    columnFilterMethod({ column }) {
+      return column.field !== undefined
+    },
+    /**  只对 type=xlsx 有效，该函数用于自定义工作簿的单元格 */
+    sheetMethod({ worksheet }) {
+      worksheet.pageSetup.orientation = "landscape"
+      worksheet.pageSetup.paperSize = 9
     }
   },
   /** 自定义列配置项 */
