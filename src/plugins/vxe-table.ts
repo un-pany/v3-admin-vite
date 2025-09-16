@@ -1,5 +1,7 @@
 import type { App } from "vue"
+import ExcelJS from "exceljs"
 import VXETable from "vxe-table" // https://vxetable.cn/#/start/install
+import VXETablePluginExportXLSX from "vxe-table-plugin-export-xlsx"
 
 // 全局默认参数
 VXETable.setConfig({
@@ -53,6 +55,11 @@ VXETable.setConfig({
     transfer: true,
     draggable: false
   }
+})
+
+// 导入导出xlsx插件 https://vxetable.cn/other4/#/table/plugin/exportXLSX
+VXETable.use(VXETablePluginExportXLSX, {
+  ExcelJS
 })
 
 export function installVxeTable(app: App) {
