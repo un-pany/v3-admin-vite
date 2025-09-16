@@ -26,7 +26,7 @@ initMobileNotification()
 </script>
 
 <template>
-  <el-config-provider :locale="zhCn">
+  <el-config-provider :locale="zhCn" :z-index="20000">
     <router-view />
   </el-config-provider>
 </template>
