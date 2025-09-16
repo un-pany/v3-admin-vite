@@ -135,7 +135,7 @@ pnpm test
 
 **Online Preview**: [github-pages](https://un-pany.github.io/v3-admin-vite)
 
-**Chinese Documentation**: [link](https://juejin.cn/post/7089377403717287972)
+**Chinese Documentation**: [link](https://juejin.cn/post/7445151895121543209)
 
 **Zero to Hero Tutorial**: [link](https://juejin.cn/column/7207659644487139387)
 
