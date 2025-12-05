@@ -1,10 +1,32 @@
 <script lang="ts" setup>
-import type { CreateOrUpdateTableRequestData, TableData } from "@@/apis/tables/type"
 import type { FormRules } from "element-plus"
-import { createTableDataApi, deleteTableDataApi, getTableDataApi, updateTableDataApi } from "@@/apis/tables"
-import { usePagination } from "@@/composables/usePagination"
-import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@element-plus/icons-vue"
+import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search, Grid, List } from "@element-plus/icons-vue"
 import { cloneDeep } from "lodash-es"
+
+// 定义本地用户数据类型
+interface UserData {
+  id: number
+  username: string
+  phone: string
+  email: string
+  roles: string
+  status: boolean
+  createTime: string
+}
+
+// 本地用户数据常量
+const USER_DATA_LIST: UserData[] = [
+  { id: 1, username: '张三', phone: '13800138001', email: 'zhangsan@example.com', roles: 'admin', status: true, createTime: '2023-01-01 10:00:00' },
+  { id: 2, username: '李四', phone: '13800138002', email: 'lisi@example.com', roles: 'user', status: true, createTime: '2023-01-02 11:00:00' },
+  { id: 3, username: '王五', phone: '13800138003', email: 'wangwu@example.com', roles: 'user', status: false, createTime: '2023-01-03 12:00:00' },
+  { id: 4, username: '赵六', phone: '13800138004', email: 'zhaoliu@example.com', roles: 'admin', status: true, createTime: '2023-01-04 13:00:00' },
+  { id: 5, username: '孙七', phone: '13800138005', email: 'sunqi@example.com', roles: 'user', status: true, createTime: '2023-01-05 14:00:00' },
+  { id: 6, username: '周八', phone: '13800138006', email: 'zhouba@example.com', roles: 'user', status: false, createTime: '2023-01-06 15:00:00' },
+  { id: 7, username: '吴九', phone: '13800138007', email: 'wujiu@example.com', roles: 'admin', status: true, createTime: '2023-01-07 16:00:00' },
+  { id: 8, username: '郑十', phone: '13800138008', email: 'zhengshi@example.com', roles: 'user', status: true, createTime: '2023-01-08 17:00:00' },
+  { id: 9, username: '陈一', phone: '13800138009', email: 'chenyi@example.com', roles: 'user', status: true, createTime: '2023-01-09 18:00:00' },
+  { id: 10, username: '刘二', phone: '13800138010', email: 'liuer@example.com', roles: 'admin', status: false, createTime: '2023-01-10 19:00:00' }
+]
 
 defineOptions({
   // 命名当前组件
@@ -13,10 +35,27 @@ defineOptions({
 
 const loading = ref<boolean>(false)
 
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
+// 视图切换状态
+const viewMode = ref<'list' | 'card'>('list')
+
+// 选中的卡片ID
+const selectedCardId = ref<number | null>(null)
+
+// 处理视图切换
+const handleViewModeChange = () => {
+  viewMode.value = viewMode.value === 'list' ? 'card' : 'list'
+}
+
+// 处理卡片点击
+const handleCardClick = (id: number) => {
+  selectedCardId.value = selectedCardId.value === id ? null : id
+}
+
+// 过滤后的用户数据
+const filteredUserData = ref<UserData[]>(USER_DATA_LIST)
 
 // #region 增
-const DEFAULT_FORM_DATA: CreateOrUpdateTableRequestData = {
+const DEFAULT_FORM_DATA: Partial<UserData> = {
   id: undefined,
   username: "",
   password: ""
@@ -26,11 +65,10 @@ const dialogVisible = ref<boolean>(false)
 
 const formRef = useTemplateRef("formRef")
 
-const formData = ref<CreateOrUpdateTableRequestData>(cloneDeep(DEFAULT_FORM_DATA))
+const formData = ref<Partial<UserData>>(cloneDeep(DEFAULT_FORM_DATA))
 
-const formRules: FormRules<CreateOrUpdateTableRequestData> = {
-  username: [{ required: true, trigger: "blur", message: "请输入用户名" }],
-  password: [{ required: true, trigger: "blur", message: "请输入密码" }]
+const formRules: FormRules<Partial<UserData>> = {
+  username: [{ required: true, trigger: "blur", message: "请输入用户名" }]
 }
 
 function handleCreateOrUpdate() {
@@ -40,14 +78,32 @@ function handleCreateOrUpdate() {
       return
     }
     loading.value = true
-    const api = formData.value.id === undefined ? createTableDataApi : updateTableDataApi
-    api(formData.value).then(() => {
-      ElMessage.success("操作成功")
-      dialogVisible.value = false
-      getTableData()
-    }).finally(() => {
-      loading.value = false
-    })
+    
+    if (formData.value.id === undefined) {
+      // 新增用户
+      const newUser: UserData = {
+        id: USER_DATA_LIST.length + 1,
+        username: formData.value.username || "",
+        phone: "",
+        email: "",
+        roles: "user",
+        status: true,
+        createTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
+      }
+      USER_DATA_LIST.push(newUser)
+    } else {
+      // 更新用户
+      const index = USER_DATA_LIST.findIndex(user => user.id === formData.value.id)
+      if (index !== -1) {
+        USER_DATA_LIST[index] = { ...USER_DATA_LIST[index], ...formData.value }
+      }
+    }
+    
+    ElMessage.success("操作成功")
+    dialogVisible.value = false
+    handleSearch()
+    
+    loading.value = false
   })
 }
 
@@ -58,30 +114,30 @@ function resetForm() {
 // #endregion
 
 // #region 删
-function handleDelete(row: TableData) {
+function handleDelete(row: UserData) {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     type: "warning"
   }).then(() => {
-    deleteTableDataApi(row.id).then(() => {
+    const index = USER_DATA_LIST.findIndex(user => user.id === row.id)
+    if (index !== -1) {
+      USER_DATA_LIST.splice(index, 1)
       ElMessage.success("删除成功")
-      getTableData()
-    })
+      handleSearch()
+    }
   })
 }
 // #endregion
 
 // #region 改
-function handleUpdate(row: TableData) {
+function handleUpdate(row: UserData) {
   dialogVisible.value = true
   formData.value = cloneDeep(row)
 }
 // #endregion
 
 // #region 查
-const tableData = ref<TableData[]>([])
-
 const searchFormRef = useTemplateRef("searchFormRef")
 
 const searchData = reactive({
@@ -89,35 +145,24 @@ const searchData = reactive({
   phone: ""
 })
 
-function getTableData() {
-  loading.value = true
-  getTableDataApi({
-    currentPage: paginationData.currentPage,
-    size: paginationData.pageSize,
-    username: searchData.username,
-    phone: searchData.phone
-  }).then(({ data }) => {
-    paginationData.total = data.total
-    tableData.value = data.list
-  }).catch(() => {
-    tableData.value = []
-  }).finally(() => {
-    loading.value = false
+// 处理搜索
+function handleSearch() {
+  filteredUserData.value = USER_DATA_LIST.filter(user => {
+    const matchesUsername = user.username.includes(searchData.username)
+    const matchesPhone = user.phone.includes(searchData.phone)
+    return matchesUsername && matchesPhone
   })
 }
 
-function handleSearch() {
-  paginationData.currentPage === 1 ? getTableData() : (paginationData.currentPage = 1)
-}
-
+// 重置搜索
 function resetSearch() {
   searchFormRef.value?.resetFields()
   handleSearch()
 }
 // #endregion
 
-// 监听分页参数的变化
-watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
+// 初始化数据
+handleSearch()
 </script>
 
 <template>
@@ -143,6 +188,10 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           <el-button :icon="Refresh" @click="resetSearch">
             重置
           </el-button>
+          <!-- 视图切换按钮 -->
+          <el-button :icon="viewMode === 'list' ? Grid : List" @click="handleViewModeChange">
+            {{ viewMode === 'list' ? '卡片视图' : '列表视图' }}
+          </el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -165,8 +214,9 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           </el-tooltip>
         </div>
       </div>
-      <div class="table-wrapper">
-        <el-table :data="tableData">
+      <!-- 列表视图 -->
+      <div v-if="viewMode === 'list'" class="table-wrapper">
+        <el-table :data="filteredUserData">
           <el-table-column type="selection" width="50" align="center" />
           <el-table-column prop="username" label="用户名" align="center" />
           <el-table-column prop="roles" label="角色" align="center">
@@ -204,17 +254,63 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           </el-table-column>
         </el-table>
       </div>
-      <div class="pager-wrapper">
-        <el-pagination
-          background
-          :layout="paginationData.layout"
-          :page-sizes="paginationData.pageSizes"
-          :total="paginationData.total"
-          :page-size="paginationData.pageSize"
-          :current-page="paginationData.currentPage"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
+
+      <!-- 卡片视图 -->
+      <div v-else class="card-grid-wrapper">
+        <div v-for="user in filteredUserData" :key="user.id" 
+             class="user-card" 
+             :class="{ 'selected': selectedCardId === user.id }"
+             @click="handleCardClick(user.id)">
+          <!-- 状态标签 -->
+          <div class="card-status">
+            <el-tag v-if="user.status" type="success" effect="plain" disable-transitions>
+              启用
+            </el-tag>
+            <el-tag v-else type="danger" effect="plain" disable-transitions>
+              禁用
+            </el-tag>
+          </div>
+
+          <!-- 用户名 -->
+          <div class="card-username">{{ user.username }}</div>
+
+          <!-- 信息区 -->
+          <div class="card-info">
+            <div class="info-item">
+              <span class="label">手机号：</span>
+              <span class="value">{{ user.phone }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">邮箱：</span>
+              <span class="value">{{ user.email }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">角色：</span>
+              <span class="value">
+                <el-tag v-if="user.roles === 'admin'" type="primary" effect="plain" disable-transitions size="small">
+                  admin
+                </el-tag>
+                <el-tag v-else type="warning" effect="plain" disable-transitions size="small">
+                  {{ user.roles }}
+                </el-tag>
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="label">创建时间：</span>
+              <span class="value">{{ user.createTime }}</span>
+            </div>
+          </div>
+
+          <!-- 底部操作栏 -->
+          <div class="card-actions">
+            <el-button type="primary" text size="small" @click.stop="handleUpdate(user)">
+              编辑
+            </el-button>
+            <el-button type="danger" text size="small" @click.stop="handleDelete(user)">
+              删除
+            </el-button>
+          </div>
+        </div>
       </div>
     </el-card>
     <!-- 新增/修改 -->
@@ -269,5 +365,73 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
 .pager-wrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+/* 卡片网格布局样式 */
+.card-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.user-card {
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  &.selected {
+    border-color: #67c23a;
+  }
+}
+
+.card-status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-username {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.card-info {
+  margin-bottom: 20px;
+}
+
+.info-item {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.info-item .label {
+  font-weight: 500;
+  margin-right: 8px;
+  width: 80px;
+}
+
+.info-item .value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 </style>
