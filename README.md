@@ -6,6 +6,7 @@
 [![github release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/releases)
 [![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/stargazers)
 [![gitee stars](https://gitee.com/un-pany/v3-admin-vite/badge/star.svg)](https://gitee.com/un-pany/v3-admin-vite/stargazers)
+[![atomgit stars](https://atomgit.com/un-pany/v3-admin-vite/star/badge.svg)](https://atomgit.com/un-pany/v3-admin-vite/stargazers)
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
 
@@ -143,7 +144,7 @@ pnpm test
 
 **Electron Desktop Version**: [v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
-**Chinese Repository**: [gitee](https://gitee.com/un-pany/v3-admin-vite)
+**Chinese Repository**: [gitee](https://gitee.com/un-pany/v3-admin-vite), [atomgit](https://atomgit.com/un-pany/v3-admin-vite)
 
 **Optional Group**: [check how to join](https://github.com/un-pany/v3-admin-vite/issues/191)
 

@@ -6,6 +6,7 @@
 [![github release](https://img.shields.io/github/v/release/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/releases)
 [![github stars](https://img.shields.io/github/stars/un-pany/v3-admin-vite?style=flat)](https://github.com/un-pany/v3-admin-vite/stargazers)
 [![gitee stars](https://gitee.com/un-pany/v3-admin-vite/badge/star.svg)](https://gitee.com/un-pany/v3-admin-vite/stargazers)
+[![atomgit stars](https://atomgit.com/un-pany/v3-admin-vite/star/badge.svg)](https://atomgit.com/un-pany/v3-admin-vite/stargazers)
 
 <b><a href="./README.md">English</a> | 中文</b>
 
@@ -143,7 +144,7 @@ pnpm test
 
 **Electron 桌面版**：[v3-electron-vite](https://github.com/un-pany/v3-electron-vite)
 
-**国内仓库**：[gitee](https://gitee.com/un-pany/v3-admin-vite)
+**国内仓库**：[gitee](https://gitee.com/un-pany/v3-admin-vite)、[atomgit](https://atomgit.com/un-pany/v3-admin-vite)
 
 **可有可无的群**：[查看进群方式](https://github.com/un-pany/v3-admin-vite/issues/191)
 
