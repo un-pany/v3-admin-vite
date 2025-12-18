@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import LanguageSwitch from "@@/components/LanguageSwitch/index.vue"
 import Notify from "@@/components/Notify/index.vue"
 import Screenfull from "@@/components/Screenfull/index.vue"
 import SearchMenu from "@@/components/SearchMenu/index.vue"
@@ -23,7 +24,7 @@ const userStore = useUserStore()
 
 const settingsStore = useSettingsStore()
 
-const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
+const { showNotify, showThemeSwitch, showLanguageSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
 function toggleSidebar() {
@@ -51,6 +52,7 @@ function logout() {
       <SearchMenu v-if="showSearchMenu" class="right-menu-item" />
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
+      <LanguageSwitch v-if="showLanguageSwitch" class="right-menu-item" />
       <Notify v-if="showNotify" class="right-menu-item" />
       <el-dropdown>
         <div class="right-menu-item user">
@@ -66,7 +68,7 @@ function logout() {
               <el-dropdown-item>Gitee</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              退出登录
+              {{ $t("navigationBar.logout") }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>

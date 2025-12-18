@@ -1,5 +1,6 @@
 // 统一处理 localStorage
 
+import type { LanguageName } from "@@/composables/useLanguage"
 import type { ThemeName } from "@@/composables/useTheme"
 import type { SidebarClosed, SidebarOpened } from "@@/constants/app-key"
 import type { LayoutsConfig } from "@/layouts/config"
@@ -38,6 +39,16 @@ export function getActiveThemeName() {
 
 export function setActiveThemeName(themeName: ThemeName) {
   localStorage.setItem(CacheKey.ACTIVE_THEME_NAME, themeName)
+}
+// #endregion
+
+// #region 正在应用的语言名称
+export function getActiveLanguageName() {
+  return localStorage.getItem(CacheKey.ACTIVE_LANGUAGE_NAME) as LanguageName | null
+}
+
+export function setActiveLanguageName(languageName: LanguageName) {
+  localStorage.setItem(CacheKey.ACTIVE_LANGUAGE_NAME, languageName)
 }
 // #endregion
 

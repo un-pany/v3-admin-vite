@@ -60,13 +60,13 @@ const xGridOpt: VxeGridProps = reactive({
           options: [
             {
               type: "submit",
-              content: "查询",
+              content: "vxetable.search",
               status: "primary",
               icon: "vxe-icon-search"
             },
             {
               type: "reset",
-              content: "重置",
+              content: "vxetable.reset",
               icon: "vxe-icon-refresh"
             }
           ]

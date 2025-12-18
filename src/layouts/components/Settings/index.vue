@@ -17,6 +17,7 @@ const {
   showFooter,
   showNotify,
   showThemeSwitch,
+  showLanguageSwitch,
   showScreenfull,
   showSearchMenu,
   cacheTagsView,
@@ -27,18 +28,19 @@ const {
 
 /** 定义 switch 设置项 */
 const switchSettings = {
-  "显示标签栏": showTagsView,
-  "显示 Logo": showLogo,
-  "固定 Header": fixedHeader,
-  "显示页脚": showFooter,
-  "显示消息通知": showNotify,
-  "显示切换主题按钮": showThemeSwitch,
-  "显示全屏按钮": showScreenfull,
-  "显示搜索按钮": showSearchMenu,
-  "是否缓存标签栏": cacheTagsView,
-  "开启系统水印": showWatermark,
-  "显示灰色模式": showGreyMode,
-  "显示色弱模式": showColorWeakness
+  "settings.showTagsView": showTagsView,
+  "settings.showLogo": showLogo,
+  "settings.fixedHeader": fixedHeader,
+  "settings.showFooter": showFooter,
+  "settings.showNotify": showNotify,
+  "settings.showThemeSwitch": showThemeSwitch,
+  "settings.showLanguageSwitch": showLanguageSwitch,
+  "settings.showScreenfull": showScreenfull,
+  "settings.showSearchMenu": showSearchMenu,
+  "settings.cacheTagsView": cacheTagsView,
+  "settings.showWatermark": showWatermark,
+  "settings.showGreyMode": showGreyMode,
+  "settings.showColorWeakness": showColorWeakness
 }
 
 // 非左侧模式时，Header 都是 fixed 布局
@@ -55,16 +57,16 @@ function resetLayoutsConfig() {
 
 <template>
   <div class="setting-container">
-    <h4>布局配置</h4>
+    <h4>{{ $t("settings.layoutSetting") }}</h4>
     <SelectLayoutMode />
     <el-divider />
-    <h4>功能配置</h4>
+    <h4>{{ $t("settings.functionalSetting") }}</h4>
     <div v-for="(settingValue, settingName, index) in switchSettings" :key="index" class="setting-item">
-      <span class="setting-name">{{ settingName }}</span>
-      <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === '固定 Header'" />
+      <span class="setting-name">{{ $t(settingName) }}</span>
+      <el-switch v-model="settingValue.value" :disabled="!isLeft && settingName === 'settings.fixedHeader'" />
     </div>
     <el-button type="danger" :icon="Refresh" @click="resetLayoutsConfig">
-      重 置
+      {{ $t("settings.resetSetting") }}
     </el-button>
   </div>
 </template>

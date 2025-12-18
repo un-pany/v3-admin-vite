@@ -8,7 +8,7 @@ const { themeList, activeThemeName, setTheme } = useTheme()
 <template>
   <el-dropdown trigger="click">
     <div>
-      <el-tooltip effect="dark" content="主题模式" placement="bottom">
+      <el-tooltip effect="dark" :content="$t('themeSwitch.tooltip')" placement="bottom">
         <el-icon :size="20">
           <MagicStick />
         </el-icon>
@@ -22,7 +22,7 @@ const { themeList, activeThemeName, setTheme } = useTheme()
           :disabled="activeThemeName === theme.name"
           @click="(e: MouseEvent) => setTheme(e, theme.name)"
         >
-          <span>{{ theme.title }}</span>
+          <span>{{ $t(`themeSwitch.${theme.title}`) }}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

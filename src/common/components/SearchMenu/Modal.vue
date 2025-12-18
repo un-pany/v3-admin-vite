@@ -159,14 +159,14 @@ function handleReleaseUpOrDown() {
     @keydown.enter="handleEnter"
     @keyup.up.down="handleReleaseUpOrDown"
   >
-    <el-input ref="inputRef" v-model="keyword" placeholder="搜索菜单" size="large" clearable @input="handleSearch">
+    <el-input ref="inputRef" v-model="keyword" :placeholder="$t('searchMenu.placeholder')" size="large" clearable @input="handleSearch">
       <template #prefix>
         <SvgIcon name="search" class="svg-icon" />
       </template>
     </el-input>
-    <el-empty v-if="result.length === 0" description="暂无搜索结果" :image-size="100" />
+    <el-empty v-if="result.length === 0" :description="$t('searchMenu.noResult')" :image-size="100" />
     <template v-else>
-      <p>搜索结果</p>
+      <p>{{ $t("searchMenu.result") }}</p>
       <el-scrollbar ref="scrollbarRef" max-height="40vh" always>
         <Result
           ref="resultRef"

@@ -4,15 +4,13 @@ import screenfull from "screenfull"
 interface Props {
   /** 全屏的元素，默认是 html */
   element?: string
-  /** 打开全屏提示语 */
-  openTips?: string
-  /** 关闭全屏提示语 */
-  exitTips?: string
   /** 是否只针对内容区 */
   content?: boolean
 }
 
-const { element = "html", openTips = "全屏", exitTips = "退出全屏", content = false } = defineProps<Props>()
+const { element = "html", content = false } = defineProps<Props>()
+
+const { t } = useI18n()
 
 const CONTENT_LARGE = "content-large"
 
@@ -25,13 +23,13 @@ const isEnabled = screenfull.isEnabled
 
 const isFullscreen = ref<boolean>(false)
 
-const fullscreenTips = computed(() => (isFullscreen.value ? exitTips : openTips))
+const fullscreenTips = computed(() => (isFullscreen.value ? t("screenFull.exitTips") : t("screenFull.openTips")))
 
 const fullscreenSvgName = computed(() => (isFullscreen.value ? "fullscreen-exit" : "fullscreen"))
 
 function handleFullscreenClick() {
   const dom = document.querySelector(element) || undefined
-  isEnabled ? screenfull.toggle(dom) : ElMessage.warning("您的浏览器无法工作")
+  isEnabled ? screenfull.toggle(dom) : ElMessage.warning(t("screenFull.browserNotSupport"))
 }
 
 function handleFullscreenChange() {
@@ -55,7 +53,7 @@ watchEffect(() => {
 // #region 内容区
 const isContentLarge = ref<boolean>(false)
 
-const contentLargeTips = computed(() => (isContentLarge.value ? "内容区复原" : "内容区放大"))
+const contentLargeTips = computed(() => (isContentLarge.value ? t("screenFull.contentRestore") : t("screenFull.contentLarge")))
 
 const contentLargeSvgName = computed(() => (isContentLarge.value ? "fullscreen-exit" : "fullscreen"))
 
@@ -93,7 +91,7 @@ function handleContentFullClick() {
           </el-dropdown-item>
           <!-- 内容区全屏 -->
           <el-dropdown-item @click="handleContentFullClick">
-            内容区全屏
+            {{ $t("screenFull.contentFull") }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>
