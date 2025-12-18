@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { useGreyAndColorWeakness } from "@@/composables/useGreyAndColorWeakness"
+import { useLanguage } from "@@/composables/useLanguage"
 import { usePany } from "@@/composables/usePany"
 import { useTheme } from "@@/composables/useTheme"
-import zhCn from "element-plus/es/locale/lang/zh-cn" // Element Plus 中文包
+
+const { epLocale } = useLanguage()
 
 const { initTheme } = useTheme()
 
@@ -26,7 +28,7 @@ initMobileNotification()
 </script>
 
 <template>
-  <el-config-provider :locale="zhCn">
+  <el-config-provider :locale="epLocale" :z-index="20000">
     <router-view />
   </el-config-provider>
 </template>

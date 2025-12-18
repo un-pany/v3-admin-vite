@@ -19,6 +19,8 @@ export interface LayoutsConfig {
   showNotify: boolean
   /** 是否显示切换主题按钮 */
   showThemeSwitch: boolean
+  /** 是否显示切换语言按钮 */
+  showLanguageSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
   /** 是否显示搜索按钮 */
@@ -43,6 +45,7 @@ const DEFAULT_CONFIG: LayoutsConfig = {
   showLogo: true,
   showNotify: true,
   showThemeSwitch: true,
+  showLanguageSwitch: true,
   showScreenfull: true,
   showSearchMenu: true,
   cacheTagsView: false,

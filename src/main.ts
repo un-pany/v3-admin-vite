@@ -2,6 +2,7 @@
 
 // core
 import { pinia } from "@/pinia"
+import { i18n } from "@/i18n"
 import { router } from "@/router"
 import { installPlugins } from "@/plugins"
 import App from "@/App.vue"
@@ -20,7 +21,7 @@ const app = createApp(App)
 installPlugins(app)
 
 // 安装 pinia 和 router
-app.use(pinia).use(router)
+app.use(pinia).use(router).use(i18n)
 
 // router 准备就绪后挂载应用
 router.isReady().then(() => {

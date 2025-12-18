@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "antfu.unocss",
     "vitest.explorer",
-    "wiensss.region-highlighter"
+    "wiensss.region-highlighter",
+    "lokalise.i18n-ally"
   ]
 }

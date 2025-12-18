@@ -1,5 +1,6 @@
 import type { App } from "vue"
 import VXETable from "vxe-table" // https://vxetable.cn/#/start/install
+import { i18n } from "@/i18n"
 
 // 全局默认参数
 VXETable.setConfig({
@@ -52,6 +53,16 @@ VXETable.setConfig({
     showTitleOverflow: true,
     transfer: true,
     draggable: false
+  },
+  // 对组件内置的提示语进行国际化翻译
+  i18n: (key, args) => i18n.global.t(key, args),
+  // 可选，对参数中的列头、校验提示..等进行自动翻译（只对支持国际化的有效）
+  translate(key, args) {
+    // 例如，只翻译 "vxetable." 开头的键值
+    if (key && key.startsWith("vxetable.")) {
+      return i18n.global.t(key, args)
+    }
+    return key
   }
 })
 

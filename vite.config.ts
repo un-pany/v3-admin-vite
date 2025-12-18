@@ -67,7 +67,7 @@ export default defineConfig(({ mode }) => {
            * @description 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
            */
           manualChunks: {
-            vue: ["vue", "vue-router", "pinia"],
+            vue: ["vue", "vue-router", "pinia", "vue-i18n"],
             element: ["element-plus", "@element-plus/icons-vue"],
             vxe: ["vxe-table"]
           }
@@ -130,7 +130,7 @@ export default defineConfig(({ mode }) => {
       UnoCSS(),
       // 自动按需导入 API
       AutoImport({
-        imports: ["vue", "vue-router", "pinia"],
+        imports: ["vue", "vue-router", "pinia", "vue-i18n"],
         dts: "types/auto/auto-imports.d.ts",
         resolvers: [ElementPlusResolver()]
       }),

@@ -1,0 +1,73 @@
+{
+  "navigationBar": {
+    "logout": "Logout"
+  },
+  "screenFull": {
+    "openTips": "Open Fullscreen",
+    "exitTips": "Exit Fullscreen",
+    "contentLarge": "Content Area Large",
+    "contentRestore": "Content Area Restore",
+    "contentFull": "Content Area Fullscreen",
+    "browserNotSupport": "Your browser does not support fullscreen mode"
+  },
+  "searchMenu": {
+    "tooltip": "Search Menu",
+    "confirm": "Confirm",
+    "switch": "Switch",
+    "close": "Close",
+    "placeholder": "Search Menu",
+    "result": "Search Result",
+    "noResult": "No Search Result",
+    "total": "Total {total} item"
+  },
+  "themeSwitch": {
+    "tooltip": "Theme Mode",
+    "默认": "Default",
+    "黑暗": "Dark",
+    "深蓝": "Dark Blue"
+  },
+  "languageSwitch": {
+    "tooltip": "Switch Language"
+  },
+  "tagsView": {
+    "refresh": "Refresh",
+    "close": "Close",
+    "closeOther": "Close Other",
+    "closeAll": "Close All",
+    "scrollLeft": "Scroll Left (if exceeds the maximum width)",
+    "scrollRight": "Scroll Right (if exceeds the maximum width)"
+  },
+  "settings": {
+    "layoutSetting": "Layout Setting",
+    "leftLayout": "Left Mode",
+    "topLayout": "Top Mode",
+    "mixLayout": "Mix Mode",
+    "functionalSetting": "Functional Setting",
+    "showTagsView": "Show Tags View",
+    "showLogo": "Show Logo",
+    "fixedHeader": "Fixed Header",
+    "showFooter": "Show Footer",
+    "showNotify": "Show Notify",
+    "showThemeSwitch": "Show Theme Switch",
+    "showLanguageSwitch": "Show Language Switch",
+    "showScreenfull": "Show Screenfull",
+    "showSearchMenu": "Show Search Menu",
+    "cacheTagsView": "Cache Tags View",
+    "showWatermark": "Show Watermark",
+    "showGreyMode": "Show Grey Mode",
+    "showColorWeakness": "Show Color Weakness",
+    "resetSetting": "Reset Setting"
+  },
+  "vxetable": {
+    "search": "Search",
+    "reset": "Reset",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "route": {
+    "首页": "Dashboard"
+  }
+}

@@ -52,5 +52,10 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+  "i18n-ally.localesPaths": [
+    "src/i18n/locale"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.displayLanguage": "zh-cn"
 }

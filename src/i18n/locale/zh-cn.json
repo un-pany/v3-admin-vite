@@ -1,0 +1,73 @@
+{
+  "navigationBar": {
+    "logout": "退出登录"
+  },
+  "screenFull": {
+    "openTips": "全屏",
+    "exitTips": "退出全屏",
+    "contentLarge": "内容区放大",
+    "contentRestore": "内容区复原",
+    "contentFull": "内容区全屏",
+    "browserNotSupport": "您的浏览器不支持全屏模式"
+  },
+  "searchMenu": {
+    "tooltip": "搜索菜单",
+    "confirm": "确认",
+    "switch": "切换",
+    "close": "关闭",
+    "placeholder": "搜索菜单",
+    "result": "搜索结果",
+    "noResult": "暂无搜索结果",
+    "total": "共 {total} 项"
+  },
+  "themeSwitch": {
+    "tooltip": "主题模式",
+    "默认": "默认",
+    "黑暗": "黑暗",
+    "深蓝": "深蓝"
+  },
+  "languageSwitch": {
+    "tooltip": "切换语言"
+  },
+  "tagsView": {
+    "refresh": "刷新",
+    "close": "关闭",
+    "closeOther": "关闭其它",
+    "closeAll": "关闭所有",
+    "scrollLeft": "向左滚动标签（超出最大宽度可点击）",
+    "scrollRight": "向右滚动标签（超出最大宽度可点击）"
+  },
+  "settings": {
+    "layoutSetting": "布局配置",
+    "leftLayout": "左侧模式",
+    "topLayout": "顶部模式",
+    "mixLayout": "混合模式",
+    "functionalSetting": "功能配置",
+    "showTagsView": "显示标签栏",
+    "showLogo": "显示 Logo",
+    "fixedHeader": "固定 Header",
+    "showFooter": "显示页脚",
+    "showNotify": "显示消息通知",
+    "showThemeSwitch": "显示切换主题按钮",
+    "showLanguageSwitch": "显示切换语言按钮",
+    "showScreenfull": "显示全屏按钮",
+    "showSearchMenu": "显示搜索按钮",
+    "cacheTagsView": "是否缓存标签栏",
+    "showWatermark": "开启系统水印",
+    "showGreyMode": "显示灰色模式",
+    "showColorWeakness": "显示色弱模式",
+    "resetSetting": "重置配置"
+  },
+  "vxetable": {
+    "search": "搜索",
+    "reset": "重置",
+    "create": "新增",
+    "edit": "编辑",
+    "delete": "删除",
+    "cancel": "取消",
+    "confirm": "确定"
+  },
+  "route": {
+    "首页": "首页"
+  }
+}
