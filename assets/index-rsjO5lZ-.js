@@ -1,0 +1,1 @@
+import{t,aB as r,aA as a,A as o,y as s}from"./vue-CiNTPoLB.js";const m=t({__name:"index",setup(n){const e=a();return r().replace({path:`/${e.params.path}`,query:e.query}),(c,p)=>(s(),o("div"))}});export{m as default};
