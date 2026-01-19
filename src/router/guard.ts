@@ -1,7 +1,7 @@
 import type { Router } from "vue-router"
 import { setRouteChange } from "@@/composables/useRouteListener"
 import { useTitle } from "@@/composables/useTitle"
-import { getToken } from "@@/utils/cache/cookies"
+import { getToken } from "@@/utils/local-storage"
 import NProgress from "nprogress"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { useUserStore } from "@/pinia/stores/user"

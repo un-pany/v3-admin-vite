@@ -1,5 +1,5 @@
 import { DeviceEnum, SIDEBAR_CLOSED, SIDEBAR_OPENED } from "@@/constants/app-key"
-import { getSidebarStatus, setSidebarStatus } from "@@/utils/cache/local-storage"
+import { getSidebarStatus, setSidebarStatus } from "@@/utils/local-storage"
 import { pinia } from "@/pinia"
 
 interface Sidebar {

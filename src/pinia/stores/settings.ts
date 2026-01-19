@@ -1,6 +1,6 @@
 import type { Ref } from "vue"
 import type { LayoutsConfig } from "@/layouts/config"
-import { setLayoutsConfig } from "@@/utils/cache/local-storage"
+import { setLayoutsConfig } from "@@/utils/local-storage"
 import { layoutsConfig } from "@/layouts/config"
 import { pinia } from "@/pinia"
 

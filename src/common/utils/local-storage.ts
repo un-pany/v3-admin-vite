@@ -6,6 +6,20 @@ import type { LayoutsConfig } from "@/layouts/config"
 import type { TagView } from "@/pinia/stores/tags-view"
 import { CacheKey } from "@@/constants/cache-key"
 
+// #region Token
+export function getToken() {
+  return localStorage.getItem(CacheKey.TOKEN)
+}
+
+export function setToken(token: string) {
+  localStorage.setItem(CacheKey.TOKEN, token)
+}
+
+export function removeToken() {
+  localStorage.removeItem(CacheKey.TOKEN)
+}
+// #endregion
+
 // #region 系统布局配置
 export function getLayoutsConfig() {
   const json = localStorage.getItem(CacheKey.CONFIG_LAYOUT)

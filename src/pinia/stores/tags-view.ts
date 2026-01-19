@@ -1,5 +1,5 @@
 import type { RouteLocationNormalizedGeneric } from "vue-router"
-import { getCachedViews, getVisitedViews, setCachedViews, setVisitedViews } from "@@/utils/cache/local-storage"
+import { getCachedViews, getVisitedViews, setCachedViews, setVisitedViews } from "@@/utils/local-storage"
 import { pinia } from "@/pinia"
 import { useSettingsStore } from "./settings"
 

@@ -1,5 +1,5 @@
-import { getActiveThemeName, setActiveThemeName } from "@@/utils/cache/local-storage"
 import { setCssVar } from "@@/utils/css"
+import { getActiveThemeName, setActiveThemeName } from "@@/utils/local-storage"
 
 const DEFAULT_THEME_NAME = "normal"
 

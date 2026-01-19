@@ -1,5 +1,5 @@
 import type { AxiosInstance, AxiosRequestConfig } from "axios"
-import { getToken } from "@@/utils/cache/cookies"
+import { getToken } from "@@/utils/local-storage"
 import axios from "axios"
 import { get, merge } from "lodash-es"
 import { useUserStore } from "@/pinia/stores/user"

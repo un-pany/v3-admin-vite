@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useLayoutMode } from "@@/composables/useLayoutMode"
-import { removeLayoutsConfig } from "@@/utils/cache/local-storage"
+import { removeLayoutsConfig } from "@@/utils/local-storage"
 import { Refresh } from "@element-plus/icons-vue"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import SelectLayoutMode from "./SelectLayoutMode.vue"

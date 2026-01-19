@@ -1,5 +1,5 @@
 import { getCurrentUserApi } from "@@/apis/users"
-import { setToken as _setToken, getToken, removeToken } from "@@/utils/cache/cookies"
+import { setToken as _setToken, getToken, removeToken } from "@@/utils/local-storage"
 import { pinia } from "@/pinia"
 import { resetRouter } from "@/router"
 import { routerConfig } from "@/router/config"
