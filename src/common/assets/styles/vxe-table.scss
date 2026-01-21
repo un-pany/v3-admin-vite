@@ -36,3 +36,12 @@
     }
   }
 }
+
+.vxe-table {
+  // 自定义列配置
+  &-custom {
+    &--body {
+      min-height: 80px;
+    }
+  }
+}
