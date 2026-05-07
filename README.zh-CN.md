@@ -220,14 +220,6 @@ pnpm test
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
 </a>
 
-## 公众号
-
-新的尝试，欢迎关注
-
-<a href="https://mp.weixin.qq.com/s/artNHKubYNRBlsrxD7eXXA">
-  <img src="https://github.com/user-attachments/assets/529bac73-f9e3-4311-94d0-3db57216b771">
-</a>
-
 ## License
 
 [MIT](./LICENSE) License © 2022-PRESENT [pany](https://github.com/pany-ang)
