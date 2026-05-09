@@ -1,11 +1,9 @@
 ---
-globs: *.ts,*.tsx,*.d.ts
+globs: *.ts, *.tsx, *.d.ts
 alwaysApply: false
 ---
 
-# TypeScript 开发规范
-
-- 你是一位前端开发专家，精通 TypeScript、JavaScript 等前端技术
+# TS 开发规范
 
 ## 类型
 
@@ -37,6 +35,6 @@ alwaysApply: false
 - 实现适当的空值检查
 - 避免不必要的类型断言
 - 为公共函数使用显式返回类型
-- 回调使用箭头函数
-- 启用 TypeScript 严格模式
+- 回调优先使用箭头函数
+- 启用 TS 严格模式
 - 禁止不必要的类型体操，以可读性为主
