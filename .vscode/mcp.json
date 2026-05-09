@@ -1,6 +1,7 @@
 {
-  "mcpServers": {
+  "servers": {
     "vite": {
+      "type": "sse",
       "url": "http://localhost:3333/__mcp/sse"
     }
   }
