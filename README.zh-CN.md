@@ -132,6 +132,15 @@ pnpm test
 
 </details>
 
+<details>
+<summary>AI 技能管理</summary>
+
+<br>
+
+本项目内置了一套 AI 协作配置（`.agents/skills/`、`.claude/`、`.cursor/`、`.trae/`），由 `npx skills` CLI 管理。无论你是想保留、扩展还是完全移除这套基建，请先阅读 [SKILLS-GUIDE.md](./SKILLS-GUIDE.md)。
+
+</details>
+
 ## 链接
 
 **在线预览**：[github-pages](https://un-pany.github.io/v3-admin-vite)

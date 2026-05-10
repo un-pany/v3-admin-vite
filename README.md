@@ -132,6 +132,15 @@ pnpm test
 
 </details>
 
+<details>
+<summary>AI Skills Management</summary>
+
+<br>
+
+This project ships with an AI collaboration setup (`.agents/skills/`, `.claude/`, `.cursor/`, `.trae/`) managed by the `npx skills` CLI. Whether you want to keep, extend, or fully remove this infrastructure, read [SKILLS-GUIDE.md](./SKILLS-GUIDE.md) first.
+
+</details>
+
 ## Links
 
 **Online Preview**: [github-pages](https://un-pany.github.io/v3-admin-vite)
