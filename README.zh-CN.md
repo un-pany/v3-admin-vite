@@ -133,11 +133,13 @@ pnpm test
 </details>
 
 <details>
-<summary>AI 技能管理</summary>
+<summary>安装 Skills</summary>
 
 <br>
 
-本项目内置了一套 AI 协作配置（`.agents/skills/`、`.claude/`、`.cursor/`、`.trae/`），由 `npx skills` CLI 管理。无论你是想保留、扩展还是完全移除这套基建，请先阅读 [SKILLS-GUIDE.md](./SKILLS-GUIDE.md)。
+```bash
+npx skills experimental_install
+```
 
 </details>
 
