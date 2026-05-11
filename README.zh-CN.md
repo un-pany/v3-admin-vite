@@ -132,6 +132,17 @@ pnpm test
 
 </details>
 
+<details>
+<summary>安装 Skills</summary>
+
+<br>
+
+```bash
+npx skills experimental_install
+```
+
+</details>
+
 ## 链接
 
 **在线预览**：[github-pages](https://un-pany.github.io/v3-admin-vite)

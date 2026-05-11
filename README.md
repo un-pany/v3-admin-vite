@@ -132,6 +132,17 @@ pnpm test
 
 </details>
 
+<details>
+<summary>Install skills</summary>
+
+<br>
+
+```bash
+npx skills experimental_install
+```
+
+</details>
+
 ## Links
 
 **Online Preview**: [github-pages](https://un-pany.github.io/v3-admin-vite)
