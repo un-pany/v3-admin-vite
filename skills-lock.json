@@ -1,12 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "antfu": {
-      "source": "antfu/skills",
-      "sourceType": "github",
-      "skillPath": "skills/antfu/SKILL.md",
-      "computedHash": "e6629200b1f033c78150985fb1b1ec2aa848a378c0637f9a850cb33f650bce19"
-    },
     "pinia": {
       "source": "antfu/skills",
       "sourceType": "github",
@@ -60,12 +54,6 @@
       "sourceType": "github",
       "skillPath": "skills/vue-testing-best-practices/SKILL.md",
       "computedHash": "18c7d8f42f350f927e37de055e34c97b8cfb9f79c12cf942f7f3d2a0821057b5"
-    },
-    "web-design-guidelines": {
-      "source": "antfu/skills",
-      "sourceType": "github",
-      "skillPath": "skills/web-design-guidelines/SKILL.md",
-      "computedHash": "65a2e7d85753383ae0f88df15475d58b9e39723e9c4bb6891421d6144a85f79c"
     }
   }
 }
