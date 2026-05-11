@@ -133,7 +133,7 @@ pnpm test
 </details>
 
 <details>
-<summary>Install skills</summary>
+<summary>Install recommended skills</summary>
 
 <br>
 

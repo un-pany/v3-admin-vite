@@ -133,7 +133,7 @@ pnpm test
 </details>
 
 <details>
-<summary>安装 Skills</summary>
+<summary>安装推荐的 Skills</summary>
 
 <br>
 

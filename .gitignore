@@ -17,5 +17,7 @@ vite.config.*.timestamp*
 package-lock.json
 yarn.lock
 
-# Agent cache
+# Agent data
 .omc
+.agents/skills/*
+!.agents/skills/v3-*/
