@@ -140,7 +140,3 @@ v3-admin-vite
 # 约定
 
 按需参考 `.cursor/rules` 目录下规则
-
-# 技能管理
-
-`.agents/skills/` 由 `npx skills` CLI 同步管理，禁止手动编辑里面的文件（会被下次 update 覆盖）。维护流程见 `SKILLS-GUIDE.md`
