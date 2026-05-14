@@ -89,7 +89,6 @@ export default defineConfig(({ mode }) => {
         }
       },
       // 生产环境使用 terser 压缩（替代已弃用的 esbuild）
-      minify: mode === "development" ? "oxc" : "terser",
       terserOptions: mode === "development"
         ? undefined
         : {
