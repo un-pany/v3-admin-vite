@@ -1,5 +1,6 @@
 /// <reference types="vitest/config" />
 
+import type { MinifyOptions } from "terser"
 import { resolve } from "node:path"
 import vue from "@vitejs/plugin-vue"
 import UnoCSS from "unocss/vite"
@@ -58,38 +59,53 @@ export default defineConfig(({ mode }) => {
     },
     // 构建配置
     build: {
-      // 自定义底层的 Rollup 打包配置
-      rollupOptions: {
+      // 自定义底层的 Rolldown 打包配置
+      rolldownOptions: {
         output: {
           /**
            * @name 分块策略
            * @description 1. 注意这些包名必须存在，否则打包会报错
            * @description 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
            */
-          manualChunks: {
-            vue: ["vue", "vue-router", "pinia"],
-            element: ["element-plus", "@element-plus/icons-vue"],
-            vxe: ["vxe-table"]
+          codeSplitting: {
+            groups: [
+              {
+                name: "vue",
+                test: /node_modules\/(?:vue|vue-router|pinia)\//,
+                priority: 1
+              },
+              {
+                name: "element",
+                test: /node_modules\/(?:element-plus|@element-plus)\//,
+                priority: 1
+              },
+              {
+                name: "vxe",
+                test: /node_modules\/vxe-table\//,
+                priority: 1
+              }
+            ]
           }
         }
       },
+      // 生产环境使用 terser 压缩（替代已弃用的 esbuild）
+      minify: mode === "development" ? "oxc" : "terser",
+      terserOptions: mode === "development"
+        ? undefined
+        : {
+            compress: {
+              drop_console: true,
+              drop_debugger: true
+            },
+            format: {
+              comments: false
+            }
+          } as unknown as MinifyOptions | undefined,
       // 是否开启 gzip 压缩大小报告，禁用时能略微提高构建性能
       reportCompressedSize: false,
       // 单个 chunk 文件的大小超过 2048kB 时发出警告
       chunkSizeWarningLimit: 2048
     },
-    // 混淆器
-    esbuild:
-      mode === "development"
-        ? undefined
-        : {
-            // 打包构建时移除 console.log
-            pure: ["console.log"],
-            // 打包构建时移除 debugger
-            drop: ["debugger"],
-            // 打包构建时移除所有注释
-            legalComments: "none"
-          },
     // 依赖预构建
     optimizeDeps: {
       include: ["element-plus/es/components/*/style/css"]
