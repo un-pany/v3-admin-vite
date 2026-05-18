@@ -51,6 +51,14 @@ V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、V
 # 克隆项目
 git clone https://github.com/un-pany/v3-admin-vite.git
 
+# Windows 用户：需提前开启开发者模式（设置 → 系统 → 高级 → 开发人员模式，路径因系统版本而异，请自行搜索）
+# 使用 --config 参数，确保 clone 后软链接直接生效
+git clone --config core.symlinks=true https://github.com/un-pany/v3-admin-vite.git
+
+# 已克隆但软链接未生效？在项目目录内执行以下命令修复：
+# （注意：git restore . 会覆盖工作区中已追踪文件的未提交修改，请提前 stash 或提交）
+# git config core.symlinks true && git restore .
+
 # 进入项目目录
 cd v3-admin-vite
 
