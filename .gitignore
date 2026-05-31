@@ -9,6 +9,7 @@ vite.config.*.timestamp*
 
 # Local env files
 *.local
+*.local.json
 
 # Logs
 *.log
