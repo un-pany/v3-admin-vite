@@ -1,92 +1,94 @@
 ---
-title: "v3-create-crud"
-description: "在 v3-admin-vite 项目中生成 CRUD 页面及相关代码模板"
-applyTo:
-  - "**/*.md"
-  - "**/.agents/skills/**"
-tags:
-  - "skill"
-  - "crud"
-  - "vue3"
-recommendations:
-  - "提供实体名称、字段列表、路由路径和菜单标题"
+name: v3-create-crud
+description: 创建增删改查（CRUD）页面，基于 Element Plus 组件库，包含表格、搜索、分页、新增/编辑弹窗、删除确认等功能。使用时需提供模块名称和字段信息。
+metadata:
+  author: pany
+  version: "1.0.0"
 ---
 
-# v3-create-crud
+# 创建 CRUD 页面
 
-用于在当前 `v3-admin-vite` 项目中创建标准的增删改查（CRUD）页面和相关支持文件。
+根据用户提供的模块名称和字段信息，生成增删改查页面。
 
-## 目标
+## 输入要求
 
-- 根据项目现有结构生成一个完整的 CRUD 页面
-- 包括列表页、表单页、详情页、路由、Pinia 状态、接口调用、菜单和权限配置
-- 兼容当前项目的 `Vue 3 + Vite + TypeScript + Pinia + Element Plus` 结构
+用户需提供：
+1. **模块名称**（如 `product`、`order`）
+2. **字段列表**（字段名、类型、中文标签、是否必填、是否作为搜索条件）
 
-## 适用场景
+## 生成文件
 
-- 新建数据表管理页面
-- 快速生成后台管理系统中的增删改查功能
-- 需要统一页面风格和项目规范时
+在 `src/pages/<模块路径>/` 下生成：
 
-## 使用前提
+1. `index.vue` — 页面主文件
+2. `apis/index.ts` — 接口文件
+3. `apis/type.ts` — 类型定义
 
-- 项目已安装并配置好 `Vue 3`、`TypeScript`、`Element Plus`、`Pinia` 等依赖
-- 后端 API 接口已准备好，支持标准的 RESTful CRUD 操作
-- 熟悉项目目录结构和命名约定
+## 页面结构规范
 
-## 输入参数
+页面由三个区域组成：
 
-在使用该技能时，请提供以下信息：
+1. **搜索区域** — `el-card`（`v-loading="loading"` + `shadow="never"` + `class="search-wrapper"`），内含行内表单 + 查询/重置按钮
+2. **表格区域** — `el-card`（`v-loading="loading"` + `shadow="never"`），内含工具栏（新增/批量删除/下载/刷新）+ 表格 + 分页
+3. **弹窗** — 新增和编辑共用同一个 `el-dialog`，通过 `formData.id` 是否为 `undefined` 区分标题
 
-- **实体名称**：如 `User`、`Product`、`Order` 等，用于生成文件名和组件名
-- **字段列表**：实体包含的字段，如 `id`、`name`、`description`、`status`、`createTime` 等
-- **路由路径**：如 `/users`、`/products`，用于生成路由配置
-- **菜单标题**：如 `用户管理`、`产品管理`，用于菜单显示
-- **权限要求**：如 `admin`、`editor`，用于路由权限控制（可选）
+## 代码组织规范
 
-## 工作内容
+使用 `<script lang="ts" setup>` + `defineOptions({ name })` 命名组件。
 
-- 在 `src/pages/` 下创建 CRUD 页面目录
-- 在 `src/router/config.ts` 或路由模块中新增路由
-- 在 `src/common/apis/` 下创建对应接口调用文件
-- 在 `src/pinia/stores/` 下创建或扩展状态管理
-- 在 `src/layouts/components/` 或页面组件中生成列表、搜索、弹窗/表单
-- 生成参考页面样式、查询条件、分页、数据表格、新增/编辑/删除逻辑
+逻辑按增删改查分区，用 `// #region` 和 `// #endregion` 标记：
 
-## 生成文件清单
+- **增**：DEFAULT_FORM_DATA 常量、dialogVisible、formRef（`useTemplateRef`）、formData、formRules、handleCreateOrUpdate、resetForm
+- **删**：handleDelete（带 ElMessageBox.confirm 确认）
+- **改**：handleUpdate（打开弹窗并用 `cloneDeep(row)` 填充数据）
+- **查**：tableData、searchFormRef（`useTemplateRef`）、searchData（reactive）、getTableData、handleSearch、resetSearch
 
-该技能会生成以下文件（以实体名为 `Entity` 为例）：
+分页使用 `usePagination` composable（来自 `@@/composables/usePagination`），通过 `watch` 监听分页参数变化自动请求数据。
 
-- `src/pages/entity/index.vue` - 主页面组件（列表 + 表单）
-- `src/common/apis/entity/index.ts` - API 接口调用
-- `src/common/apis/entity/type.ts` - 类型定义
-- `src/router/index.ts` - 路由配置更新
+`handleSearch` 逻辑：若 `currentPage` 已经是 1 则直接调用 `getTableData()`，否则将 `currentPage` 设为 1（由 watch 自动触发请求）。
 
-## 参考实现
+## 接口规范
 
-生成的代码与项目现有示例 `src/pages/demo/element-plus/index.vue` 风格一致，包括：
+接口文件使用命名空间导入类型：`import type * as __Name__ from "./type"`
 
-- 使用 `usePagination` composable 管理分页
-- 使用 `el-table`、`el-form`、`el-dialog` 等 Element Plus 组件
-- 使用 `ElMessage`、`ElMessageBox` 处理用户交互
-- 使用 `watch` 监听分页变化自动刷新数据
+导出四个函数：
 
-## 模板文件
+- `create__Name__Api` — POST，参数为表单数据
+- `delete__Name__Api` — DELETE，参数一般为 id
+- `update__Name__Api` — PUT，参数为表单数据
+- `get__Name__Api` — GET，参数为分页和搜索条件
 
-完整模板代码位于 `templates/` 目录下，可直接复制使用：
+使用 `import { request } from "@/http/axios"` 发起请求。
 
-- [page.vue](templates/page.vue) - 页面组件模板
-- [api.ts](templates/api.ts) - API 接口模板
-- [type.ts](templates/type.ts) - 类型定义模板
-- [route-example.json](templates/route-example.json) - 路由配置示例
+## 类型规范
 
-## 调用示例
+页面中使用具名导入：`import type { CreateOrUpdate__Name__RequestData, __Name__Data } from "./apis/type"`
 
-"使用 v3-create-crud 技能为 'Product' 实体创建 CRUD 页面，字段包括 id、name、description、price、status，路由路径为 '/products'，菜单标题为 '产品管理'，权限为 'admin'"
+类型文件导出：
 
-## 操作准则
+- `CreateOrUpdate__Name__RequestData` — 表单提交数据（id 可选）
+- `__Name__RequestData` — 列表查询参数（含 currentPage、size 和搜索字段）
+- `__Name__Data` — 表格行数据
+- `__Name__ResponseData` — 使用 `ApiResponseData<{ list: __Name__Data[]; total: number }>`
 
-- 优先遵循项目现有命名和目录规范
-- 保留组件复用性、可维护性和可扩展性
-- 保证生成代码在当前项目环境下可直接使用
-- 若需要，提示用户补充实体名称、字段、接口路径和权限名称
+## 样式规范
+
+使用 `<style lang="scss" scoped>`，仅需以下通用样式类：
+
+- `.search-wrapper` — 搜索卡片底部 padding 调整
+- `.toolbar-wrapper` — flex 两端对齐
+- `.table-wrapper` — 底部 margin
+- `.pager-wrapper` — flex 右对齐
+
+## 关键细节
+
+- 表单数据用 `cloneDeep`（来自 `lodash-es`）处理，DEFAULT_FORM_DATA 定义为 `const` 常量
+- 弹窗关闭时通过 `@closed` 事件调用 resetForm（内部执行 `clearValidate` + 重置 formData）
+- 搜索重置使用 `resetFields()` 后调用 `handleSearch()`
+- 图标从 `@element-plus/icons-vue` 按需导入
+- `ElMessage`、`ElMessageBox`、`ref`、`reactive`、`watch`、`useTemplateRef` 均为自动导入
+- `FormRules` 类型从 `element-plus` 导入
+
+## 路由提示
+
+生成代码后，提醒用户在路由配置中添加对应路由。
