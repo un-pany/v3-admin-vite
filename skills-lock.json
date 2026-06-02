@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "skills": {
+    "pinia": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/pinia/SKILL.md",
+      "computedHash": "897b6b0982956f41f5cc85128ca638b625e1b3c8bc619e303cd1e7661c95b7de"
+    },
+    "pnpm": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/pnpm/SKILL.md",
+      "computedHash": "318f9fca2441a3e06fedc336e195dd18be5dbe901064e4fa71b76b40b096ab3a"
+    },
+    "unocss": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/unocss/SKILL.md",
+      "computedHash": "4b7a9f7b89994d5aef70b9d55cb7f65d6e80cea437d5786cd33bb5cf7231c7c4"
+    },
+    "vite": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vite/SKILL.md",
+      "computedHash": "867ff66238f3152e9c494339ad08dc432dd0df5bcf5cc7a00b61a72b580eb908"
+    },
+    "vitest": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vitest/SKILL.md",
+      "computedHash": "669c7275f7e1379b06b2bcfa593603aead4c983b951c7e8edbc09640aa38d0a1"
+    },
+    "vue": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vue/SKILL.md",
+      "computedHash": "9c241141e07e836e4f0537c63e8f929fba3767c2997250be38e699f19b75e3f2"
+    },
+    "vue-best-practices": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vue-best-practices/SKILL.md",
+      "computedHash": "d7d22c8cb343583c3904692c4d1d7b50382945e433e4f6e053f4aabb9846cbc3"
+    },
+    "vue-router-best-practices": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vue-router-best-practices/SKILL.md",
+      "computedHash": "e27384f4e6c8c70a612e76b74e4387efb8e291a6a1e3aa14a69102a4ce4b4654"
+    },
+    "vue-testing-best-practices": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "skillPath": "skills/vue-testing-best-practices/SKILL.md",
+      "computedHash": "18c7d8f42f350f927e37de055e34c97b8cfb9f79c12cf942f7f3d2a0821057b5"
+    }
+  }
+}

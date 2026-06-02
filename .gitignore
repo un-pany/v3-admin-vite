@@ -16,3 +16,9 @@ vite.config.*.timestamp*
 # Use the pnpm
 package-lock.json
 yarn.lock
+
+# Agent data
+.omc
+.agents/skills/*
+!.agents/skills/v3-*/
+.claude/*

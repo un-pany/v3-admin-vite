@@ -1,13 +1,11 @@
 ---
-description: 辅助生成 Git 提交信息
+description: 辅助生成 Git 提交信息和执行 Git 命令
 alwaysApply: false
 ---
 
 # Git 提交规范
 
-- 你是一位前端开发专家，精通 Git 操作
-
-## Commit 规范
+## Commit
 
 提交模板 `type: message`，具体要求如下:
 
@@ -27,11 +25,10 @@ alwaysApply: false
 
 3. 保持 `message` 简洁明了，描述清楚变更内容
 
-## 分支说明
+## 分支
 
-- `main / master`: 主分支
-- `4.x`: 已停止维护的 4.x 版本代码
-- `gh-pages`: GitHub Pages 构建分支
+- 优先创建个人分支进行编码
+- 禁止直接对主分支进行编码
 
 ## 其他
 

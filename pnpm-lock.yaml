@@ -111,9 +111,9 @@ importers:
       vite:
         specifier: 7.3.1
         version: 7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)
-      vite-plugin-vue-mcp:
+      vite-plugin-mcp:
         specifier: 0.3.2
-        version: 0.3.2(hono@4.11.4)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
+        version: 0.3.2(hono@4.11.4)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))
       vite-svg-loader:
         specifier: 5.1.0
         version: 5.1.0(vue@3.5.27(typescript@5.9.3))
@@ -183,9 +183,6 @@ packages:
 
   '@antfu/install-pkg@1.1.0':
     resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
-
-  '@antfu/utils@9.3.0':
-    resolution: {integrity: sha512-9hFT4RauhcUzqOE4f1+frMKLZrgNog5b06I7VmZQV1BkvwvqrbC8EBZf3L1eEL2AKb6rNKjER0sEvJiSP1FXEA==}
 
   '@babel/code-frame@7.28.6':
     resolution: {integrity: sha512-JYgintcMjRiCvS8mMECzaEn+m3PfoQiyqukOMCCVQtoJGYJw8j/8LBJEiqkHLkfwCcs74E3pbAUFNg7d9VNJ+Q==}
@@ -1104,11 +1101,6 @@ packages:
   '@vue/devtools-api@7.7.9':
     resolution: {integrity: sha512-kIE8wvwlcZ6TJTbNeU2HQNtaxLx3a84aotTITUuL/4bzfPxzajGBOoqjMhwZJ8L9qFYDU/lAYMEEm11dnZOD6g==}
 
-  '@vue/devtools-core@7.7.9':
-    resolution: {integrity: sha512-48jrBSwG4GVQRvVeeXn9p9+dlx+ISgasM7SxZZKczseohB0cBz+ITKr4YbLWjmJdy45UHL7UMPlR4Y0CWTRcSQ==}
-    peerDependencies:
-      vue: ^3.0.0
-
   '@vue/devtools-kit@7.7.9':
     resolution: {integrity: sha512-PyQ6odHSgiDVd4hnTP+aDk2X4gl2HmLDfiyEnn3/oV+ckFDuswRs4IbBT7vacMuGdwY/XemxBoh302ctbsptuA==}
 
@@ -1205,10 +1197,6 @@ packages:
   ansi-styles@6.2.3:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
-
-  ansis@3.17.0:
-    resolution: {integrity: sha512-0qWUglt9JEqLFr3w1I1pbrChn1grhaiAR2ocX1PP/flRmxgtwTzPFFFnfIlD6aMOLQZgSuCRlidD70lvx8yhzg==}
-    engines: {node: '>=14'}
 
   ansis@4.2.0:
     resolution: {integrity: sha512-HqZ5rWlFjGiV0tDm3UxxgNRqsOTniqoKZu0pIAfh7TZQMGuZK+hH0drySty0si0QXj1ieop4+SkSfPZBPPkHig==}
@@ -2580,11 +2568,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.6:
-    resolution: {integrity: sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -3401,20 +3384,10 @@ packages:
     resolution: {integrity: sha512-LII3bXRFBZLlezoG5FfZVcXflZgWP/4dCwKtxd5ky9+LOtM4CS3bIRQsmR1KMnMW07jpE8fqR2lcxPZ+8sJIcw==}
     engines: {node: '>= 0.10'}
 
-  vite-dev-rpc@1.1.0:
-    resolution: {integrity: sha512-pKXZlgoXGoE8sEKiKJSng4hI1sQ4wi5YT24FCrwrLt6opmkjlqPPVmiPWWJn8M8byMxRGzp1CrFuqQs4M/Z39A==}
+  vite-plugin-mcp@0.3.2:
+    resolution: {integrity: sha512-U/fLFkozIAaIzOoWpFOA5aAKBa5j5isdn/gZPcTcw6m2DadoB+Y+9e2hkMXSuom0dAbeb0Q+nLTCQmLqj4tNnA==}
     peerDependencies:
-      vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0-0 || ^5.0.0-0 || ^6.0.1 || ^7.0.0-0
-
-  vite-hot-client@2.1.0:
-    resolution: {integrity: sha512-7SpgZmU7R+dDnSmvXE1mfDtnHLHQSisdySVR7lO8ceAXvM0otZeuQQ6C8LrS5d/aYyP/QZ0hI0L+dIPrm4YlFQ==}
-    peerDependencies:
-      vite: ^2.6.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0
-
-  vite-plugin-vue-mcp@0.3.2:
-    resolution: {integrity: sha512-MUYSQvJUbEqFWCeZNq/3c6wg3upz8+ALPZkMjPTEGQtRK88uf17P6u/xB0u+4Qq/sn83iLD8r5QZLMDfxIEcVg==}
-    peerDependencies:
-      vite: ^3.1.0 || ^4.0.0-0 || ^5.0.0-0 || ^6.0.0-0
+      vite: '>=6.0.0'
 
   vite-svg-loader@5.1.0:
     resolution: {integrity: sha512-M/wqwtOEjgb956/+m5ZrYT/Iq6Hax0OakWbokj8+9PXOnB7b/4AxESHieEtnNEy7ZpjsjYW1/5nK8fATQMmRxw==}
@@ -3706,8 +3679,6 @@ snapshots:
     dependencies:
       package-manager-detector: 1.6.0
       tinyexec: 1.0.2
-
-  '@antfu/utils@9.3.0': {}
 
   '@babel/code-frame@7.28.6':
     dependencies:
@@ -4619,18 +4590,6 @@ snapshots:
     dependencies:
       '@vue/devtools-kit': 7.7.9
 
-  '@vue/devtools-core@7.7.9(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))':
-    dependencies:
-      '@vue/devtools-kit': 7.7.9
-      '@vue/devtools-shared': 7.7.9
-      mitt: 3.0.1
-      nanoid: 5.1.6
-      pathe: 2.0.3
-      vite-hot-client: 2.1.0(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))
-      vue: 3.5.27(typescript@5.9.3)
-    transitivePeerDependencies:
-      - vite
-
   '@vue/devtools-kit@7.7.9':
     dependencies:
       '@vue/devtools-shared': 7.7.9
@@ -4751,8 +4710,6 @@ snapshots:
       color-convert: 2.0.1
 
   ansi-styles@6.2.3: {}
-
-  ansis@3.17.0: {}
 
   ansis@4.2.0: {}
 
@@ -6353,8 +6310,6 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  nanoid@5.1.6: {}
-
   natural-compare@1.4.0: {}
 
   natural-orderby@5.0.0: {}
@@ -7194,37 +7149,18 @@ snapshots:
       remove-trailing-separator: 1.1.0
       replace-ext: 1.0.1
 
-  vite-dev-rpc@1.1.0(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)):
+  vite-plugin-mcp@0.3.2(hono@4.11.4)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)):
     dependencies:
-      birpc: 2.9.0
-      vite: 7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)
-      vite-hot-client: 2.1.0(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))
-
-  vite-hot-client@2.1.0(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)):
-    dependencies:
-      vite: 7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)
-
-  vite-plugin-vue-mcp@0.3.2(hono@4.11.4)(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3)):
-    dependencies:
-      '@antfu/utils': 9.3.0
       '@modelcontextprotocol/sdk': 1.25.2(hono@4.11.4)(zod@3.25.76)
-      '@vue/devtools-core': 7.7.9(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))
-      '@vue/devtools-kit': 7.7.9
-      ansis: 3.17.0
-      birpc: 2.9.0
+      ansis: 4.2.0
       debug: 4.4.3
-      hookable: 5.5.3
-      nanoid: 3.3.11
       pathe: 2.0.3
       vite: 7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2)
-      vite-dev-rpc: 1.1.0(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))
-      vite-hot-client: 2.1.0(vite@7.3.1(@types/node@25.0.9)(jiti@2.6.1)(sass-embedded@1.78.0)(yaml@2.8.2))
       zod: 3.25.76
     transitivePeerDependencies:
       - '@cfworker/json-schema'
       - hono
       - supports-color
-      - vue
 
   vite-svg-loader@5.1.0(vue@3.5.27(typescript@5.9.3)):
     dependencies:

@@ -5,8 +5,6 @@ alwaysApply: false
 
 # Vue 开发规范
 
-- 你是一位前端开发专家，精通 Vue、Vue Router、Pinia、Element Plus 等前端框架
-
 ## 代码风格
 
 - 组件: 使用单文件组件 (SFC)
@@ -41,14 +39,13 @@ alwaysApply: false
 
 - 对应目录: `@/router`
 - 路由名称必须与组件名称保持一致
-- 路由守卫逻辑缜密，应当避免频繁更改
+- 路由守卫逻辑缜密，非必要不修改
 
 ## 状态管理
 
 - 对应目录: `@/pinia`
-- 使用 Pinia
-- Store 应该按模块划分
-- 优先使用 Setup store 语法，而不是 Option Store 语法
+- 按模块划分 Store
+- 优先使用 Setup Store 语法，而不是 Option Store 语法
 - 避免无脑使用全局状态管理
 
 ## 样式
@@ -66,4 +63,4 @@ alwaysApply: false
 
 ## 参考示例文件
 
-@/pages/demo/element-plus/index.vue
+`src/pages/demo/element-plus/index.vue`

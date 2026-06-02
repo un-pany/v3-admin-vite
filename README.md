@@ -132,6 +132,17 @@ pnpm test
 
 </details>
 
+<details>
+<summary>Install recommended skills</summary>
+
+<br>
+
+```bash
+npx skills experimental_install
+```
+
+</details>
+
 ## Links
 
 **Online Preview**: [github-pages](https://un-pany.github.io/v3-admin-vite)
@@ -218,14 +229,6 @@ A big thank you to all the contributors!
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
-</a>
-
-## ‌WeChat Official Account‌
-
-New attempts, welcome to follow
-
-<a href="https://mp.weixin.qq.com/s/artNHKubYNRBlsrxD7eXXA">
-  <img src="https://github.com/user-attachments/assets/529bac73-f9e3-4311-94d0-3db57216b771">
 </a>
 
 ## License
