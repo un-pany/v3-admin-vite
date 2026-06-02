@@ -1,77 +1,69 @@
 ---
 name: v3-upsert-route
-description: Create or update route entries in the v3-admin-vite project. Use when the user wants to add a new page/route, modify route configuration, change route permissions, update route icons, or manage the routing structure in this Vue3 + Element Plus admin template.
+description: 创建或更新路由配置。当用户提到以下任何场景时都应触发：新建页面路由、新增菜单项、修改路由权限、更新路由图标、调整路由结构。即使用户没有明确说路由，只要意图是管理后台页面的导航和访问控制就应该使用此 Skill。使用时需提供路由路径、页面标题和路由类型。
+metadata:
+  author: Defined
+  version: "2026.06.01"
 ---
 
-# v3-upsert-route
+# 创建或更新路由
 
-Create or update route entries in the v3-admin-vite project.
+根据用户提供的路由信息，生成或更新路由配置和页面组件。
 
-## When to Use
+本 Skill 定义的是项目默认路由模式，当用户的实际需求与本 Skill 约定冲突时，以用户需求为准。
 
-Use this skill when:
-- User wants to add a new page or route
-- User wants to create a menu entry in the sidebar
-- User wants to modify existing route configuration (title, icon, permissions)
-- User wants to delete or remove a route
-- User wants to change route permissions (roles)
-- User wants to enable/disable route caching (keepAlive)
-- User wants to show/hide a route from sidebar
+## 输入要求
 
-Do NOT use this skill when:
-- User is asking about route configuration without wanting to change it
-- User wants to modify Vue Router core configuration (history mode, base path)
-- User wants to change the layout component structure
+用户需提供：
+1. **路由路径**（如 `/school/list`、`/user`）— 用于 path 配置
+2. **页面标题**（中文，如 `学校管理`、`用户管理`）— 用于菜单显示
+3. **路由类型**：
+   - **公共路由**（constantRoutes）：所有登录用户可访问
+   - **权限路由**（dynamicRoutes）⭐ 推荐：需要角色权限控制
+4. **权限角色**（仅权限路由）：如 `["admin"]`、`["admin", "editor"]`
+5. **子页面数量**：
+   - 单页面：图标放在 `children[0].meta`
+   - 多页面：图标放在父级 `meta`，需设置 `alwaysShow: true`
+6. **图标**：Element Plus 图标名或 SVG 图标名
 
-## Input
+如果用户信息不完整，主动询问补全后再生成。
 
-```typescript
-interface RouteInput {
-  path: string              // Route path, e.g., "/school/list"
-  title: string             // Menu title (Chinese), e.g., "学校管理"
-  routeType: "constant" | "dynamic"  // constantRoutes or dynamicRoutes
-  roles?: string[]          // Required roles (only for dynamic), e.g., ["admin"]
-  children?: RouteInput[]   // Child routes (for nested routes)
-  icon?: string             // Icon name (elIcon or svgIcon)
-  iconType?: "elIcon" | "svgIcon"  // Icon type
-  hidden?: boolean          // Hide from sidebar
-  keepAlive?: boolean       // Enable component caching
-}
+## 操作模式
+
+### 创建新路由
+
+当路由路径在 `src/router/index.ts` 中不存在时，生成完整的路由配置和页面组件。
+
+### 更新已有路由
+
+当路由已存在时，根据用户需求修改对应的 meta 配置（如 title、icon、roles 等），保留原有结构不动。
+
+## 生成文件
+
+### 页面组件
+
+路径：`src/pages/{module}/{page}/index.vue`
+
+单页面结构：
+```
+src/pages/{module}/index.vue
 ```
 
-## Output
-
-```typescript
-interface RouteOutput {
-  success: boolean
-  filesCreated: string[]    // List of created page component files
-  routeConfig: object       // The route configuration added to router/index.ts
-  warnings?: string[]       // Validation warnings
-}
+多页面结构：
+```
+src/pages/{module}/{page1}/index.vue
+src/pages/{module}/{page2}/index.vue
 ```
 
-## Steps
+### 路由配置
 
-### Step 1: Gather Requirements
+在 `src/router/index.ts` 中添加或修改路由：
+- 公共路由添加到 `constantRoutes`
+- 权限路由添加到 `dynamicRoutes`
 
-Ask the user for these details if not provided:
+## 代码规范
 
-1. **Route path**: Where should the route be accessible? (e.g., `/school/list`)
-2. **Page title**: What is the Chinese menu title? (e.g., `学校管理`)
-3. **Route type**:
-   - **Public route** (constantRoutes): Accessible by all logged-in users
-   - **Permission route** (dynamicRoutes) ⭐ Recommended: Requires role-based access control
-4. **Roles** (for permission routes): Which roles can access? (e.g., `["admin"]`)
-5. **Children count**:
-   - Single page: Icon goes on `children[0].meta`
-   - Multiple pages: Icon goes on parent `meta` with `alwaysShow: true`
-6. **Icon**: Which icon to use? (Element Plus icon name or SVG icon name)
-
-### Step 2: Create Page Components
-
-Create Vue components at `src/pages/{module}/{page}/index.vue`:
-
-**Template for single page:**
+### 页面组件结构
 
 ```vue
 <script setup lang="ts">
@@ -82,7 +74,7 @@ defineOptions({
 
 <template>
   <div class="page-name">
-    <!-- Page content here -->
+    <!-- 页面内容 -->
   </div>
 </template>
 
@@ -93,11 +85,9 @@ defineOptions({
 </style>
 ```
 
-### Step 3: Update Router Configuration
+### 路由配置结构
 
-Add route to `src/router/index.ts`:
-
-**For public routes (single child):**
+**单页面 + 公共路由：**
 
 ```typescript
 {
@@ -119,7 +109,7 @@ Add route to `src/router/index.ts`:
 }
 ```
 
-**For permission routes (multiple children):**
+**多页面 + 权限路由：**
 
 ```typescript
 {
@@ -150,136 +140,93 @@ Add route to `src/router/index.ts`:
 }
 ```
 
-### Step 4: Verify Configuration
+### 关键规则
 
-Run validation checks:
+1. **路由名称唯一性**：每个路由必须有唯一的 `name` 属性，动态路由尤其重要
+2. **懒加载**：使用 `() => import()` 实现路由懒加载
+3. **路径格式**：children 的 path 使用相对路径（不带 `/`）
+4. **组件命名**：使用 PascalCase，与路由 name 保持一致
+5. **权限继承**：子路由会继承父路由的 roles，也可单独设置
+6. **Layouts 组件**：嵌套路由的父级必须使用 `component: Layouts`
+
+### 图标放置规则
+
+| 子路由数量 | 图标位置 | 额外配置 |
+|-----------|---------|---------|
+| 单个 | `children[0].meta` | 无 |
+| 多个 | 父级 `meta` | `alwaysShow: true` |
+
+### Meta 字段说明
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `title` | string | 菜单标题（中文） |
+| `hidden` | boolean | 是否在侧边栏隐藏 |
+| `elIcon` | string | Element Plus 图标名 |
+| `svgIcon` | string | SVG 图标名（`src/common/assets/icons/`） |
+| `roles` | string[] | 访问权限（仅动态路由） |
+| `keepAlive` | boolean | 是否启用组件缓存 |
+| `affix` | boolean | 是否固定在标签页 |
+| `alwaysShow` | boolean | 多子路由时必需 |
+
+## 文件结构顺序
+
+路由配置在 `src/router/index.ts` 中的位置：
+
+```
+1. import 语句
+2. const Layouts = () => import("@/layouts/index.vue")
+3. export const constantRoutes: RouteRecordRaw[] = [...]
+4. export const dynamicRoutes: RouteRecordRaw[] = [...]
+5. export const router = createRouter(...)
+6. export function resetRouter()
+7. registerNavigationGuard(router)
+```
+
+## 命名约定
+
+模块名为 `school` 时：
+
+| 位置 | 命名 |
+|------|------|
+| 目录 | `src/pages/school/` |
+| 组件 name | `SchoolList`、`SchoolGrade` 等 |
+| 路由 name | `School`（父级）、`SchoolList`（子级） |
+| 路由 path | `/school`（父级）、`list`（子级，相对路径） |
+
+## 设计决策指引
+
+**公共路由 vs 权限路由** — 大多数业务页面应使用权限路由（dynamicRoutes），只有登录、404、首页等基础页面使用公共路由（constantRoutes）。
+
+**单页面 vs 多页面** — 功能简单、独立的页面用单页面结构；有关联的多个子功能用多页面结构（如学校管理下的学校列表、年级管理、班级管理）。
+
+**图标选择** — 优先使用 Element Plus 图标（elIcon），项目自定义图标使用 svgIcon。
+
+**redirect 设置** — 多页面路由必须设置 redirect，指向默认显示的子页面。
+
+## 验证清单
+
+完成路由配置后，执行以下验证：
 
 ```bash
-# TypeScript type check
+# TypeScript 类型检查
 npx vue-tsc --noEmit
 
-# ESLint check
+# ESLint 检查
 npx eslint src/router/index.ts
 ```
 
-Check for:
-- [ ] Route `name` is unique
-- [ ] `roles` is an array (not a string)
-- [ ] Children paths are relative (no leading `/`)
-- [ ] Icon placement follows the rules (single vs multiple children)
-- [ ] Multiple children have `alwaysShow: true`
+检查项：
+- [ ] 路由 `name` 唯一
+- [ ] `roles` 是数组格式（不是字符串）
+- [ ] children 路径是相对路径
+- [ ] 图标放置位置正确
+- [ ] 多子路由有 `alwaysShow: true`
+- [ ] 权限路由有正确的 `roles` 配置
 
-### Step 5: Post-Creation Checklist (Permission Routes Only)
+## 路由提示
 
-If this is a permission route, remind the user to:
-
-- [ ] Verify the `roles` array is correct (e.g., `["admin"]` not `"admin"`)
-- [ ] Check if parent and child routes have consistent permission settings
-- [ ] Test the route with different user roles
-
-## Icon Placement Rules
-
-| Children Count | Icon Location | Additional Config |
-|----------------|---------------|-------------------|
-| Single | `children[0].meta` | None |
-| Multiple | Parent `meta` | `alwaysShow: true` |
-
-## Meta Fields Reference
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `title` | string | Menu title (Chinese) |
-| `hidden` | boolean | Hide from sidebar menu |
-| `elIcon` | string | Element Plus icon name |
-| `svgIcon` | string | SVG icon name from `src/common/assets/icons/` |
-| `roles` | string[] | Required roles (dynamic routes only) |
-| `keepAlive` | boolean | Enable component caching |
-| `affix` | boolean | Pin to tags view |
-| `alwaysShow` | boolean | Always show in sidebar even with one child |
-
-## Examples
-
-### Example 1: Single Page (Public Route)
-
-**User request:** "Add a help center page, all users can access"
-
-**Execution:**
-
-1. Create `src/pages/help/index.vue`
-2. Add to `constantRoutes`:
-```typescript
-{
-  path: "/help",
-  component: Layouts,
-  name: "Help",
-  meta: { title: "帮助中心" },
-  children: [
-    {
-      path: "",
-      component: () => import("@/pages/help/index.vue"),
-      name: "HelpIndex",
-      meta: {
-        title: "帮助中心",
-        elIcon: "QuestionFilled"
-      }
-    }
-  ]
-}
-```
-
-### Example 2: Multiple Pages (Permission Route)
-
-**User request:** "Add school management with school list, grade management, and class management. Admin only."
-
-**Execution:**
-
-1. Create pages:
-   - `src/pages/school/list/index.vue`
-   - `src/pages/school/grade/index.vue`
-   - `src/pages/school/class/index.vue`
-
-2. Add to `dynamicRoutes`:
-```typescript
-{
-  path: "/school",
-  component: Layouts,
-  redirect: "/school/list",
-  name: "School",
-  meta: {
-    title: "学校管理",
-    elIcon: "School",
-    roles: ["admin"],
-    alwaysShow: true
-  },
-  children: [
-    {
-      path: "list",
-      component: () => import("@/pages/school/list/index.vue"),
-      name: "SchoolList",
-      meta: { title: "学校列表" }
-    },
-    {
-      path: "grade",
-      component: () => import("@/pages/school/grade/index.vue"),
-      name: "SchoolGrade",
-      meta: { title: "年级管理" }
-    },
-    {
-      path: "class",
-      component: () => import("@/pages/school/class/index.vue"),
-      name: "SchoolClass",
-      meta: { title: "班级管理" }
-    }
-  ]
-}
-```
-
-## On Failure
-
-| Failure Scenario | Handling |
-|-----------------|----------|
-| Duplicate route name | Prompt user to choose a different name |
-| Invalid roles format | Show error: "roles must be an array, e.g., ['admin']" |
-| Missing Layouts import | Add `const Layouts = () => import("@/layouts/index.vue")` |
-| TypeScript errors | Show specific error messages and suggest fixes |
-| ESLint errors | Show lint errors and suggest formatting fixes |
+生成代码后，如果是权限路由，提醒用户：
+- 验证 roles 数组格式正确
+- 检查父子路由权限设置一致
+- 建议用不同角色测试访问权限
