@@ -1,6 +1,6 @@
 ---
 name: v3-create-crud
-description: 创建增删改查（CRUD）页面，基于 Element Plus 组件库，包含表格、搜索、分页、新增/编辑弹窗、删除确认等功能。当用户提到以下任何场景时都应触发：创建管理页面、创建列表页、创建表格页。即使用户没有明确说 CRUD，只要意图是创建带表格和表单操作的后台页面就应该使用此 skill。使用时需提供模块名称和字段信息。
+description: 创建增删改查（CRUD）页面，基于 Element Plus 组件库，包含表格、搜索、分页、新增/编辑弹窗、删除确认等功能。当用户提到以下任何场景时都应触发：创建管理页面、创建列表页、创建表格页。即使用户没有明确说 CRUD，只要意图是创建带表格和表单操作的后台页面就应该使用此 Skill。使用时需提供模块名称和字段信息。
 metadata:
   author: Glittering Ma & pany
   version: "2026.06.01"
@@ -10,7 +10,7 @@ metadata:
 
 根据用户提供的模块名称和字段信息，生成增删改查页面。
 
-本 skill 定义的是默认 CRUD 模式，当用户的实际需求与本 skill 约定冲突时，以用户需求为准，灵活调整。
+本 Skill 定义的是默认 CRUD 模式，当用户的实际需求与本 Skill 约定冲突时，以用户需求为准，灵活调整。
 
 ## 输入要求
 
@@ -92,7 +92,7 @@ metadata:
 
 使用 `<script lang="ts" setup>` + `defineOptions({ name: "PascalCase 模块名" })`。
 
-顶部声明共享的 `loading` ref 和 `usePagination` 解构。
+顶部声明共享的 `loading` `ref` 和 `usePagination` 解构。
 
 逻辑按增删改查分区，用 `// #region` 和 `// #endregion` 标记：
 
@@ -207,7 +207,7 @@ import { usePagination } from "@@/composables/usePagination"
 const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 ```
 
-`paginationData` 是 reactive 对象，包含：`total`、`currentPage`、`pageSizes`、`pageSize`、`layout`。模板中直接绑定：
+`paginationData` 是 `reactive` 对象，包含：`total`、`currentPage`、`pageSizes`、`pageSize`、`layout`。模板中直接绑定：
 
 ```html
 <el-pagination
@@ -227,7 +227,7 @@ const { paginationData, handleCurrentChange, handleSizeChange } = usePagination(
 对于需要视觉区分的字段（状态、角色、类型等），使用 `el-tag` 渲染。思路是：突出重要/异常值，其余用温和颜色兜底。
 
 ```html
-<!-- boolean：二元对立，用 success/danger 对比 -->
+<!-- boolean：二元对立，可以用 success / danger 对比 -->
 <el-table-column prop="status" label="状态" align="center">
   <template #default="scope">
     <el-tag v-if="scope.row.status" type="success" effect="plain" disable-transitions>启用</el-tag>
@@ -244,7 +244,7 @@ const { paginationData, handleCurrentChange, handleSizeChange } = usePagination(
 </el-table-column>
 ```
 
-当 enum 值需要明确区分时，逐个用 `v-if/v-else-if` 列出，最后用 `v-else` 兜底。
+当 enum 值需要明确区分时，逐个用 `v-if / v-else-if` 列出，最后用 `v-else` 兜底。
 
 ## 表单字段组件选择
 

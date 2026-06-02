@@ -1,6 +1,6 @@
 ---
 name: v3-upsert-store
-description: 创建或更新 Pinia 全局状态（Store）。当用户提到以下任何场景时都应触发：创建 Store、新建状态管理、添加全局状态、新增 Pinia Store、给 Store 加字段、更新 Store。即使用户没有明确说 "Store"，只要意图是管理全局共享状态就应该使用此 Skill。使用时需提供 Store 名称、State 字段和 Actions 描述。
+description: 创建或更新全局状态（Store）。当用户提到以下任何场景时都应触发：新建状态管理、新增 Pinia Store、给 Store 加字段。即使用户没有明确说 Store，只要意图是和状态管理器有关就应该使用此 Skill。使用时需提供 Store 名称、State 字段和 Actions 描述。
 metadata:
   author: pany
   version: "2026.06.01"
@@ -46,7 +46,7 @@ metadata:
 
 ### 持久化相关（仅在用户指定持久化字段时生成）
 
-- 在 `src/common/constants/cache-key.ts` 的 `CacheKey` class 中追加新的 key
+- 在 `src/common/constants/cache-key.ts` 的 `CacheKey` 类中追加新的 Key
 - 在 `src/common/utils/local-storage.ts` 中追加对应的 get/set 函数
 
 ## 代码规范
@@ -125,7 +125,7 @@ export function useXxxStoreOutside() {
 
 ```
 1. import type 语句（类型导入）
-2. import 语句（运行时导入，pinia 实例必须导入）
+2. import 语句（运行时导入，Pinia 实例必须导入）
 3. interface / type 声明（Store 需要的本地类型）
 4. 模块级辅助函数（不需要响应式访问的纯函数，用 /** */ 注释）
 5. export const useXxxStore = defineStore(...)
@@ -200,7 +200,7 @@ watchEffect(() => {
 
 - 简单类型直接在 Store 文件中用 `interface` 或 `type` 声明（定义在 Store 函数之前）
 - 需要被外部引用的类型加 `export`（如 `export type TagView = Partial<RouteLocationNormalizedGeneric>`）
-- 复杂/共享类型抽离到 `types` 目录或就近放置
+- 复杂、共享类型抽离到 `types` 目录或就近放置
 
 ## 命名约定
 
@@ -228,10 +228,10 @@ import type { RouteRecordRaw } from "vue-router"
 import { SIDEBAR_CLOSED, SIDEBAR_OPENED } from "@@/constants/app-key"
 import { getSidebarStatus, setSidebarStatus } from "@@/utils/local-storage"
 
-// 运行时导入：pinia 实例（必需）
+// 运行时导入：Pinia 实例（必需）
 import { pinia } from "@/pinia"
 
-// 运行时导入：其他 store（当需要跨 store 交互时）
+// 运行时导入：其他 Store（当需要跨 Store 交互时）
 import { useSettingsStore } from "./settings"
 ```
 
@@ -243,8 +243,8 @@ import { useSettingsStore } from "./settings"
 
 **watch vs watchEffect** — 监听单个字段变化时用 `watch`；监听多个字段且都需要持久化时用 `watchEffect`（自动追踪依赖，代码更简洁）。
 
-**辅助函数放在 Store 内还是外** — 不依赖响应式状态的纯逻辑函数放在 Store 外部（如权限过滤、格式化），需要访问 Store 内 `ref`/`reactive` 的函数放在内部作为 Action。
+**辅助函数放在 Store 内还是外** — 不依赖响应式状态的纯逻辑函数放在 Store 外部（如权限过滤、格式化），需要访问 Store 内 `ref` / `reactive` 的函数放在内部作为 Action。
 
-**是否需要 reset Action** — 如果 Store 管理的是临时状态（如表单数据、UI 状态），通常需要一个 reset 方法恢复初始值。如果是用户身份等持久数据，通常不需要通用 reset。
+**是否需要 Reset Action** — 如果 Store 管理的是临时状态（如表单数据、UI 状态），通常需要一个 Reset 方法恢复初始值。如果是用户身份等持久数据，通常不需要通用 Reset。
 
 **是否需要 Outside 函数** — 始终生成。这是项目约定，确保在路由守卫、Axios 拦截器等 setup 外场景可用。
