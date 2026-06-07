@@ -46,7 +46,7 @@ function createInstance() {
         default:
           // 不是正确的 code
           ElMessage.error(apiData.message || "Error")
-          return Promise.reject(new Error("Error"))
+          return Promise.reject(apiData)
       }
     },
     (error) => {
