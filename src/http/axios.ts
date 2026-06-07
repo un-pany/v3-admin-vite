@@ -4,12 +4,6 @@ import axios from "axios"
 import { get, merge } from "lodash-es"
 import { useUserStore } from "@/pinia/stores/user"
 
-/** 退出登录并强制刷新页面（会重定向到登录页） */
-function logout() {
-  useUserStore().logout()
-  location.reload()
-}
-
 /** 创建请求实例 */
 function createInstance() {
   // 创建一个 axios 实例命名为 instance
@@ -42,7 +36,7 @@ function createInstance() {
           return apiData
         case 401:
           // Token 过期时
-          return logout()
+          return useUserStore().logout()
         default:
           // 不是正确的 code
           ElMessage.error(apiData.message || "Error")
@@ -60,7 +54,7 @@ function createInstance() {
         case 401:
           // Token 过期时
           error.message = message || "未授权"
-          logout()
+          useUserStore().logout()
           break
         case 403:
           error.message = message || "拒绝访问"

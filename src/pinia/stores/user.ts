@@ -1,7 +1,7 @@
 import { getCurrentUserApi } from "@@/apis/users"
 import { setToken as _setToken, getToken, removeToken } from "@@/utils/local-storage"
 import { pinia } from "@/pinia"
-import { resetRouter } from "@/router"
+import { resetRouter, router } from "@/router"
 import { routerConfig } from "@/router/config"
 import { useSettingsStore } from "./settings"
 import { useTagsViewStore } from "./tags-view"
@@ -42,11 +42,11 @@ export const useUserStore = defineStore("user", () => {
 
   // 登出
   const logout = () => {
-    removeToken()
-    token.value = ""
-    roles.value = []
+    resetToken()
     resetRouter()
     resetTagsView()
+    // 重定向到登录页
+    router.replace("/login")
   }
 
   // 重置 Token

@@ -15,8 +15,6 @@ const { isMobile } = useDevice()
 
 const { isTop } = useLayoutMode()
 
-const router = useRouter()
-
 const appStore = useAppStore()
 
 const userStore = useUserStore()
@@ -28,12 +26,6 @@ const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToR
 /** 切换侧边栏 */
 function toggleSidebar() {
   appStore.toggleSidebar(false)
-}
-
-/** 登出 */
-function logout() {
-  userStore.logout()
-  router.push("/login")
 }
 </script>
 
@@ -65,7 +57,7 @@ function logout() {
             <a target="_blank" href="https://gitee.com/un-pany/v3-admin-vite">
               <el-dropdown-item>Gitee</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="logout">
+            <el-dropdown-item divided @click="userStore.logout">
               退出登录
             </el-dropdown-item>
           </el-dropdown-menu>
