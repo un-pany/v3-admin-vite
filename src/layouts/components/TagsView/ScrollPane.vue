@@ -110,7 +110,7 @@ listenerRouteChange(() => {
         <ArrowLeft />
       </el-icon>
     </el-tooltip>
-    <el-scrollbar ref="scrollbarRef" @wheel.passive="wheelScroll" @scroll="scroll">
+    <el-scrollbar ref="scrollbarRef" @wheel.passive="wheelScroll" @scroll="scroll" wrap-class="scrollbar-wrap">
       <div ref="scrollbarContentRef" class="scrollbar-content">
         <slot />
       </div>
@@ -146,6 +146,10 @@ listenerRouteChange(() => {
     flex: 1;
     // 防止换行（超出宽度时，显示滚动条）
     white-space: nowrap;
+    :deep(.scrollbar-wrap) {
+      display: flex;
+      align-items: center;
+    }
     .scrollbar-content {
       display: inline-block;
     }
