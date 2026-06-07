@@ -109,6 +109,7 @@ function toggleSidebar() {
     display: flex;
     align-items: center;
     &-item {
+      height: 20px;
       margin: 0 10px;
       cursor: pointer;
       &:last-child {
