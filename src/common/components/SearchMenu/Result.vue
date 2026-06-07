@@ -11,7 +11,7 @@ const props = defineProps<Props>()
 /** 选中的菜单 */
 const modelValue = defineModel<RouteRecordNameGeneric | undefined>({ required: true })
 
-const instance = getCurrentInstance()
+const resultItemRefs = useTemplateRef<HTMLDivElement[]>("resultItemRefs")
 
 const scrollbarHeight = ref<number>(0)
 
@@ -39,9 +39,8 @@ function getScrollbarHeight() {
 
 /** 根据下标计算到顶部的距离 */
 function getScrollTop(index: number) {
-  const currentInstance = instance?.proxy?.$refs[`resultItemRef${index}`] as HTMLDivElement[]
-  if (!currentInstance) return 0
-  const currentRef = currentInstance[0]
+  const currentRef = resultItemRefs.value?.[index]
+  if (!currentRef) return 0
   // 128 = 两个 result-item （56 + 56 = 112）高度与上下 margin（8 + 8 = 16）大小之和
   const scrollTop = currentRef.offsetTop + 128
   return scrollTop > scrollbarHeight.value ? scrollTop - scrollbarHeight.value : 0
@@ -71,7 +70,7 @@ defineExpose({ getScrollTop })
     <div
       v-for="(item, index) in props.data"
       :key="index"
-      :ref="`resultItemRef${index}`"
+      ref="resultItemRefs"
       class="result-item"
       :style="itemStyle(item)"
       @mouseenter="handleMouseenter(item)"
