@@ -12,7 +12,7 @@ const { showTagsView, showLogo } = storeToRefs(settingsStore)
 /** 定义计算属性 layoutClasses，用于控制布局的类名 */
 const layoutClasses = computed(() => {
   return {
-    hideSidebar: !appStore.sidebar.opened
+    "hide-sidebar": !appStore.sidebar.opened
   }
 })
 </script>
@@ -28,7 +28,7 @@ const layoutClasses = computed(() => {
       </div>
     </div>
     <!-- 主容器 -->
-    <div :class="{ hasTagsView: showTagsView }" class="main-container">
+    <div :class="{ 'has-tags-view': showTagsView }" class="main-container">
       <!-- 左侧边栏 -->
       <Sidebar class="sidebar-container" />
       <!-- 页面主体内容 -->
@@ -93,7 +93,7 @@ $transition-time: 0.35s;
   overflow: auto;
 }
 
-.hideSidebar {
+.hide-sidebar {
   .sidebar-container {
     width: var(--v3-sidebar-hide-width);
   }
@@ -102,7 +102,7 @@ $transition-time: 0.35s;
   }
 }
 
-.hasTagsView {
+.has-tags-view {
   .sidebar-container {
     padding-top: var(--v3-header-height);
   }

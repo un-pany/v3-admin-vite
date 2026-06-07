@@ -18,11 +18,11 @@ const { showTagsView, fixedHeader } = storeToRefs(settingsStore)
 /** 定义计算属性 layoutClasses，用于控制布局的类名 */
 const layoutClasses = computed(() => {
   return {
-    hideSidebar: !appStore.sidebar.opened,
-    openSidebar: appStore.sidebar.opened,
-    withoutAnimation: appStore.sidebar.withoutAnimation,
-    mobile: isMobile.value,
-    noLeft: !isLeft.value
+    "hide-sidebar": !appStore.sidebar.opened,
+    "open-sidebar": appStore.sidebar.opened,
+    "without-animation": appStore.sidebar.withoutAnimation,
+    "mobile": isMobile.value,
+    "no-left": !isLeft.value
   }
 })
 
@@ -35,11 +35,11 @@ function handleClickOutside() {
 <template>
   <div :class="layoutClasses" class="app-wrapper">
     <!-- mobile 端侧边栏遮罩层 -->
-    <div v-if="layoutClasses.mobile && layoutClasses.openSidebar" class="drawer-bg" @click="handleClickOutside" />
+    <div v-if="layoutClasses.mobile && layoutClasses['open-sidebar']" class="drawer-bg" @click="handleClickOutside" />
     <!-- 左侧边栏 -->
     <Sidebar class="sidebar-container" />
     <!-- 主容器 -->
-    <div :class="{ hasTagsView: showTagsView }" class="main-container">
+    <div :class="{ 'has-tags-view': showTagsView }" class="main-container">
       <!-- 头部导航栏和标签栏 -->
       <div :class="{ 'fixed-header': fixedHeader }" class="layout-header">
         <NavigationBar />
@@ -120,7 +120,7 @@ $transition-time: 0.35s;
   overflow: auto;
 }
 
-.hasTagsView {
+.has-tags-view {
   .app-main {
     min-height: calc(100vh - var(--v3-header-height));
   }
@@ -129,7 +129,7 @@ $transition-time: 0.35s;
   }
 }
 
-.hideSidebar {
+.hide-sidebar {
   .sidebar-container {
     width: var(--v3-sidebar-hide-width);
   }
@@ -153,11 +153,11 @@ $transition-time: 0.35s;
   .fixed-header {
     width: 100%;
   }
-  &.openSidebar {
+  &.open-sidebar {
     position: fixed;
     top: 0;
   }
-  &.hideSidebar {
+  &.hide-sidebar {
     .sidebar-container {
       pointer-events: none;
       transition-duration: 0.3s;
@@ -165,14 +165,14 @@ $transition-time: 0.35s;
     }
   }
   // 既是 mobile 又是顶部或混合布局模式
-  &.noLeft {
+  &.no-left {
     .sidebar-container {
       background-color: var(--el-bg-color);
     }
   }
 }
 
-.withoutAnimation {
+.without-animation {
   .sidebar-container,
   .main-container {
     transition: none;

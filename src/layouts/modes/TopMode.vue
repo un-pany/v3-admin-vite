@@ -18,7 +18,7 @@ const { showTagsView, showLogo } = storeToRefs(settingsStore)
       <TagsView v-show="showTagsView" />
     </div>
     <!-- 主容器 -->
-    <div :class="{ hasTagsView: showTagsView }" class="main-container">
+    <div :class="{ 'has-tags-view': showTagsView }" class="main-container">
       <!-- 页面主体内容 -->
       <AppMain class="app-main" />
     </div>
@@ -67,7 +67,7 @@ $transition-time: 0.35s;
   overflow: auto;
 }
 
-.hasTagsView {
+.has-tags-view {
   .app-main {
     padding-top: var(--v3-header-height);
   }

@@ -150,7 +150,7 @@ function handleReleaseUpOrDown() {
     :before-close="handleClose"
     :width="modalWidth"
     top="5vh"
-    class="search-modal__private"
+    class="search-modal-private"
     append-to-body
     @opened="inputRef?.focus()"
     @closed="inputRef?.blur()"
@@ -184,7 +184,7 @@ function handleReleaseUpOrDown() {
 </template>
 
 <style lang="scss">
-.search-modal__private {
+.search-modal-private {
   .svg-icon {
     font-size: 18px;
   }
