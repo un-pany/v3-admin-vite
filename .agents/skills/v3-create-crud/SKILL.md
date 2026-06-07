@@ -85,7 +85,7 @@ metadata:
 
 - `el-dialog`：`v-model="dialogVisible"` + 通过 `formData.id === undefined` 判断新增/修改标题 + `@closed="resetForm"`
 - 使用 `@closed` 而非 `@close`（确保关闭动画结束后再重置，避免用户看到表单内容闪烁）
-- 表单：`ref="formRef"` + `:model="formData"` + `:rules="formRules"` + `label-width="100px"` + `label-position="left"`
+- 表单：`ref="formRef"` + `:model="formData"` + `:rules="formRules"` + `label-width="auto"`
 - footer：取消按钮 + 确认按钮（`type="primary"` + `:loading="loading"`）
 
 ## 代码组织规范
