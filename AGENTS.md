@@ -139,4 +139,5 @@ v3-admin-vite
 
 # 约定
 
-按需参考 `.cursor/rules` 目录下规则
+- 按需参考 `.cursor/rules` 目录下规则
+- 任何时候都禁止主动删除文件，必须经过同意
