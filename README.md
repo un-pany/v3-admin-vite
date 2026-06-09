@@ -51,6 +51,14 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 # Clone the project
 git clone https://github.com/un-pany/v3-admin-vite.git
 
+# Windows users: enable Developer Mode first (Settings → System → Advanced → Developer Mode; path varies by Windows version)
+# Use --config so symlinks work immediately after cloning
+git clone --config core.symlinks=true https://github.com/un-pany/v3-admin-vite.git
+
+# Already cloned but symlinks are broken? Run this inside the project directory to fix:
+# (Warning: git restore . overwrites uncommitted changes to tracked files. Stash or commit first.)
+# git config core.symlinks true && git restore .
+
 # Enter the project directory
 cd v3-admin-vite
 
