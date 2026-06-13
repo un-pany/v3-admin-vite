@@ -116,8 +116,10 @@ function handleCreateOrUpdate() {
     api(formData.value).then(() => {
       ElMessage.success("操作成功")
       dialogVisible.value = false
+    }).finally(() => {
+      loading.value = false
       getTableData()
-    }).finally(() => { loading.value = false })
+    })
   })
 }
 
@@ -138,8 +140,11 @@ function handleDelete(row: XxxData) {
     cancelButtonText: "取消",
     type: "warning"
   }).then(() => {
+    loading.value = true
     deleteXxxApi(row.id).then(() => {
       ElMessage.success("删除成功")
+    }).finally(() => {
+      loading.value = false
       getTableData()
     })
   })
