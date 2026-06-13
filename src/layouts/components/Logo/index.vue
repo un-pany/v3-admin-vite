@@ -31,32 +31,35 @@ const { isLeft, isTop } = useLayoutMode()
   position: relative;
   width: 100%;
   height: var(--v3-header-height);
-  line-height: var(--v3-header-height);
-  text-align: center;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
-  .layout-logo {
-    display: none;
-  }
-  .layout-logo-text {
-    height: 100%;
-    vertical-align: middle;
+  a {
+    display: flex;
+    align-items: center;
+    .layout-logo {
+      display: none;
+    }
+    .layout-logo-text {
+      height: 100%;
+    }
   }
 }
 
 .layout-mode-top {
   height: var(--v3-navigationbar-height);
-  line-height: var(--v3-navigationbar-height);
 }
 
 .collapse {
-  .layout-logo {
-    width: 32px;
-    height: 32px;
-    vertical-align: middle;
-    display: inline-block;
-  }
-  .layout-logo-text {
-    display: none;
+  a {
+    .layout-logo {
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+    }
+    .layout-logo-text {
+      display: none;
+    }
   }
 }
 </style>
