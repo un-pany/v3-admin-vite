@@ -67,7 +67,7 @@ $transition-time: 0.35s;
   top: 0;
   height: 100%;
   position: absolute;
-  z-index: 999;
+  z-index: 2001;
 }
 
 .sidebar-container {
@@ -79,7 +79,7 @@ $transition-time: 0.35s;
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 1001;
+  z-index: 2002;
   overflow: hidden;
   border-right: var(--v3-sidebar-border-right);
 }
