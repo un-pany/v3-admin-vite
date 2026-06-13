@@ -3,7 +3,7 @@ name: v3-use-composables
 description: 项目内置组合式函数使用教程，涵盖设备检测、异步下拉、全屏加载、分页、路由监听、主题切换、动态标题、水印等组合式函数。当用户提到以下任何场景时都应触发：使用组合式函数、调用 Composables、判断设备类型、异步加载下拉选项、全屏 Loading、分页逻辑、监听路由变化、切换主题、设置页面标题、添加水印。即使用户没有明确说 Composables，只要意图是使用项目内置的组合式函数就应该使用此 Skill。
 metadata:
   author: pany
-  version: "2026.06.03"
+  version: "2026.06.13"
 ---
 
 # 内置组合式函数使用教程
@@ -89,15 +89,22 @@ await submitWithLoading(formData)
 ```ts
 import { usePagination } from "@@/composables/usePagination"
 
-// 使用默认配置
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
+function getTableData() {
+  // 请求表格数据，并更新 paginationData.total
+}
 
-// 或自定义初始值
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination({
-  currentPage: 1,
+const { paginationData, resetCurrentPage, watchPagination } = usePagination({
+  callback: getTableData,
   pageSize: 20,
   pageSizes: [10, 20, 50, 100]
 })
+
+// 初始化加载，并在 currentPage / pageSize 变化时重新请求
+watchPagination()
+
+function handleSearch() {
+  resetCurrentPage()
+}
 ```
 
 在模板中使用：
@@ -105,14 +112,14 @@ const { paginationData, handleCurrentChange, handleSizeChange } = usePagination(
 ```html
 <el-pagination
   :total="paginationData.total"
-  :current-page="paginationData.currentPage"
-  :page-size="paginationData.pageSize"
   :page-sizes="paginationData.pageSizes"
   :layout="paginationData.layout"
-  @current-change="handleCurrentChange"
-  @size-change="handleSizeChange"
+  v-model:current-page="paginationData.currentPage"
+  v-model:page-size="paginationData.pageSize"
 />
 ```
+
+`callback` 会在 `watchPagination` 监听到页码或每页条数变化时执行；`resetCurrentPage` 用于搜索场景，当前已在第 1 页时直接执行回调，否则重置到第 1 页并交给监听触发，避免重复请求。
 
 默认分页参数：
 

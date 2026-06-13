@@ -3,7 +3,7 @@ name: v3-create-crud
 description: 创建增删改查（CRUD）页面，基于 Element Plus 组件库，包含表格、搜索、分页、新增/编辑弹窗、删除确认等功能。当用户提到以下任何场景时都应触发：创建管理页面、创建列表页、创建表格页。即使用户没有明确说 CRUD，只要意图是创建带表格和表单操作的后台页面就应该使用此 Skill。使用时需提供模块名称和字段信息。
 metadata:
   author: Glittering Ma & pany
-  version: "2026.06.01"
+  version: "2026.06.13"
 ---
 
 # 创建 CRUD 页面
@@ -92,7 +92,7 @@ metadata:
 
 使用 `<script lang="ts" setup>` + `defineOptions({ name: "PascalCase 模块名" })`。
 
-顶部声明共享的 `loading` `ref` 和 `usePagination` 解构。
+顶部声明共享的 `loading` `ref` 和 `usePagination` 解构，分页请求统一通过 `callback`、`resetCurrentPage`、`watchPagination` 组织。
 
 逻辑按增删改查分区，用 `// #region` 和 `// #endregion` 标记：
 
@@ -180,7 +180,7 @@ function getTableData() {
 }
 
 function handleSearch() {
-  paginationData.currentPage === 1 ? getTableData() : (paginationData.currentPage = 1)
+  resetCurrentPage()
 }
 
 function resetSearch() {
@@ -189,25 +189,27 @@ function resetSearch() {
 }
 ```
 
-**`handleSearch` 的逻辑**：搜索时应从第 1 页开始。如果当前已在第 1 页则直接请求；否则将 `currentPage` 设为 1，由 `watch` 自动触发请求（避免重复调用）。
+**`handleSearch` 的逻辑**：直接调用 `resetCurrentPage`。`resetCurrentPage` 会在当前已是第 1 页时直接请求，否则重置页码并由分页监听触发请求，避免重复调用。
 
 ### 分页监听
 
 ```ts
-watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
+watchPagination()
 ```
 
-**为什么用 `watch` + `immediate` 而不是 `onMounted`**：让分页变化和初始加载共享同一个入口，数据获取逻辑只写一处。
+**为什么用 `watchPagination` 而不是 `onMounted`**：让分页变化和初始加载共享同一个入口，数据获取逻辑只写一处。
 
 ## usePagination 用法
 
 ```ts
 import { usePagination } from "@@/composables/usePagination"
 
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
+const { paginationData, resetCurrentPage, watchPagination } = usePagination({
+  callback: getTableData
+})
 ```
 
-`paginationData` 是 `reactive` 对象，包含：`total`、`currentPage`、`pageSizes`、`pageSize`、`layout`。模板中直接绑定：
+`paginationData` 是 `reactive` 对象，包含：`total`、`currentPage`、`pageSizes`、`pageSize`、`layout`。模板中使用 `v-model` 双向绑定页码和每页条数：
 
 ```html
 <el-pagination
@@ -215,10 +217,8 @@ const { paginationData, handleCurrentChange, handleSizeChange } = usePagination(
   :layout="paginationData.layout"
   :page-sizes="paginationData.pageSizes"
   :total="paginationData.total"
-  :page-size="paginationData.pageSize"
-  :current-page="paginationData.currentPage"
-  @size-change="handleSizeChange"
-  @current-change="handleCurrentChange"
+  v-model:page-size="paginationData.pageSize"
+  v-model:current-page="paginationData.currentPage"
 />
 ```
 
@@ -309,7 +309,7 @@ import { CirclePlus, Delete, Download, Refresh, RefreshRight, Search } from "@el
 import { cloneDeep } from "lodash-es"
 ```
 
-以下为自动导入，无需手动引入：`ElMessage`、`ElMessageBox`、`ref`、`reactive`、`watch`、`useTemplateRef`。
+以下为自动导入，无需手动引入：`ElMessage`、`ElMessageBox`、`ref`、`reactive`、`useTemplateRef`。
 
 ## 样式规范
 

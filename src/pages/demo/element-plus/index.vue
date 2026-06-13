@@ -13,7 +13,9 @@ defineOptions({
 
 const loading = ref<boolean>(false)
 
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
+const { paginationData, resetCurrentPage, watchPagination } = usePagination({
+  callback: getTableData
+})
 
 // #region 增
 const DEFAULT_FORM_DATA: CreateOrUpdateTableRequestData = {
@@ -107,7 +109,7 @@ function getTableData() {
 }
 
 function handleSearch() {
-  paginationData.currentPage === 1 ? getTableData() : (paginationData.currentPage = 1)
+  resetCurrentPage()
 }
 
 function resetSearch() {
@@ -117,7 +119,7 @@ function resetSearch() {
 // #endregion
 
 // 监听分页参数的变化
-watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })
+watchPagination()
 </script>
 
 <template>
@@ -210,10 +212,8 @@ watch([() => paginationData.currentPage, () => paginationData.pageSize], getTabl
           :layout="paginationData.layout"
           :page-sizes="paginationData.pageSizes"
           :total="paginationData.total"
-          :page-size="paginationData.pageSize"
-          :current-page="paginationData.currentPage"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
+          v-model:page-size="paginationData.pageSize"
+          v-model:current-page="paginationData.currentPage"
         />
       </div>
     </el-card>
