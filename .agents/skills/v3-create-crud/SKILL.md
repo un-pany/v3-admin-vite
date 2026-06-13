@@ -174,8 +174,7 @@ function getTableData() {
   getXxxApi({
     currentPage: paginationData.currentPage,
     size: paginationData.pageSize,
-    username: searchData.username,
-    phone: searchData.phone
+    ...searchData
   }).then(({ data }) => {
     paginationData.total = data.total
     tableData.value = data.list
