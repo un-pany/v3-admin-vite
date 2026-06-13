@@ -111,11 +111,12 @@ function handleSearch() {
 
 ```html
 <el-pagination
-  :total="paginationData.total"
-  :page-sizes="paginationData.pageSizes"
-  :layout="paginationData.layout"
   v-model:current-page="paginationData.currentPage"
   v-model:page-size="paginationData.pageSize"
+  :page-sizes="paginationData.pageSizes"
+  :total="paginationData.total"
+  :layout="paginationData.layout"
+  background
 />
 ```
 

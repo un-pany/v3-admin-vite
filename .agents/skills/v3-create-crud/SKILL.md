@@ -213,12 +213,12 @@ const { paginationData, resetCurrentPage, watchPagination } = usePagination({
 
 ```html
 <el-pagination
-  background
-  :layout="paginationData.layout"
+  v-model:current-page="paginationData.currentPage"
+  v-model:page-size="paginationData.pageSize"
   :page-sizes="paginationData.pageSizes"
   :total="paginationData.total"
-  v-model:page-size="paginationData.pageSize"
-  v-model:current-page="paginationData.currentPage"
+  :layout="paginationData.layout"
+  background
 />
 ```
 
