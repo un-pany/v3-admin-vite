@@ -36,9 +36,9 @@ export const useUserStore = defineStore("user", () => {
     isGotUserInfo.value = true
   }
 
-  // 模拟角色变化
-  const changeRoles = (role: string) => {
-    const newToken = `token-${role}`
+  // 模拟用户变化
+  const changeUser = (value: string) => {
+    const newToken = `token-${value}`
     token.value = newToken
     _setToken(newToken)
     // 用刷新页面代替重新登录
@@ -71,7 +71,7 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  return { token, roles, permissions, username, isGotUserInfo, setToken, getInfo, changeRoles, logout, resetToken }
+  return { token, roles, permissions, username, isGotUserInfo, setToken, getInfo, changeUser, logout, resetToken }
 })
 
 /**

@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { checkPermission } from "@@/utils/permission"
-import SwitchRoles from "./components/SwitchRoles.vue"
+import SwitchUser from "./components/SwitchUser.vue"
 </script>
 
 <template>
   <div class="app-container">
-    <SwitchRoles />
+    <SwitchUser />
     <el-card header="权限指令 v-permission 示例" shadow="never" class="margin-top-20">
       <el-button v-permission="['admin']">
         admin

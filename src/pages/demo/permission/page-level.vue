@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import SwitchRoles from "./components/SwitchRoles.vue"
+import SwitchUser from "./components/SwitchUser.vue"
 </script>
 
 <template>
   <div class="app-container">
-    <SwitchRoles />
+    <SwitchUser />
     <el-card shadow="never" class="content">
       当前页面只有「admin」角色或「permission:page-level」权限可见，切换用户后权限将重新生效
     </el-card>

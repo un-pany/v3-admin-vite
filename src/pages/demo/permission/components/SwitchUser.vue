@@ -3,18 +3,18 @@ import { useUserStore } from "@/pinia/stores/user"
 
 const userStore = useUserStore()
 
-const switchRoles = ref(userStore.roles[0])
+const username = ref(userStore.username)
 
-watch(switchRoles, (value) => {
-  userStore.changeRoles(value)
+watch(username, (value) => {
+  userStore.changeUser(value)
 })
 </script>
 
 <template>
   <el-card shadow="never">
-    <div class="switch-roles">
+    <div class="switch-user">
       <span>切换用户：</span>
-      <el-radio-group v-model="switchRoles">
+      <el-radio-group v-model="username">
         <el-radio-button label="editor" value="editor" />
         <el-radio-button label="admin" value="admin" />
       </el-radio-group>
@@ -35,7 +35,7 @@ watch(switchRoles, (value) => {
 </template>
 
 <style lang="scss" scoped>
-.switch-roles {
+.switch-user {
   display: flex;
   align-items: center;
 }
