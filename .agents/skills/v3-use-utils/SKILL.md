@@ -68,13 +68,18 @@ setCssVar("--bg-color", "#fff", el)
 
 ## 权限判断 `@@/utils/permission`
 
-基于当前用户角色判断是否拥有指定权限，内部读取 `useUserStore().roles`。
+基于当前用户角色或权限判断是否拥有指定权限，内部读取 `useUserStore().roles` 和 `useUserStore().permissions`。
 
 ```ts
 import { checkPermission } from "@@/utils/permission"
 
 // 判断当前用户是否拥有 admin 或 editor 角色
 if (checkPermission(["admin", "editor"])) {
+  // 有权限
+}
+
+// 判断当前用户是否拥有指定权限
+if (checkPermission(["permission:button-level"])) {
   // 有权限
 }
 ```

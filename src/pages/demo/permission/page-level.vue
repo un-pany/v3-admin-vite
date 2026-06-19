@@ -6,7 +6,7 @@ import SwitchRoles from "./components/SwitchRoles.vue"
   <div class="app-container">
     <SwitchRoles />
     <el-card shadow="never" class="content">
-      当前页面只有「Admin」角色可见，切换角色后将不能进入该页面
+      当前页面只有「admin」角色或「permission:page-level」权限可见，切换用户后权限将重新生效
     </el-card>
   </div>
 </template>

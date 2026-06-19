@@ -4,18 +4,31 @@ import { constantRoutes, dynamicRoutes } from "@/router"
 import { routerConfig } from "@/router/config"
 import { flatMultiLevelRoutes } from "@/router/helper"
 
-function hasPermission(roles: string[], route: RouteRecordRaw) {
-  const routeRoles = route.meta?.roles
-  return routeRoles ? roles.some(role => routeRoles.includes(role)) : true
+interface UserPermissionInfo {
+  roles: string[]
+  permissions: string[]
 }
 
-function filterDynamicRoutes(routes: RouteRecordRaw[], roles: string[]) {
+function hasPermission(userPermissionInfo: UserPermissionInfo, route: RouteRecordRaw) {
+  const routeRoles = route.meta?.roles
+  const routePermissions = route.meta?.permissions
+  const hasRoles = routeRoles !== undefined
+  const hasPermissions = routePermissions !== undefined
+
+  if (!hasRoles && !hasPermissions) return true
+
+  const matchedRole = routeRoles?.some(role => userPermissionInfo.roles.includes(role)) ?? false
+  const matchedPermission = routePermissions?.some(permission => userPermissionInfo.permissions.includes(permission)) ?? false
+  return matchedRole || matchedPermission
+}
+
+function filterDynamicRoutes(routes: RouteRecordRaw[], userPermissionInfo: UserPermissionInfo) {
   const res: RouteRecordRaw[] = []
   routes.forEach((route) => {
     const tempRoute = { ...route }
-    if (hasPermission(roles, tempRoute)) {
+    if (hasPermission(userPermissionInfo, tempRoute)) {
       if (tempRoute.children) {
-        tempRoute.children = filterDynamicRoutes(tempRoute.children, roles)
+        tempRoute.children = filterDynamicRoutes(tempRoute.children, userPermissionInfo)
       }
       res.push(tempRoute)
     }
@@ -30,9 +43,9 @@ export const usePermissionStore = defineStore("permission", () => {
   // 有访问权限的动态路由
   const addRoutes = ref<RouteRecordRaw[]>([])
 
-  // 根据角色生成可访问的 Routes（可访问的路由 = 常驻路由 + 有访问权限的动态路由）
-  const setRoutes = (roles: string[]) => {
-    const accessedRoutes = filterDynamicRoutes(dynamicRoutes, roles)
+  // 根据角色和权限生成可访问的 Routes（可访问的路由 = 常驻路由 + 有访问权限的动态路由）
+  const setRoutes = (userPermissionInfo: UserPermissionInfo) => {
+    const accessedRoutes = filterDynamicRoutes(dynamicRoutes, userPermissionInfo)
     set(accessedRoutes)
   }
 

@@ -19,10 +19,10 @@ metadata:
 2. **路由标题**（中文，如 `学校管理`、`用户管理`）
 3. **路由类型**：
    - **常驻路由**（constantRoutes）：所有登录用户可访问
-   - **动态路由**（dynamicRoutes）：需要角色权限控制
-4. **权限角色**（仅动态路由）：如 `["admin"]`、`["admin", "editor"]`
+   - **动态路由**（dynamicRoutes）：需要角色或权限控制
+4. **权限配置**（仅动态路由）：角色如 `["admin"]`、`["admin", "editor"]`，权限如 `["permission:page-level"]`
 5. **图标**：Element Plus 图标名（elIcon）或 SVG 图标名（svgIcon）
-6. **子路由信息**：路径、标题、权限角色、图标等
+6. **子路由信息**：路径、标题、权限配置、图标等
 
 如果用户信息不完整，主动询问补全后再生成。
 
@@ -48,7 +48,7 @@ metadata:
 - 单页面模块不需要设置 `alwaysShow`，侧边栏会直接显示子路由
 - 多页面模块不需要设置 `alwaysShow`，自动嵌套
 - 只有 "单子路由但仍想显示为折叠组" 的特殊需求才用 `alwaysShow: true`
-- 动态路由的特殊情况：如果角色过滤可能导致只剩 1 个可见子路由，建议加 `alwaysShow: true` 防止意外扁平化
+- 动态路由的特殊情况：如果角色或权限过滤可能导致只剩 1 个可见子路由，建议加 `alwaysShow: true` 防止意外扁平化
 
 ## 图标放置规则
 
@@ -244,6 +244,7 @@ metadata:
 | `elIcon` | `ElementPlusIconsName` | Element Plus 图标名 |
 | `svgIcon` | `SvgName` | SVG 图标名（`src/common/assets/icons/` 下） |
 | `roles` | `string[]` | 可访问的角色列表（仅动态路由） |
+| `permissions` | `string[]` | 可访问的权限列表（仅动态路由） |
 | `keepAlive` | `boolean` | 是否缓存页面（需页面 `name` 与路由 `name` 一致） |
 | `affix` | `boolean` | 默认 false，设为 true 时固定在标签页不可关闭 |
 | `alwaysShow` | `boolean` | 强制显示父级折叠（仅在单子路由时有实际效果） |
@@ -258,7 +259,7 @@ metadata:
 2. **懒加载**：使用 `() => import()` 实现路由懒加载
 3. **子路由相对路径**：`children` 的 `path` 不带 `/`
 4. **`Layouts` 组件**：顶级页面路由的父级使用 `component: Layouts`（外链路由除外，外链不需要 `Layouts`）
-5. **权限继承**：子路由继承父路由的 `roles`
+5. **权限继承**：子路由未设置 `roles` / `permissions` 时，会受父路由权限过滤结果影响
 6. **`redirect`**：有子路由的页面模块应设置 `redirect` 指向默认子页面
 
 ## 命名约定
@@ -286,9 +287,9 @@ metadata:
 
 完成路由配置后检查：
 - [ ] 路由 `name` 全局唯一
-- [ ] `roles` 是数组格式或 `undefined`
+- [ ] `roles` / `permissions` 是数组格式或 `undefined`
 - [ ] `children` 的 `path` 是相对路径（不带 `/`）
 - [ ] 有子路由时父路由设置了 `redirect`，且 `redirect` 指向的子路由路径实际存在
 - [ ] 对应页面已存在时，页面 `name` 与路由 `name` 一致
 - [ ] 顶级业务路由使用了 `component: Layouts`
-- [ ] 动态路由中角色过滤可能只剩 1 个可见子路由时，父路由加了 `alwaysShow: true`
+- [ ] 动态路由中角色或权限过滤可能只剩 1 个可见子路由时，父路由加了 `alwaysShow: true`

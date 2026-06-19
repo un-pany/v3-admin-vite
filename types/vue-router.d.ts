@@ -29,6 +29,10 @@ declare module "vue-router" {
      */
     roles?: string[]
     /**
+     * @description 设置能进入该路由的权限，支持多个权限叠加
+     */
+    permissions?: string[]
+    /**
      * @description 默认 true，如果设置为 false，则不会在面包屑中显示
      */
     breadcrumb?: boolean

@@ -185,7 +185,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 
 /**
  * @name 动态路由
- * @description 用来放置有权限 (Roles 属性) 的路由
+ * @description 用来放置有权限 (roles / permissions 属性) 的路由
  * @description 必须带有唯一的 Name 属性
  */
 export const dynamicRoutes: RouteRecordRaw[] = [
@@ -197,8 +197,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     meta: {
       title: "权限演示",
       elIcon: "Lock",
-      // 可以在根路由中设置角色
+      // 可以在父路由中设置角色或权限
       roles: ["admin", "editor"],
+      permissions: ["permission:*", "permission:page-level", "permission:button-level"],
       alwaysShow: true
     },
     children: [
@@ -208,8 +209,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: "PermissionPageLevel",
         meta: {
           title: "页面级",
-          // 或者在子路由中设置角色
-          roles: ["admin"]
+          // 或者在子路由中设置角色或权限
+          roles: ["admin"],
+          permissions: ["permission:page-level"]
         }
       },
       {
@@ -218,8 +220,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: "PermissionButtonLevel",
         meta: {
           title: "按钮级",
-          // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
-          roles: undefined
+          // 如果未设置，则不限制该页面的访问
+          roles: undefined,
+          permissions: undefined
         }
       }
     ]
@@ -238,7 +241,7 @@ export function resetRouter() {
     // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
     router.getRoutes().forEach((route) => {
       const { name, meta } = route
-      if (name && meta.roles?.length) {
+      if (name && (meta.roles?.length || meta.permissions?.length)) {
         router.hasRoute(name) && router.removeRoute(name)
       }
     })

@@ -8,13 +8,13 @@ import { useUserStore } from "@/pinia/stores/user"
  */
 const permission: Directive = {
   mounted(el, binding) {
-    const { value: permissionRoles } = binding
-    const { roles } = useUserStore()
-    if (isArray(permissionRoles) && permissionRoles.length > 0) {
-      const hasPermission = roles.some(role => permissionRoles.includes(role))
+    const { value: rolesOrPermissions } = binding
+    const { roles, permissions } = useUserStore()
+    if (isArray(rolesOrPermissions) && rolesOrPermissions.length > 0) {
+      const hasPermission = roles.some(role => rolesOrPermissions.includes(role)) || permissions.some(permission => rolesOrPermissions.includes(permission))
       hasPermission || el.parentNode?.removeChild(el)
     } else {
-      throw new Error(`参数必须是一个数组且长度大于 0，参考：v-permission="['admin', 'editor']"`)
+      throw new Error(`参数必须是一个数组且长度大于 0，参考：v-permission="['admin', 'permission:button-level']"`)
     }
   }
 }
