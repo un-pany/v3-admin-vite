@@ -13,8 +13,11 @@ import SwitchUser from "./components/SwitchUser.vue"
       <el-button v-permission="['admin', 'editor']">
         admin 和 editor
       </el-button>
-      <el-button v-permission="['permission:button-level']">
-        permission:button-level
+      <el-button v-permission="['permission:page-level']">
+        permission:page-level
+      </el-button>
+      <el-button v-permission="['permission:page-level', 'permission:button-level']">
+        permission:page-level 和 permission:button-level
       </el-button>
     </el-card>
     <el-card header="权限函数 checkPermission 示例" shadow="never" class="margin-top-20">
@@ -33,9 +36,14 @@ import SwitchUser from "./components/SwitchUser.vue"
             v-if="checkPermission(['admin', 'editor'])"
           </el-tag>
         </el-tab-pane>
-        <el-tab-pane v-if="checkPermission(['permission:button-level'])" label="permission:button-level">
+        <el-tab-pane v-if="checkPermission(['permission:page-level'])" label="permission:page-level">
           <el-tag size="large">
-            v-if="checkPermission(['permission:button-level'])"
+            v-if="checkPermission(['permission:page-level'])"
+          </el-tag>
+        </el-tab-pane>
+        <el-tab-pane v-if="checkPermission(['permission:page-level', 'permission:button-level'])" label="permission:page-level 和 permission:button-level">
+          <el-tag size="large">
+            v-if="checkPermission(['permission:page-level', 'permission:button-level'])"
           </el-tag>
         </el-tab-pane>
       </el-tabs>
