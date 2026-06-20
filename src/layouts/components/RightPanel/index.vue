@@ -6,7 +6,7 @@ const show = ref(false)
 
 <template>
   <div class="handle-button" @click="show = true">
-    <el-icon :size="24">
+    <el-icon :size="20">
       <Setting />
     </el-icon>
   </div>
@@ -17,7 +17,7 @@ const show = ref(false)
 
 <style lang="scss" scoped>
 .handle-button {
-  width: 48px;
+  width: 40px;
   height: 48px;
   background-color: var(--v3-rightpanel-button-bg-color);
   position: fixed;
