@@ -58,4 +58,6 @@ declare module "vue-router" {
      */
     keepAlive?: boolean
   }
+
+  // 路由的 redirect 属性设为 "noRedirect" 时，该路由在面包屑中显示为纯文本（不可点击）
 }

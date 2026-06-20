@@ -253,6 +253,8 @@ metadata:
 
 `svgIcon` 和 `elIcon` 同时设置时，`svgIcon` 优先生效。
 
+当路由设置 `redirect: "noRedirect"` 时，该路由在面包屑中显示为纯文本（不可点击），适用于有子路由但自身不应被直接访问的父路由。
+
 ## 关键规则
 
 1. **`name` 唯一性**：动态路由（`dynamicRoutes`）必须有唯一 `name`（`resetRouter` 依赖 `name` 移除路由）；常驻路由建议设置 `name`（隐藏页面如 redirect/403/404 可省略）
