@@ -14,9 +14,7 @@ function hasPermission(userPermissionInfo: UserPermissionInfo, route: RouteRecor
   const routePermissions = route.meta?.permissions
   const hasRoles = routeRoles !== undefined
   const hasPermissions = routePermissions !== undefined
-
   if (!hasRoles && !hasPermissions) return true
-
   const matchedRole = routeRoles?.some(role => userPermissionInfo.roles.includes(role)) ?? false
   const matchedPermission = routePermissions?.some(permission => userPermissionInfo.permissions.includes(permission)) ?? false
   return matchedRole || matchedPermission
