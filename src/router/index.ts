@@ -197,9 +197,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     meta: {
       title: "权限演示",
       elIcon: "Lock",
-      // 可以在父路由中设置角色或权限
-      roles: ["admin", "editor"],
-      permissions: ["permission:*", "permission:page-level", "permission:button-level"],
       alwaysShow: true
     },
     children: [
@@ -209,8 +206,9 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: "PermissionPageLevel",
         meta: {
           title: "页面级",
-          // 或者在子路由中设置角色或权限
+          // 在路由中设置角色来控制访问
           roles: ["admin"],
+          // 在路由中设置权限标识字符来控制访问
           permissions: ["permission:page-level"]
         }
       },
@@ -222,7 +220,8 @@ export const dynamicRoutes: RouteRecordRaw[] = [
           title: "按钮级",
           // 如果未设置，则不限制该页面的访问
           roles: undefined,
-          permissions: undefined
+          // 在路由中设置权限标识字符来控制访问
+          permissions: ["permission:button-level"]
         }
       }
     ]

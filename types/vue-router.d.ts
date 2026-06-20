@@ -29,7 +29,7 @@ declare module "vue-router" {
      */
     roles?: string[]
     /**
-     * @description 设置能进入该路由的权限，支持多个权限叠加
+     * @description 设置能进入该路由的权限标识字符，支持多个权限标识字符叠加
      */
     permissions?: string[]
     /**

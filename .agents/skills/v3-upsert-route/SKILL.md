@@ -20,7 +20,7 @@ metadata:
 3. **路由类型**：
    - **常驻路由**（constantRoutes）：所有登录用户可访问
    - **动态路由**（dynamicRoutes）：需要角色或权限控制
-4. **权限配置**（仅动态路由）：角色如 `["admin"]`、`["admin", "editor"]`，权限如 `["permission:page-level"]`
+4. **权限配置**（仅动态路由）：角色如 `["admin"]`、`["admin", "editor"]`，权限标识字符如 `["permission:page-level"]`
 5. **图标**：Element Plus 图标名（elIcon）或 SVG 图标名（svgIcon）
 6. **子路由信息**：路径、标题、权限配置、图标等
 
@@ -244,7 +244,7 @@ metadata:
 | `elIcon` | `ElementPlusIconsName` | Element Plus 图标名 |
 | `svgIcon` | `SvgName` | SVG 图标名（`src/common/assets/icons/` 下） |
 | `roles` | `string[]` | 可访问的角色列表（仅动态路由） |
-| `permissions` | `string[]` | 可访问的权限列表（仅动态路由） |
+| `permissions` | `string[]` | 可访问的权限标识字符列表（仅动态路由） |
 | `keepAlive` | `boolean` | 是否缓存页面（需页面 `name` 与路由 `name` 一致） |
 | `affix` | `boolean` | 默认 false，设为 true 时固定在标签页不可关闭 |
 | `alwaysShow` | `boolean` | 强制显示父级折叠（仅在单子路由时有实际效果） |
@@ -260,7 +260,8 @@ metadata:
 3. **子路由相对路径**：`children` 的 `path` 不带 `/`
 4. **`Layouts` 组件**：顶级页面路由的父级使用 `component: Layouts`（外链路由除外，外链不需要 `Layouts`）
 5. **权限继承**：子路由未设置 `roles` / `permissions` 时，会受父路由权限过滤结果影响
-6. **`redirect`**：有子路由的页面模块应设置 `redirect` 指向默认子页面
+6. **权限关系**：同一路由同时设置 `roles` 和 `permissions` 时，满足其一即可访问（OR 关系）
+7. **`redirect`**：有子路由的页面模块应设置 `redirect` 指向默认子页面
 
 ## 命名约定
 
