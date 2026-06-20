@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router"
 import { createRouter } from "vue-router"
-import { routerConfig } from "@/router/config"
+import { DASHBOARD_PATH, REDIRECT_PATH, routerConfig } from "@/router/config"
 import { registerNavigationGuard } from "@/router/guard"
 import { flatMultiLevelRoutes } from "./helper"
 
@@ -12,7 +12,7 @@ const Layouts = () => import("@/layouts/index.vue")
  */
 export const constantRoutes: RouteRecordRaw[] = [
   {
-    path: "/redirect",
+    path: REDIRECT_PATH,
     component: Layouts,
     meta: {
       hidden: true
@@ -49,7 +49,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: "/",
     component: Layouts,
-    redirect: "/dashboard",
+    redirect: DASHBOARD_PATH,
     children: [
       {
         path: "dashboard",

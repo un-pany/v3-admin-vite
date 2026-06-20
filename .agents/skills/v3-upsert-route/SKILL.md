@@ -31,7 +31,7 @@ metadata:
 路由配置在 `src/router/index.ts` 中。
 
 其他路由文件（通常无需修改）：
-- `src/router/config.ts` — 路由模式、动态路由开关、三级路由缓存配置
+- `src/router/config.ts` — 路由模式、动态路由开关、三级路由缓存配置、路径常量（`DASHBOARD_PATH`、`REDIRECT_PATH`）
 - `src/router/guard.ts` — 导航守卫（登录验证、权限加载）
 - `src/router/helper.ts` — 路由降级（三级路由转二级）
 - `src/router/whitelist.ts` — 免登录白名单

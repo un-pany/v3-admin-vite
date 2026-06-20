@@ -2,6 +2,7 @@
 import type { RouteLocationMatched } from "vue-router"
 import { useRouteListener } from "@@/composables/useRouteListener"
 import { compile } from "path-to-regexp"
+import { REDIRECT_PATH } from "@/router/config"
 
 const route = useRoute()
 
@@ -32,7 +33,7 @@ function handleLink(item: RouteLocationMatched) {
 
 // 监听路由变化，更新面包屑导航信息
 listenerRouteChange((route) => {
-  if (route.path.startsWith("/redirect/")) return
+  if (route.path.startsWith(`${REDIRECT_PATH}/`)) return
   getBreadcrumb()
 }, true)
 </script>

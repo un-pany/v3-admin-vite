@@ -6,6 +6,7 @@ import { Close } from "@element-plus/icons-vue"
 import path from "path-browserify"
 import { usePermissionStore } from "@/pinia/stores/permission"
 import { useTagsViewStore } from "@/pinia/stores/tags-view"
+import { DASHBOARD_PATH, REDIRECT_PATH } from "@/router/config"
 import ScrollPane from "./ScrollPane.vue"
 
 const router = useRouter()
@@ -87,7 +88,7 @@ function addTags(route: RouteLocationNormalizedGeneric) {
 /** 刷新当前正在右键操作的标签页 */
 function refreshSelectedTag(view: TagView) {
   tagsViewStore.delCachedView(view)
-  router.replace({ path: `/redirect${view.path}`, query: view.query })
+  router.replace({ path: `${REDIRECT_PATH}${view.path}`, query: view.query })
 }
 
 /** 关闭当前正在右键操作的标签页 */
@@ -123,9 +124,9 @@ function toLastView(visitedViews: TagView[], view: TagView) {
     router.push(fullPath)
   } else {
     // 如果 TagsView 全部被关闭了，则默认重定向到主页
-    if (view.name === "Dashboard") {
+    if (view.path === DASHBOARD_PATH) {
       // 重新加载主页
-      router.push({ path: `/redirect${view.path}`, query: view.query })
+      router.push({ path: `${REDIRECT_PATH}${view.path}`, query: view.query })
     } else {
       router.push("/")
     }
