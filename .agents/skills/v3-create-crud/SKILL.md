@@ -79,6 +79,7 @@ metadata:
   - 需要批量操作时加 `type="selection"` 首列
   - 数据列：`prop` + `label` + `align="center"`
   - 操作列：`fixed="right"` + 适当 `width` + `align="center"`，内含修改/删除按钮（`text bg size="small"`）
+  - 操作列按钮将 `scope.row` 传给强类型 handler 时，使用 `scope.row as XxxData` 明确行类型，避免 Element Plus 默认 `DefaultRow` 导致 `vue-tsc` 报错，不要使用 `as any`
 - 分页（`div.pager-wrapper` > `el-pagination`）
 
 ### 3. 弹窗

@@ -10,7 +10,7 @@
 
 <b><a href="./README.md">English</a> | 中文</b>
 
-## 简介 <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black"></a>
+## 简介 <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black" alt="AI Vibe Coding"></a>
 
 V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术，并且具备良好的 AI Vibe Coding 体验！
 
@@ -228,7 +228,7 @@ npx skills experimental_install
 在此感谢所有的贡献者！
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" alt="contributors">
 </a>
 
 ## License

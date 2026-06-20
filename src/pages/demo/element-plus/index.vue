@@ -198,10 +198,10 @@ watchPagination()
           <el-table-column prop="createTime" label="创建时间" align="center" />
           <el-table-column fixed="right" label="操作" width="150" align="center">
             <template #default="scope">
-              <el-button type="primary" text bg size="small" @click="handleUpdate(scope.row)">
+              <el-button type="primary" text bg size="small" @click="handleUpdate(scope.row as TableData)">
                 修改
               </el-button>
-              <el-button type="danger" text bg size="small" @click="handleDelete(scope.row)">
+              <el-button type="danger" text bg size="small" @click="handleDelete(scope.row as TableData)">
                 删除
               </el-button>
             </template>

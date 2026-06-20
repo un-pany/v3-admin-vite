@@ -10,7 +10,7 @@
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
 
-## Introduction <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black"></a>
+## Introduction <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black" alt="AI Vibe Coding"></a>
 
 V3 Admin Vite is a well-crafted backend management system template, built with popular technologies such as Vue3, Vite, TypeScript, and Element Plus, and offers a great AI Vibe Coding experience!
 
@@ -228,7 +228,7 @@ npx skills experimental_install
 A big thank you to all the contributors!
 
 <a href="https://github.com/un-pany/v3-admin-vite/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite">
+  <img src="https://contrib.rocks/image?repo=un-pany/v3-admin-vite" alt="contributors">
 </a>
 
 ## License

@@ -332,10 +332,10 @@ const crudStore = reactive({
       }
       if (crudStore.isUpdate) {
         // 模拟调用修改接口成功
-        setTimeout(() => callback(), 1000)
+        setTimeout(callback, 1000)
       } else {
         // 模拟调用新增接口成功
-        setTimeout(() => callback(), 1000)
+        setTimeout(callback, 1000)
       }
     })
   },
