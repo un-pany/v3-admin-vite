@@ -178,6 +178,14 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: "新手教程"
         }
+      },
+      {
+        path: "https://juejin.cn/column/7046214632771420196",
+        component: () => {},
+        name: "Link3",
+        meta: {
+          title: "周边资讯"
+        }
       }
     ]
   }
