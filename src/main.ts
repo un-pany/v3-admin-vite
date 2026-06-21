@@ -8,6 +8,7 @@ import App from "@/App.vue"
 // css
 import "normalize.css"
 import "nprogress/nprogress.css"
+import "element-plus/dist/index.css"
 import "element-plus/theme-chalk/dark/css-vars.css"
 import "vxe-table/lib/style.css"
 import "@@/assets/styles/index.scss"
