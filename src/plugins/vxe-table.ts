@@ -12,6 +12,7 @@ VXETable.setConfig({
   // 全局 loading 提示内容，如果为 null 则不显示文本
   loadingText: null,
   table: {
+    minHeight: 46,
     showHeader: true,
     showOverflow: "tooltip",
     showHeaderOverflow: "tooltip",
