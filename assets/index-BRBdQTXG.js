@@ -1,1 +1,0 @@
-import{G as t,M as r,aE as a,aF as o,L as s}from"./vue-COQCswyy.js";const m=t({__name:"index",setup(n){const e=a();return o().replace({path:`/${e.params.path}`,query:e.query}),(c,p)=>(s(),r("div"))}});export{m as default};
