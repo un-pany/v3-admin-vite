@@ -10,14 +10,16 @@
 
 <b>English | <a href="./README.zh-CN.md">中文</a></b>
 
-## Introduction <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black" alt="AI Vibe Coding"></a>
+## Introduction <a href="https://juejin.cn/post/7660780385584316454"><img src="https://img.shields.io/badge/AI-Coding-black" alt="AI Coding"></a>
 
-V3 Admin Vite is a well-crafted backend management system template, built with popular technologies such as Vue3, Vite, TypeScript, and Element Plus, and offers a great AI Vibe Coding experience!
+V3 Admin Vite is an AI-friendly admin dashboard template built on mainstream technologies such as Vue3, Vite, TypeScript, and Element Plus, offering an excellent "Vibe Coding" experience!
+
+_Supports mainstream AI coding tools such as Claude Code, CodeX, Cursor, Trae, and Antigravity_
 
 ## Notifications
 
 > [!IMPORTANT]
-> Welcome to experience the brand-new version 5.0, a masterpiece crafted with great care! If it helps you, feel free to give a Star to show your support.
+> Welcome to experience the brand-new version 5.0, a masterpiece crafted with great care! If it helps you, feel free to give a Star to show your support
 
 > [!WARNING]
 > Version 4.x will no longer be maintained unless there are critical bugs! [Click to switch to the 4.x branch](https://github.com/un-pany/v3-admin-vite/tree/4.x)
@@ -26,7 +28,7 @@ V3 Admin Vite is a well-crafted backend management system template, built with p
 > Paid services are officially launched! If you don’t want to do it yourself but want to remove TS or other modules, try the lazy package! [Click to check it out](https://github.com/un-pany/v3-admin-vite/issues/225)
 
 > [!NOTE]
-> If you have mobile web app requirements, give the new open-source template [MobVue](https://github.com/un-pany/mobvue) a try.
+> If you have mobile web app requirements, give the new open-source template [MobVue](https://github.com/un-pany/mobvue) a try
 
 ## Usage
 
@@ -177,7 +179,7 @@ npx skills experimental_install
 
 **User Management**: Login, logout demonstration
 
-**Permission Management**: Page-level permissions (dynamic routing), button-level permissions (permission directives, permission functions), route guards
+**Permission Management**: Page-level permissions (dynamic routing controlled by backend APIs), button-level permissions (permission directives and functions), and route guards
 
 **Multiple Environments**: Development, staging, and production environments
 

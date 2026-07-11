@@ -45,7 +45,7 @@ function initMobileNotification() {
         "div",
         null,
         [
-          h("div", null, "如果你有移动端 H5 需求，试试新的开源模板 MobVue！"),
+          h("div", null, "如果你有移动端 H5 需求，试试新的开源模板 MobVue"),
           h("a", { style: "color: teal", target: "_blank", href: "https://github.com/un-pany/mobvue" }, "点击查看")
         ]
       ),

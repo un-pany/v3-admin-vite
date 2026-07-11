@@ -10,14 +10,16 @@
 
 <b><a href="./README.md">English</a> | 中文</b>
 
-## 简介 <a href="https://mp.weixin.qq.com/s/ccuzm4ZlHvN-1XBBN2lduQ"><img src="https://img.shields.io/badge/AI-VibeCoding-black" alt="AI Vibe Coding"></a>
+## 简介 <a href="https://juejin.cn/post/7660780385584316454"><img src="https://img.shields.io/badge/AI-Coding-black" alt="AI Coding"></a>
 
-V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术，并且具备良好的 AI Vibe Coding 体验！
+V3 Admin Vite 是一个 AI 友好的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术，并且具备优秀的 Vibe Coding 体验！
+
+_支持 Claude Code、CodeX、Cursor、Trae、Antigravity 等主流 AI Coding 工具_
 
 ## 通知
 
 > [!IMPORTANT]
-> 欢迎体验全新的 5.0 版本，它是一次匠心之作！如果对你有帮助，欢迎点个 Star 支持一下。
+> 欢迎体验全新的 5.0 版本，它是一次匠心之作！如果对你有帮助，欢迎点个 Star 支持一下
 
 > [!WARNING]
 > 4.x 版本如果没有严重的 BUG 将不再维护！[点击切换到 4.x 分支](https://github.com/un-pany/v3-admin-vite/tree/4.x)
@@ -26,7 +28,7 @@ V3 Admin Vite 是一个精心制作的后台管理系统模板，基于 Vue3、V
 > 正式推出付费服务，如果不想自己动手，但想移除 TS 或其他模块？试试懒人套餐！[点击看看](https://github.com/un-pany/v3-admin-vite/issues/225)
 
 > [!NOTE]
-> 如果你有移动端 H5 需求，试试新的开源模板 [MobVue](https://github.com/un-pany/mobvue)。
+> 如果你有移动端 H5 需求，试试新的开源模板 [MobVue](https://github.com/un-pany/mobvue)
 
 ## 使用
 
@@ -177,7 +179,7 @@ npx skills experimental_install
 
 **用户管理**：登录、登出演示
 
-**权限管理**：页面级权限（动态路由）、按钮级权限（权限指令、权限函数）、路由守卫
+**权限管理**：页面级权限（后端接口控制动态路由）、按钮级权限（权限指令、权限函数）、路由守卫
 
 **多环境**：开发环境（development）、预发布环境（staging）、生产环境（production）
 

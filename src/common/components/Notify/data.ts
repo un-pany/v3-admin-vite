@@ -5,13 +5,13 @@ export const notifyData: NotifyItem[] = [
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
     title: "V3 Admin Vite 上线啦",
     datetime: "四年前",
-    description: "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术"
+    description: "一个 AI 友好的后台管理系统模板，基于 Vue3、Vite、TypeScript、Element Plus 等主流技术"
   },
   {
     avatar: "https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png",
     title: "V3 Admin 上线啦",
     datetime: "五年前",
-    description: "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus 和 Pinia"
+    description: "一个中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vue CLI 5.x"
   }
 ]
 
