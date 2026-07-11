@@ -19,7 +19,7 @@ _Supports mainstream AI coding tools such as Claude Code, CodeX, Cursor, Trae, a
 ## Notifications
 
 > [!IMPORTANT]
-> Welcome to experience the brand-new version 5.0, a masterpiece crafted with great care! If it helps you, feel free to give a Star to show your support
+> Welcome to the all-new version 5.2, delivering a unique AI coding experience! It also introduces the long-awaited backend-controlled dynamic routing permission system
 
 > [!WARNING]
 > Version 4.x will no longer be maintained unless there are critical bugs! [Click to switch to the 4.x branch](https://github.com/un-pany/v3-admin-vite/tree/4.x)
